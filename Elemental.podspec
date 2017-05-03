@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-  A framework for rapid layout of input elements and static content.
+  Elemental is a framework for rapid layout of input elements and static content.
                        DESC
 
   s.homepage         = 'https://github.com/Incipia/Elemental'
