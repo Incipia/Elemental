@@ -23,6 +23,7 @@ pod "Elemental"
 ## Author
 
 Gregory Klein, gregory@incipia.co
+
 Leif Meyer, leif@incipia.co
 
 ## License
