@@ -22,7 +22,8 @@ pod "Elemental"
 
 ## Author
 
-gklei, gregory@incipia.co
+Gregory Klein, gregory@incipia.co
+Leif Meyer, leif@incipia.co
 
 ## License
 
