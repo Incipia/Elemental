@@ -1,0 +1,22 @@
+{
+  "name": "Elemental",
+  "version": "0.1.0",
+  "summary": "A short description of Elemental.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/gklei/Elemental",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "gklei": "gregory@incipia.co"
+  },
+  "source": {
+    "git": "https://github.com/gklei/Elemental.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "Elemental/Classes/**/*"
+}
