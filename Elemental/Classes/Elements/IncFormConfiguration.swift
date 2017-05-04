@@ -138,7 +138,7 @@ public protocol IncFormTextInputConfiguring: IncFormElementalConfiguring {
 }
 
 extension IncFormTextInputConfiguring {
-   var isEnabled: Bool { return true }
+   public var isEnabled: Bool { return true }
 }
 
 public class IncFormTextInputConfiguration: IncFormElementalConfiguration, IncFormTextInputConfiguring {

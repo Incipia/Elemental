@@ -23,7 +23,7 @@ public struct IncFormElementTextInputContent {
    let detail: String?
    let placeholder: String?
    
-   init(name: String, detail: String? = nil, placeholder: String? = nil) {
+   public init(name: String, detail: String? = nil, placeholder: String? = nil) {
       self.name = name
       self.detail = detail
       self.placeholder = placeholder

@@ -21,7 +21,7 @@ extension KVStringComplianceObject {
    }
 }
 
-struct Binding {
+public struct Binding {
    let key: String
    let target: StringBindable
    let targetKey: String

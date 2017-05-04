@@ -21,12 +21,12 @@ public enum IncFormElementInputState {
 }
 
 // optionally override the target state with the return value
-typealias IncFormElementInputAction = (_ currentState: IncFormElementInputState, _ proposedNextState: IncFormElementInputState?) -> IncFormElementInputState?
+public typealias IncFormElementInputAction = (_ currentState: IncFormElementInputState, _ proposedNextState: IncFormElementInputState?) -> IncFormElementInputState?
 
 // called when the accessory button is pressed
-typealias IncFormElementAccessoryAction = () -> ()
+public typealias IncFormElementAccessoryAction = () -> ()
 
-protocol IncFormSizeDelegate: class {
+public protocol IncFormSizeDelegate: class {
    func size(for element: IncFormElemental, constrainedWidth width: CGFloat) -> CGSize
 }
 
@@ -552,75 +552,75 @@ public class IncFormVerticalLine: IncFormElement {
 }
 
 extension IncFormElement {
-   class func text(configuration: IncFormTextConfiguring, content: String) -> IncFormElement {
+   public class func text(configuration: IncFormTextConfiguring, content: String) -> IncFormElement {
       return IncFormText(configuration: configuration, content: content)
    }
    
-   class func icon(configuration: IncFormIconConfiguring, content: IncFormElementIconContent) -> IncFormElement {
+   public class func icon(configuration: IncFormIconConfiguring, content: IncFormElementIconContent) -> IncFormElement {
       return IncFormIcon(configuration: configuration, content: content)
    }
    
-   class func accessory(configuration: IncFormAccessoryConfiguring, content: IncFormElementAccessoryContent, bindings: [Binding] = [], action: IncFormElementAccessoryAction? = nil) -> IncFormElement {
+   public class func accessory(configuration: IncFormAccessoryConfiguring, content: IncFormElementAccessoryContent, bindings: [Binding] = [], action: IncFormElementAccessoryAction? = nil) -> IncFormElement {
       return IncFormAccessory(configuration: configuration, content: content, bindings: bindings, action: action)
    }
    
-   class func thumbnail(configuration: IncFormAccessoryConfiguring, content: IncFormElementThumbnailContent, bindings: [Binding] = [], action: IncFormElementAccessoryAction? = nil) -> IncFormElement {
+   public class func thumbnail(configuration: IncFormAccessoryConfiguring, content: IncFormElementThumbnailContent, bindings: [Binding] = [], action: IncFormElementAccessoryAction? = nil) -> IncFormElement {
       return IncFormThumbnail(configuration: configuration, content: content, bindings: bindings, action: action)
    }
    
-   class func `switch`(configuration: IncFormSwitchConfiguring, content: IncFormElementSwitchContent, bindings: [Binding] = []) -> IncFormElement {
+   public class func `switch`(configuration: IncFormSwitchConfiguring, content: IncFormElementSwitchContent, bindings: [Binding] = []) -> IncFormElement {
       return IncFormSwitch(configuration: configuration, content: content, bindings: bindings)
    }
    
-   class func dropdown(configuration: IncFormDropdownConfiguring, content: IncFormElementDropdownContent) -> IncFormElement {
+   public class func dropdown(configuration: IncFormDropdownConfiguring, content: IncFormElementDropdownContent) -> IncFormElement {
       return IncFormDropdown(configuration: configuration, content: content)
    }
    
-   class func picker(configuration: IncFormPickerConfiguring, content: IncFormElementPickerContent, bindings: [Binding] = [], action: IncFormElementInputAction? = nil) -> IncFormElement {
+   public class func picker(configuration: IncFormPickerConfiguring, content: IncFormElementPickerContent, bindings: [Binding] = [], action: IncFormElementInputAction? = nil) -> IncFormElement {
       return IncFormPickerSelection(configuration: configuration, content: content, bindings: bindings, action: action)
    }
    
-   class func radioSelection(configuration: IncFormRadioConfiguring, content: IncFormElementRadioContent, bindings: [Binding] = []) -> IncFormElement {
+   public class func radioSelection(configuration: IncFormRadioConfiguring, content: IncFormElementRadioContent, bindings: [Binding] = []) -> IncFormElement {
       return IncFormRadioSelection(configuration: configuration, content: content, bindings: bindings)
    }
    
-   class func textFieldInput(configuration: IncFormTextInputConfiguring, content: IncFormElementTextInputContent, bindings: [Binding] = [], action: IncFormElementInputAction? = nil) -> IncFormElement {
+   public class func textFieldInput(configuration: IncFormTextInputConfiguring, content: IncFormElementTextInputContent, bindings: [Binding] = [], action: IncFormElementInputAction? = nil) -> IncFormElement {
       return IncFormTextFieldInput(configuration: configuration, content: content, bindings: bindings, action: action)
    }
    
-   class func textViewInput(configuration: IncFormTextInputConfiguring, content: IncFormElementTextInputContent, bindings: [Binding] = [], action: IncFormElementInputAction? = nil) -> IncFormElement {
+   public class func textViewInput(configuration: IncFormTextInputConfiguring, content: IncFormElementTextInputContent, bindings: [Binding] = [], action: IncFormElementInputAction? = nil) -> IncFormElement {
       return IncFormTextViewInput(configuration: configuration, content: content, bindings: bindings, action: action)
    }
    
-   class func dateInput(configuration: IncFormDateInputConfiguring, content: IncFormElementDateInputContent, bindings: [Binding] = [], action: IncFormElementInputAction? = nil) -> IncFormElement {
+   public class func dateInput(configuration: IncFormDateInputConfiguring, content: IncFormElementDateInputContent, bindings: [Binding] = [], action: IncFormElementInputAction? = nil) -> IncFormElement {
       return IncFormDateInput(configuration: configuration, content: content, bindings: bindings, action: action)
    }
    
-   class func horizontalLine(configuration: IncFormDividingLineConfiguring) -> IncFormElement {
+   public class func horizontalLine(configuration: IncFormDividingLineConfiguring) -> IncFormElement {
       return IncFormHorizontalLine(configuration: configuration)
    }
    
-   class func verticalSpace(_ value: CGFloat) -> IncFormElement {
+   public class func verticalSpace(_ value: CGFloat) -> IncFormElement {
       return IncFormVerticalSpace(value: value)
    }
    
-   class func view(_ view: UIView) -> IncFormElement {
+   public class func view(_ view: UIView) -> IncFormElement {
       return IncFormCustomView(view: view)
    }
    
-   class func viewController(_ viewController: UIViewController, sizeDelegate: IncFormSizeDelegate) -> IncFormElement {
+   public class func viewController(_ viewController: UIViewController, sizeDelegate: IncFormSizeDelegate) -> IncFormElement {
       return IncFormCustomViewController(viewController: viewController, sizeDelegate: sizeDelegate)
    }
    
-   class func horizontalForm(elements: [IncFormElemental]) -> IncFormElement {
+   public class func horizontalForm(elements: [IncFormElemental]) -> IncFormElement {
       return IncFormHorizontalForm(elements: elements)
    }
    
-   class func horizontalSpace(_ value: CGFloat) -> IncFormElement {
+   public class func horizontalSpace(_ value: CGFloat) -> IncFormElement {
       return IncFormHorizontalSpace(value: value)
    }
    
-   class func verticalLine(configuration: IncFormDividingLineConfiguring) -> IncFormElement {
+   public class func verticalLine(configuration: IncFormDividingLineConfiguring) -> IncFormElement {
       return IncFormVerticalLine(configuration: configuration)
    }
 }

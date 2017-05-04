@@ -19,8 +19,8 @@ public protocol IncFormViewControllerDelegate: class {
 }
 
 extension IncFormViewControllerDelegate {
-   func elementSelected(_ element: IncFormElemental, in viewController: IncFormViewController) {}
-   func elementsBeganRefreshing(in viewController: IncFormViewController) {}
+   public func elementSelected(_ element: IncFormElemental, in viewController: IncFormViewController) {}
+   public func elementsBeganRefreshing(in viewController: IncFormViewController) {}
 }
 
 open class IncFormViewController: UIViewController {
@@ -142,12 +142,12 @@ open class IncFormViewController: UIViewController {
       return true
    }
    
-   func reload() {
+   public func reload() {
       loadViewIfNeeded()
       configure(with: generateElements() ?? _elements, scrollToTop: false)
    }
    
-   func setNeedsLayout() {
+   public func setNeedsLayout() {
       guard !_needsLayout else { return }
       _needsLayout = true
       DispatchQueue.main.async {
@@ -165,12 +165,12 @@ open class IncFormViewController: UIViewController {
       return CGSize(width: width, height: height)
    }
    
-   func formDidLoad() {
+   open func formDidLoad() {
       guard let elements = generateElements() else { return }
       self.elements = elements
    }
    
-   func generateElements() -> [IncFormElemental]? {
+   open func generateElements() -> [IncFormElemental]? {
       return nil
    }
    

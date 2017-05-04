@@ -8,7 +8,7 @@
 
 import UIKit
 
-enum IncFormBindableElementKey: String, KVKeyType {
+public enum IncFormBindableElementKey: String, KVKeyType {
    case name
    case detail
    case placeholder
