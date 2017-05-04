@@ -262,7 +262,7 @@ public class IncFormPickerSelection: IncFormElement, IncFormBindableElemental {
 
 
 public class IncFormRadioSelection: IncFormElement, IncFormBindableElemental {
-   struct Component {
+   public struct Component {
       let text: String
       let value: Any
       var on: Bool

@@ -111,7 +111,7 @@ open class IncFormViewController: UIViewController {
       }
    }
    
-   var sidePadding: CGFloat = 24.0 {
+   public var sidePadding: CGFloat = 24.0 {
       didSet {
          collectionView.collectionViewLayout.invalidateLayout()
       }

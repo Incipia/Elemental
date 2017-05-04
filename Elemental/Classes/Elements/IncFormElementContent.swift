@@ -36,7 +36,7 @@ public struct IncFormElementDropdownContent {
    let placeholder: String?
    let elements: [String]
    
-   init(name: String, detail: String? = nil, placeholder: String? = nil, elements: [String] = []) {
+   public init(name: String, detail: String? = nil, placeholder: String? = nil, elements: [String] = []) {
       self.name = name
       self.detail = detail
       self.placeholder = placeholder
