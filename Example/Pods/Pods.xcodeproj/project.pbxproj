@@ -10,7 +10,6 @@
 		047A68C646E00EB6D7D4D7343B801D09 /* AdapterProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4846C1280F7FCC383265584085BAB875 /* AdapterProtocols.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		051A816D6DD0CAE13496DDCFE0829167 /* UIImage+Diff.h in Headers */ = {isa = PBXBuildFile; fileRef = 5F8012AD8A72934F350BDA8C90157813 /* UIImage+Diff.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		055835A025E38405EA9EC5218E6FE1E3 /* ExampleMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7510C71C3B6495347C01469BB81376A6 /* ExampleMetadata.swift */; };
-		06E84A7F94095A7A2C75FE447165AE1E /* ReplaceMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5264E3CA76E4F1666D0875C63C26F46C /* ReplaceMe.swift */; };
 		07722FBCF6B380961B9D2832D5883F45 /* BeGreaterThan.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F8491C368290A8B20C9EF13A6C6EE6 /* BeGreaterThan.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		094973D2D2F1E3B2E772F93C8147C6B9 /* UIApplication+StrictKeyWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = FA68CDEB565662C3E1B336DB7D1493CA /* UIApplication+StrictKeyWindow.m */; };
 		0AEC20AACF9B10846830274E3B2AA6FD /* BeLogical.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D38D8EEA17091B69D8228F090F3D137 /* BeLogical.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
@@ -136,6 +135,40 @@
 		DCEE854E62441E78FED15CC994497F61 /* AllPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9691BC7DD2332650A7C903F0DD3FCA /* AllPass.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		DFCC99EBF2E3D6006FCE7F927AFF1939 /* Elemental-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 4DA7A66BC655DDCEB1E088EE49694FE5 /* Elemental-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E5CCEF0B83F8272D10671C01AAE4FFA0 /* NimbleXCTestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466B5734B8571AC44718C371C80CE5A6 /* NimbleXCTestHandler.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
+		E9AAE4921EBA6FD500DA542E /* InsetTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AAE4911EBA6FD500DA542E /* InsetTextField.swift */; };
+		E9AAE4951EBAA6ED00DA542E /* IncFormGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AAE4941EBAA6ED00DA542E /* IncFormGeometry.swift */; };
+		E9F0E5E51EBA6A17007F6FFC /* IncFormAccessoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F0E5D31EBA6A17007F6FFC /* IncFormAccessoryCell.swift */; };
+		E9F0E5E61EBA6A17007F6FFC /* IncFormBindableElementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F0E5D41EBA6A17007F6FFC /* IncFormBindableElementCell.swift */; };
+		E9F0E5E71EBA6A17007F6FFC /* IncFormCustomViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F0E5D51EBA6A17007F6FFC /* IncFormCustomViewCell.swift */; };
+		E9F0E5E81EBA6A17007F6FFC /* IncFormCustomViewControllerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F0E5D61EBA6A17007F6FFC /* IncFormCustomViewControllerCell.swift */; };
+		E9F0E5E91EBA6A17007F6FFC /* IncFormDateInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F0E5D71EBA6A17007F6FFC /* IncFormDateInputCell.swift */; };
+		E9F0E5EA1EBA6A17007F6FFC /* IncFormDropdownCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F0E5D81EBA6A17007F6FFC /* IncFormDropdownCell.swift */; };
+		E9F0E5EB1EBA6A17007F6FFC /* IncFormElementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F0E5D91EBA6A17007F6FFC /* IncFormElementCell.swift */; };
+		E9F0E5EC1EBA6A17007F6FFC /* IncFormHorizontalFormCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F0E5DA1EBA6A17007F6FFC /* IncFormHorizontalFormCell.swift */; };
+		E9F0E5ED1EBA6A17007F6FFC /* IncFormHorizontalLineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F0E5DB1EBA6A17007F6FFC /* IncFormHorizontalLineCell.swift */; };
+		E9F0E5EE1EBA6A17007F6FFC /* IncFormIconCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F0E5DC1EBA6A17007F6FFC /* IncFormIconCell.swift */; };
+		E9F0E5EF1EBA6A17007F6FFC /* IncFormPickerSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F0E5DD1EBA6A17007F6FFC /* IncFormPickerSelectionCell.swift */; };
+		E9F0E5F01EBA6A17007F6FFC /* IncFormRadioSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F0E5DE1EBA6A17007F6FFC /* IncFormRadioSelectionCell.swift */; };
+		E9F0E5F11EBA6A17007F6FFC /* IncFormSwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F0E5DF1EBA6A17007F6FFC /* IncFormSwitchCell.swift */; };
+		E9F0E5F21EBA6A17007F6FFC /* IncFormTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F0E5E01EBA6A17007F6FFC /* IncFormTextCell.swift */; };
+		E9F0E5F31EBA6A17007F6FFC /* IncFormTextFieldInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F0E5E11EBA6A17007F6FFC /* IncFormTextFieldInputCell.swift */; };
+		E9F0E5F41EBA6A17007F6FFC /* IncFormTextViewInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F0E5E21EBA6A17007F6FFC /* IncFormTextViewInputCell.swift */; };
+		E9F0E5F51EBA6A17007F6FFC /* IncFormThumbnailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F0E5E31EBA6A17007F6FFC /* IncFormThumbnailCell.swift */; };
+		E9F0E5F61EBA6A17007F6FFC /* IncFormVerticalLineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F0E5E41EBA6A17007F6FFC /* IncFormVerticalLineCell.swift */; };
+		E9F0E5FE1EBA6ACF007F6FFC /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F0E5F81EBA6ACF007F6FFC /* Bindable.swift */; };
+		E9F0E5FF1EBA6ACF007F6FFC /* JSONInitable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F0E5F91EBA6ACF007F6FFC /* JSONInitable.swift */; };
+		E9F0E6001EBA6ACF007F6FFC /* JSONRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F0E5FA1EBA6ACF007F6FFC /* JSONRepresentable.swift */; };
+		E9F0E6011EBA6ACF007F6FFC /* KVCompliance.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F0E5FB1EBA6ACF007F6FFC /* KVCompliance.swift */; };
+		E9F0E6021EBA6ACF007F6FFC /* KVStringCompliance.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F0E5FC1EBA6ACF007F6FFC /* KVStringCompliance.swift */; };
+		E9F0E6031EBA6ACF007F6FFC /* StringBindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F0E5FD1EBA6ACF007F6FFC /* StringBindable.swift */; };
+		E9F0E60A1EBA6B4D007F6FFC /* IncFormConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F0E6051EBA6B4D007F6FFC /* IncFormConfiguration.swift */; };
+		E9F0E60B1EBA6B4D007F6FFC /* IncFormElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F0E6061EBA6B4D007F6FFC /* IncFormElement.swift */; };
+		E9F0E60C1EBA6B4D007F6FFC /* IncFormElemental.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F0E6071EBA6B4D007F6FFC /* IncFormElemental.swift */; };
+		E9F0E60D1EBA6B4D007F6FFC /* IncFormElementContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F0E6081EBA6B4D007F6FFC /* IncFormElementContent.swift */; };
+		E9F0E60E1EBA6B4D007F6FFC /* IncFormStyling.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F0E6091EBA6B4D007F6FFC /* IncFormStyling.swift */; };
+		E9F0E6111EBA6BEF007F6FFC /* IncFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F0E6101EBA6BEF007F6FFC /* IncFormViewController.swift */; };
+		E9F0E6141EBA6D63007F6FFC /* RadioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F0E6131EBA6D63007F6FFC /* RadioView.swift */; };
+		E9F0E6161EBA6E7D007F6FFC /* PlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F0E6151EBA6E7D007F6FFC /* PlaceholderTextView.swift */; };
 		EBA52C16F42E42A1824D87C284F4A60C /* PostNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CCCF841830A407AA9D8BB9E8F07F5C /* PostNotification.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		ECDCA34D620E87501E4413C5CCB762B7 /* QCKDSL.h in Headers */ = {isa = PBXBuildFile; fileRef = 2E17284A9AD262919A278BB506F291DE /* QCKDSL.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EE93A677B561717E56A85651F6F19FEE /* QuickConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = DC57DA19B7547061C4391AEE40D7AB91 /* QuickConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -265,7 +298,6 @@
 		4F077BF65ADAB96D26191001735CF8A2 /* ExampleHooks.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExampleHooks.swift; path = Sources/Quick/Hooks/ExampleHooks.swift; sourceTree = "<group>"; };
 		4F58095B435083E123FE763D0A51D495 /* FBSnapshotTestCase-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FBSnapshotTestCase-dummy.m"; sourceTree = "<group>"; };
 		515787726F972CD10EF3AB251F3D2362 /* Expectation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Expectation.swift; path = Sources/Nimble/Expectation.swift; sourceTree = "<group>"; };
-		5264E3CA76E4F1666D0875C63C26F46C /* ReplaceMe.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ReplaceMe.swift; sourceTree = "<group>"; };
 		55143EF0DEF159DDD063FA42B7D12153 /* DSL+Wait.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DSL+Wait.swift"; path = "Sources/Nimble/DSL+Wait.swift"; sourceTree = "<group>"; };
 		56D1793E15813EC733B46E6884FEEA74 /* FBSnapshotTestCase.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSnapshotTestCase.m; path = FBSnapshotTestCase/FBSnapshotTestCase.m; sourceTree = "<group>"; };
 		57E169877FF59447D4182C1989BF0B59 /* NimbleEnvironment.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NimbleEnvironment.swift; path = Sources/Nimble/Adapters/NimbleEnvironment.swift; sourceTree = "<group>"; };
@@ -370,6 +402,56 @@
 		E62B08603E00709D2E2462B0FCCBBF61 /* Quick-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Quick-dummy.m"; sourceTree = "<group>"; };
 		E68A09BD8DA5658942A3D48B6BFE9A56 /* Pods-Elemental_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Elemental_Example-dummy.m"; sourceTree = "<group>"; };
 		E96FFC80321A2686726EC0B919986A82 /* Pods_Elemental_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Elemental_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E9AAE4911EBA6FD500DA542E /* InsetTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsetTextField.swift; sourceTree = "<group>"; };
+		E9AAE4941EBAA6ED00DA542E /* IncFormGeometry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncFormGeometry.swift; sourceTree = "<group>"; };
+		E9F0E5C21EBA6893007F6FFC /* IncFormAccessoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IncFormAccessoryCell.xib; sourceTree = "<group>"; };
+		E9F0E5C31EBA6893007F6FFC /* IncFormCustomViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IncFormCustomViewCell.xib; sourceTree = "<group>"; };
+		E9F0E5C41EBA6893007F6FFC /* IncFormCustomViewControllerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IncFormCustomViewControllerCell.xib; sourceTree = "<group>"; };
+		E9F0E5C51EBA6893007F6FFC /* IncFormDateInputCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IncFormDateInputCell.xib; sourceTree = "<group>"; };
+		E9F0E5C61EBA6893007F6FFC /* IncFormDropdownCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IncFormDropdownCell.xib; sourceTree = "<group>"; };
+		E9F0E5C71EBA6893007F6FFC /* IncFormHorizontalFormCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IncFormHorizontalFormCell.xib; sourceTree = "<group>"; };
+		E9F0E5C81EBA6893007F6FFC /* IncFormHorizontalLineCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IncFormHorizontalLineCell.xib; sourceTree = "<group>"; };
+		E9F0E5C91EBA6893007F6FFC /* IncFormIconCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IncFormIconCell.xib; sourceTree = "<group>"; };
+		E9F0E5CA1EBA6893007F6FFC /* IncFormPickerSelectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IncFormPickerSelectionCell.xib; sourceTree = "<group>"; };
+		E9F0E5CB1EBA6893007F6FFC /* IncFormRadioSelectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IncFormRadioSelectionCell.xib; sourceTree = "<group>"; };
+		E9F0E5CC1EBA6893007F6FFC /* IncFormSwitchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IncFormSwitchCell.xib; sourceTree = "<group>"; };
+		E9F0E5CD1EBA6893007F6FFC /* IncFormTextCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IncFormTextCell.xib; sourceTree = "<group>"; };
+		E9F0E5CE1EBA6893007F6FFC /* IncFormTextFieldInputCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IncFormTextFieldInputCell.xib; sourceTree = "<group>"; };
+		E9F0E5CF1EBA6893007F6FFC /* IncFormTextViewInputCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IncFormTextViewInputCell.xib; sourceTree = "<group>"; };
+		E9F0E5D01EBA6893007F6FFC /* IncFormThumbnailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IncFormThumbnailCell.xib; sourceTree = "<group>"; };
+		E9F0E5D11EBA6893007F6FFC /* IncFormVerticalLineCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IncFormVerticalLineCell.xib; sourceTree = "<group>"; };
+		E9F0E5D31EBA6A17007F6FFC /* IncFormAccessoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IncFormAccessoryCell.swift; path = Cells/IncFormAccessoryCell.swift; sourceTree = "<group>"; };
+		E9F0E5D41EBA6A17007F6FFC /* IncFormBindableElementCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IncFormBindableElementCell.swift; path = Cells/IncFormBindableElementCell.swift; sourceTree = "<group>"; };
+		E9F0E5D51EBA6A17007F6FFC /* IncFormCustomViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IncFormCustomViewCell.swift; path = Cells/IncFormCustomViewCell.swift; sourceTree = "<group>"; };
+		E9F0E5D61EBA6A17007F6FFC /* IncFormCustomViewControllerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IncFormCustomViewControllerCell.swift; path = Cells/IncFormCustomViewControllerCell.swift; sourceTree = "<group>"; };
+		E9F0E5D71EBA6A17007F6FFC /* IncFormDateInputCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IncFormDateInputCell.swift; path = Cells/IncFormDateInputCell.swift; sourceTree = "<group>"; };
+		E9F0E5D81EBA6A17007F6FFC /* IncFormDropdownCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IncFormDropdownCell.swift; path = Cells/IncFormDropdownCell.swift; sourceTree = "<group>"; };
+		E9F0E5D91EBA6A17007F6FFC /* IncFormElementCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IncFormElementCell.swift; path = Cells/IncFormElementCell.swift; sourceTree = "<group>"; };
+		E9F0E5DA1EBA6A17007F6FFC /* IncFormHorizontalFormCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IncFormHorizontalFormCell.swift; path = Cells/IncFormHorizontalFormCell.swift; sourceTree = "<group>"; };
+		E9F0E5DB1EBA6A17007F6FFC /* IncFormHorizontalLineCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IncFormHorizontalLineCell.swift; path = Cells/IncFormHorizontalLineCell.swift; sourceTree = "<group>"; };
+		E9F0E5DC1EBA6A17007F6FFC /* IncFormIconCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IncFormIconCell.swift; path = Cells/IncFormIconCell.swift; sourceTree = "<group>"; };
+		E9F0E5DD1EBA6A17007F6FFC /* IncFormPickerSelectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IncFormPickerSelectionCell.swift; path = Cells/IncFormPickerSelectionCell.swift; sourceTree = "<group>"; };
+		E9F0E5DE1EBA6A17007F6FFC /* IncFormRadioSelectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IncFormRadioSelectionCell.swift; path = Cells/IncFormRadioSelectionCell.swift; sourceTree = "<group>"; };
+		E9F0E5DF1EBA6A17007F6FFC /* IncFormSwitchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IncFormSwitchCell.swift; path = Cells/IncFormSwitchCell.swift; sourceTree = "<group>"; };
+		E9F0E5E01EBA6A17007F6FFC /* IncFormTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IncFormTextCell.swift; path = Cells/IncFormTextCell.swift; sourceTree = "<group>"; };
+		E9F0E5E11EBA6A17007F6FFC /* IncFormTextFieldInputCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IncFormTextFieldInputCell.swift; path = Cells/IncFormTextFieldInputCell.swift; sourceTree = "<group>"; };
+		E9F0E5E21EBA6A17007F6FFC /* IncFormTextViewInputCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IncFormTextViewInputCell.swift; path = Cells/IncFormTextViewInputCell.swift; sourceTree = "<group>"; };
+		E9F0E5E31EBA6A17007F6FFC /* IncFormThumbnailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IncFormThumbnailCell.swift; path = Cells/IncFormThumbnailCell.swift; sourceTree = "<group>"; };
+		E9F0E5E41EBA6A17007F6FFC /* IncFormVerticalLineCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IncFormVerticalLineCell.swift; path = Cells/IncFormVerticalLineCell.swift; sourceTree = "<group>"; };
+		E9F0E5F81EBA6ACF007F6FFC /* Bindable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
+		E9F0E5F91EBA6ACF007F6FFC /* JSONInitable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONInitable.swift; sourceTree = "<group>"; };
+		E9F0E5FA1EBA6ACF007F6FFC /* JSONRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONRepresentable.swift; sourceTree = "<group>"; };
+		E9F0E5FB1EBA6ACF007F6FFC /* KVCompliance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KVCompliance.swift; sourceTree = "<group>"; };
+		E9F0E5FC1EBA6ACF007F6FFC /* KVStringCompliance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KVStringCompliance.swift; sourceTree = "<group>"; };
+		E9F0E5FD1EBA6ACF007F6FFC /* StringBindable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringBindable.swift; sourceTree = "<group>"; };
+		E9F0E6051EBA6B4D007F6FFC /* IncFormConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncFormConfiguration.swift; sourceTree = "<group>"; };
+		E9F0E6061EBA6B4D007F6FFC /* IncFormElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncFormElement.swift; sourceTree = "<group>"; };
+		E9F0E6071EBA6B4D007F6FFC /* IncFormElemental.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncFormElemental.swift; sourceTree = "<group>"; };
+		E9F0E6081EBA6B4D007F6FFC /* IncFormElementContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncFormElementContent.swift; sourceTree = "<group>"; };
+		E9F0E6091EBA6B4D007F6FFC /* IncFormStyling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncFormStyling.swift; sourceTree = "<group>"; };
+		E9F0E6101EBA6BEF007F6FFC /* IncFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncFormViewController.swift; sourceTree = "<group>"; };
+		E9F0E6131EBA6D63007F6FFC /* RadioView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioView.swift; sourceTree = "<group>"; };
+		E9F0E6151EBA6E7D007F6FFC /* PlaceholderTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceholderTextView.swift; sourceTree = "<group>"; };
 		EB646F5C3AD648D54BA7807757A438B3 /* NSBundle+CurrentTestBundle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSBundle+CurrentTestBundle.swift"; path = "Sources/Quick/NSBundle+CurrentTestBundle.swift"; sourceTree = "<group>"; };
 		EB8ACF0F197A69494E0D2EB3786819AB /* Nimble_Snapshots.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Nimble_Snapshots.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC2D2DA3B4CDC6CF3A593303426EA8EB /* Quick.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Quick.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -636,7 +718,13 @@
 		B42D127486BECC7CFEA2D72A05090697 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				5264E3CA76E4F1666D0875C63C26F46C /* ReplaceMe.swift */,
+				E9F0E5C01EBA66EA007F6FFC /* Cell Xibs */,
+				E9F0E5D21EBA6968007F6FFC /* Cells */,
+				E9F0E6121EBA6CFC007F6FFC /* Custom UI */,
+				E9F0E6041EBA6AE3007F6FFC /* Elements */,
+				E9AAE4931EBAA6C500DA542E /* Geometry */,
+				E9F0E5F71EBA6A23007F6FFC /* Temporary Dependencies */,
+				E9F0E60F1EBA6B9C007F6FFC /* View Controllers */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -812,6 +900,109 @@
 			);
 			name = "Support Files";
 			path = "../Target Support Files/Quick";
+			sourceTree = "<group>";
+		};
+		E9AAE4931EBAA6C500DA542E /* Geometry */ = {
+			isa = PBXGroup;
+			children = (
+				E9AAE4941EBAA6ED00DA542E /* IncFormGeometry.swift */,
+			);
+			path = Geometry;
+			sourceTree = "<group>";
+		};
+		E9F0E5C01EBA66EA007F6FFC /* Cell Xibs */ = {
+			isa = PBXGroup;
+			children = (
+				E9F0E5C21EBA6893007F6FFC /* IncFormAccessoryCell.xib */,
+				E9F0E5C31EBA6893007F6FFC /* IncFormCustomViewCell.xib */,
+				E9F0E5C41EBA6893007F6FFC /* IncFormCustomViewControllerCell.xib */,
+				E9F0E5C51EBA6893007F6FFC /* IncFormDateInputCell.xib */,
+				E9F0E5C61EBA6893007F6FFC /* IncFormDropdownCell.xib */,
+				E9F0E5C71EBA6893007F6FFC /* IncFormHorizontalFormCell.xib */,
+				E9F0E5C81EBA6893007F6FFC /* IncFormHorizontalLineCell.xib */,
+				E9F0E5C91EBA6893007F6FFC /* IncFormIconCell.xib */,
+				E9F0E5CA1EBA6893007F6FFC /* IncFormPickerSelectionCell.xib */,
+				E9F0E5CB1EBA6893007F6FFC /* IncFormRadioSelectionCell.xib */,
+				E9F0E5CC1EBA6893007F6FFC /* IncFormSwitchCell.xib */,
+				E9F0E5CD1EBA6893007F6FFC /* IncFormTextCell.xib */,
+				E9F0E5CE1EBA6893007F6FFC /* IncFormTextFieldInputCell.xib */,
+				E9F0E5CF1EBA6893007F6FFC /* IncFormTextViewInputCell.xib */,
+				E9F0E5D01EBA6893007F6FFC /* IncFormThumbnailCell.xib */,
+				E9F0E5D11EBA6893007F6FFC /* IncFormVerticalLineCell.xib */,
+			);
+			name = "Cell Xibs";
+			path = CellXibs;
+			sourceTree = "<group>";
+		};
+		E9F0E5D21EBA6968007F6FFC /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				E9F0E5D31EBA6A17007F6FFC /* IncFormAccessoryCell.swift */,
+				E9F0E5D41EBA6A17007F6FFC /* IncFormBindableElementCell.swift */,
+				E9F0E5D51EBA6A17007F6FFC /* IncFormCustomViewCell.swift */,
+				E9F0E5D61EBA6A17007F6FFC /* IncFormCustomViewControllerCell.swift */,
+				E9F0E5D71EBA6A17007F6FFC /* IncFormDateInputCell.swift */,
+				E9F0E5D81EBA6A17007F6FFC /* IncFormDropdownCell.swift */,
+				E9F0E5D91EBA6A17007F6FFC /* IncFormElementCell.swift */,
+				E9F0E5DA1EBA6A17007F6FFC /* IncFormHorizontalFormCell.swift */,
+				E9F0E5DB1EBA6A17007F6FFC /* IncFormHorizontalLineCell.swift */,
+				E9F0E5DC1EBA6A17007F6FFC /* IncFormIconCell.swift */,
+				E9F0E5DD1EBA6A17007F6FFC /* IncFormPickerSelectionCell.swift */,
+				E9F0E5DE1EBA6A17007F6FFC /* IncFormRadioSelectionCell.swift */,
+				E9F0E5DF1EBA6A17007F6FFC /* IncFormSwitchCell.swift */,
+				E9F0E5E01EBA6A17007F6FFC /* IncFormTextCell.swift */,
+				E9F0E5E11EBA6A17007F6FFC /* IncFormTextFieldInputCell.swift */,
+				E9F0E5E21EBA6A17007F6FFC /* IncFormTextViewInputCell.swift */,
+				E9F0E5E31EBA6A17007F6FFC /* IncFormThumbnailCell.swift */,
+				E9F0E5E41EBA6A17007F6FFC /* IncFormVerticalLineCell.swift */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
+		E9F0E5F71EBA6A23007F6FFC /* Temporary Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				E9F0E5F81EBA6ACF007F6FFC /* Bindable.swift */,
+				E9F0E5F91EBA6ACF007F6FFC /* JSONInitable.swift */,
+				E9F0E5FA1EBA6ACF007F6FFC /* JSONRepresentable.swift */,
+				E9F0E5FB1EBA6ACF007F6FFC /* KVCompliance.swift */,
+				E9F0E5FC1EBA6ACF007F6FFC /* KVStringCompliance.swift */,
+				E9F0E5FD1EBA6ACF007F6FFC /* StringBindable.swift */,
+			);
+			name = "Temporary Dependencies";
+			path = temp_dependencies;
+			sourceTree = "<group>";
+		};
+		E9F0E6041EBA6AE3007F6FFC /* Elements */ = {
+			isa = PBXGroup;
+			children = (
+				E9F0E6051EBA6B4D007F6FFC /* IncFormConfiguration.swift */,
+				E9F0E6061EBA6B4D007F6FFC /* IncFormElement.swift */,
+				E9F0E6071EBA6B4D007F6FFC /* IncFormElemental.swift */,
+				E9F0E6081EBA6B4D007F6FFC /* IncFormElementContent.swift */,
+				E9F0E6091EBA6B4D007F6FFC /* IncFormStyling.swift */,
+			);
+			path = Elements;
+			sourceTree = "<group>";
+		};
+		E9F0E60F1EBA6B9C007F6FFC /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				E9F0E6101EBA6BEF007F6FFC /* IncFormViewController.swift */,
+			);
+			name = "View Controllers";
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		E9F0E6121EBA6CFC007F6FFC /* Custom UI */ = {
+			isa = PBXGroup;
+			children = (
+				E9AAE4911EBA6FD500DA542E /* InsetTextField.swift */,
+				E9F0E6151EBA6E7D007F6FFC /* PlaceholderTextView.swift */,
+				E9F0E6131EBA6D63007F6FFC /* RadioView.swift */,
+			);
+			name = "Custom UI";
+			path = CustomUI;
 			sourceTree = "<group>";
 		};
 		ECC106B502730C893BFACA908222F37B /* Core */ = {
@@ -1221,8 +1412,41 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9F0E5E91EBA6A17007F6FFC /* IncFormDateInputCell.swift in Sources */,
+				E9F0E6031EBA6ACF007F6FFC /* StringBindable.swift in Sources */,
+				E9F0E5F11EBA6A17007F6FFC /* IncFormSwitchCell.swift in Sources */,
+				E9F0E60A1EBA6B4D007F6FFC /* IncFormConfiguration.swift in Sources */,
+				E9F0E5F01EBA6A17007F6FFC /* IncFormRadioSelectionCell.swift in Sources */,
+				E9F0E5F21EBA6A17007F6FFC /* IncFormTextCell.swift in Sources */,
+				E9F0E5EB1EBA6A17007F6FFC /* IncFormElementCell.swift in Sources */,
+				E9F0E60B1EBA6B4D007F6FFC /* IncFormElement.swift in Sources */,
+				E9F0E5E81EBA6A17007F6FFC /* IncFormCustomViewControllerCell.swift in Sources */,
+				E9F0E6161EBA6E7D007F6FFC /* PlaceholderTextView.swift in Sources */,
+				E9F0E5EE1EBA6A17007F6FFC /* IncFormIconCell.swift in Sources */,
+				E9F0E6111EBA6BEF007F6FFC /* IncFormViewController.swift in Sources */,
+				E9F0E5F31EBA6A17007F6FFC /* IncFormTextFieldInputCell.swift in Sources */,
+				E9F0E60E1EBA6B4D007F6FFC /* IncFormStyling.swift in Sources */,
+				E9F0E5FE1EBA6ACF007F6FFC /* Bindable.swift in Sources */,
+				E9F0E6001EBA6ACF007F6FFC /* JSONRepresentable.swift in Sources */,
+				E9F0E5F61EBA6A17007F6FFC /* IncFormVerticalLineCell.swift in Sources */,
+				E9F0E60C1EBA6B4D007F6FFC /* IncFormElemental.swift in Sources */,
+				E9F0E5E61EBA6A17007F6FFC /* IncFormBindableElementCell.swift in Sources */,
+				E9F0E6021EBA6ACF007F6FFC /* KVStringCompliance.swift in Sources */,
+				E9F0E5F51EBA6A17007F6FFC /* IncFormThumbnailCell.swift in Sources */,
+				E9F0E6141EBA6D63007F6FFC /* RadioView.swift in Sources */,
+				E9AAE4951EBAA6ED00DA542E /* IncFormGeometry.swift in Sources */,
+				E9F0E60D1EBA6B4D007F6FFC /* IncFormElementContent.swift in Sources */,
+				E9F0E5EC1EBA6A17007F6FFC /* IncFormHorizontalFormCell.swift in Sources */,
+				E9F0E5E51EBA6A17007F6FFC /* IncFormAccessoryCell.swift in Sources */,
+				E9AAE4921EBA6FD500DA542E /* InsetTextField.swift in Sources */,
 				1501D4810FE25759278FDC183C84C976 /* Elemental-dummy.m in Sources */,
-				06E84A7F94095A7A2C75FE447165AE1E /* ReplaceMe.swift in Sources */,
+				E9F0E6011EBA6ACF007F6FFC /* KVCompliance.swift in Sources */,
+				E9F0E5F41EBA6A17007F6FFC /* IncFormTextViewInputCell.swift in Sources */,
+				E9F0E5ED1EBA6A17007F6FFC /* IncFormHorizontalLineCell.swift in Sources */,
+				E9F0E5EF1EBA6A17007F6FFC /* IncFormPickerSelectionCell.swift in Sources */,
+				E9F0E5FF1EBA6ACF007F6FFC /* JSONInitable.swift in Sources */,
+				E9F0E5E71EBA6A17007F6FFC /* IncFormCustomViewCell.swift in Sources */,
+				E9F0E5EA1EBA6A17007F6FFC /* IncFormDropdownCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
