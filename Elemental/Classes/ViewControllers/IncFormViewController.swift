@@ -67,17 +67,17 @@ open class IncFormViewController: UIViewController {
    
    public weak var formDelegate: IncFormViewControllerDelegate?
    
-   var layout: UICollectionViewLayout {
+   public var layout: UICollectionViewLayout {
       get { return collectionView.collectionViewLayout }
       set { collectionView.collectionViewLayout = newValue }
    }
    
-   var keyboardDismissMode: UIScrollViewKeyboardDismissMode {
+   public var keyboardDismissMode: UIScrollViewKeyboardDismissMode {
       get { return collectionView.keyboardDismissMode }
       set { collectionView.keyboardDismissMode = newValue }
    }
    
-   var scrollIndicatorStyle: UIScrollViewIndicatorStyle = .default {
+   public var scrollIndicatorStyle: UIScrollViewIndicatorStyle = .default {
       didSet {
          collectionView.indicatorStyle = scrollIndicatorStyle
       }
@@ -100,12 +100,12 @@ open class IncFormViewController: UIViewController {
       }
    }
    
-   var delaysContentTouches: Bool {
+   public var delaysContentTouches: Bool {
       get { return collectionView.delaysContentTouches }
       set { collectionView.delaysContentTouches = newValue }
    }
    
-   var componentPadding: CGFloat = 0.0 {
+   public var componentPadding: CGFloat = 0.0 {
       didSet {
          collectionView.collectionViewLayout.invalidateLayout()
       }
@@ -229,11 +229,11 @@ extension IncFormViewController {
       }
    }
    
-   func reloadComponents() {
+   public func reloadComponents() {
       collectionView.reloadData()
    }
    
-   func reconfigure(elements: [IncFormElemental]) {
+   public func reconfigure(elements: [IncFormElemental]) {
       for (index, element) in self.elements.enumerated() {
          if let cell = collectionView.cellForItem(at: IndexPath(row: index, section: 0)) {
             elements.forEach {
@@ -243,7 +243,7 @@ extension IncFormViewController {
       }
    }
 
-   func reconfigure(componentsAt indices: IndexSet) {
+   public func reconfigure(componentsAt indices: IndexSet) {
       indices.forEach {
          let indexPath: IndexPath = IndexPath(row: $0, section: 0)
          if let cell = collectionView.cellForItem(at: indexPath) {
@@ -252,7 +252,7 @@ extension IncFormViewController {
       }
    }
    
-   func reloadLayout(animated: Bool = true) {
+   public func reloadLayout(animated: Bool = true) {
       _needsLayout = false
       guard animated else { collectionView.collectionViewLayout.invalidateLayout(); return }
       _animatingIndexPaths = collectionView.indexPathsForVisibleItems

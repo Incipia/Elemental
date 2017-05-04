@@ -49,7 +49,7 @@ class IncFormCustomViewControllerCell: IncFormElementCell {
    
    override class func contentSize(for element: IncFormElemental, constrainedWidth width: CGFloat) -> CGSize {
       guard let element = element as? IncFormCustomViewController else { fatalError() }
-      return element.sizeDelegate.size(for: element, constrainedWidth: width)
+      return element.sizeDelegate?.size(for: element, constrainedWidth: width) ?? .zero
    }
    
    override func prepareForReuse() {

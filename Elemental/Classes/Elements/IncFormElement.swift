@@ -12,7 +12,7 @@ public enum IncFormElementInputState {
    case focused, unfocused
    
    // may be temporary
-   var other: IncFormElementInputState {
+   public var other: IncFormElementInputState {
       switch self {
       case .focused: return .unfocused
       case .unfocused: return .focused
@@ -69,7 +69,7 @@ open class IncFormElement: IncFormElemental {
    open func size(forConstrainedDimension dimension: IncFormElementDimension) -> CGSize { fatalError() }
    
    // MARK: - Public Class Methods
-   class func form(_ elements: [IncFormElement]) -> [IncFormElemental] {
+   public class func form(_ elements: [IncFormElement]) -> [IncFormElemental] {
       return elements
    }
    
@@ -86,8 +86,8 @@ open class IncFormElement: IncFormElemental {
 
 public class IncFormText: IncFormElement {
    // MARK: - Public Properties
-   var configuration: IncFormTextConfiguring { return elementalConfig as! IncFormTextConfiguring }
-   var content: String
+   public var configuration: IncFormTextConfiguring { return elementalConfig as! IncFormTextConfiguring }
+   public var content: String
    
    // MARK: - Init
    public init(configuration: IncFormTextConfiguring, content: String) {
@@ -107,8 +107,8 @@ public class IncFormText: IncFormElement {
 
 public class IncFormIcon: IncFormElement {
    // MARK: - Public Properties
-   var configuration: IncFormIconConfiguring { return elementalConfig as! IncFormIconConfiguring }
-   var content: IncFormElementIconContent
+   public var configuration: IncFormIconConfiguring { return elementalConfig as! IncFormIconConfiguring }
+   public var content: IncFormElementIconContent
    
    // MARK: - Init
    public init(configuration: IncFormIconConfiguring, content: IncFormElementIconContent) {
@@ -128,10 +128,10 @@ public class IncFormIcon: IncFormElement {
 
 public class IncFormAccessory: IncFormElement, IncFormBindableElemental {
    // MARK: - Public Properties
-   var configuration: IncFormAccessoryConfiguring { return elementalConfig as! IncFormAccessoryConfiguring }
-   var content: IncFormElementAccessoryContent
-   var bindings: [Binding]
-   var action: IncFormElementAccessoryAction?
+   public var configuration: IncFormAccessoryConfiguring { return elementalConfig as! IncFormAccessoryConfiguring }
+   public var content: IncFormElementAccessoryContent
+   public var bindings: [Binding]
+   public var action: IncFormElementAccessoryAction?
    
    // MARK: - Init
    public init(configuration: IncFormAccessoryConfiguring, content: IncFormElementAccessoryContent, bindings: [Binding] = [], action: IncFormElementAccessoryAction? = nil) {
@@ -153,10 +153,10 @@ public class IncFormAccessory: IncFormElement, IncFormBindableElemental {
 
 public class IncFormThumbnail: IncFormElement, IncFormBindableElemental {
    // MARK: - Public Properties
-   var configuration: IncFormAccessoryConfiguring { return elementalConfig as! IncFormAccessoryConfiguring }
-   var content: IncFormElementThumbnailContent
-   var bindings: [Binding]
-   var action: IncFormElementAccessoryAction?
+   public var configuration: IncFormAccessoryConfiguring { return elementalConfig as! IncFormAccessoryConfiguring }
+   public var content: IncFormElementThumbnailContent
+   public var bindings: [Binding]
+   public var action: IncFormElementAccessoryAction?
    
    // MARK: - Init
    public init(configuration: IncFormAccessoryConfiguring, content: IncFormElementThumbnailContent, bindings: [Binding] = [], action: IncFormElementAccessoryAction? = nil) {
@@ -178,9 +178,9 @@ public class IncFormThumbnail: IncFormElement, IncFormBindableElemental {
 
 public class IncFormSwitch: IncFormElement, IncFormBindableElemental {
    // MARK: - Public Properties
-   var configuration: IncFormSwitchConfiguring { return elementalConfig as! IncFormSwitchConfiguring }
-   var content: IncFormElementSwitchContent
-   var bindings: [Binding]
+   public var configuration: IncFormSwitchConfiguring { return elementalConfig as! IncFormSwitchConfiguring }
+   public var content: IncFormElementSwitchContent
+   public var bindings: [Binding]
    
    // MARK: - Init
    public init(configuration: IncFormSwitchConfiguring, content: IncFormElementSwitchContent, bindings: [Binding] = []) {
@@ -201,8 +201,8 @@ public class IncFormSwitch: IncFormElement, IncFormBindableElemental {
 
 public class IncFormDropdown: IncFormElement {
    // MARK: - Public Properties
-   var configuration: IncFormDropdownConfiguring { return elementalConfig as! IncFormDropdownConfiguring }
-   var content: IncFormElementDropdownContent
+   public var configuration: IncFormDropdownConfiguring { return elementalConfig as! IncFormDropdownConfiguring }
+   public var content: IncFormElementDropdownContent
    
    // MARK: - Init
    public init(configuration: IncFormDropdownConfiguring, content: IncFormElementDropdownContent) {
@@ -220,10 +220,10 @@ public class IncFormDropdown: IncFormElement {
 }
 
 public class IncFormPickerSelection: IncFormElement, IncFormBindableElemental {
-   struct Option {
-      let text: String
-      let value: Any
-      var isSelected: Bool
+   public struct Option {
+      public let text: String
+      public let value: Any
+      public var isSelected: Bool
       
       public init(text: String = "", value: Any? = nil, isSelected: Bool = false) {
          self.text = text
@@ -231,16 +231,16 @@ public class IncFormPickerSelection: IncFormElement, IncFormBindableElemental {
          self.isSelected = isSelected
       }
       
-      static func option(text: String = "", value: Any? = nil, isSelected: Bool = false) -> Option {
+      public static func option(text: String = "", value: Any? = nil, isSelected: Bool = false) -> Option {
          return Option(text: text, value: value, isSelected: isSelected)
       }
    }
    
-   var configuration: IncFormPickerConfiguring { return elementalConfig as! IncFormPickerConfiguring }
-   var content: IncFormElementPickerContent
-   var bindings: [Binding]
-   var action: IncFormElementInputAction?
-   var inputState: IncFormElementInputState
+   public var configuration: IncFormPickerConfiguring { return elementalConfig as! IncFormPickerConfiguring }
+   public var content: IncFormElementPickerContent
+   public var bindings: [Binding]
+   public var action: IncFormElementInputAction?
+   public var inputState: IncFormElementInputState
    
    // MARK: - Init
    public init(configuration: IncFormPickerConfiguring, content: IncFormElementPickerContent, bindings: [Binding] = [], action: IncFormElementInputAction? = nil) {
@@ -265,7 +265,7 @@ public class IncFormRadioSelection: IncFormElement, IncFormBindableElemental {
    public struct Component {
       let text: String
       let value: Any
-      var on: Bool
+      public var on: Bool
       
       public init(text: String = "", value: Any? = nil, on: Bool = false) {
          self.text = text
@@ -279,9 +279,9 @@ public class IncFormRadioSelection: IncFormElement, IncFormBindableElemental {
    }
    
    // MARK: - Public Properties
-   var configuration: IncFormRadioConfiguring { return elementalConfig as! IncFormRadioConfiguring }
-   var content: IncFormElementRadioContent
-   var bindings: [Binding]
+   public var configuration: IncFormRadioConfiguring { return elementalConfig as! IncFormRadioConfiguring }
+   public var content: IncFormElementRadioContent
+   public var bindings: [Binding]
    
    // MARK: - Init
    public init(configuration: IncFormRadioConfiguring, content: IncFormElementRadioContent, bindings: [Binding] = []) {
@@ -302,10 +302,10 @@ public class IncFormRadioSelection: IncFormElement, IncFormBindableElemental {
 
 public class IncFormTextFieldInput: IncFormElement, IncFormBindableElemental {
    // MARK: - Public Properties
-   var configuration: IncFormTextInputConfiguring { return elementalConfig as! IncFormTextInputConfiguring }
-   var content: IncFormElementTextInputContent
-   var bindings: [Binding]
-   var action: IncFormElementInputAction?
+   public var configuration: IncFormTextInputConfiguring { return elementalConfig as! IncFormTextInputConfiguring }
+   public var content: IncFormElementTextInputContent
+   public var bindings: [Binding]
+   public var action: IncFormElementInputAction?
    
    // MARK: - Init
    public init(configuration: IncFormTextInputConfiguring, content: IncFormElementTextInputContent, bindings: [Binding] = [], action: IncFormElementInputAction? = nil) {
@@ -327,10 +327,10 @@ public class IncFormTextFieldInput: IncFormElement, IncFormBindableElemental {
 
 public class IncFormTextViewInput: IncFormElement, IncFormBindableElemental {
    // MARK: - Public Properties
-   var configuration: IncFormTextInputConfiguring { return elementalConfig as! IncFormTextInputConfiguring }
-   var content: IncFormElementTextInputContent
-   var bindings: [Binding]
-   var action: IncFormElementInputAction?
+   public var configuration: IncFormTextInputConfiguring { return elementalConfig as! IncFormTextInputConfiguring }
+   public var content: IncFormElementTextInputContent
+   public var bindings: [Binding]
+   public var action: IncFormElementInputAction?
    
    // MARK: - Init
    public init(configuration: IncFormTextInputConfiguring, content: IncFormElementTextInputContent, bindings: [Binding] = [], action: IncFormElementInputAction? = nil) {
@@ -352,11 +352,11 @@ public class IncFormTextViewInput: IncFormElement, IncFormBindableElemental {
 
 public class IncFormDateInput: IncFormElement, IncFormBindableElemental {
    // MARK: - Public Properties
-   var configuration: IncFormDateInputConfiguring { return elementalConfig as! IncFormDateInputConfiguring }
-   var content: IncFormElementDateInputContent
-   var bindings: [Binding]
-   var action: IncFormElementInputAction?
-   var inputState: IncFormElementInputState
+   public var configuration: IncFormDateInputConfiguring { return elementalConfig as! IncFormDateInputConfiguring }
+   public var content: IncFormElementDateInputContent
+   public var bindings: [Binding]
+   public var action: IncFormElementInputAction?
+   public var inputState: IncFormElementInputState
    
    // MARK: - Init
    public init(configuration: IncFormDateInputConfiguring, content: IncFormElementDateInputContent, bindings: [Binding] = [], action: IncFormElementInputAction? = nil) {
@@ -379,7 +379,7 @@ public class IncFormDateInput: IncFormElement, IncFormBindableElemental {
 
 public class IncFormHorizontalLine: IncFormElement {
    // MARK: - Public Properties
-   var configuration: IncFormDividingLineConfiguring { return elementalConfig as! IncFormDividingLineConfiguring }
+   public var configuration: IncFormDividingLineConfiguring { return elementalConfig as! IncFormDividingLineConfiguring }
    
    // MARK: - Init
    public init(configuration: IncFormDividingLineConfiguring) {
@@ -387,7 +387,7 @@ public class IncFormHorizontalLine: IncFormElement {
    }
    
    // MARK: - IncFormElemental Protocol
-   var isSelectable: Bool {
+   public var isSelectable: Bool {
       return false
    }
    
@@ -412,7 +412,7 @@ public class IncFormVerticalSpace: IncFormElement {
    }
    
    // MARK: - IncFormElemental Protocol
-   var isSelectable: Bool {
+   public var isSelectable: Bool {
       return false
    }
    
@@ -447,8 +447,8 @@ public class IncFormCustomView: IncFormElement {
 
 public class IncFormCustomViewController: IncFormElement {
    // MARK: - Public Properties
-   let viewController : UIViewController
-   let sizeDelegate: IncFormSizeDelegate
+   public let viewController : UIViewController
+   weak var sizeDelegate: IncFormSizeDelegate?
    
    // MARK: - Init
    public init(viewController : UIViewController, sizeDelegate: IncFormSizeDelegate) {
@@ -516,7 +516,7 @@ public class IncFormHorizontalSpace: IncFormElement {
    }
    
    // MARK: - IncFormElemental Protocol
-   var isSelectable: Bool {
+   public var isSelectable: Bool {
       return false
    }
    
@@ -531,7 +531,7 @@ public class IncFormHorizontalSpace: IncFormElement {
 
 public class IncFormVerticalLine: IncFormElement {
    // MARK: - Public Properties
-   var configuration: IncFormDividingLineConfiguring { return elementalConfig as! IncFormDividingLineConfiguring }
+   public var configuration: IncFormDividingLineConfiguring { return elementalConfig as! IncFormDividingLineConfiguring }
    
    // MARK: - Init
    public init(configuration: IncFormDividingLineConfiguring) {
@@ -539,7 +539,7 @@ public class IncFormVerticalLine: IncFormElement {
    }
    
    // MARK: - IncFormElemental Protocol
-   var isSelectable: Bool {
+   public var isSelectable: Bool {
       return false
    }
    

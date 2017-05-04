@@ -26,7 +26,7 @@ public protocol JSONFactory {
    func value(json: Any) throws -> Any?
 }
 
-extension JSONFactory {
+public extension JSONFactory {
    func value(json: Any) throws -> Any? {
       return json
    }

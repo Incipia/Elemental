@@ -22,9 +22,9 @@ public extension KVStringComplianceObject {
 }
 
 public struct Binding {
-   let key: String
-   let target: StringBindable
-   let targetKey: String
+   public let key: String
+   public let target: StringBindable
+   public let targetKey: String
    
    public init<T: KVKeyType, U: KVKeyType>(key: T, target: StringBindable, targetKey: U) {
       self.key = key.rawValue

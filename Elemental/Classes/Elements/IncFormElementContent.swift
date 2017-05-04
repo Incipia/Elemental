@@ -9,8 +9,8 @@
 import UIKit
 
 public struct IncFormElementRadioContent {
-   let name: String?
-   let components: [IncFormRadioSelection.Component]
+   public let name: String?
+   public let components: [IncFormRadioSelection.Component]
    
    public init(name: String? = nil, components: [IncFormRadioSelection.Component]) {
       self.name = name
@@ -19,9 +19,9 @@ public struct IncFormElementRadioContent {
 }
 
 public struct IncFormElementTextInputContent {
-   let name: String
-   let detail: String?
-   let placeholder: String?
+   public let name: String
+   public let detail: String?
+   public let placeholder: String?
    
    public init(name: String, detail: String? = nil, placeholder: String? = nil) {
       self.name = name
@@ -31,10 +31,10 @@ public struct IncFormElementTextInputContent {
 }
 
 public struct IncFormElementDropdownContent {
-   let name: String
-   let detail: String?
-   let placeholder: String?
-   let elements: [String]
+   public let name: String
+   public let detail: String?
+   public let placeholder: String?
+   public let elements: [String]
    
    public init(name: String, detail: String? = nil, placeholder: String? = nil, elements: [String] = []) {
       self.name = name
@@ -45,12 +45,12 @@ public struct IncFormElementDropdownContent {
 }
 
 public struct IncFormElementDateInputContent {
-   let name: String
-   let detail: String?
-   let placeholder: String?
-   let maximumDate: Date?
-   let minimumDate: Date?
-   let date: Date?
+   public let name: String
+   public let detail: String?
+   public let placeholder: String?
+   public let maximumDate: Date?
+   public let minimumDate: Date?
+   public let date: Date?
    
    public init(name: String, detail: String? = nil, placeholder: String? = nil, minimumDate: Date? = nil, maximumDate: Date? = nil, date: Date? = nil) {
       self.name = name
@@ -63,8 +63,13 @@ public struct IncFormElementDateInputContent {
 }
 
 public struct IncFormElementIconContent {
-   let name: String
-   let icon: UIImage
+   public let name: String
+   public let icon: UIImage
+   
+   public init(name: String, icon: UIImage) {
+      self.name = name
+      self.icon = icon
+   }
 }
 
 public enum FormComponentAccessory {
@@ -72,24 +77,37 @@ public enum FormComponentAccessory {
 }
 
 public struct IncFormElementAccessoryContent {
-   let name: String
-   let detail: String?
-   let accessory: FormComponentAccessory?
+   public let name: String
+   public let detail: String?
+   public let accessory: FormComponentAccessory?
+   
+   public init(name: String, detail: String? = nil, accessory: FormComponentAccessory? = nil) {
+      self.name = name
+      self.detail = detail
+      self.accessory = accessory
+   }
 }
 
 public struct IncFormElementThumbnailContent {
-   let name: String
-   let detail: String?
-   let accessory: FormComponentAccessory?
-   let image: UIImage?
+   public let name: String
+   public let detail: String?
+   public let accessory: FormComponentAccessory?
+   public let image: UIImage?
+
+   public init(name: String, detail: String? = nil, accessory: FormComponentAccessory? = nil, image: UIImage? = nil) {
+      self.name = name
+      self.detail = detail
+      self.accessory = accessory
+      self.image = image
+   }
 }
 
 public struct IncFormElementSwitchContent {
-   let name: String
-   let detail: String?
+   public let name: String
+   public let detail: String?
    var on: Bool
    
-   init(name: String, detail: String? = nil, on: Bool = false) {
+   public init(name: String, detail: String? = nil, on: Bool = false) {
       self.name = name
       self.detail = detail
       self.on = on
@@ -97,14 +115,14 @@ public struct IncFormElementSwitchContent {
 }
 
 public struct IncFormElementPickerContent {
-   let name: String?
-   let detail: String?
-   let placeholder: String?
+   public let name: String?
+   public let detail: String?
+   public let placeholder: String?
    var leftAccessoryImage: UIImage?
    var rightAccessoryImage: UIImage?
    var options: [IncFormPickerSelection.Option]
    
-   init(name: String? = nil, detail: String? = nil, placeholder: String? = nil, leftAccessoryImage: UIImage? = nil, rightAccessoryImage: UIImage? = nil, options: [IncFormPickerSelection.Option] = []) {
+   public init(name: String? = nil, detail: String? = nil, placeholder: String? = nil, leftAccessoryImage: UIImage? = nil, rightAccessoryImage: UIImage? = nil, options: [IncFormPickerSelection.Option] = []) {
       self.name = name
       self.detail = detail
       self.placeholder = placeholder
