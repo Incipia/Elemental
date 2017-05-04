@@ -9,16 +9,16 @@
 import UIKit
 
 // MARK: - Text Styling
-protocol IncFormTextStyling {
+public protocol IncFormTextStyling {
    var font: UIFont { get }
    var color: UIColor { get }
    var alignment: NSTextAlignment { get }
 }
 
-class IncFormTextStyle: IncFormTextStyling {
-   let font: UIFont
-   let color: UIColor
-   let alignment: NSTextAlignment
+public class IncFormTextStyle: IncFormTextStyling {
+   public let font: UIFont
+   public let color: UIColor
+   public let alignment: NSTextAlignment
    
    init(font: UIFont = UIFont.systemFont(ofSize: 14), color: UIColor = .black, alignment: NSTextAlignment = .left) {
       self.font = font
@@ -34,7 +34,7 @@ class IncFormTextStyle: IncFormTextStyling {
 }
 
 // MARK: - Keyboard Styling
-protocol IncFormKeyboardStyling {
+public protocol IncFormKeyboardStyling {
    var type: UIKeyboardType { get }
    var appearance: UIKeyboardAppearance { get }
    var returnKeyType: UIReturnKeyType { get }
@@ -42,12 +42,12 @@ protocol IncFormKeyboardStyling {
    var isSecureTextEntry: Bool { get }
 }
 
-class IncFormKeyboardStyle: IncFormKeyboardStyling {
-   let type: UIKeyboardType
-   let appearance: UIKeyboardAppearance
-   let returnKeyType: UIReturnKeyType
-   let autocapitalizationType: UITextAutocapitalizationType
-   let isSecureTextEntry: Bool
+public class IncFormKeyboardStyle: IncFormKeyboardStyling {
+   public let type: UIKeyboardType
+   public let appearance: UIKeyboardAppearance
+   public let returnKeyType: UIReturnKeyType
+   public let autocapitalizationType: UITextAutocapitalizationType
+   public let isSecureTextEntry: Bool
    
    init(type: UIKeyboardType = .default, appearance: UIKeyboardAppearance = .default, returnKeyType: UIReturnKeyType = .default, autocapitalizationType: UITextAutocapitalizationType = .sentences, isSecureTextEntry: Bool = false) {
       self.type = type

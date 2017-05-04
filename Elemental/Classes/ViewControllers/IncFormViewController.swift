@@ -13,7 +13,7 @@ enum FormContentTransitionType {
    case backwards
 }
 
-protocol IncFormViewControllerDelegate: class {
+public protocol IncFormViewControllerDelegate: class {
    func elementsBeganRefreshing(in viewController: IncFormViewController)
    func elementSelected(_ element: IncFormElemental, in viewController: IncFormViewController)
 }
@@ -23,7 +23,7 @@ extension IncFormViewControllerDelegate {
    func elementsBeganRefreshing(in viewController: IncFormViewController) {}
 }
 
-class IncFormViewController: UIViewController {
+open class IncFormViewController: UIViewController {
    // MARK: - Private Properties
    fileprivate lazy var _refreshControl: UIRefreshControl = {
       let control = UIRefreshControl()
@@ -65,7 +65,7 @@ class IncFormViewController: UIViewController {
       set { configure(with: newValue) }
    }
    
-   weak var formDelegate: IncFormViewControllerDelegate?
+   public weak var formDelegate: IncFormViewControllerDelegate?
    
    var layout: UICollectionViewLayout {
       get { return collectionView.collectionViewLayout }
@@ -83,7 +83,7 @@ class IncFormViewController: UIViewController {
       }
    }
    
-   var allowsRefresh: Bool = false {
+   public var allowsRefresh: Bool = false {
       didSet {
          if allowsRefresh {
             collectionView.refreshControl = self._refreshControl
@@ -93,7 +93,7 @@ class IncFormViewController: UIViewController {
       }
    }
    
-   var showsScrollIndicator: Bool = true {
+   public var showsScrollIndicator: Bool = true {
       didSet {
          collectionView.showsVerticalScrollIndicator = showsScrollIndicator
          collectionView.showsHorizontalScrollIndicator = showsScrollIndicator
@@ -175,7 +175,7 @@ class IncFormViewController: UIViewController {
    }
    
    // MARK: - Overridden
-   override func viewDidLoad() {
+   override open func viewDidLoad() {
       super.viewDidLoad()
       _ = collectionView
       formDidLoad()
@@ -188,7 +188,7 @@ class IncFormViewController: UIViewController {
 }
 
 extension IncFormViewController {
-   func stopRefreshing() {
+   public func stopRefreshing() {
       _refreshControl.endRefreshing()
    }
    
@@ -274,11 +274,11 @@ extension IncFormViewController {
 }
 
 extension IncFormViewController: UICollectionViewDataSource {
-   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+   public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
       return _elements.count
    }
    
-   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+   public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
       let component = _elements[indexPath.row]
       let cell = collectionView.dequeueReusableCell(withReuseIdentifier: component.cellID, for: indexPath)
       component.configure(cell: cell, in: self)
@@ -287,7 +287,7 @@ extension IncFormViewController: UICollectionViewDataSource {
 }
 
 extension IncFormViewController: UICollectionViewDelegateFlowLayout {
-   func collectionView(_ collectionView: UICollectionView,
+   public func collectionView(_ collectionView: UICollectionView,
                        layout collectionViewLayout: UICollectionViewLayout,
                        sizeForItemAt indexPath: IndexPath) -> CGSize {
       let component = _elements[indexPath.row]
@@ -297,29 +297,29 @@ extension IncFormViewController: UICollectionViewDelegateFlowLayout {
       return component.size(forConstrainedDimension: .horizontal(maxWidth))
    }
    
-   func collectionView(_ collectionView: UICollectionView,
+   public func collectionView(_ collectionView: UICollectionView,
                        layout collectionViewLayout: UICollectionViewLayout,
                        insetForSectionAt section: Int) -> UIEdgeInsets {
       return .zero
    }
    
-   func collectionView(_ collectionView: UICollectionView,
+   public func collectionView(_ collectionView: UICollectionView,
                        layout collectionViewLayout: UICollectionViewLayout,
                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
       return componentPadding
    }
    
-   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+   public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
       return componentPadding
    }
    
-   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+   public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
       let element = _elements[indexPath.row]
       guard element.elementalConfig.isSelectable else { return }
       formDelegate?.elementSelected(element, in: self)
    }
    
-   func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+   public func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
       if let animatingPaths = _animatingIndexPaths, !animatingPaths.contains(indexPath) {
          let finalAlpha = cell.alpha
          cell.alpha = 0

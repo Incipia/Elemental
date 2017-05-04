@@ -8,7 +8,7 @@
 
 import UIKit
 
-enum IncFormElementInputState {
+public enum IncFormElementInputState {
    case focused, unfocused
    
    // may be temporary
@@ -30,7 +30,7 @@ protocol IncFormSizeDelegate: class {
    func size(for element: IncFormElemental, constrainedWidth width: CGFloat) -> CGSize
 }
 
-protocol IncFormElementLayoutDelegate: class {
+public protocol IncFormElementLayoutDelegate: class {
    func reloadLayout(for element: IncFormElement, scrollToCenter: Bool)
 }
 
@@ -84,7 +84,7 @@ open class IncFormElement: IncFormElemental {
    }
 }
 
-class IncFormText: IncFormElement {
+public class IncFormText: IncFormElement {
    // MARK: - Public Properties
    var configuration: IncFormTextConfiguring { return elementalConfig as! IncFormTextConfiguring }
    var content: String
@@ -96,7 +96,7 @@ class IncFormText: IncFormElement {
    }
    
    // MARK: - IncFormElemental Protocol
-   override func size(forConstrainedDimension dimension: IncFormElementDimension) -> CGSize {
+   override public func size(forConstrainedDimension dimension: IncFormElementDimension) -> CGSize {
       switch dimension {
       case .horizontal(let width): return IncFormTextCell.contentSize(for: self, constrainedWidth: width)
       case .vertical: fatalError("\(type(of: self)) does not support \(dimension) constraint")
@@ -105,7 +105,7 @@ class IncFormText: IncFormElement {
 }
 
 
-class IncFormIcon: IncFormElement {
+public class IncFormIcon: IncFormElement {
    // MARK: - Public Properties
    var configuration: IncFormIconConfiguring { return elementalConfig as! IncFormIconConfiguring }
    var content: IncFormElementIconContent
@@ -117,7 +117,7 @@ class IncFormIcon: IncFormElement {
    }
    
    // MARK: - IncFormElemental Protocol
-   override func size(forConstrainedDimension dimension: IncFormElementDimension) -> CGSize {
+   override public func size(forConstrainedDimension dimension: IncFormElementDimension) -> CGSize {
       switch dimension {
       case .horizontal(let width): return IncFormIconCell.contentSize(for: self, constrainedWidth: width)
       case .vertical: fatalError("\(type(of: self)) does not support \(dimension) constraint")
@@ -126,7 +126,7 @@ class IncFormIcon: IncFormElement {
 }
 
 
-class IncFormAccessory: IncFormElement, IncFormBindableElemental {
+public class IncFormAccessory: IncFormElement, IncFormBindableElemental {
    // MARK: - Public Properties
    var configuration: IncFormAccessoryConfiguring { return elementalConfig as! IncFormAccessoryConfiguring }
    var content: IncFormElementAccessoryContent
@@ -142,7 +142,7 @@ class IncFormAccessory: IncFormElement, IncFormBindableElemental {
    }
    
    // MARK: - IncFormElemental Protocol
-   override func size(forConstrainedDimension dimension: IncFormElementDimension) -> CGSize {
+   override public func size(forConstrainedDimension dimension: IncFormElementDimension) -> CGSize {
       switch dimension {
       case .horizontal(let width): return IncFormAccessoryCell.contentSize(for: self, constrainedWidth: width)
       case .vertical: fatalError("\(type(of: self)) does not support \(dimension) constraint")
@@ -151,7 +151,7 @@ class IncFormAccessory: IncFormElement, IncFormBindableElemental {
 }
 
 
-class IncFormThumbnail: IncFormElement, IncFormBindableElemental {
+public class IncFormThumbnail: IncFormElement, IncFormBindableElemental {
    // MARK: - Public Properties
    var configuration: IncFormAccessoryConfiguring { return elementalConfig as! IncFormAccessoryConfiguring }
    var content: IncFormElementThumbnailContent
@@ -167,7 +167,7 @@ class IncFormThumbnail: IncFormElement, IncFormBindableElemental {
    }
    
    // MARK: - IncFormElemental Protocol
-   override func size(forConstrainedDimension dimension: IncFormElementDimension) -> CGSize {
+   override public func size(forConstrainedDimension dimension: IncFormElementDimension) -> CGSize {
       switch dimension {
       case .horizontal(let width): return IncFormThumbnailCell.contentSize(for: self, constrainedWidth: width)
       case .vertical: fatalError("\(type(of: self)) does not support \(dimension) constraint")
@@ -176,7 +176,7 @@ class IncFormThumbnail: IncFormElement, IncFormBindableElemental {
 }
 
 
-class IncFormSwitch: IncFormElement, IncFormBindableElemental {
+public class IncFormSwitch: IncFormElement, IncFormBindableElemental {
    // MARK: - Public Properties
    var configuration: IncFormSwitchConfiguring { return elementalConfig as! IncFormSwitchConfiguring }
    var content: IncFormElementSwitchContent
@@ -190,7 +190,7 @@ class IncFormSwitch: IncFormElement, IncFormBindableElemental {
    }
    
    // MARK: - IncFormElemental Protocol
-   override func size(forConstrainedDimension dimension: IncFormElementDimension) -> CGSize {
+   override public func size(forConstrainedDimension dimension: IncFormElementDimension) -> CGSize {
       switch dimension {
       case .horizontal(let width): return IncFormSwitchCell.contentSize(for: self, constrainedWidth: width)
       case .vertical: fatalError("\(type(of: self)) does not support \(dimension) constraint")
@@ -199,7 +199,7 @@ class IncFormSwitch: IncFormElement, IncFormBindableElemental {
 }
 
 
-class IncFormDropdown: IncFormElement {
+public class IncFormDropdown: IncFormElement {
    // MARK: - Public Properties
    var configuration: IncFormDropdownConfiguring { return elementalConfig as! IncFormDropdownConfiguring }
    var content: IncFormElementDropdownContent
@@ -211,7 +211,7 @@ class IncFormDropdown: IncFormElement {
    }
    
    // MARK: - IncFormElemental Protocol
-   override func size(forConstrainedDimension dimension: IncFormElementDimension) -> CGSize {
+   override public func size(forConstrainedDimension dimension: IncFormElementDimension) -> CGSize {
       switch dimension {
       case .horizontal(let width): return IncFormDropdownCell.contentSize(for: self, constrainedWidth: width)
       case .vertical: fatalError("\(type(of: self)) does not support \(dimension) constraint")
@@ -219,7 +219,7 @@ class IncFormDropdown: IncFormElement {
    }
 }
 
-class IncFormPickerSelection: IncFormElement, IncFormBindableElemental {
+public class IncFormPickerSelection: IncFormElement, IncFormBindableElemental {
    struct Option {
       let text: String
       let value: Any
@@ -252,7 +252,7 @@ class IncFormPickerSelection: IncFormElement, IncFormBindableElemental {
    }
    
    // MARK: - IncFormElemental Protocol
-   override func size(forConstrainedDimension dimension: IncFormElementDimension) -> CGSize {
+   override public func size(forConstrainedDimension dimension: IncFormElementDimension) -> CGSize {
       switch dimension {
       case .horizontal(let width): return IncFormPickerSelectionCell.contentSize(for: self, constrainedWidth: width)
       case .vertical: fatalError("\(type(of: self)) does not support \(dimension) constraint")
@@ -261,7 +261,7 @@ class IncFormPickerSelection: IncFormElement, IncFormBindableElemental {
 }
 
 
-class IncFormRadioSelection: IncFormElement, IncFormBindableElemental {
+public class IncFormRadioSelection: IncFormElement, IncFormBindableElemental {
    struct Component {
       let text: String
       let value: Any
@@ -291,7 +291,7 @@ class IncFormRadioSelection: IncFormElement, IncFormBindableElemental {
    }
    
    // MARK: - IncFormElemental Protocol
-   override func size(forConstrainedDimension dimension: IncFormElementDimension) -> CGSize {
+   override public func size(forConstrainedDimension dimension: IncFormElementDimension) -> CGSize {
       switch dimension {
       case .horizontal(let width): return IncFormRadioSelectionCell.contentSize(for: self, constrainedWidth: width)
       case .vertical: fatalError("\(type(of: self)) does not support \(dimension) constraint")
@@ -300,7 +300,7 @@ class IncFormRadioSelection: IncFormElement, IncFormBindableElemental {
 }
 
 
-class IncFormTextFieldInput: IncFormElement, IncFormBindableElemental {
+public class IncFormTextFieldInput: IncFormElement, IncFormBindableElemental {
    // MARK: - Public Properties
    var configuration: IncFormTextInputConfiguring { return elementalConfig as! IncFormTextInputConfiguring }
    var content: IncFormElementTextInputContent
@@ -316,7 +316,7 @@ class IncFormTextFieldInput: IncFormElement, IncFormBindableElemental {
    }
    
    // MARK: - IncFormElemental Protocol
-   override func size(forConstrainedDimension dimension: IncFormElementDimension) -> CGSize {
+   override public func size(forConstrainedDimension dimension: IncFormElementDimension) -> CGSize {
       switch dimension {
       case .horizontal(let width): return IncFormTextFieldInputCell.contentSize(for: self, constrainedWidth: width)
       case .vertical: fatalError("\(type(of: self)) does not support \(dimension) constraint")
@@ -325,7 +325,7 @@ class IncFormTextFieldInput: IncFormElement, IncFormBindableElemental {
 }
 
 
-class IncFormTextViewInput: IncFormElement, IncFormBindableElemental {
+public class IncFormTextViewInput: IncFormElement, IncFormBindableElemental {
    // MARK: - Public Properties
    var configuration: IncFormTextInputConfiguring { return elementalConfig as! IncFormTextInputConfiguring }
    var content: IncFormElementTextInputContent
@@ -341,7 +341,7 @@ class IncFormTextViewInput: IncFormElement, IncFormBindableElemental {
    }
    
    // MARK: - IncFormElemental Protocol
-   override func size(forConstrainedDimension dimension: IncFormElementDimension) -> CGSize {
+   override public func size(forConstrainedDimension dimension: IncFormElementDimension) -> CGSize {
       switch dimension {
       case .horizontal(let width): return IncFormTextViewInputCell.contentSize(for: self, constrainedWidth: width)
       case .vertical: fatalError("\(type(of: self)) does not support \(dimension) constraint")
@@ -350,7 +350,7 @@ class IncFormTextViewInput: IncFormElement, IncFormBindableElemental {
 }
 
 
-class IncFormDateInput: IncFormElement, IncFormBindableElemental {
+public class IncFormDateInput: IncFormElement, IncFormBindableElemental {
    // MARK: - Public Properties
    var configuration: IncFormDateInputConfiguring { return elementalConfig as! IncFormDateInputConfiguring }
    var content: IncFormElementDateInputContent
@@ -368,7 +368,7 @@ class IncFormDateInput: IncFormElement, IncFormBindableElemental {
    }
    
    // MARK: - IncFormElemental Protocol
-   override func size(forConstrainedDimension dimension: IncFormElementDimension) -> CGSize {
+   override public func size(forConstrainedDimension dimension: IncFormElementDimension) -> CGSize {
       switch dimension {
       case .horizontal(let width): return IncFormDateInputCell.contentSize(for: self, constrainedWidth: width)
       case .vertical: fatalError("\(type(of: self)) does not support \(dimension) constraint")
@@ -377,7 +377,7 @@ class IncFormDateInput: IncFormElement, IncFormBindableElemental {
 }
 
 
-class IncFormHorizontalLine: IncFormElement {
+public class IncFormHorizontalLine: IncFormElement {
    // MARK: - Public Properties
    var configuration: IncFormDividingLineConfiguring { return elementalConfig as! IncFormDividingLineConfiguring }
    
@@ -391,7 +391,7 @@ class IncFormHorizontalLine: IncFormElement {
       return false
    }
    
-   override func size(forConstrainedDimension dimension: IncFormElementDimension) -> CGSize {
+   override public func size(forConstrainedDimension dimension: IncFormElementDimension) -> CGSize {
       switch dimension {
       case .horizontal(let width): return IncFormHorizontalLineCell.contentSize(for: self, constrainedWidth: width)
       case .vertical: fatalError("\(type(of: self)) does not support \(dimension) constraint")
@@ -400,10 +400,10 @@ class IncFormHorizontalLine: IncFormElement {
 }
 
 
-class IncFormVerticalSpace: IncFormElement {
+public class IncFormVerticalSpace: IncFormElement {
    // MARK: - Public Properties
    let value: CGFloat
-   override class var defaultCellID: String { return IncFormHorizontalLine.defaultCellID }
+   override public class var defaultCellID: String { return IncFormHorizontalLine.defaultCellID }
    
    // MARK: - Init
    init(value: CGFloat) {
@@ -416,7 +416,7 @@ class IncFormVerticalSpace: IncFormElement {
       return false
    }
    
-   override func size(forConstrainedDimension dimension: IncFormElementDimension) -> CGSize {
+   override public func size(forConstrainedDimension dimension: IncFormElementDimension) -> CGSize {
       switch dimension {
       case .horizontal(let width): return IncFormHorizontalLineCell.contentSize(for: self, constrainedWidth: width)
       case .vertical: fatalError("\(type(of: self)) does not support \(dimension) constraint")
@@ -425,7 +425,7 @@ class IncFormVerticalSpace: IncFormElement {
 }
 
 
-class IncFormCustomView: IncFormElement {
+public class IncFormCustomView: IncFormElement {
    // MARK: - Public Properties
    let view : UIView
    
@@ -436,7 +436,7 @@ class IncFormCustomView: IncFormElement {
    }
    
    // MARK: - IncFormElemental Protocol
-   override func size(forConstrainedDimension dimension: IncFormElementDimension) -> CGSize {
+   override public func size(forConstrainedDimension dimension: IncFormElementDimension) -> CGSize {
       switch dimension {
       case .horizontal(let width): return IncFormCustomViewCell.contentSize(for: self, constrainedWidth: width)
       case .vertical: fatalError("\(type(of: self)) does not support \(dimension) constraint")
@@ -445,7 +445,7 @@ class IncFormCustomView: IncFormElement {
 }
 
 
-class IncFormCustomViewController: IncFormElement {
+public class IncFormCustomViewController: IncFormElement {
    // MARK: - Public Properties
    let viewController : UIViewController
    let sizeDelegate: IncFormSizeDelegate
@@ -458,13 +458,13 @@ class IncFormCustomViewController: IncFormElement {
    }
    
    // MARK: - IncFormElemental Protocol
-   override func configure(cell: UICollectionViewCell, in containerViewController: UIViewController?) {
+   override public func configure(cell: UICollectionViewCell, in containerViewController: UIViewController?) {
       super.configure(cell: cell, in: containerViewController)
       guard let vcCell = cell as? IncFormCustomViewControllerCell else { fatalError() }
       vcCell.containerVC = containerViewController
    }
    
-   override func size(forConstrainedDimension dimension: IncFormElementDimension) -> CGSize {
+   override public func size(forConstrainedDimension dimension: IncFormElementDimension) -> CGSize {
       switch dimension {
       case .horizontal(let width): return IncFormCustomViewControllerCell.contentSize(for: self, constrainedWidth: width)
       case .vertical: fatalError("\(type(of: self)) does not support \(dimension) constraint")
@@ -473,7 +473,7 @@ class IncFormCustomViewController: IncFormElement {
 }
 
 
-class IncFormHorizontalForm: IncFormElement {
+public class IncFormHorizontalForm: IncFormElement {
    // MARK: - Public Properties
    let elements : [IncFormElemental]
    
@@ -489,14 +489,14 @@ class IncFormHorizontalForm: IncFormElement {
    }
    
    // MARK: - IncFormElemental Protocol
-   override func configure(cell: UICollectionViewCell, in containerViewController: UIViewController?) {
+   override public func configure(cell: UICollectionViewCell, in containerViewController: UIViewController?) {
       super.configure(cell: cell, in: containerViewController)
       guard let cell = cell as? IncFormHorizontalFormCell else { fatalError() }
       cell.containerVC = containerViewController
       cell.delegate = containerViewController as? IncFormHorizontalFormCellDelegate
    }
    
-   override func size(forConstrainedDimension dimension: IncFormElementDimension) -> CGSize {
+   override public func size(forConstrainedDimension dimension: IncFormElementDimension) -> CGSize {
       switch dimension {
       case .horizontal(let width): return IncFormHorizontalFormCell.contentSize(for: self, constrainedWidth: width)
       case .vertical: fatalError("\(type(of: self)) does not support \(dimension) constraint")
@@ -504,10 +504,10 @@ class IncFormHorizontalForm: IncFormElement {
    }
 }
 
-class IncFormHorizontalSpace: IncFormElement {
+public class IncFormHorizontalSpace: IncFormElement {
    // MARK: - Public Properties
    let value: CGFloat
-   override class var defaultCellID: String { return IncFormVerticalLine.defaultCellID }
+   override public class var defaultCellID: String { return IncFormVerticalLine.defaultCellID }
    
    // MARK: - Init
    init(value: CGFloat) {
@@ -520,7 +520,7 @@ class IncFormHorizontalSpace: IncFormElement {
       return false
    }
    
-   override func size(forConstrainedDimension dimension: IncFormElementDimension) -> CGSize {
+   override public func size(forConstrainedDimension dimension: IncFormElementDimension) -> CGSize {
       switch dimension {
       case .horizontal(let width): return IncFormVerticalLineCell.contentSize(for: self, constrainedWidth: width)
       case .vertical: fatalError("\(type(of: self)) does not support \(dimension) constraint")
@@ -529,7 +529,7 @@ class IncFormHorizontalSpace: IncFormElement {
 }
 
 
-class IncFormVerticalLine: IncFormElement {
+public class IncFormVerticalLine: IncFormElement {
    // MARK: - Public Properties
    var configuration: IncFormDividingLineConfiguring { return elementalConfig as! IncFormDividingLineConfiguring }
    
@@ -543,7 +543,7 @@ class IncFormVerticalLine: IncFormElement {
       return false
    }
    
-   override func size(forConstrainedDimension dimension: IncFormElementDimension) -> CGSize {
+   override public func size(forConstrainedDimension dimension: IncFormElementDimension) -> CGSize {
       switch dimension {
       case .horizontal(let width): return IncFormVerticalLineCell.contentSize(for: self, constrainedWidth: width)
       case .vertical: fatalError("\(type(of: self)) does not support \(dimension) constraint")
@@ -632,7 +632,7 @@ extension IncFormViewController: IncFormHorizontalFormCellDelegate {
 }
 
 extension IncFormViewController: IncFormElementLayoutDelegate {
-   func reloadLayout(for element: IncFormElement, scrollToCenter: Bool) {
+   public func reloadLayout(for element: IncFormElement, scrollToCenter: Bool) {
       setNeedsLayout()
       DispatchQueue.main.async {
          self.scroll(to: element, position: .centeredVertically, animated: true)

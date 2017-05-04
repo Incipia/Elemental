@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct IncFormElementRadioContent {
+public struct IncFormElementRadioContent {
    let name: String?
    let components: [IncFormRadioSelection.Component]
    
@@ -18,7 +18,7 @@ struct IncFormElementRadioContent {
    }
 }
 
-struct IncFormElementTextInputContent {
+public struct IncFormElementTextInputContent {
    let name: String
    let detail: String?
    let placeholder: String?
@@ -30,7 +30,7 @@ struct IncFormElementTextInputContent {
    }
 }
 
-struct IncFormElementDropdownContent {
+public struct IncFormElementDropdownContent {
    let name: String
    let detail: String?
    let placeholder: String?
@@ -44,7 +44,7 @@ struct IncFormElementDropdownContent {
    }
 }
 
-struct IncFormElementDateInputContent {
+public struct IncFormElementDateInputContent {
    let name: String
    let detail: String?
    let placeholder: String?
@@ -62,7 +62,7 @@ struct IncFormElementDateInputContent {
    }
 }
 
-struct IncFormElementIconContent {
+public struct IncFormElementIconContent {
    let name: String
    let icon: UIImage
 }
@@ -71,20 +71,20 @@ enum FormComponentAccessory {
    case button(text: String), image(UIImage), buttonImage(UIImage)
 }
 
-struct IncFormElementAccessoryContent {
+public struct IncFormElementAccessoryContent {
    let name: String
    let detail: String?
    let accessory: FormComponentAccessory?
 }
 
-struct IncFormElementThumbnailContent {
+public struct IncFormElementThumbnailContent {
    let name: String
    let detail: String?
    let accessory: FormComponentAccessory?
    let image: UIImage?
 }
 
-struct IncFormElementSwitchContent {
+public struct IncFormElementSwitchContent {
    let name: String
    let detail: String?
    var on: Bool
@@ -96,7 +96,7 @@ struct IncFormElementSwitchContent {
    }
 }
 
-struct IncFormElementPickerContent {
+public struct IncFormElementPickerContent {
    let name: String?
    let detail: String?
    let placeholder: String?

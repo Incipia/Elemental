@@ -26,13 +26,13 @@ public extension IncFormElementalConfiguring {
    var isConfinedToMargins: Bool { return true }
 }
 
-class IncFormElementalConfiguration: IncFormElementalConfiguring {
-   let backgroundColor: UIColor
-   let insets: UIEdgeInsets
-   let isSelectable: Bool
-   let width: CGFloat?
-   let height: CGFloat?
-   let isConfinedToMargins: Bool
+public class IncFormElementalConfiguration: IncFormElementalConfiguring {
+   public let backgroundColor: UIColor
+   public let insets: UIEdgeInsets
+   public let isSelectable: Bool
+   public let width: CGFloat?
+   public let height: CGFloat?
+   public let isConfinedToMargins: Bool
    
    init(backgroundColor: UIColor = .clear, insets: UIEdgeInsets = .zero, isSelectable: Bool = true, width: CGFloat? = nil, height: CGFloat? = nil, isConfinedToMargins: Bool = true) {
       self.backgroundColor = backgroundColor
@@ -44,12 +44,12 @@ class IncFormElementalConfiguration: IncFormElementalConfiguring {
    }
 }
 
-protocol IncFormTextConfiguring: IncFormElementalConfiguring {
+public protocol IncFormTextConfiguring: IncFormElementalConfiguring {
    var textStyle: IncFormTextStyling { get }
 }
 
-class IncFormTextConfiguration: IncFormElementalConfiguration, IncFormTextConfiguring {
-   let textStyle: IncFormTextStyling
+public class IncFormTextConfiguration: IncFormElementalConfiguration, IncFormTextConfiguring {
+   public let textStyle: IncFormTextStyling
    
    init(textStyle: IncFormTextStyling = IncFormTextStyle(), height: CGFloat = 48) {
       self.textStyle = textStyle
@@ -57,7 +57,7 @@ class IncFormTextConfiguration: IncFormElementalConfiguration, IncFormTextConfig
    }
 }
 
-protocol IncFormPickerConfiguring: IncFormElementalConfiguring {
+public protocol IncFormPickerConfiguring: IncFormElementalConfiguring {
    var nameStyle: IncFormTextStyling { get }
    var detailStyle: IncFormTextStyling? { get }
    var placeholderStyle: IncFormTextStyling? { get }
@@ -71,18 +71,18 @@ protocol IncFormPickerConfiguring: IncFormElementalConfiguring {
    weak var layoutDelegate: IncFormElementLayoutDelegate? { get }
 }
 
-class IncFormPickerConfiguration: IncFormElementalConfiguration, IncFormPickerConfiguring {
-   let nameStyle: IncFormTextStyling
-   let detailStyle: IncFormTextStyling?
-   let placeholderStyle: IncFormTextStyling?
-   var optionStyle: IncFormTextStyling
-   let buttonStyle: IncFormTextStyling
-   let buttonHeight: CGFloat
-   let buttonBackgroundColor: UIColor
-   var inputState: IncFormElementInputState
-   var leftAccessoryImageTintColor: UIColor
-   var rightAccessoryImageTintColor: UIColor
-   weak var layoutDelegate: IncFormElementLayoutDelegate?
+public class IncFormPickerConfiguration: IncFormElementalConfiguration, IncFormPickerConfiguring {
+   public let nameStyle: IncFormTextStyling
+   public let detailStyle: IncFormTextStyling?
+   public let placeholderStyle: IncFormTextStyling?
+   public var optionStyle: IncFormTextStyling
+   public let buttonStyle: IncFormTextStyling
+   public let buttonHeight: CGFloat
+   public let buttonBackgroundColor: UIColor
+   public var inputState: IncFormElementInputState
+   public var leftAccessoryImageTintColor: UIColor
+   public var rightAccessoryImageTintColor: UIColor
+   weak public var layoutDelegate: IncFormElementLayoutDelegate?
    
    init(nameStyle: IncFormTextStyling = IncFormTextStyle(), detailStyle: IncFormTextStyling? = nil, placeholderStyle: IncFormTextStyling? = nil, optionStyle: IncFormTextStyling? = nil, buttonStyle: IncFormTextStyling = IncFormTextStyle(), buttonHeight: CGFloat = 64, buttonBackgroundColor: UIColor = .gray, inputState: IncFormElementInputState = .unfocused, leftAccessoryImageTintColor: UIColor = .gray, rightAccessoryImageTintColor: UIColor = .gray, layoutDelegate: IncFormElementLayoutDelegate? = nil) {
       self.nameStyle = nameStyle
@@ -100,22 +100,22 @@ class IncFormPickerConfiguration: IncFormElementalConfiguration, IncFormPickerCo
    }
 }
 
-enum IncFormRadioAlignment {
+public enum IncFormRadioAlignment {
    case left, right
 }
 
-protocol IncFormRadioConfiguring: IncFormElementalConfiguring {
+public protocol IncFormRadioConfiguring: IncFormElementalConfiguring {
    var nameStyle: IncFormTextStyling { get }
    var componentStyle: IncFormTextStyling { get }
    var fillColor: UIColor? { get }
    var alignment: IncFormRadioAlignment { get }
 }
 
-class IncFormRadioConfiguration: IncFormElementalConfiguration, IncFormRadioConfiguring {
-   let nameStyle: IncFormTextStyling
-   let componentStyle: IncFormTextStyling
-   let fillColor: UIColor?
-   let alignment: IncFormRadioAlignment
+public class IncFormRadioConfiguration: IncFormElementalConfiguration, IncFormRadioConfiguring {
+   public let nameStyle: IncFormTextStyling
+   public let componentStyle: IncFormTextStyling
+   public let fillColor: UIColor?
+   public let alignment: IncFormRadioAlignment
    
    init(nameStyle: IncFormTextStyling = IncFormTextStyle(), componentStyle: IncFormTextStyling = IncFormTextStyle(), fillColor: UIColor? = nil, alignment: IncFormRadioAlignment = .left) {
       self.nameStyle = nameStyle
@@ -126,7 +126,7 @@ class IncFormRadioConfiguration: IncFormElementalConfiguration, IncFormRadioConf
    }
 }
 
-protocol IncFormTextInputConfiguring: IncFormElementalConfiguring {
+public protocol IncFormTextInputConfiguring: IncFormElementalConfiguring {
    var nameStyle: IncFormTextStyling { get }
    var detailStyle: IncFormTextStyling? { get }
    var placeholderStyle: IncFormTextStyling? { get }
@@ -141,15 +141,15 @@ extension IncFormTextInputConfiguring {
    var isEnabled: Bool { return true }
 }
 
-class IncFormTextInputConfiguration: IncFormElementalConfiguration, IncFormTextInputConfiguring {
-   let nameStyle: IncFormTextStyling
-   let detailStyle: IncFormTextStyling?
-   let placeholderStyle: IncFormTextStyling?
-   let inputStyle: IncFormTextStyling
-   let keyboardStyle: IncFormKeyboardStyling
-   let inputHeight: CGFloat
-   let inputBackgroundColor: UIColor
-   let isEnabled: Bool
+public class IncFormTextInputConfiguration: IncFormElementalConfiguration, IncFormTextInputConfiguring {
+   public let nameStyle: IncFormTextStyling
+   public let detailStyle: IncFormTextStyling?
+   public let placeholderStyle: IncFormTextStyling?
+   public let inputStyle: IncFormTextStyling
+   public let keyboardStyle: IncFormKeyboardStyling
+   public let inputHeight: CGFloat
+   public let inputBackgroundColor: UIColor
+   public let isEnabled: Bool
    
    init(nameStyle: IncFormTextStyling = IncFormTextStyle(), detailStyle: IncFormTextStyling? = nil, placeholderStyle: IncFormTextStyling? = nil, inputStyle: IncFormTextStyling = IncFormTextStyle(), keyboardStyle: IncFormKeyboardStyling = IncFormKeyboardStyle(), inputHeight: CGFloat = 48, inputBackgroundColor: UIColor = .gray, isEnabled: Bool = true) {
       self.nameStyle = nameStyle
@@ -164,7 +164,7 @@ class IncFormTextInputConfiguration: IncFormElementalConfiguration, IncFormTextI
    }
 }
 
-protocol IncFormDateInputConfiguring: IncFormElementalConfiguring {
+public protocol IncFormDateInputConfiguring: IncFormElementalConfiguring {
    var nameStyle: IncFormTextStyling { get }
    var detailStyle: IncFormTextStyling? { get }
    var placeholderStyle: IncFormTextStyling? { get }
@@ -177,17 +177,17 @@ protocol IncFormDateInputConfiguring: IncFormElementalConfiguring {
    weak var layoutDelegate: IncFormElementLayoutDelegate? { get }
 }
 
-class IncFormDateInputConfiguration: IncFormElementalConfiguration, IncFormDateInputConfiguring {
-   let nameStyle: IncFormTextStyling
-   let detailStyle: IncFormTextStyling?
-   let placeholderStyle: IncFormTextStyling?
-   let inputStyle: IncFormTextStyling
-   let inputHeight: CGFloat
-   let inputBackgroundColor: UIColor
-   let datePickerMode: UIDatePickerMode
-   let dateFormatter: DateFormatter
-   var inputState: IncFormElementInputState
-   weak var layoutDelegate: IncFormElementLayoutDelegate?
+public class IncFormDateInputConfiguration: IncFormElementalConfiguration, IncFormDateInputConfiguring {
+   public let nameStyle: IncFormTextStyling
+   public let detailStyle: IncFormTextStyling?
+   public let placeholderStyle: IncFormTextStyling?
+   public let inputStyle: IncFormTextStyling
+   public let inputHeight: CGFloat
+   public let inputBackgroundColor: UIColor
+   public let datePickerMode: UIDatePickerMode
+   public let dateFormatter: DateFormatter
+   public var inputState: IncFormElementInputState
+   weak public var layoutDelegate: IncFormElementLayoutDelegate?
    
    init(nameStyle: IncFormTextStyling = IncFormTextStyle(), detailStyle: IncFormTextStyling? = nil, placeholderStyle: IncFormTextStyling? = nil, inputStyle: IncFormTextStyling = IncFormTextStyle(), inputHeight: CGFloat = 64, inputBackgroundColor: UIColor = .gray, inputState: IncFormElementInputState = .unfocused, datePickerMode: UIDatePickerMode = .dateAndTime, dateFormatter: DateFormatter = DateFormatter(), layoutDelegate: IncFormElementLayoutDelegate? = nil) {
       self.nameStyle = nameStyle
@@ -204,7 +204,7 @@ class IncFormDateInputConfiguration: IncFormElementalConfiguration, IncFormDateI
    }
 }
 
-protocol IncFormDropdownConfiguring: IncFormElementalConfiguring {
+public protocol IncFormDropdownConfiguring: IncFormElementalConfiguring {
    var nameStyle: IncFormTextStyling { get }
    var placeholderStyle: IncFormTextStyling? { get }
    var dropdownHeight: CGFloat { get }
@@ -212,12 +212,12 @@ protocol IncFormDropdownConfiguring: IncFormElementalConfiguring {
    var iconTintColor: UIColor { get }
 }
 
-class IncFormDropdownConfiguration: IncFormElementalConfiguration, IncFormDropdownConfiguring {
-   let nameStyle: IncFormTextStyling
-   let placeholderStyle: IncFormTextStyling?
-   let dropdownHeight: CGFloat
-   let dropdownBackgroundColor: UIColor
-   let iconTintColor: UIColor
+public class IncFormDropdownConfiguration: IncFormElementalConfiguration, IncFormDropdownConfiguring {
+   public let nameStyle: IncFormTextStyling
+   public let placeholderStyle: IncFormTextStyling?
+   public let dropdownHeight: CGFloat
+   public let dropdownBackgroundColor: UIColor
+   public let iconTintColor: UIColor
    
    init(nameStyle: IncFormTextStyling = IncFormTextStyle(), placeholderStyle: IncFormTextStyling? = nil, dropdownHeight: CGFloat = 64, dropdownBackgroundColor: UIColor = .gray, iconTintColor: UIColor = .black) {
       self.nameStyle = nameStyle
@@ -233,8 +233,8 @@ public protocol IncFormDividingLineConfiguring: IncFormElementalConfiguring {
    var color: UIColor { get }
 }
 
-class IncFormDividingLineConfiguration: IncFormElementalConfiguration, IncFormDividingLineConfiguring {
-   let color: UIColor
+public class IncFormDividingLineConfiguration: IncFormElementalConfiguration, IncFormDividingLineConfiguring {
+   public let color: UIColor
    
    init(height: CGFloat = 1, color: UIColor = .gray) {
       self.color = color
@@ -242,13 +242,13 @@ class IncFormDividingLineConfiguration: IncFormElementalConfiguration, IncFormDi
    }
 }
 
-protocol IncFormIconConfiguring: IncFormTextConfiguring {
+public protocol IncFormIconConfiguring: IncFormTextConfiguring {
    var iconTintColor: UIColor { get }
 }
 
-class IncFormIconConfiguration: IncFormElementalConfiguration, IncFormIconConfiguring {
-   let iconTintColor: UIColor
-   let textStyle: IncFormTextStyling
+public class IncFormIconConfiguration: IncFormElementalConfiguration, IncFormIconConfiguring {
+   public let iconTintColor: UIColor
+   public let textStyle: IncFormTextStyling
    
    init(iconTintColor: UIColor = .black, textStyle: IncFormTextStyling = IncFormTextStyle(), height: CGFloat = 48) {
       self.iconTintColor = iconTintColor
@@ -257,7 +257,7 @@ class IncFormIconConfiguration: IncFormElementalConfiguration, IncFormIconConfig
    }
 }
 
-protocol IncFormAccessoryConfiguring: IncFormElementalConfiguring {
+public protocol IncFormAccessoryConfiguring: IncFormElementalConfiguring {
    var nameStyle: IncFormTextStyling { get }
    var detailStyle: IncFormTextStyling? { get }
    var accessoryStyle: IncFormTextStyling? { get }
@@ -265,12 +265,12 @@ protocol IncFormAccessoryConfiguring: IncFormElementalConfiguring {
    var buttonContentInsets: UIEdgeInsets? { get }
 }
 
-class IncFormAccessoryConfiguration: IncFormElementalConfiguration, IncFormAccessoryConfiguring {
-   let nameStyle: IncFormTextStyling
-   let detailStyle: IncFormTextStyling?
-   let accessoryStyle: IncFormTextStyling?
-   let accessoryTintColor: UIColor?
-   let buttonContentInsets: UIEdgeInsets?
+public class IncFormAccessoryConfiguration: IncFormElementalConfiguration, IncFormAccessoryConfiguring {
+   public let nameStyle: IncFormTextStyling
+   public let detailStyle: IncFormTextStyling?
+   public let accessoryStyle: IncFormTextStyling?
+   public let accessoryTintColor: UIColor?
+   public let buttonContentInsets: UIEdgeInsets?
    
    init(nameStyle: IncFormTextStyling = IncFormTextStyle(), detailStyle: IncFormTextStyling? = nil, accessoryStyle: IncFormTextStyling? = nil, accessoryTintColor: UIColor? = nil, buttonContentInsets: UIEdgeInsets? = nil, height: CGFloat = 64) {
       self.nameStyle = nameStyle
@@ -282,18 +282,18 @@ class IncFormAccessoryConfiguration: IncFormElementalConfiguration, IncFormAcces
    }
 }
 
-protocol IncFormSwitchConfiguring: IncFormElementalConfiguring {
+public protocol IncFormSwitchConfiguring: IncFormElementalConfiguring {
    var nameStyle: IncFormTextStyling { get }
    var detailStyle: IncFormTextStyling? { get }
    var offTintColor: UIColor { get }
    var onTintColor: UIColor { get }
 }
 
-class IncFormSwitchConfiguration: IncFormElementalConfiguration, IncFormSwitchConfiguring {
-   let nameStyle: IncFormTextStyling
-   let detailStyle: IncFormTextStyling?
-   let offTintColor: UIColor
-   let onTintColor: UIColor
+public class IncFormSwitchConfiguration: IncFormElementalConfiguration, IncFormSwitchConfiguring {
+   public let nameStyle: IncFormTextStyling
+   public let detailStyle: IncFormTextStyling?
+   public let offTintColor: UIColor
+   public let onTintColor: UIColor
    
    init(nameStyle: IncFormTextStyling = IncFormTextStyle(), detailStyle: IncFormTextStyling? = nil, height: CGFloat = 64, offTintColor: UIColor = .white, onTintColor: UIColor = .blue) {
       self.nameStyle = nameStyle
