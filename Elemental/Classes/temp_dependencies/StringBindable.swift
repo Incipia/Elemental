@@ -8,9 +8,9 @@
 
 import Foundation
 
-protocol KVStringComplianceObject: class, KVStringCompliance {}
+public protocol KVStringComplianceObject: class, KVStringCompliance {}
 
-extension KVStringComplianceObject {
+public extension KVStringComplianceObject {
    func value(for key: String) -> Any? {
       let object = self as KVStringCompliance
       return object.value(for: key)
@@ -26,20 +26,20 @@ public struct Binding {
    let target: StringBindable
    let targetKey: String
    
-   init<T: KVKeyType, U: KVKeyType>(key: T, target: StringBindable, targetKey: U) {
+   public init<T: KVKeyType, U: KVKeyType>(key: T, target: StringBindable, targetKey: U) {
       self.key = key.rawValue
       self.target = target
       self.targetKey = targetKey.rawValue
    }
    
-   init(key: String, target: StringBindable, targetKey: String) {
+   public init(key: String, target: StringBindable, targetKey: String) {
       self.key = key
       self.target = target
       self.targetKey = targetKey
    }
 }
 
-protocol StringBindable: class, KVStringComplianceObject {
+public protocol StringBindable: class, KVStringComplianceObject {
    func bind(key: String, to target: StringBindable, key targetKey: String) throws
    func bindOneWay(key: String, to target: StringBindable, key targetKey: String) throws
    func unbind(key: String, to target: StringBindable, key targetKey: String)
@@ -47,7 +47,7 @@ protocol StringBindable: class, KVStringComplianceObject {
    func handleBindingError(_ error: Error, value: Any?, key: String)
 }
 
-extension Bindable {
+public extension Bindable {
    func bind(_ binding: Binding) throws {
       try bind(key: binding.key, to: binding.target, key: binding.targetKey)
    }
@@ -98,7 +98,7 @@ extension Bindable {
    }
 }
 
-extension Binding {
+public extension Binding {
    func map<FirstKey: KVKeyType, SecondKey: KVKeyType>(firstKey first: FirstKey, toSecondKey second: SecondKey) -> Binding? {
       guard self.key == first.rawValue else { return nil }
       return Binding(key: second.rawValue, target: target, targetKey: targetKey)

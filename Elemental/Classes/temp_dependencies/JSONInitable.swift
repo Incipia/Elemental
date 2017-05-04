@@ -8,12 +8,12 @@
 
 import Foundation
 
-enum JSONError: Error {
+public enum JSONError: Error {
    case invalidType(selfType: String, valueType: String)
    case invalidValue(selfType: String, value: String)
 }
 
-protocol JSONInitable {
+public protocol JSONInitable {
    init?(json: Any) throws
 }
 
@@ -22,7 +22,7 @@ extension JSONInitable {
    static func jsonValueError(value: Any) -> JSONError { return .invalidValue(selfType: "\(Self.self)", value: "\(value)") }
 }
 
-protocol JSONFactory {
+public protocol JSONFactory {
    func value(json: Any) throws -> Any?
 }
 
@@ -32,12 +32,12 @@ extension JSONFactory {
    }
 }
 
-protocol KVJSONInitable: JSONInitable, KVCompliance {
+public protocol KVJSONInitable: JSONInitable, KVCompliance {
    static var jsonKeys: [Key] { get }
    init()
 }
 
-extension KVJSONInitable {
+public extension KVJSONInitable {
    static var jsonKeys: [Key] { return Key.all }
    
    init?(json: Any) throws {
@@ -57,9 +57,9 @@ extension KVJSONInitable {
    }
 }
 
-protocol KVJSONInitableClass: class, KVJSONInitable, KVComplianceClass {}
+public protocol KVJSONInitableClass: class, KVJSONInitable, KVComplianceClass {}
 
-extension KVJSONInitableClass {
+public extension KVJSONInitableClass {
    func update(with dictionary: [String : Any]) throws {
       try Self.jsonKeys.forEach {
          var value = dictionary[$0.rawValue]

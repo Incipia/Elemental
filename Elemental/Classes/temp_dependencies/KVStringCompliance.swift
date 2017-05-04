@@ -8,16 +8,16 @@
 
 import Foundation
 
-enum KVStringError: Error {
+public enum KVStringError: Error {
    case invalidKey(key: String)
 }
 
-protocol KVStringCompliance {
+public protocol KVStringCompliance {
    func value(for key: String) -> Any?
    mutating func set(value: Any?, for key: String) throws
 }
 
-extension KVCompliance {
+public extension KVCompliance {
    func value(for key: String) -> Any? {
       guard let key = try? Key(keyString: key) else { return nil }
       return value(for: key)
@@ -29,7 +29,7 @@ extension KVCompliance {
    }
 }
 
-extension KVKeyType {
+public extension KVKeyType {
    init(keyString: String) throws {
       guard let key = Self.init(rawValue: keyString) else { throw KVStringError.invalidKey(key: "\(Self.self).\(keyString)") }
       self = key

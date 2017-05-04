@@ -8,11 +8,11 @@
 
 import Foundation
 
-enum BindableError: Error {
+public enum BindableError: Error {
    case invalidKey(name: String)
 }
 
-protocol Bindable: KVCompliance, StringBindable {
+public protocol Bindable: KVCompliance, StringBindable {
    static var bindableKeys: [Key] { get }
 
    var bindingBlocks: [Key : [((targetObject: AnyObject, rawTargetKey: String)?, Any?) throws -> Bool?]] { get set }
@@ -27,7 +27,7 @@ protocol Bindable: KVCompliance, StringBindable {
    func handleBindingError(_ error: Error, value: Any?, key: Key)
 }
 
-extension Bindable {
+public extension Bindable {
    static var bindableKeys: [Key] { return Key.all }
 
    func bind<T: Bindable>(key: Key, to target: T, key targetKey: T.Key) throws {
@@ -111,7 +111,7 @@ extension Bindable {
    }
 }
 
-func iterateEnum<T: Hashable>(_: T.Type) -> AnyIterator<T> {
+public func iterateEnum<T: Hashable>(_: T.Type) -> AnyIterator<T> {
    var i = 0
    return AnyIterator {
       let next = withUnsafePointer(to: &i) {

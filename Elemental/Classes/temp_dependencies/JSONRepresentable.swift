@@ -8,15 +8,15 @@
 
 import Foundation
 
-protocol JSONRepresentable {
+public protocol JSONRepresentable {
    var jsonRepresentation: Any? { get }
 }
 
-protocol KVJSONRepresentable: JSONRepresentable, KVCompliance {
+public protocol KVJSONRepresentable: JSONRepresentable, KVCompliance {
    static var jsonKeys: [Key] { get }
 }
 
-extension KVJSONRepresentable {
+public extension KVJSONRepresentable {
    var jsonRepresentation: Any? {
       var json: [String : Any] = [:]
       Self.jsonKeys.forEach {

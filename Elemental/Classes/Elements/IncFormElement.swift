@@ -79,7 +79,7 @@ open class IncFormElement: IncFormElemental {
    }
    
    // MARK: - Init
-   init(configuration: IncFormElementalConfiguring) {
+   public init(configuration: IncFormElementalConfiguring) {
       elementalConfig = configuration
    }
 }
@@ -90,7 +90,7 @@ public class IncFormText: IncFormElement {
    var content: String
    
    // MARK: - Init
-   init(configuration: IncFormTextConfiguring, content: String) {
+   public init(configuration: IncFormTextConfiguring, content: String) {
       self.content = content
       super.init(configuration: configuration)
    }
@@ -111,7 +111,7 @@ public class IncFormIcon: IncFormElement {
    var content: IncFormElementIconContent
    
    // MARK: - Init
-   init(configuration: IncFormIconConfiguring, content: IncFormElementIconContent) {
+   public init(configuration: IncFormIconConfiguring, content: IncFormElementIconContent) {
       self.content = content
       super.init(configuration: configuration)
    }
@@ -134,7 +134,7 @@ public class IncFormAccessory: IncFormElement, IncFormBindableElemental {
    var action: IncFormElementAccessoryAction?
    
    // MARK: - Init
-   init(configuration: IncFormAccessoryConfiguring, content: IncFormElementAccessoryContent, bindings: [Binding] = [], action: IncFormElementAccessoryAction? = nil) {
+   public init(configuration: IncFormAccessoryConfiguring, content: IncFormElementAccessoryContent, bindings: [Binding] = [], action: IncFormElementAccessoryAction? = nil) {
       self.content = content
       self.bindings = bindings
       self.action = action
@@ -159,7 +159,7 @@ public class IncFormThumbnail: IncFormElement, IncFormBindableElemental {
    var action: IncFormElementAccessoryAction?
    
    // MARK: - Init
-   init(configuration: IncFormAccessoryConfiguring, content: IncFormElementThumbnailContent, bindings: [Binding] = [], action: IncFormElementAccessoryAction? = nil) {
+   public init(configuration: IncFormAccessoryConfiguring, content: IncFormElementThumbnailContent, bindings: [Binding] = [], action: IncFormElementAccessoryAction? = nil) {
       self.content = content
       self.bindings = bindings
       self.action = action
@@ -183,7 +183,7 @@ public class IncFormSwitch: IncFormElement, IncFormBindableElemental {
    var bindings: [Binding]
    
    // MARK: - Init
-   init(configuration: IncFormSwitchConfiguring, content: IncFormElementSwitchContent, bindings: [Binding] = []) {
+   public init(configuration: IncFormSwitchConfiguring, content: IncFormElementSwitchContent, bindings: [Binding] = []) {
       self.content = content
       self.bindings = bindings
       super.init(configuration: configuration)
@@ -205,7 +205,7 @@ public class IncFormDropdown: IncFormElement {
    var content: IncFormElementDropdownContent
    
    // MARK: - Init
-   init(configuration: IncFormDropdownConfiguring, content: IncFormElementDropdownContent) {
+   public init(configuration: IncFormDropdownConfiguring, content: IncFormElementDropdownContent) {
       self.content = content
       super.init(configuration: configuration)
    }
@@ -225,7 +225,7 @@ public class IncFormPickerSelection: IncFormElement, IncFormBindableElemental {
       let value: Any
       var isSelected: Bool
       
-      init(text: String = "", value: Any? = nil, isSelected: Bool = false) {
+      public init(text: String = "", value: Any? = nil, isSelected: Bool = false) {
          self.text = text
          self.value = value ?? text
          self.isSelected = isSelected
@@ -243,7 +243,7 @@ public class IncFormPickerSelection: IncFormElement, IncFormBindableElemental {
    var inputState: IncFormElementInputState
    
    // MARK: - Init
-   init(configuration: IncFormPickerConfiguring, content: IncFormElementPickerContent, bindings: [Binding] = [], action: IncFormElementInputAction? = nil) {
+   public init(configuration: IncFormPickerConfiguring, content: IncFormElementPickerContent, bindings: [Binding] = [], action: IncFormElementInputAction? = nil) {
       self.content = content
       self.bindings = bindings
       self.action = action
@@ -267,13 +267,13 @@ public class IncFormRadioSelection: IncFormElement, IncFormBindableElemental {
       let value: Any
       var on: Bool
       
-      init(text: String = "", value: Any? = nil, on: Bool = false) {
+      public init(text: String = "", value: Any? = nil, on: Bool = false) {
          self.text = text
          self.value = value ?? text
          self.on = on
       }
       
-      static func component(text: String = "", value: Any? = nil, on: Bool = false) -> Component {
+      public static func component(text: String = "", value: Any? = nil, on: Bool = false) -> Component {
          return Component(text: text, value: value, on: on)
       }
    }
@@ -284,7 +284,7 @@ public class IncFormRadioSelection: IncFormElement, IncFormBindableElemental {
    var bindings: [Binding]
    
    // MARK: - Init
-   init(configuration: IncFormRadioConfiguring, content: IncFormElementRadioContent, bindings: [Binding] = []) {
+   public init(configuration: IncFormRadioConfiguring, content: IncFormElementRadioContent, bindings: [Binding] = []) {
       self.content = content
       self.bindings = bindings
       super.init(configuration: configuration)
@@ -308,7 +308,7 @@ public class IncFormTextFieldInput: IncFormElement, IncFormBindableElemental {
    var action: IncFormElementInputAction?
    
    // MARK: - Init
-   init(configuration: IncFormTextInputConfiguring, content: IncFormElementTextInputContent, bindings: [Binding] = [], action: IncFormElementInputAction? = nil) {
+   public init(configuration: IncFormTextInputConfiguring, content: IncFormElementTextInputContent, bindings: [Binding] = [], action: IncFormElementInputAction? = nil) {
       self.content = content
       self.bindings = bindings
       self.action = action
@@ -333,7 +333,7 @@ public class IncFormTextViewInput: IncFormElement, IncFormBindableElemental {
    var action: IncFormElementInputAction?
    
    // MARK: - Init
-   init(configuration: IncFormTextInputConfiguring, content: IncFormElementTextInputContent, bindings: [Binding] = [], action: IncFormElementInputAction? = nil) {
+   public init(configuration: IncFormTextInputConfiguring, content: IncFormElementTextInputContent, bindings: [Binding] = [], action: IncFormElementInputAction? = nil) {
       self.content = content
       self.bindings = bindings
       self.action = action
@@ -359,7 +359,7 @@ public class IncFormDateInput: IncFormElement, IncFormBindableElemental {
    var inputState: IncFormElementInputState
    
    // MARK: - Init
-   init(configuration: IncFormDateInputConfiguring, content: IncFormElementDateInputContent, bindings: [Binding] = [], action: IncFormElementInputAction? = nil) {
+   public init(configuration: IncFormDateInputConfiguring, content: IncFormElementDateInputContent, bindings: [Binding] = [], action: IncFormElementInputAction? = nil) {
       self.content = content
       self.bindings = bindings
       self.action = action
@@ -382,7 +382,7 @@ public class IncFormHorizontalLine: IncFormElement {
    var configuration: IncFormDividingLineConfiguring { return elementalConfig as! IncFormDividingLineConfiguring }
    
    // MARK: - Init
-   init(configuration: IncFormDividingLineConfiguring) {
+   public init(configuration: IncFormDividingLineConfiguring) {
       super.init(configuration: configuration)
    }
    
@@ -406,7 +406,7 @@ public class IncFormVerticalSpace: IncFormElement {
    override public class var defaultCellID: String { return IncFormHorizontalLine.defaultCellID }
    
    // MARK: - Init
-   init(value: CGFloat) {
+   public init(value: CGFloat) {
       self.value  = value
       super.init(configuration: IncFormElementalConfiguration())
    }
@@ -430,7 +430,7 @@ public class IncFormCustomView: IncFormElement {
    let view : UIView
    
    // MARK: - Init
-   init(view : UIView) {
+   public init(view : UIView) {
       self.view  = view
       super.init(configuration: IncFormElementalConfiguration())
    }
@@ -451,7 +451,7 @@ public class IncFormCustomViewController: IncFormElement {
    let sizeDelegate: IncFormSizeDelegate
    
    // MARK: - Init
-   init(viewController : UIViewController, sizeDelegate: IncFormSizeDelegate) {
+   public init(viewController : UIViewController, sizeDelegate: IncFormSizeDelegate) {
       self.viewController  = viewController
       self.sizeDelegate = sizeDelegate
       super.init(configuration: IncFormElementalConfiguration())
@@ -478,7 +478,7 @@ public class IncFormHorizontalForm: IncFormElement {
    let elements : [IncFormElemental]
    
    // MARK: - Init
-   init(elements : [IncFormElemental]) {
+   public init(elements : [IncFormElemental]) {
       self.elements  = elements
       super.init(configuration: IncFormElementalConfiguration())
    }
@@ -510,7 +510,7 @@ public class IncFormHorizontalSpace: IncFormElement {
    override public class var defaultCellID: String { return IncFormVerticalLine.defaultCellID }
    
    // MARK: - Init
-   init(value: CGFloat) {
+   public init(value: CGFloat) {
       self.value  = value
       super.init(configuration: IncFormElementalConfiguration())
    }
@@ -534,7 +534,7 @@ public class IncFormVerticalLine: IncFormElement {
    var configuration: IncFormDividingLineConfiguring { return elementalConfig as! IncFormDividingLineConfiguring }
    
    // MARK: - Init
-   init(configuration: IncFormDividingLineConfiguring) {
+   public init(configuration: IncFormDividingLineConfiguring) {
       super.init(configuration: configuration)
    }
    
@@ -551,76 +551,76 @@ public class IncFormVerticalLine: IncFormElement {
    }
 }
 
-extension IncFormElement {
-   public class func text(configuration: IncFormTextConfiguring, content: String) -> IncFormElement {
+public extension IncFormElement {
+   class func text(configuration: IncFormTextConfiguring, content: String) -> IncFormElement {
       return IncFormText(configuration: configuration, content: content)
    }
    
-   public class func icon(configuration: IncFormIconConfiguring, content: IncFormElementIconContent) -> IncFormElement {
+   class func icon(configuration: IncFormIconConfiguring, content: IncFormElementIconContent) -> IncFormElement {
       return IncFormIcon(configuration: configuration, content: content)
    }
    
-   public class func accessory(configuration: IncFormAccessoryConfiguring, content: IncFormElementAccessoryContent, bindings: [Binding] = [], action: IncFormElementAccessoryAction? = nil) -> IncFormElement {
+   class func accessory(configuration: IncFormAccessoryConfiguring, content: IncFormElementAccessoryContent, bindings: [Binding] = [], action: IncFormElementAccessoryAction? = nil) -> IncFormElement {
       return IncFormAccessory(configuration: configuration, content: content, bindings: bindings, action: action)
    }
    
-   public class func thumbnail(configuration: IncFormAccessoryConfiguring, content: IncFormElementThumbnailContent, bindings: [Binding] = [], action: IncFormElementAccessoryAction? = nil) -> IncFormElement {
+   class func thumbnail(configuration: IncFormAccessoryConfiguring, content: IncFormElementThumbnailContent, bindings: [Binding] = [], action: IncFormElementAccessoryAction? = nil) -> IncFormElement {
       return IncFormThumbnail(configuration: configuration, content: content, bindings: bindings, action: action)
    }
    
-   public class func `switch`(configuration: IncFormSwitchConfiguring, content: IncFormElementSwitchContent, bindings: [Binding] = []) -> IncFormElement {
+   class func `switch`(configuration: IncFormSwitchConfiguring, content: IncFormElementSwitchContent, bindings: [Binding] = []) -> IncFormElement {
       return IncFormSwitch(configuration: configuration, content: content, bindings: bindings)
    }
    
-   public class func dropdown(configuration: IncFormDropdownConfiguring, content: IncFormElementDropdownContent) -> IncFormElement {
+   class func dropdown(configuration: IncFormDropdownConfiguring, content: IncFormElementDropdownContent) -> IncFormElement {
       return IncFormDropdown(configuration: configuration, content: content)
    }
    
-   public class func picker(configuration: IncFormPickerConfiguring, content: IncFormElementPickerContent, bindings: [Binding] = [], action: IncFormElementInputAction? = nil) -> IncFormElement {
+   class func picker(configuration: IncFormPickerConfiguring, content: IncFormElementPickerContent, bindings: [Binding] = [], action: IncFormElementInputAction? = nil) -> IncFormElement {
       return IncFormPickerSelection(configuration: configuration, content: content, bindings: bindings, action: action)
    }
    
-   public class func radioSelection(configuration: IncFormRadioConfiguring, content: IncFormElementRadioContent, bindings: [Binding] = []) -> IncFormElement {
+   class func radioSelection(configuration: IncFormRadioConfiguring, content: IncFormElementRadioContent, bindings: [Binding] = []) -> IncFormElement {
       return IncFormRadioSelection(configuration: configuration, content: content, bindings: bindings)
    }
    
-   public class func textFieldInput(configuration: IncFormTextInputConfiguring, content: IncFormElementTextInputContent, bindings: [Binding] = [], action: IncFormElementInputAction? = nil) -> IncFormElement {
+   class func textFieldInput(configuration: IncFormTextInputConfiguring, content: IncFormElementTextInputContent, bindings: [Binding] = [], action: IncFormElementInputAction? = nil) -> IncFormElement {
       return IncFormTextFieldInput(configuration: configuration, content: content, bindings: bindings, action: action)
    }
    
-   public class func textViewInput(configuration: IncFormTextInputConfiguring, content: IncFormElementTextInputContent, bindings: [Binding] = [], action: IncFormElementInputAction? = nil) -> IncFormElement {
+   class func textViewInput(configuration: IncFormTextInputConfiguring, content: IncFormElementTextInputContent, bindings: [Binding] = [], action: IncFormElementInputAction? = nil) -> IncFormElement {
       return IncFormTextViewInput(configuration: configuration, content: content, bindings: bindings, action: action)
    }
    
-   public class func dateInput(configuration: IncFormDateInputConfiguring, content: IncFormElementDateInputContent, bindings: [Binding] = [], action: IncFormElementInputAction? = nil) -> IncFormElement {
+   class func dateInput(configuration: IncFormDateInputConfiguring, content: IncFormElementDateInputContent, bindings: [Binding] = [], action: IncFormElementInputAction? = nil) -> IncFormElement {
       return IncFormDateInput(configuration: configuration, content: content, bindings: bindings, action: action)
    }
    
-   public class func horizontalLine(configuration: IncFormDividingLineConfiguring) -> IncFormElement {
+   class func horizontalLine(configuration: IncFormDividingLineConfiguring) -> IncFormElement {
       return IncFormHorizontalLine(configuration: configuration)
    }
    
-   public class func verticalSpace(_ value: CGFloat) -> IncFormElement {
+   class func verticalSpace(_ value: CGFloat) -> IncFormElement {
       return IncFormVerticalSpace(value: value)
    }
    
-   public class func view(_ view: UIView) -> IncFormElement {
+   class func view(_ view: UIView) -> IncFormElement {
       return IncFormCustomView(view: view)
    }
    
-   public class func viewController(_ viewController: UIViewController, sizeDelegate: IncFormSizeDelegate) -> IncFormElement {
+   class func viewController(_ viewController: UIViewController, sizeDelegate: IncFormSizeDelegate) -> IncFormElement {
       return IncFormCustomViewController(viewController: viewController, sizeDelegate: sizeDelegate)
    }
    
-   public class func horizontalForm(elements: [IncFormElemental]) -> IncFormElement {
+   class func horizontalForm(elements: [IncFormElemental]) -> IncFormElement {
       return IncFormHorizontalForm(elements: elements)
    }
    
-   public class func horizontalSpace(_ value: CGFloat) -> IncFormElement {
+   class func horizontalSpace(_ value: CGFloat) -> IncFormElement {
       return IncFormHorizontalSpace(value: value)
    }
    
-   public class func verticalLine(configuration: IncFormDividingLineConfiguring) -> IncFormElement {
+   class func verticalLine(configuration: IncFormDividingLineConfiguring) -> IncFormElement {
       return IncFormVerticalLine(configuration: configuration)
    }
 }

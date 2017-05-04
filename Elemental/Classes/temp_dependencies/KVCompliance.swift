@@ -8,14 +8,14 @@
 
 import Foundation
 
-protocol KVKeyType: Hashable {
+public protocol KVKeyType: Hashable {
    var rawValue: String { get }
    init?(rawValue: String)
    func kvTypeError(value: Any?) -> KVError
    static var all: [Self] { get }
 }
 
-extension KVKeyType {
+public extension KVKeyType {
    static var all: [Self] {
       var all: [Self] = []
       for element in iterateEnum(Self.self) {
@@ -34,17 +34,17 @@ extension KVKeyType {
    }
 }
 
-enum KVError: Error {
+public enum KVError: Error {
    case valueType(key: String, value: String)
 }
 
-protocol KVCompliance: KVStringCompliance {
+public protocol KVCompliance: KVStringCompliance {
    associatedtype Key: KVKeyType
    
    func value(for key: Key) -> Any?
    mutating func set(value: Any?, for key: Key) throws
 }
 
-protocol KVComplianceClass: class, KVCompliance {
+public protocol KVComplianceClass: class, KVCompliance {
    func set(value: Any?, for key: Key) throws
 }

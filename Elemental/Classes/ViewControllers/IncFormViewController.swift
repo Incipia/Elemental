@@ -8,7 +8,7 @@
 
 import UIKit
 
-enum FormContentTransitionType {
+public enum FormContentTransitionType {
    case forwards
    case backwards
 }
@@ -117,12 +117,12 @@ open class IncFormViewController: UIViewController {
       }
    }
    
-   var collectionView: UICollectionView {
+   public var collectionView: UICollectionView {
       loadViewIfNeeded()
       return _collectionView
    }
    
-   var isScrollEnabled: Bool {
+   public var isScrollEnabled: Bool {
       get { return collectionView.isScrollEnabled }
       set { collectionView.isScrollEnabled = newValue }
    }
@@ -142,7 +142,7 @@ open class IncFormViewController: UIViewController {
       return true
    }
    
-   public func reload() {
+   open func reload() {
       loadViewIfNeeded()
       configure(with: generateElements() ?? _elements, scrollToTop: false)
    }
@@ -156,7 +156,7 @@ open class IncFormViewController: UIViewController {
       }
    }
    
-   func contentSize(constrainedWidth width: CGFloat) -> CGSize {
+   public func contentSize(constrainedWidth width: CGFloat) -> CGSize {
       var height: CGFloat = 0
       _elements.forEach { component in
          height += component.size(forConstrainedDimension: .horizontal(width)).height
@@ -192,7 +192,7 @@ extension IncFormViewController {
       _refreshControl.endRefreshing()
    }
    
-   func configure(with elements: [IncFormElemental], transitionType: FormContentTransitionType? = nil, scrollToTop: Bool = true) {
+   public func configure(with elements: [IncFormElemental], transitionType: FormContentTransitionType? = nil, scrollToTop: Bool = true) {
       elements.forEach { $0.register(collectionView: collectionView) }
       self._elements = elements
       

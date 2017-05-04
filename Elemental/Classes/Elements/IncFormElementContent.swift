@@ -12,7 +12,7 @@ public struct IncFormElementRadioContent {
    let name: String?
    let components: [IncFormRadioSelection.Component]
    
-   init(name: String? = nil, components: [IncFormRadioSelection.Component]) {
+   public init(name: String? = nil, components: [IncFormRadioSelection.Component]) {
       self.name = name
       self.components = components
    }
@@ -52,7 +52,7 @@ public struct IncFormElementDateInputContent {
    let minimumDate: Date?
    let date: Date?
    
-   init(name: String, detail: String? = nil, placeholder: String? = nil, minimumDate: Date? = nil, maximumDate: Date? = nil, date: Date? = nil) {
+   public init(name: String, detail: String? = nil, placeholder: String? = nil, minimumDate: Date? = nil, maximumDate: Date? = nil, date: Date? = nil) {
       self.name = name
       self.detail = detail
       self.placeholder = placeholder
@@ -67,7 +67,7 @@ public struct IncFormElementIconContent {
    let icon: UIImage
 }
 
-enum FormComponentAccessory {
+public enum FormComponentAccessory {
    case button(text: String), image(UIImage), buttonImage(UIImage)
 }
 
