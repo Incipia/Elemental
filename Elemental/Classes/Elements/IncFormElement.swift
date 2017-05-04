@@ -74,7 +74,7 @@ open class IncFormElement: IncFormElemental {
    }
    
    open func register(collectionView cv: UICollectionView) {
-      let nib = UINib(nibName: cellID, bundle: nil)
+      let nib = UINib(nibName: cellID, bundle: Bundle(for: type(of:self)))
       cv.register(nib, forCellWithReuseIdentifier: cellID)
    }
    
