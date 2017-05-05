@@ -155,12 +155,6 @@
 		E9F0E5F41EBA6A17007F6FFC /* IncFormTextViewInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F0E5E21EBA6A17007F6FFC /* IncFormTextViewInputCell.swift */; };
 		E9F0E5F51EBA6A17007F6FFC /* IncFormThumbnailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F0E5E31EBA6A17007F6FFC /* IncFormThumbnailCell.swift */; };
 		E9F0E5F61EBA6A17007F6FFC /* IncFormVerticalLineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F0E5E41EBA6A17007F6FFC /* IncFormVerticalLineCell.swift */; };
-		E9F0E5FE1EBA6ACF007F6FFC /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F0E5F81EBA6ACF007F6FFC /* Bindable.swift */; };
-		E9F0E5FF1EBA6ACF007F6FFC /* JSONInitable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F0E5F91EBA6ACF007F6FFC /* JSONInitable.swift */; };
-		E9F0E6001EBA6ACF007F6FFC /* JSONRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F0E5FA1EBA6ACF007F6FFC /* JSONRepresentable.swift */; };
-		E9F0E6011EBA6ACF007F6FFC /* KVCompliance.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F0E5FB1EBA6ACF007F6FFC /* KVCompliance.swift */; };
-		E9F0E6021EBA6ACF007F6FFC /* KVStringCompliance.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F0E5FC1EBA6ACF007F6FFC /* KVStringCompliance.swift */; };
-		E9F0E6031EBA6ACF007F6FFC /* StringBindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F0E5FD1EBA6ACF007F6FFC /* StringBindable.swift */; };
 		E9F0E60A1EBA6B4D007F6FFC /* IncFormConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F0E6051EBA6B4D007F6FFC /* IncFormConfiguration.swift */; };
 		E9F0E60B1EBA6B4D007F6FFC /* IncFormElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F0E6061EBA6B4D007F6FFC /* IncFormElement.swift */; };
 		E9F0E60C1EBA6B4D007F6FFC /* IncFormElemental.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F0E6071EBA6B4D007F6FFC /* IncFormElemental.swift */; };
@@ -438,12 +432,6 @@
 		E9F0E5E21EBA6A17007F6FFC /* IncFormTextViewInputCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IncFormTextViewInputCell.swift; path = Cells/IncFormTextViewInputCell.swift; sourceTree = "<group>"; };
 		E9F0E5E31EBA6A17007F6FFC /* IncFormThumbnailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IncFormThumbnailCell.swift; path = Cells/IncFormThumbnailCell.swift; sourceTree = "<group>"; };
 		E9F0E5E41EBA6A17007F6FFC /* IncFormVerticalLineCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IncFormVerticalLineCell.swift; path = Cells/IncFormVerticalLineCell.swift; sourceTree = "<group>"; };
-		E9F0E5F81EBA6ACF007F6FFC /* Bindable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
-		E9F0E5F91EBA6ACF007F6FFC /* JSONInitable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONInitable.swift; sourceTree = "<group>"; };
-		E9F0E5FA1EBA6ACF007F6FFC /* JSONRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONRepresentable.swift; sourceTree = "<group>"; };
-		E9F0E5FB1EBA6ACF007F6FFC /* KVCompliance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KVCompliance.swift; sourceTree = "<group>"; };
-		E9F0E5FC1EBA6ACF007F6FFC /* KVStringCompliance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KVStringCompliance.swift; sourceTree = "<group>"; };
-		E9F0E5FD1EBA6ACF007F6FFC /* StringBindable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringBindable.swift; sourceTree = "<group>"; };
 		E9F0E6051EBA6B4D007F6FFC /* IncFormConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncFormConfiguration.swift; sourceTree = "<group>"; };
 		E9F0E6061EBA6B4D007F6FFC /* IncFormElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncFormElement.swift; sourceTree = "<group>"; };
 		E9F0E6071EBA6B4D007F6FFC /* IncFormElemental.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncFormElemental.swift; sourceTree = "<group>"; };
@@ -723,7 +711,6 @@
 				E9F0E6121EBA6CFC007F6FFC /* Custom UI */,
 				E9F0E6041EBA6AE3007F6FFC /* Elements */,
 				E9AAE4931EBAA6C500DA542E /* Geometry */,
-				E9F0E5F71EBA6A23007F6FFC /* Temporary Dependencies */,
 				E9F0E60F1EBA6B9C007F6FFC /* View Controllers */,
 			);
 			path = Classes;
@@ -957,20 +944,6 @@
 				E9F0E5E41EBA6A17007F6FFC /* IncFormVerticalLineCell.swift */,
 			);
 			name = Cells;
-			sourceTree = "<group>";
-		};
-		E9F0E5F71EBA6A23007F6FFC /* Temporary Dependencies */ = {
-			isa = PBXGroup;
-			children = (
-				E9F0E5F81EBA6ACF007F6FFC /* Bindable.swift */,
-				E9F0E5F91EBA6ACF007F6FFC /* JSONInitable.swift */,
-				E9F0E5FA1EBA6ACF007F6FFC /* JSONRepresentable.swift */,
-				E9F0E5FB1EBA6ACF007F6FFC /* KVCompliance.swift */,
-				E9F0E5FC1EBA6ACF007F6FFC /* KVStringCompliance.swift */,
-				E9F0E5FD1EBA6ACF007F6FFC /* StringBindable.swift */,
-			);
-			name = "Temporary Dependencies";
-			path = temp_dependencies;
 			sourceTree = "<group>";
 		};
 		E9F0E6041EBA6AE3007F6FFC /* Elements */ = {
@@ -1413,7 +1386,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E9F0E5E91EBA6A17007F6FFC /* IncFormDateInputCell.swift in Sources */,
-				E9F0E6031EBA6ACF007F6FFC /* StringBindable.swift in Sources */,
 				E9F0E5F11EBA6A17007F6FFC /* IncFormSwitchCell.swift in Sources */,
 				E9F0E60A1EBA6B4D007F6FFC /* IncFormConfiguration.swift in Sources */,
 				E9F0E5F01EBA6A17007F6FFC /* IncFormRadioSelectionCell.swift in Sources */,
@@ -1426,12 +1398,9 @@
 				E9F0E6111EBA6BEF007F6FFC /* IncFormViewController.swift in Sources */,
 				E9F0E5F31EBA6A17007F6FFC /* IncFormTextFieldInputCell.swift in Sources */,
 				E9F0E60E1EBA6B4D007F6FFC /* IncFormStyling.swift in Sources */,
-				E9F0E5FE1EBA6ACF007F6FFC /* Bindable.swift in Sources */,
-				E9F0E6001EBA6ACF007F6FFC /* JSONRepresentable.swift in Sources */,
 				E9F0E5F61EBA6A17007F6FFC /* IncFormVerticalLineCell.swift in Sources */,
 				E9F0E60C1EBA6B4D007F6FFC /* IncFormElemental.swift in Sources */,
 				E9F0E5E61EBA6A17007F6FFC /* IncFormBindableElementCell.swift in Sources */,
-				E9F0E6021EBA6ACF007F6FFC /* KVStringCompliance.swift in Sources */,
 				E9F0E5F51EBA6A17007F6FFC /* IncFormThumbnailCell.swift in Sources */,
 				E9F0E6141EBA6D63007F6FFC /* RadioView.swift in Sources */,
 				E9AAE4951EBAA6ED00DA542E /* IncFormGeometry.swift in Sources */,
@@ -1440,11 +1409,9 @@
 				E9F0E5E51EBA6A17007F6FFC /* IncFormAccessoryCell.swift in Sources */,
 				E9AAE4921EBA6FD500DA542E /* InsetTextField.swift in Sources */,
 				1501D4810FE25759278FDC183C84C976 /* Elemental-dummy.m in Sources */,
-				E9F0E6011EBA6ACF007F6FFC /* KVCompliance.swift in Sources */,
 				E9F0E5F41EBA6A17007F6FFC /* IncFormTextViewInputCell.swift in Sources */,
 				E9F0E5ED1EBA6A17007F6FFC /* IncFormHorizontalLineCell.swift in Sources */,
 				E9F0E5EF1EBA6A17007F6FFC /* IncFormPickerSelectionCell.swift in Sources */,
-				E9F0E5FF1EBA6ACF007F6FFC /* JSONInitable.swift in Sources */,
 				E9F0E5E71EBA6A17007F6FFC /* IncFormCustomViewCell.swift in Sources */,
 				E9F0E5EA1EBA6A17007F6FFC /* IncFormDropdownCell.swift in Sources */,
 			);
