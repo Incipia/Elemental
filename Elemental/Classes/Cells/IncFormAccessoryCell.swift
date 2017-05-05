@@ -112,7 +112,7 @@ class IncFormAccessoryCell: IncFormBindableElementCell {
       super.prepareForReuse()
    }
    
-   // MARK: - KVCompliance
+   // MARK: - IncKVCompliance
    override func value(for key: IncFormBindableElementKey) -> Any? {
       switch key {
       case .detail: return _detailLabel.text

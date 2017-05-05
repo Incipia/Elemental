@@ -96,7 +96,7 @@ class IncFormThumbnailCell: IncFormBindableElementCell {
       super.updateConstraints()
    }
    
-   // MARK: - KVCompliance
+   // MARK: - IncKVCompliance
    override func value(for key: IncFormBindableElementKey) -> Any? {
       switch key {
       case .detail: return _detailLabel.text

@@ -36,7 +36,7 @@ extension IncFormElementCell {
    // MARK: - Utility Functions for Subclasses
    static func dataValue(_ value: Any) -> Data {
       var value = value
-      if let jsonRepresentable = value as? JSONRepresentable, let jsonObject = jsonRepresentable.jsonRepresentation {
+      if let jsonRepresentable = value as? IncJSONRepresentable, let jsonObject = jsonRepresentable.jsonRepresentation {
          value = jsonObject
       }
       if JSONSerialization.isValidJSONObject(value), let data = try? JSONSerialization.data(withJSONObject: value, options: []) {
