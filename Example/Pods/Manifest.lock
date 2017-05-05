@@ -1,5 +1,7 @@
 PODS:
-  - Elemental (0.1.0)
+  - Bindable (0.0.1)
+  - Elemental (0.0.1):
+    - Bindable
   - FBSnapshotTestCase (2.1.4):
     - FBSnapshotTestCase/SwiftSupport (= 2.1.4)
   - FBSnapshotTestCase/Core (2.1.4)
@@ -15,6 +17,7 @@ PODS:
   - Quick (1.0.0)
 
 DEPENDENCIES:
+  - Bindable (from `../../Bindable/`)
   - Elemental (from `../`)
   - FBSnapshotTestCase
   - Nimble (~> 5.1.1)
@@ -22,16 +25,19 @@ DEPENDENCIES:
   - Quick (~> 1.0.0)
 
 EXTERNAL SOURCES:
+  Bindable:
+    :path: ../../Bindable/
   Elemental:
-    :path: "../"
+    :path: ../
 
 SPEC CHECKSUMS:
-  Elemental: 3febcec3d585a776ed90629f3d34a83a8187f3e9
+  Bindable: 5fcc4bf501446ef22a2b176e572ba358c2aa2108
+  Elemental: 9937a5f24069a6d182dc3498d784cfb461b1df38
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
   Nimble: 415e3aa3267e7bc2c96b05fa814ddea7bb686a29
   Nimble-Snapshots: e743439f26c2fa99d8f7e0d7c01c99bcb40aa6f2
   Quick: 8024e4a47e6cc03a9d5245ef0948264fc6d27cff
 
-PODFILE CHECKSUM: ddb016bdf3b2f5d67f243b97842031bcb4ea24e1
+PODFILE CHECKSUM: 127210b4407e902766b07a50bec295a4fc529bec
 
 COCOAPODS: 1.2.1

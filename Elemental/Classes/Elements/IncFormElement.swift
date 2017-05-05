@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Bindable
 
 public enum IncFormElementInputState {
    case focused, unfocused

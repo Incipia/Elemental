@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Bindable
 
 protocol IncFormElementalCell: class {
    static func contentSize(for element: IncFormElemental, constrainedWidth width: CGFloat) -> CGSize

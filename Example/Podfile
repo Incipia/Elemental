@@ -2,6 +2,7 @@ use_frameworks!
 
 target 'Elemental_Example' do
   pod 'Elemental', :path => '../'
+  pod 'Bindable', :path => '../../Bindable/'
 
   target 'Elemental_Tests' do
     inherit! :search_paths

@@ -5,17 +5,24 @@
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
     "EEDD4F8F46EBC6FF2677CC2458CA347598E50C6C" : 9223372036854775807,
+    "3383A19D384FEF7F7FD5ECB2723E532FE353534A" : 9223372036854775807,
     "AA71B6A5E291EA836193AA434A138F66473AA1EE" : 9223372036854775807
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "E6CF8B41-4EA8-446E-8D40-AF0D6177B935",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
     "EEDD4F8F46EBC6FF2677CC2458CA347598E50C6C" : "..",
+    "3383A19D384FEF7F7FD5ECB2723E532FE353534A" : "Bindable\/",
     "AA71B6A5E291EA836193AA434A138F66473AA1EE" : "Elemental\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "Elemental",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
   "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Example\/Elemental.xcworkspace",
   "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:Incipia\/Bindable.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "3383A19D384FEF7F7FD5ECB2723E532FE353534A"
+    },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:Incipia\/Elemental.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
