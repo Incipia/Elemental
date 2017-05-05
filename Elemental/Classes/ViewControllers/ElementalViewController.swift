@@ -1,5 +1,5 @@
 //
-//  IncFormViewController.swift
+//  ElementalViewController.swift
 //  GigSalad
 //
 //  Created by Gregory Klein on 3/2/17.
@@ -14,20 +14,20 @@ public enum FormContentTransitionType {
 }
 
 public protocol IncFormViewControllerDelegate: class {
-   func elementsBeganRefreshing(in viewController: IncFormViewController)
-   func elementSelected(_ element: IncFormElemental, in viewController: IncFormViewController)
+   func elementsBeganRefreshing(in viewController: ElementalViewController)
+   func elementSelected(_ element: IncFormElemental, in viewController: ElementalViewController)
 }
 
 extension IncFormViewControllerDelegate {
-   public func elementSelected(_ element: IncFormElemental, in viewController: IncFormViewController) {}
-   public func elementsBeganRefreshing(in viewController: IncFormViewController) {}
+   public func elementSelected(_ element: IncFormElemental, in viewController: ElementalViewController) {}
+   public func elementsBeganRefreshing(in viewController: ElementalViewController) {}
 }
 
-open class IncFormViewController: UIViewController {
+open class ElementalViewController: UIViewController {
    // MARK: - Private Properties
    fileprivate lazy var _refreshControl: UIRefreshControl = {
       let control = UIRefreshControl()
-      let selector = #selector(IncFormViewController._refreshControlChanged(control:))
+      let selector = #selector(ElementalViewController._refreshControlChanged(control:))
       control.addTarget(self, action: selector, for: .valueChanged)
       control.layer.zPosition = -1
       return control
@@ -187,7 +187,7 @@ open class IncFormViewController: UIViewController {
    }
 }
 
-extension IncFormViewController {
+extension ElementalViewController {
    public func stopRefreshing() {
       _refreshControl.endRefreshing()
    }
@@ -273,7 +273,7 @@ extension IncFormViewController {
    }
 }
 
-extension IncFormViewController: UICollectionViewDataSource {
+extension ElementalViewController: UICollectionViewDataSource {
    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
       return _elements.count
    }
@@ -286,7 +286,7 @@ extension IncFormViewController: UICollectionViewDataSource {
    }
 }
 
-extension IncFormViewController: UICollectionViewDelegateFlowLayout {
+extension ElementalViewController: UICollectionViewDelegateFlowLayout {
    public func collectionView(_ collectionView: UICollectionView,
                        layout collectionViewLayout: UICollectionViewLayout,
                        sizeForItemAt indexPath: IndexPath) -> CGSize {

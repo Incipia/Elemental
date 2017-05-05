@@ -23,7 +23,7 @@ protocol IncFormHorizontalFormCellDelegate: class {
 // TODO: Disable scrolling when the keyboard is about to show
 
 class IncFormHorizontalFormCell: IncFormElementCell {
-   private var _form: IncFormViewController?
+   private var _form: ElementalViewController?
    private var _components: [IncFormElemental]?
    weak var delegate: IncFormHorizontalFormCellDelegate?
    weak var containerVC: UIViewController! {
@@ -60,8 +60,8 @@ class IncFormHorizontalFormCell: IncFormElementCell {
       super.configure(with: component)
       guard let element = component as? IncFormHorizontalForm else { fatalError() }
       _contained = false
-      _form = _form ?? IncFormViewController()
-      guard let form = _form else { fatalError("Could not instantiate IncFormViewController") }
+      _form = _form ?? ElementalViewController()
+      guard let form = _form else { fatalError("Could not instantiate ElementalViewController") }
       let layout = UICollectionViewFlowLayout()
       layout.scrollDirection = .horizontal
       form.layout = layout
@@ -96,7 +96,7 @@ class IncFormHorizontalFormCell: IncFormElementCell {
 }
 
 extension IncFormHorizontalFormCell: IncFormViewControllerDelegate {
-   func elementSelected(_ element: IncFormElemental, in viewController: IncFormViewController) {
+   func elementSelected(_ element: IncFormElemental, in viewController: ElementalViewController) {
       delegate?.componentSelected(element, in: self)
    }
 }

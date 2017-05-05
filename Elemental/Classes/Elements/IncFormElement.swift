@@ -626,13 +626,13 @@ public extension IncFormElement {
    }
 }
 
-extension IncFormViewController: IncFormHorizontalFormCellDelegate {
+extension ElementalViewController: IncFormHorizontalFormCellDelegate {
    func componentSelected(_ component: IncFormElemental, in cell: IncFormHorizontalFormCell) {
       formDelegate?.elementSelected(component, in: self)
    }
 }
 
-extension IncFormViewController: IncFormElementLayoutDelegate {
+extension ElementalViewController: IncFormElementLayoutDelegate {
    public func reloadLayout(for element: IncFormElement, scrollToCenter: Bool) {
       setNeedsLayout()
       DispatchQueue.main.async {
