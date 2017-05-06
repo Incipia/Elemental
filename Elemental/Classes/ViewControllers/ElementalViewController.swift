@@ -57,6 +57,7 @@ open class ElementalViewController: UIViewController {
    
    fileprivate var _animatingIndexPaths: [IndexPath]?
    fileprivate var _needsLayout: Bool = false
+   fileprivate var _needsAnimatedLayout: Bool = false
    fileprivate var _elements: [IncFormElemental] = []
    
    // MARK: - Public Properties
@@ -147,12 +148,13 @@ open class ElementalViewController: UIViewController {
       configure(with: generateElements() ?? _elements, scrollToTop: false)
    }
    
-   public func setNeedsLayout() {
+   public func setNeedsLayout(animated: Bool = true) {
+      _needsAnimatedLayout = _needsAnimatedLayout || animated
       guard !_needsLayout else { return }
       _needsLayout = true
       DispatchQueue.main.async {
          guard self._needsLayout else { return }
-         self.reloadLayout()
+         self.reloadLayout(animated: self._needsAnimatedLayout)
       }
    }
    
@@ -254,6 +256,7 @@ extension ElementalViewController {
    
    public func reloadLayout(animated: Bool = true) {
       _needsLayout = false
+      _needsAnimatedLayout = false
       guard animated else { collectionView.collectionViewLayout.invalidateLayout(); return }
       _animatingIndexPaths = collectionView.indexPathsForVisibleItems
       collectionView.performBatchUpdates({

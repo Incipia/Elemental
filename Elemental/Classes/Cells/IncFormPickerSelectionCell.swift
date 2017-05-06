@@ -187,7 +187,7 @@ class IncFormPickerSelectionCell: IncFormBindableElementCell {
       let nextState = element.action?(element.inputState, element.inputState.other) ?? element.inputState.other
       guard nextState != element.inputState else { return }
       element.inputState = nextState
-      layoutDelegate?.reloadLayout(for: element, scrollToCenter: true)
+      layoutDelegate?.reloadLayout(for: element, animated: true, scrollToCenter: true)
       guard nextState == .focused, !_options.isEmpty, _selectedOption == nil else { return }
       _selectedValue = _options.first?.option.value
    }

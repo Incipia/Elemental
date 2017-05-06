@@ -32,7 +32,7 @@ public protocol IncFormSizeDelegate: class {
 }
 
 public protocol IncFormElementLayoutDelegate: class {
-   func reloadLayout(for element: IncFormElement, scrollToCenter: Bool)
+   func reloadLayout(for element: IncFormElement, animated: Bool, scrollToCenter: Bool)
 }
 
 open class IncFormElement: IncFormElemental {
@@ -633,8 +633,9 @@ extension ElementalViewController: IncFormHorizontalFormCellDelegate {
 }
 
 extension ElementalViewController: IncFormElementLayoutDelegate {
-   public func reloadLayout(for element: IncFormElement, scrollToCenter: Bool) {
-      setNeedsLayout()
+   public func reloadLayout(for element: IncFormElement, animated: Bool = true,  scrollToCenter: Bool = true) {
+      setNeedsLayout(animated: animated)
+      guard scrollToCenter else { return }
       DispatchQueue.main.async {
          self.scroll(to: element, position: .centeredVertically, animated: true)
       }
