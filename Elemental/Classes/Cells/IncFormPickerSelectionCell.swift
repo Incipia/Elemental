@@ -122,6 +122,9 @@ class IncFormPickerSelectionCell: IncFormBindableElementCell {
       
       _updateIndicatorColor()
       _updateAccessoryImages(with: element)
+      
+      let angle = element.inputState == .focused ? CGFloat(M_PI) : 0.0
+      _rightAccessoryImageView.transform = CGAffineTransform(rotationAngle: angle)
    }
    
    override class func contentSize(for element: IncFormElemental, constrainedWidth width: CGFloat) -> CGSize {
