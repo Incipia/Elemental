@@ -48,14 +48,16 @@ public struct IncFormElementDateInputContent {
    public let name: String
    public let detail: String?
    public let placeholder: String?
+   public let leftAccessoryImage: UIImage?
    public let maximumDate: Date?
    public let minimumDate: Date?
    public let date: Date?
    
-   public init(name: String, detail: String? = nil, placeholder: String? = nil, minimumDate: Date? = nil, maximumDate: Date? = nil, date: Date? = nil) {
+   public init(name: String, detail: String? = nil, placeholder: String? = nil, leftAccessoryImage: UIImage? = nil, minimumDate: Date? = nil, maximumDate: Date? = nil, date: Date? = nil) {
       self.name = name
       self.detail = detail
       self.placeholder = placeholder
+      self.leftAccessoryImage = leftAccessoryImage
       self.minimumDate = minimumDate
       self.maximumDate = maximumDate
       self.date = date

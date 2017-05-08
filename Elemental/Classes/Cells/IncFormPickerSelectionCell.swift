@@ -88,6 +88,8 @@ class IncFormPickerSelectionCell: IncFormBindableElementCell {
       button.addTarget(self, action: unfadeSelector, for: .touchCancel)
       let touchUpSelector = #selector(IncFormPickerSelectionCell._pickerButtonTouchUpInside)
       button.addTarget(self, action: touchUpSelector, for: .touchUpInside)
+      
+      _pickerBackgroundView.layer.cornerRadius = 6.0
    }
    
    override func configure(with component: IncFormElemental) {
@@ -188,6 +190,10 @@ class IncFormPickerSelectionCell: IncFormBindableElementCell {
       guard nextState != element.inputState else { return }
       element.inputState = nextState
       layoutDelegate?.reloadLayout(for: element, animated: true, scrollToCenter: true)
+      UIView.animate(withDuration: 0.25) {
+         let angle: CGFloat = nextState == .focused ? CGFloat(M_PI) : 0.0
+         self._rightAccessoryImageView.transform = CGAffineTransform(rotationAngle: angle)
+      }
       guard nextState == .focused, !_options.isEmpty, _selectedOption == nil else { return }
       _selectedValue = _options.first?.option.value
    }

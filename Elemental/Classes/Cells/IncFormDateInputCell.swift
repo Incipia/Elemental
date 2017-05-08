@@ -16,6 +16,8 @@ class IncFormDateInputCell: IncFormBindableElementCell {
    @IBOutlet private var _dateInputView: UIView!
    @IBOutlet private var _dateInputHeightConstraint: NSLayoutConstraint!
    @IBOutlet private var _placeholderLabel: UILabel!
+   @IBOutlet private var _leftAccessoryImageView: UIImageView!
+   @IBOutlet private var _leftAccessoryPaddingConstraint: NSLayoutConstraint!
    @IBOutlet private var _datePickerVerticalSpaceConstraint: NSLayoutConstraint!
    @IBOutlet private var _datePicker: UIDatePicker!
    
@@ -66,7 +68,10 @@ class IncFormDateInputCell: IncFormBindableElementCell {
       _detailLabel.textColor = config.detailStyle?.color
       _placeholderLabel.textColor = config.placeholderStyle?.color
       
-      _pickerColor = config.nameStyle.color
+      _leftAccessoryImageView.image = content.leftAccessoryImage
+      _leftAccessoryPaddingConstraint.constant = content.leftAccessoryImage != nil ? 10.0 : 0.0
+      
+      _pickerColor = config.inputStyle.color
       
       _detailLabelVerticalSpaceConstraint.constant = content.detail != nil ? 10.0 : 0.0
       _dateInputHeightConstraint.constant = config.inputHeight
@@ -191,7 +196,7 @@ class IncFormDateInputCell: IncFormBindableElementCell {
 
 extension IncFormDateInputConfiguring {
    fileprivate func _textStyle(for interval: Double?) -> IncFormTextStyling {
-      return interval == nil && placeholderStyle != nil ? placeholderStyle! : nameStyle
+      return interval == nil && placeholderStyle != nil ? placeholderStyle! : inputStyle
    }
 }
 
