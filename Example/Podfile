@@ -2,12 +2,11 @@ use_frameworks!
 
 target 'Elemental_Example' do
   pod 'Elemental', :path => '../'
-  pod 'Bindable', :path => '../../Bindable/'
 
   target 'Elemental_Tests' do
     inherit! :search_paths
 
-    pod 'Quick', '~> 1.0.0'
+  pod 'Quick', '~> 1.0.0'
   pod 'Nimble', '~> 5.1.1'
   pod 'FBSnapshotTestCase'
   pod 'Nimble-Snapshots'
