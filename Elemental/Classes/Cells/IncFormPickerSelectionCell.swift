@@ -123,7 +123,7 @@ class IncFormPickerSelectionCell: IncFormBindableElementCell {
       _updateIndicatorColor()
       _updateAccessoryImages(with: element)
       
-      let angle = element.inputState == .focused ? CGFloat(M_PI) : 0.0
+      let angle: CGFloat = element.inputState == .focused ? .pi : 0.0
       _rightAccessoryImageView.transform = CGAffineTransform(rotationAngle: angle)
    }
    
@@ -194,7 +194,7 @@ class IncFormPickerSelectionCell: IncFormBindableElementCell {
       element.inputState = nextState
       layoutDelegate?.reloadLayout(for: element, animated: true, scrollToCenter: true)
       UIView.animate(withDuration: 0.25) {
-         let angle: CGFloat = nextState == .focused ? CGFloat(M_PI) : 0.0
+         let angle: CGFloat = nextState == .focused ? .pi : 0.0
          self._rightAccessoryImageView.transform = CGAffineTransform(rotationAngle: angle)
       }
       guard nextState == .focused, !_options.isEmpty, _selectedOption == nil else { return }
