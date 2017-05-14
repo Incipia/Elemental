@@ -15,18 +15,18 @@ public protocol IncFormTextStyling {
    var alignment: NSTextAlignment { get }
 }
 
-public class IncFormTextStyle: IncFormTextStyling {
+open class IncFormTextStyle: IncFormTextStyling {
    public let font: UIFont
    public let color: UIColor
    public let alignment: NSTextAlignment
    
-   init(font: UIFont = UIFont.systemFont(ofSize: 14), color: UIColor = .black, alignment: NSTextAlignment = .left) {
+   public init(font: UIFont = UIFont.systemFont(ofSize: 14), color: UIColor = .black, alignment: NSTextAlignment = .left) {
       self.font = font
       self.color = color
       self.alignment = alignment
    }
    
-   init(style: IncFormTextStyling) {
+   public init(style: IncFormTextStyling) {
       self.font = style.font
       self.color = style.color
       self.alignment = style.alignment
@@ -42,14 +42,14 @@ public protocol IncFormKeyboardStyling {
    var isSecureTextEntry: Bool { get }
 }
 
-public class IncFormKeyboardStyle: IncFormKeyboardStyling {
+open class IncFormKeyboardStyle: IncFormKeyboardStyling {
    public let type: UIKeyboardType
    public let appearance: UIKeyboardAppearance
    public let returnKeyType: UIReturnKeyType
    public let autocapitalizationType: UITextAutocapitalizationType
    public let isSecureTextEntry: Bool
    
-   init(type: UIKeyboardType = .default, appearance: UIKeyboardAppearance = .default, returnKeyType: UIReturnKeyType = .default, autocapitalizationType: UITextAutocapitalizationType = .sentences, isSecureTextEntry: Bool = false) {
+   public init(type: UIKeyboardType = .default, appearance: UIKeyboardAppearance = .default, returnKeyType: UIReturnKeyType = .default, autocapitalizationType: UITextAutocapitalizationType = .sentences, isSecureTextEntry: Bool = false) {
       self.type = type
       self.appearance = appearance
       self.returnKeyType = returnKeyType
