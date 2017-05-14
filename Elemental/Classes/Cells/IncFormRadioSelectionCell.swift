@@ -98,8 +98,8 @@ class IncFormRadioSelectionCell: IncFormBindableElementCell {
          addedViews.append(rightRadioView)
          addedViews.append(leftRadioView)
          
-         radioOptions.append((view: rightRadioView, value: component.value, dataValue: IncFormElementCell.dataValue(component.value)))
-         radioOptions.append((view: leftRadioView, value: component.value, dataValue: IncFormElementCell.dataValue(component.value)))
+         radioOptions.append((view: rightRadioView, value: component.value, dataValue: ElementCell.dataValue(component.value)))
+         radioOptions.append((view: leftRadioView, value: component.value, dataValue: ElementCell.dataValue(component.value)))
          rightRadioView.isUserInteractionEnabled = false
       }
       
@@ -153,7 +153,7 @@ class IncFormRadioSelectionCell: IncFormBindableElementCell {
          _label.text = validValue
       case .anyValue:
          if let validValue = value {
-            let jsonData = IncFormElementCell.dataValue(validValue)
+            let jsonData = ElementCell.dataValue(validValue)
             radioOptions.forEach { $0.view.on = $0.dataValue == jsonData }
          } else {
             radioOptions.forEach { $0.view.on = false }

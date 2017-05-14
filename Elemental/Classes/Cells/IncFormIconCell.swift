@@ -8,7 +8,7 @@
 
 import UIKit
 
-class IncFormIconCell: IncFormElementCell {
+class IncFormIconCell: ElementCell {
    @IBOutlet private var _label: UILabel!
    @IBOutlet private var _imageView: UIImageView!
    

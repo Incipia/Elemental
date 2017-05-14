@@ -22,7 +22,7 @@ protocol IncFormHorizontalFormCellDelegate: class {
 
 // TODO: Disable scrolling when the keyboard is about to show
 
-class IncFormHorizontalFormCell: IncFormElementCell {
+class IncFormHorizontalFormCell: ElementCell {
    private var _form: ElementalViewController?
    private var _components: [IncFormElemental]?
    weak var delegate: IncFormHorizontalFormCellDelegate?

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class IncFormCustomViewCell: IncFormElementCell {
+class IncFormCustomViewCell: ElementCell {
    private var _customView: UIView?
    
    override func awakeFromNib() {

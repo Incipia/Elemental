@@ -8,7 +8,7 @@
 
 import UIKit
 
-class IncFormVerticalLineCell: IncFormElementCell {
+class IncFormVerticalLineCell: ElementCell {
    override func configure(with component: IncFormElemental) {
       super.configure(with: component)
       switch component {

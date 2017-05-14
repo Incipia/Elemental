@@ -46,13 +46,13 @@ open class IncFormElement: IncFormElemental {
    
    open var cellID: String { return type(of: self).defaultCellID }
    private weak var _containerViewController: UIViewController?
-   public private(set) weak var cell: IncFormElementCell?
+   public private(set) weak var cell: ElementCell?
    
    // MARK: - IncFormElemental Protocol
    open var elementalConfig: IncFormElementalConfiguring
    
    open func configure(cell: UICollectionViewCell, in containerViewController: UIViewController?) {
-      guard let cell = cell as? IncFormElementCell else { fatalError() }
+      guard let cell = cell as? ElementCell else { fatalError() }
       self.cell = cell
       _containerViewController = containerViewController
       cell.layoutDelegate = containerViewController as? IncFormElementLayoutDelegate

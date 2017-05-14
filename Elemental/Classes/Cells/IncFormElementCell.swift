@@ -1,5 +1,5 @@
 //
-//  IncFormElementCell.swift
+//  ElementCell.swift
 //  GigSalad
 //
 //  Created by Gregory Klein on 2/22/17.
@@ -9,12 +9,12 @@
 import UIKit
 import Bindable
 
-protocol IncFormElementalCell: class {
+protocol ElementalCell: class {
    static func contentSize(for element: IncFormElemental, constrainedWidth width: CGFloat) -> CGSize
    func configure(with component: IncFormElemental)
 }
 
-public class IncFormElementCell: UICollectionViewCell, IncFormElementalCell {
+public class ElementCell: UICollectionViewCell, ElementalCell {
    // MARK: - Public Properties
    weak var element: IncFormElement?
    weak var layoutDelegate: IncFormElementLayoutDelegate?
@@ -25,14 +25,14 @@ public class IncFormElementCell: UICollectionViewCell, IncFormElementalCell {
       backgroundColor = .clear
    }
    
-   // MARK: - IncFormElementalCell Protocol
+   // MARK: - ElementalCell Protocol
    class func contentSize(for element: IncFormElemental, constrainedWidth width: CGFloat) -> CGSize { fatalError() }
    func configure(with component: IncFormElemental) {
       element = component as? IncFormElement
    }
 }
 
-extension IncFormElementCell {
+extension ElementCell {
    // MARK: - Utility Functions for Subclasses
    static func dataValue(_ value: Any) -> Data {
       var value = value

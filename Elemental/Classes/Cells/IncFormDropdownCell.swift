@@ -8,7 +8,7 @@
 
 import UIKit
 
-class IncFormDropdownCell: IncFormElementCell {
+class IncFormDropdownCell: ElementCell {
    @IBOutlet private var _label: UILabel!
    @IBOutlet private var _dropdownView: UIView!
    @IBOutlet private var _dropdownPlaceholderLabel: UILabel!

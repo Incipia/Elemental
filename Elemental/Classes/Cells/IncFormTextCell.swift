@@ -8,7 +8,7 @@
 
 import UIKit
 
-class IncFormTextCell: IncFormElementCell {
+class IncFormTextCell: ElementCell {
    @IBOutlet private var _label: UILabel!
    
    override func configure(with component: IncFormElemental) {

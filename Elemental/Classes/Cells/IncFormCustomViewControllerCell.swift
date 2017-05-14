@@ -8,7 +8,7 @@
 
 import UIKit
 
-class IncFormCustomViewControllerCell: IncFormElementCell {
+class IncFormCustomViewControllerCell: ElementCell {
    private var _viewController: UIViewController?
    weak var containerVC: UIViewController! {
       willSet {

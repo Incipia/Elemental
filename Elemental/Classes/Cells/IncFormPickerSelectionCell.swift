@@ -45,7 +45,7 @@ class IncFormPickerSelectionCell: IncFormBindableElementCell {
          guard let element = element as? IncFormPickerSelection else { fatalError() }
          var selectIndex: Int? = nil
          if let someValue = newValue {
-            let dataValue = IncFormElementCell.dataValue(someValue)
+            let dataValue = ElementCell.dataValue(someValue)
             for (index, option) in _options.enumerated() {
                if option.dataValue == dataValue {
                   _options[index].option.isSelected = true
@@ -112,7 +112,7 @@ class IncFormPickerSelectionCell: IncFormBindableElementCell {
       _detailVerticalSpaceConstraint.constant = content.detail != nil ? 10 : 0
       _buttonHeightConstraint.constant = config.buttonHeight
       
-      _options = element.content.options.map { return (option: $0, dataValue: IncFormElementCell.dataValue($0.value)) }
+      _options = element.content.options.map { return (option: $0, dataValue: ElementCell.dataValue($0.value)) }
       guard Set(_options.map { return $0.dataValue }).count == _options.count else { fatalError() }
 
       _pickerBackgroundView.backgroundColor = config.buttonBackgroundColor

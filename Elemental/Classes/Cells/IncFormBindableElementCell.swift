@@ -22,7 +22,7 @@ public enum IncFormBindableElementKey: String, IncKVKeyType {
    case intValue
 }
 
-class IncFormBindableElementCell: IncFormElementCell, Bindable {
+class IncFormBindableElementCell: ElementCell, Bindable {
    var bindingBlocks: [IncFormBindableElementKey : [((targetObject: AnyObject, rawTargetKey: String)?, Any?) throws -> Bool?]] = [:]
    var keysBeingSet: [IncFormBindableElementKey] = []
 
