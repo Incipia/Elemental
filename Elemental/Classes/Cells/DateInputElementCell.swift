@@ -172,7 +172,7 @@ class DateInputElementCell: BindableElementCell {
    }
    
    // MARK: - Bindable Protocol
-   override func value(for key: IncFormBindableElementKey) -> Any? {
+   override func value(for key: BindableElementKey) -> Any? {
       switch key {
       case .anyValue: return _datePicker.date
       case .doubleValue: return Double(_datePicker.date.timeIntervalSince1970)
@@ -180,7 +180,7 @@ class DateInputElementCell: BindableElementCell {
       }
    }
    
-   override func setOwn(value: Any?, for key: IncFormBindableElementKey) throws {
+   override func setOwn(value: Any?, for key: BindableElementKey) throws {
       switch key {
       case .anyValue:
          if let dateValue = value as? Date {

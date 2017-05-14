@@ -137,7 +137,7 @@ class RadioSelectionElementCell: BindableElementCell {
       return CGSize(width: width, height: totalComponentsHeight + nameHeight + namePadding)
    }
    
-   override func value(for key: IncFormBindableElementKey) -> Any? {
+   override func value(for key: BindableElementKey) -> Any? {
       switch key {
       case .text: return _label.text
       case .anyValue:
@@ -146,7 +146,7 @@ class RadioSelectionElementCell: BindableElementCell {
       }
    }
    
-   override func setOwn(value: Any?, for key: IncFormBindableElementKey) throws {
+   override func setOwn(value: Any?, for key: BindableElementKey) throws {
       switch key {
       case .text:
          guard let validValue = value as? String else { throw key.kvTypeError(value: value) }

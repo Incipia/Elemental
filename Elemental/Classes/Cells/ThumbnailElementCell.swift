@@ -21,7 +21,7 @@ class ThumbnailElementCell: BindableElementCell {
    @IBOutlet private var _buttonWidthConstraint: NSLayoutConstraint!
    
    // MARK - Public Properties
-   static var bindableKeys: [IncFormBindableElementKey] { return [.name, .detail, .image] }
+   static var bindableKeys: [BindableElementKey] { return [.name, .detail, .image] }
    
    // MARK: - Private Properties
    private var _action: IncFormElementAccessoryAction?
@@ -97,7 +97,7 @@ class ThumbnailElementCell: BindableElementCell {
    }
    
    // MARK: - IncKVCompliance
-   override func value(for key: IncFormBindableElementKey) -> Any? {
+   override func value(for key: BindableElementKey) -> Any? {
       switch key {
       case .detail: return _detailLabel.text
       case .name: return _label.text
@@ -106,7 +106,7 @@ class ThumbnailElementCell: BindableElementCell {
       }
    }
    
-   override func setOwn(value: Any?, for key: IncFormBindableElementKey) throws {
+   override func setOwn(value: Any?, for key: BindableElementKey) throws {
       switch key {
       case .detail:
          if value == nil {

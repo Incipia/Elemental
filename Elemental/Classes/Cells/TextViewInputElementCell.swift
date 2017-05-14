@@ -28,7 +28,7 @@ class TextViewInputElementCell: BindableElementCell {
       }
    }
 
-   static var bindableKeys: [IncFormBindableElementKey] { return [.text, .isEnabled] }
+   static var bindableKeys: [BindableElementKey] { return [.text, .isEnabled] }
 
    override func awakeFromNib() {
       super.awakeFromNib()
@@ -66,7 +66,7 @@ class TextViewInputElementCell: BindableElementCell {
       _isEnabled = style.isEnabled
    }
    
-   override func value(for key: IncFormBindableElementKey) -> Any? {
+   override func value(for key: BindableElementKey) -> Any? {
       switch key {
       case .text: return _textView.text
       case .isEnabled: return _isEnabled
@@ -74,7 +74,7 @@ class TextViewInputElementCell: BindableElementCell {
       }
    }
    
-   override func setOwn(value: Any?, for key: IncFormBindableElementKey) throws {
+   override func setOwn(value: Any?, for key: BindableElementKey) throws {
       switch key {
       case .text:
          guard value == nil || value is String else { throw key.kvTypeError(value: value) }

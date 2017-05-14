@@ -9,7 +9,7 @@
 import UIKit
 import Bindable
 
-public enum IncFormBindableElementKey: String, IncKVKeyType {
+public enum BindableElementKey: String, IncKVKeyType {
    case name
    case detail
    case placeholder
@@ -23,8 +23,8 @@ public enum IncFormBindableElementKey: String, IncKVKeyType {
 }
 
 class BindableElementCell: ElementCell, Bindable {
-   var bindingBlocks: [IncFormBindableElementKey : [((targetObject: AnyObject, rawTargetKey: String)?, Any?) throws -> Bool?]] = [:]
-   var keysBeingSet: [IncFormBindableElementKey] = []
+   var bindingBlocks: [BindableElementKey : [((targetObject: AnyObject, rawTargetKey: String)?, Any?) throws -> Bool?]] = [:]
+   var keysBeingSet: [BindableElementKey] = []
 
    var bindings: [Binding] = []
    private var _bound: Bool = false
@@ -43,8 +43,8 @@ class BindableElementCell: ElementCell, Bindable {
       _bound = bound
    }
    
-   func value(for key: IncFormBindableElementKey) -> Any? { return nil }
-   func setOwn(value: Any?, for key: IncFormBindableElementKey) throws { fatalError("\(type(of: self)) subclasses must override \(#function)") }
+   func value(for key: BindableElementKey) -> Any? { return nil }
+   func setOwn(value: Any?, for key: BindableElementKey) throws { fatalError("\(type(of: self)) subclasses must override \(#function)") }
 
    func bind(with component: Elemental) {
       guard let element = component as? IncFormBindableElemental else { fatalError() }

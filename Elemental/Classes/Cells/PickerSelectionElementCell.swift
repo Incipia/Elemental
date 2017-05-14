@@ -214,14 +214,14 @@ class PickerSelectionElementCell: BindableElementCell {
    }
    
    // MARK: - Bindable Protocol
-   override func value(for key: IncFormBindableElementKey) -> Any? {
+   override func value(for key: BindableElementKey) -> Any? {
       switch key {
       case .anyValue: return _selectedValue
       default: fatalError("\(type(of: self)) cannot retrieve value for \(key))")
       }
    }
    
-   override func setOwn(value: Any?, for key: IncFormBindableElementKey) throws {
+   override func setOwn(value: Any?, for key: BindableElementKey) throws {
       switch key {
       case .anyValue: _selectedValue = value
       default: fatalError("\(type(of: self)) cannot set value for \(key))")

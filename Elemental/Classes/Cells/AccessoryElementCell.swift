@@ -21,7 +21,7 @@ class AccessoryElementCell: BindableElementCell {
    @IBOutlet private var _buttonWidthConstraint: NSLayoutConstraint!
 
    // MARK - Public Properties
-   static var bindableKeys: [IncFormBindableElementKey] { return [.detail] }
+   static var bindableKeys: [BindableElementKey] { return [.detail] }
 
    // MARK: - Private Properties
    private var _action: IncFormElementAccessoryAction?
@@ -113,14 +113,14 @@ class AccessoryElementCell: BindableElementCell {
    }
    
    // MARK: - IncKVCompliance
-   override func value(for key: IncFormBindableElementKey) -> Any? {
+   override func value(for key: BindableElementKey) -> Any? {
       switch key {
       case .detail: return _detailLabel.text
       default: fatalError("\(type(of: self)) cannot retrieve value for \(key))")
       }
    }
    
-   override func setOwn(value: Any?, for key: IncFormBindableElementKey) throws {
+   override func setOwn(value: Any?, for key: BindableElementKey) throws {
       switch key {
       case .detail:
          guard value != nil else { _detailLabel.text = nil; return }

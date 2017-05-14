@@ -14,7 +14,7 @@ class SwitchElementCell: BindableElementCell {
    @IBOutlet fileprivate var _switch: UISwitch!
    @IBOutlet private var _detailConstraint: NSLayoutConstraint!
    
-   static var bindableKeys: [IncFormBindableElementKey] { return [.switch] }
+   static var bindableKeys: [BindableElementKey] { return [.switch] }
    
    override func awakeFromNib() {
       super.awakeFromNib()
@@ -58,14 +58,14 @@ class SwitchElementCell: BindableElementCell {
       return CGSize(width: width, height: max(totalHeight, style.height ?? 0))
    }
    
-   override func value(for key: IncFormBindableElementKey) -> Any? {
+   override func value(for key: BindableElementKey) -> Any? {
       switch key {
       case .switch: return _switch.isOn
       default: fatalError("\(type(of: self)) cannot retrieve value for \(key))")
       }
    }
    
-   override func setOwn(value: Any?, for key: IncFormBindableElementKey) throws {
+   override func setOwn(value: Any?, for key: BindableElementKey) throws {
       switch key {
       case .switch:
          guard let validValue = value as? Bool else { throw key.kvTypeError(value: value) }
