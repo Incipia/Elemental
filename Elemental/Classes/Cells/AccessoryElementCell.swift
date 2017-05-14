@@ -24,7 +24,7 @@ class AccessoryElementCell: BindableElementCell {
    static var bindableKeys: [BindableElementKey] { return [.detail] }
 
    // MARK: - Private Properties
-   private var _action: IncFormElementAccessoryAction?
+   private var _action: ElementAccessoryAction?
    private var _accessory: FormComponentAccessory?
    
    // MARK: - Actions

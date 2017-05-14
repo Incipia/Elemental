@@ -17,7 +17,7 @@ protocol ElementalCell: class {
 public class ElementCell: UICollectionViewCell, ElementalCell {
    // MARK: - Public Properties
    weak var element: Element?
-   weak var layoutDelegate: IncFormElementLayoutDelegate?
+   weak var layoutDelegate: ElementalLayoutDelegate?
    
    // MARK: - Life Cycle
    public override func awakeFromNib() {

@@ -25,13 +25,13 @@ public enum ElementInputState {
 public typealias ElementInputAction = (_ currentState: ElementInputState, _ proposedNextState: ElementInputState?) -> ElementInputState?
 
 // called when the accessory button is pressed
-public typealias IncFormElementAccessoryAction = () -> ()
+public typealias ElementAccessoryAction = () -> ()
 
-public protocol IncFormSizeDelegate: class {
+public protocol ElementalSizeDelegate: class {
    func size(for element: Elemental, constrainedWidth width: CGFloat) -> CGSize
 }
 
-public protocol IncFormElementLayoutDelegate: class {
+public protocol ElementalLayoutDelegate: class {
    func reloadLayout(for element: Elemental, animated: Bool, scrollToCenter: Bool)
 }
 
@@ -55,7 +55,7 @@ open class Element: Elemental {
       guard let cell = cell as? ElementCell else { fatalError() }
       self.cell = cell
       _containerViewController = containerViewController
-      cell.layoutDelegate = containerViewController as? IncFormElementLayoutDelegate
+      cell.layoutDelegate = containerViewController as? ElementalLayoutDelegate
       cell.configure(with: self)
       if let bindableCell = cell as? BindableElementCell {
          bindableCell.bind(with: self)
@@ -132,10 +132,10 @@ public class AccessoryElement: Element, IncFormBindableElemental {
    public var configuration: IncFormAccessoryConfiguring { return elementalConfig as! IncFormAccessoryConfiguring }
    public var content: AccessoryElementContent
    public var bindings: [Binding]
-   public var action: IncFormElementAccessoryAction?
+   public var action: ElementAccessoryAction?
    
    // MARK: - Init
-   public init(configuration: IncFormAccessoryConfiguring, content: AccessoryElementContent, bindings: [Binding] = [], action: IncFormElementAccessoryAction? = nil) {
+   public init(configuration: IncFormAccessoryConfiguring, content: AccessoryElementContent, bindings: [Binding] = [], action: ElementAccessoryAction? = nil) {
       self.content = content
       self.bindings = bindings
       self.action = action
@@ -157,10 +157,10 @@ public class ThumbnailElement: Element, IncFormBindableElemental {
    public var configuration: IncFormAccessoryConfiguring { return elementalConfig as! IncFormAccessoryConfiguring }
    public var content: ThumbnailElementContent
    public var bindings: [Binding]
-   public var action: IncFormElementAccessoryAction?
+   public var action: ElementAccessoryAction?
    
    // MARK: - Init
-   public init(configuration: IncFormAccessoryConfiguring, content: ThumbnailElementContent, bindings: [Binding] = [], action: IncFormElementAccessoryAction? = nil) {
+   public init(configuration: IncFormAccessoryConfiguring, content: ThumbnailElementContent, bindings: [Binding] = [], action: ElementAccessoryAction? = nil) {
       self.content = content
       self.bindings = bindings
       self.action = action
@@ -449,10 +449,10 @@ public class CustomViewElement: Element {
 public class CustomViewControllerElement: Element {
    // MARK: - Public Properties
    public let viewController : UIViewController
-   weak var sizeDelegate: IncFormSizeDelegate?
+   weak var sizeDelegate: ElementalSizeDelegate?
    
    // MARK: - Init
-   public init(viewController : UIViewController, sizeDelegate: IncFormSizeDelegate) {
+   public init(viewController : UIViewController, sizeDelegate: ElementalSizeDelegate) {
       self.viewController  = viewController
       self.sizeDelegate = sizeDelegate
       super.init(configuration: IncFormElementalConfiguration())
@@ -561,11 +561,11 @@ public extension Element {
       return IconElement(configuration: configuration, content: content)
    }
    
-   class func accessory(configuration: IncFormAccessoryConfiguring, content: AccessoryElementContent, bindings: [Binding] = [], action: IncFormElementAccessoryAction? = nil) -> Element {
+   class func accessory(configuration: IncFormAccessoryConfiguring, content: AccessoryElementContent, bindings: [Binding] = [], action: ElementAccessoryAction? = nil) -> Element {
       return AccessoryElement(configuration: configuration, content: content, bindings: bindings, action: action)
    }
    
-   class func thumbnail(configuration: IncFormAccessoryConfiguring, content: ThumbnailElementContent, bindings: [Binding] = [], action: IncFormElementAccessoryAction? = nil) -> Element {
+   class func thumbnail(configuration: IncFormAccessoryConfiguring, content: ThumbnailElementContent, bindings: [Binding] = [], action: ElementAccessoryAction? = nil) -> Element {
       return ThumbnailElement(configuration: configuration, content: content, bindings: bindings, action: action)
    }
    
@@ -609,7 +609,7 @@ public extension Element {
       return CustomViewElement(view: view)
    }
    
-   class func viewController(_ viewController: UIViewController, sizeDelegate: IncFormSizeDelegate) -> Element {
+   class func viewController(_ viewController: UIViewController, sizeDelegate: ElementalSizeDelegate) -> Element {
       return CustomViewControllerElement(viewController: viewController, sizeDelegate: sizeDelegate)
    }
    
@@ -632,7 +632,7 @@ extension ElementalViewController: HorizontalFormElementCellDelegate {
    }
 }
 
-extension ElementalViewController: IncFormElementLayoutDelegate {
+extension ElementalViewController: ElementalLayoutDelegate {
    public func reloadLayout(for element: Elemental, animated: Bool = true,  scrollToCenter: Bool = true) {
       setNeedsLayout(animated: animated)
       guard scrollToCenter else { return }
