@@ -49,7 +49,7 @@ open class Element: Elemental {
    public private(set) weak var cell: ElementCell?
    
    // MARK: - Elemental Protocol
-   open var elementalConfig: IncFormElementalConfiguring
+   open var elementalConfig: ElementalConfiguring
    
    open func configure(cell: UICollectionViewCell, in containerViewController: UIViewController?) {
       guard let cell = cell as? ElementCell else { fatalError() }
@@ -80,7 +80,7 @@ open class Element: Elemental {
    }
    
    // MARK: - Init
-   public init(configuration: IncFormElementalConfiguring) {
+   public init(configuration: ElementalConfiguring) {
       elementalConfig = configuration
    }
 }
@@ -409,7 +409,7 @@ public class VerticalSpaceElement: Element {
    // MARK: - Init
    public init(value: CGFloat) {
       self.value  = value
-      super.init(configuration: IncFormElementalConfiguration())
+      super.init(configuration: ElementalConfiguration())
    }
    
    // MARK: - Elemental Protocol
@@ -433,7 +433,7 @@ public class CustomViewElement: Element {
    // MARK: - Init
    public init(view : UIView) {
       self.view  = view
-      super.init(configuration: IncFormElementalConfiguration())
+      super.init(configuration: ElementalConfiguration())
    }
    
    // MARK: - Elemental Protocol
@@ -455,7 +455,7 @@ public class CustomViewControllerElement: Element {
    public init(viewController : UIViewController, sizeDelegate: ElementalSizeDelegate) {
       self.viewController  = viewController
       self.sizeDelegate = sizeDelegate
-      super.init(configuration: IncFormElementalConfiguration())
+      super.init(configuration: ElementalConfiguration())
    }
    
    // MARK: - Elemental Protocol
@@ -481,7 +481,7 @@ public class HorizontalFormElement: Element {
    // MARK: - Init
    public init(elements : [Elemental]) {
       self.elements  = elements
-      super.init(configuration: IncFormElementalConfiguration())
+      super.init(configuration: ElementalConfiguration())
    }
 
    func reloadLayout() {
@@ -513,7 +513,7 @@ public class HorizontalSpaceElement: Element {
    // MARK: - Init
    public init(value: CGFloat) {
       self.value  = value
-      super.init(configuration: IncFormElementalConfiguration())
+      super.init(configuration: ElementalConfiguration())
    }
    
    // MARK: - Elemental Protocol

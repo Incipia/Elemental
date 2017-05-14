@@ -16,7 +16,7 @@ public enum ElementalDimension {
 
 public protocol Elemental {
    var cellID: String { get }
-   var elementalConfig: IncFormElementalConfiguring { get }
+   var elementalConfig: ElementalConfiguring { get }
    
    func register(collectionView cv: UICollectionView)
    func configure(cell: UICollectionViewCell, in containerViewController: UIViewController?)
@@ -26,7 +26,7 @@ public protocol Elemental {
 
 public extension Elemental {
    var cellID: String { return String(describing: Self.self) }
-   var elementalConfig: IncFormElementalConfiguring { return IncFormElementalConfiguration() }
+   var elementalConfig: ElementalConfiguring { return ElementalConfiguration() }
    
    static func register(collectionView cv: UICollectionView) {}
    func configure(cell: UICollectionViewCell, in containerViewController: UIViewController?) {}
