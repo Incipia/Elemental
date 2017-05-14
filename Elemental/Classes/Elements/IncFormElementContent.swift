@@ -8,7 +8,7 @@
 
 import UIKit
 
-public struct IncFormElementRadioContent {
+public struct RadioElementContent {
    public let name: String?
    public let components: [RadioSelectionElement.Component]
    
@@ -18,7 +18,7 @@ public struct IncFormElementRadioContent {
    }
 }
 
-public struct IncFormElementTextInputContent {
+public struct TextInputElementContent {
    public let name: String
    public let detail: String?
    public let placeholder: String?
@@ -30,7 +30,7 @@ public struct IncFormElementTextInputContent {
    }
 }
 
-public struct IncFormElementDropdownContent {
+public struct DropdownElementContent {
    public let name: String
    public let detail: String?
    public let placeholder: String?
@@ -44,7 +44,7 @@ public struct IncFormElementDropdownContent {
    }
 }
 
-public struct IncFormElementDateInputContent {
+public struct DateInputElementContent {
    public let name: String
    public let detail: String?
    public let placeholder: String?
@@ -64,7 +64,7 @@ public struct IncFormElementDateInputContent {
    }
 }
 
-public struct IncFormElementIconContent {
+public struct IconElementContent {
    public let name: String
    public let icon: UIImage
    
@@ -78,7 +78,7 @@ public enum FormComponentAccessory {
    case button(text: String), image(UIImage), buttonImage(UIImage)
 }
 
-public struct IncFormElementAccessoryContent {
+public struct AccessoryElementContent {
    public let name: String
    public let detail: String?
    public let accessory: FormComponentAccessory?
@@ -90,7 +90,7 @@ public struct IncFormElementAccessoryContent {
    }
 }
 
-public struct IncFormElementThumbnailContent {
+public struct ThumbnailElementContent {
    public let name: String
    public let detail: String?
    public let accessory: FormComponentAccessory?
@@ -104,7 +104,7 @@ public struct IncFormElementThumbnailContent {
    }
 }
 
-public struct IncFormElementSwitchContent {
+public struct SwitchElementContent {
    public let name: String
    public let detail: String?
    var on: Bool
@@ -116,7 +116,7 @@ public struct IncFormElementSwitchContent {
    }
 }
 
-public struct IncFormElementPickerContent {
+public struct PickerSelectionElementContent {
    public let name: String?
    public let detail: String?
    public let placeholder: String?
