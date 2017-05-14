@@ -10,9 +10,9 @@ import UIKit
 
 public struct IncFormElementRadioContent {
    public let name: String?
-   public let components: [IncFormRadioSelection.Component]
+   public let components: [RadioSelectionElement.Component]
    
-   public init(name: String? = nil, components: [IncFormRadioSelection.Component]) {
+   public init(name: String? = nil, components: [RadioSelectionElement.Component]) {
       self.name = name
       self.components = components
    }
@@ -122,9 +122,9 @@ public struct IncFormElementPickerContent {
    public let placeholder: String?
    var leftAccessoryImage: UIImage?
    var rightAccessoryImage: UIImage?
-   var options: [IncFormPickerSelection.Option]
+   var options: [PickerSelectionElement.Option]
    
-   public init(name: String? = nil, detail: String? = nil, placeholder: String? = nil, leftAccessoryImage: UIImage? = nil, rightAccessoryImage: UIImage? = nil, options: [IncFormPickerSelection.Option] = []) {
+   public init(name: String? = nil, detail: String? = nil, placeholder: String? = nil, leftAccessoryImage: UIImage? = nil, rightAccessoryImage: UIImage? = nil, options: [PickerSelectionElement.Option] = []) {
       self.name = name
       self.detail = detail
       self.placeholder = placeholder

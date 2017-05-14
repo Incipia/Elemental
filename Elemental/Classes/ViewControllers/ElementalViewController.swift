@@ -15,11 +15,11 @@ public enum FormContentTransitionType {
 
 public protocol IncFormViewControllerDelegate: class {
    func elementsBeganRefreshing(in viewController: ElementalViewController)
-   func elementSelected(_ element: IncFormElemental, in viewController: ElementalViewController)
+   func elementSelected(_ element: Elemental, in viewController: ElementalViewController)
 }
 
 extension IncFormViewControllerDelegate {
-   public func elementSelected(_ element: IncFormElemental, in viewController: ElementalViewController) {}
+   public func elementSelected(_ element: Elemental, in viewController: ElementalViewController) {}
    public func elementsBeganRefreshing(in viewController: ElementalViewController) {}
 }
 
@@ -58,10 +58,10 @@ open class ElementalViewController: UIViewController {
    fileprivate var _animatingIndexPaths: [IndexPath]?
    fileprivate var _needsLayout: Bool = false
    fileprivate var _needsAnimatedLayout: Bool = false
-   fileprivate var _elements: [IncFormElemental] = []
+   fileprivate var _elements: [Elemental] = []
    
    // MARK: - Public Properties
-   var elements: [IncFormElemental] {
+   var elements: [Elemental] {
       get { return _elements }
       set { configure(with: newValue) }
    }
@@ -129,7 +129,7 @@ open class ElementalViewController: UIViewController {
    }
    
    // MARK: - Public
-   func index(of elemental: IncFormElemental) -> Int? {
+   func index(of elemental: Elemental) -> Int? {
       for (index, element) in _elements.enumerated() {
          if element as AnyObject !== elemental as AnyObject { continue }
          return index
@@ -137,7 +137,7 @@ open class ElementalViewController: UIViewController {
       return nil
    }
    
-    @discardableResult func scroll(to elemental: IncFormElemental, position: UICollectionViewScrollPosition, animated: Bool) -> Bool {
+    @discardableResult func scroll(to elemental: Elemental, position: UICollectionViewScrollPosition, animated: Bool) -> Bool {
       guard let index = index(of: elemental) else { return false }
       collectionView.scrollToItem(at: IndexPath(row: index, section: 0), at: position, animated: animated)
       return true
@@ -172,7 +172,7 @@ open class ElementalViewController: UIViewController {
       self.elements = elements
    }
    
-   open func generateElements() -> [IncFormElemental]? {
+   open func generateElements() -> [Elemental]? {
       return nil
    }
    
@@ -194,7 +194,7 @@ extension ElementalViewController {
       _refreshControl.endRefreshing()
    }
    
-   public func configure(with elements: [IncFormElemental], transitionType: FormContentTransitionType? = nil, scrollToTop: Bool = true) {
+   public func configure(with elements: [Elemental], transitionType: FormContentTransitionType? = nil, scrollToTop: Bool = true) {
       elements.forEach { $0.register(collectionView: collectionView) }
       self._elements = elements
       
@@ -235,7 +235,7 @@ extension ElementalViewController {
       collectionView.reloadData()
    }
    
-   public func reconfigure(elements: [IncFormElemental]) {
+   public func reconfigure(elements: [Elemental]) {
       for (index, element) in self.elements.enumerated() {
          if let cell = collectionView.cellForItem(at: IndexPath(row: index, section: 0)) {
             elements.forEach {

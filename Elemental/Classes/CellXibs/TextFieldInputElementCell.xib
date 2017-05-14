@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TextFieldInputElementCell" id="pmB-XR-gcj" customClass="TextFieldInputElementCell" customModule="Elemental" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="174"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="174"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i2m-SS-aZf">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tSp-Dx-810">
+                        <rect key="frame" x="0.0" y="31" width="375" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WSe-XJ-iD4" customClass="InsetTextField" customModule="Elemental" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="62" width="375" height="48"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="48" id="ehj-51-lci"/>
+                        </constraints>
+                        <nil key="textColor"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <textInputTraits key="textInputTraits" keyboardAppearance="alert"/>
+                    </textField>
+                </subviews>
+            </view>
+            <color key="backgroundColor" red="0.98220974210000001" green="0.8692709945" blue="0.96639732710000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="i2m-SS-aZf" secondAttribute="trailing" id="9cA-Gi-gpP"/>
+                <constraint firstItem="i2m-SS-aZf" firstAttribute="top" secondItem="pmB-XR-gcj" secondAttribute="top" id="AMd-VF-ajp"/>
+                <constraint firstItem="WSe-XJ-iD4" firstAttribute="leading" secondItem="pmB-XR-gcj" secondAttribute="leading" id="JSD-53-FP5"/>
+                <constraint firstItem="i2m-SS-aZf" firstAttribute="leading" secondItem="pmB-XR-gcj" secondAttribute="leading" id="M9d-5P-7b4"/>
+                <constraint firstItem="tSp-Dx-810" firstAttribute="leading" secondItem="pmB-XR-gcj" secondAttribute="leading" id="N7q-Lx-b9V"/>
+                <constraint firstItem="tSp-Dx-810" firstAttribute="top" secondItem="i2m-SS-aZf" secondAttribute="bottom" constant="10" id="YpG-dv-X52"/>
+                <constraint firstAttribute="trailing" secondItem="tSp-Dx-810" secondAttribute="trailing" id="hSh-AO-jqt"/>
+                <constraint firstItem="WSe-XJ-iD4" firstAttribute="top" secondItem="tSp-Dx-810" secondAttribute="bottom" constant="10" id="rfP-qB-00o"/>
+                <constraint firstAttribute="trailing" secondItem="WSe-XJ-iD4" secondAttribute="trailing" id="zbA-o8-EQD"/>
+            </constraints>
+            <size key="customSize" width="375" height="174"/>
+            <connections>
+                <outlet property="_detailLabel" destination="tSp-Dx-810" id="Egr-Pg-zAB"/>
+                <outlet property="_detailLabelVerticalSpaceConstraint" destination="rfP-qB-00o" id="LrT-0v-Gks"/>
+                <outlet property="_label" destination="i2m-SS-aZf" id="t3k-b1-gnT"/>
+                <outlet property="_textField" destination="WSe-XJ-iD4" id="HbQ-dY-0DJ"/>
+                <outlet property="_textFieldHeightConstraint" destination="ehj-51-lci" id="hq9-1s-dO5"/>
+            </connections>
+        </collectionViewCell>
+    </objects>
+</document>
