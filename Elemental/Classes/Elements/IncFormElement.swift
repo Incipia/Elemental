@@ -9,11 +9,11 @@
 import UIKit
 import Bindable
 
-public enum IncFormElementInputState {
+public enum ElementInputState {
    case focused, unfocused
    
    // may be temporary
-   public var other: IncFormElementInputState {
+   public var other: ElementInputState {
       switch self {
       case .focused: return .unfocused
       case .unfocused: return .focused
@@ -22,7 +22,7 @@ public enum IncFormElementInputState {
 }
 
 // optionally override the target state with the return value
-public typealias IncFormElementInputAction = (_ currentState: IncFormElementInputState, _ proposedNextState: IncFormElementInputState?) -> IncFormElementInputState?
+public typealias IncFormElementInputAction = (_ currentState: ElementInputState, _ proposedNextState: ElementInputState?) -> ElementInputState?
 
 // called when the accessory button is pressed
 public typealias IncFormElementAccessoryAction = () -> ()
@@ -241,7 +241,7 @@ public class PickerSelectionElement: Element, IncFormBindableElemental {
    public var content: PickerSelectionElementContent
    public var bindings: [Binding]
    public var action: IncFormElementInputAction?
-   public var inputState: IncFormElementInputState
+   public var inputState: ElementInputState
    
    // MARK: - Init
    public init(configuration: IncFormPickerConfiguring, content: PickerSelectionElementContent, bindings: [Binding] = [], action: IncFormElementInputAction? = nil) {
@@ -357,7 +357,7 @@ public class DateInputElement: Element, IncFormBindableElemental {
    public var content: DateInputElementContent
    public var bindings: [Binding]
    public var action: IncFormElementInputAction?
-   public var inputState: IncFormElementInputState
+   public var inputState: ElementInputState
    
    // MARK: - Init
    public init(configuration: IncFormDateInputConfiguring, content: DateInputElementContent, bindings: [Binding] = [], action: IncFormElementInputAction? = nil) {

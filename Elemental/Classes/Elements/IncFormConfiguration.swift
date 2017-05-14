@@ -65,7 +65,7 @@ public protocol IncFormPickerConfiguring: IncFormElementalConfiguring {
    var buttonStyle: IncFormTextStyling { get }
    var buttonHeight: CGFloat { get }
    var buttonBackgroundColor: UIColor { get }
-   var inputState: IncFormElementInputState { get }
+   var inputState: ElementInputState { get }
    var leftAccessoryImageTintColor: UIColor { get }
    var rightAccessoryImageTintColor: UIColor { get }
    weak var layoutDelegate: IncFormElementLayoutDelegate? { get }
@@ -79,12 +79,12 @@ open class IncFormPickerConfiguration: IncFormElementalConfiguration, IncFormPic
    public let buttonStyle: IncFormTextStyling
    public let buttonHeight: CGFloat
    public let buttonBackgroundColor: UIColor
-   public var inputState: IncFormElementInputState
+   public var inputState: ElementInputState
    public var leftAccessoryImageTintColor: UIColor
    public var rightAccessoryImageTintColor: UIColor
    weak public var layoutDelegate: IncFormElementLayoutDelegate?
    
-   public init(nameStyle: IncFormTextStyling = IncFormTextStyle(), detailStyle: IncFormTextStyling? = nil, placeholderStyle: IncFormTextStyling? = nil, optionStyle: IncFormTextStyling? = nil, buttonStyle: IncFormTextStyling = IncFormTextStyle(), buttonHeight: CGFloat = 64, buttonBackgroundColor: UIColor = .gray, inputState: IncFormElementInputState = .unfocused, leftAccessoryImageTintColor: UIColor = .gray, rightAccessoryImageTintColor: UIColor = .gray, layoutDelegate: IncFormElementLayoutDelegate? = nil) {
+   public init(nameStyle: IncFormTextStyling = IncFormTextStyle(), detailStyle: IncFormTextStyling? = nil, placeholderStyle: IncFormTextStyling? = nil, optionStyle: IncFormTextStyling? = nil, buttonStyle: IncFormTextStyling = IncFormTextStyle(), buttonHeight: CGFloat = 64, buttonBackgroundColor: UIColor = .gray, inputState: ElementInputState = .unfocused, leftAccessoryImageTintColor: UIColor = .gray, rightAccessoryImageTintColor: UIColor = .gray, layoutDelegate: IncFormElementLayoutDelegate? = nil) {
       self.nameStyle = nameStyle
       self.detailStyle = detailStyle
       self.placeholderStyle = placeholderStyle
@@ -173,7 +173,7 @@ public protocol IncFormDateInputConfiguring: IncFormElementalConfiguring {
    var inputBackgroundColor: UIColor { get }
    var datePickerMode: UIDatePickerMode { get }
    var dateFormatter: DateFormatter { get }
-   var inputState: IncFormElementInputState { get set }
+   var inputState: ElementInputState { get set }
    weak var layoutDelegate: IncFormElementLayoutDelegate? { get }
 }
 
@@ -186,10 +186,10 @@ open class IncFormDateInputConfiguration: IncFormElementalConfiguration, IncForm
    public let inputBackgroundColor: UIColor
    public let datePickerMode: UIDatePickerMode
    public let dateFormatter: DateFormatter
-   public var inputState: IncFormElementInputState
+   public var inputState: ElementInputState
    weak public var layoutDelegate: IncFormElementLayoutDelegate?
    
-   public init(nameStyle: IncFormTextStyling = IncFormTextStyle(), detailStyle: IncFormTextStyling? = nil, placeholderStyle: IncFormTextStyling? = nil, inputStyle: IncFormTextStyling = IncFormTextStyle(), inputHeight: CGFloat = 64, inputBackgroundColor: UIColor = .gray, inputState: IncFormElementInputState = .unfocused, datePickerMode: UIDatePickerMode = .dateAndTime, dateFormatter: DateFormatter = DateFormatter(), layoutDelegate: IncFormElementLayoutDelegate? = nil) {
+   public init(nameStyle: IncFormTextStyling = IncFormTextStyle(), detailStyle: IncFormTextStyling? = nil, placeholderStyle: IncFormTextStyling? = nil, inputStyle: IncFormTextStyling = IncFormTextStyle(), inputHeight: CGFloat = 64, inputBackgroundColor: UIColor = .gray, inputState: ElementInputState = .unfocused, datePickerMode: UIDatePickerMode = .dateAndTime, dateFormatter: DateFormatter = DateFormatter(), layoutDelegate: IncFormElementLayoutDelegate? = nil) {
       self.nameStyle = nameStyle
       self.detailStyle = detailStyle
       self.placeholderStyle = placeholderStyle

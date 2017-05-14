@@ -111,7 +111,7 @@ extension TextViewInputElementCell: UITextViewDelegate {
    
    func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
       guard let action = _action else { return true }
-      let nextState: IncFormElementInputState = action(.unfocused, .focused) ?? .focused
+      let nextState: ElementInputState = action(.unfocused, .focused) ?? .focused
       textView.inputView = nextState == .unfocused ? UIView() : nil
       return true
    }
@@ -134,7 +134,7 @@ extension TextViewInputElementCell: UITextViewDelegate {
    
    func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
       guard textView.inputView == nil, let action = _action else { return true }
-      let nextState: IncFormElementInputState = action(.focused, .unfocused) ?? .unfocused
+      let nextState: ElementInputState = action(.focused, .unfocused) ?? .unfocused
       return nextState.shouldEndEditing
    }
    
@@ -145,7 +145,7 @@ extension TextViewInputElementCell: UITextViewDelegate {
          }
       }
       guard let action = _action else { return }
-      let proposedNextState: IncFormElementInputState? = textView.inputView == nil ? nil : .unfocused
+      let proposedNextState: ElementInputState? = textView.inputView == nil ? nil : .unfocused
       let nextState = action(.unfocused, proposedNextState)
       if nextState == .focused {
          DispatchQueue.main.async {
