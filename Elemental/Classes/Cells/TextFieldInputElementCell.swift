@@ -15,7 +15,7 @@ class TextFieldInputElementCell: BindableElementCell {
    @IBOutlet fileprivate var _textField: InsetTextField!
    @IBOutlet private var _textFieldHeightConstraint: NSLayoutConstraint!
    
-   fileprivate var _action: IncFormElementInputAction?
+   fileprivate var _action: ElementInputAction?
    fileprivate var _isEnabled: Bool {
       get { return _textField.isEnabled }
       set {

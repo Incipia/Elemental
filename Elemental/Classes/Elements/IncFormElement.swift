@@ -22,7 +22,7 @@ public enum ElementInputState {
 }
 
 // optionally override the target state with the return value
-public typealias IncFormElementInputAction = (_ currentState: ElementInputState, _ proposedNextState: ElementInputState?) -> ElementInputState?
+public typealias ElementInputAction = (_ currentState: ElementInputState, _ proposedNextState: ElementInputState?) -> ElementInputState?
 
 // called when the accessory button is pressed
 public typealias IncFormElementAccessoryAction = () -> ()
@@ -240,11 +240,11 @@ public class PickerSelectionElement: Element, IncFormBindableElemental {
    public var configuration: IncFormPickerConfiguring { return elementalConfig as! IncFormPickerConfiguring }
    public var content: PickerSelectionElementContent
    public var bindings: [Binding]
-   public var action: IncFormElementInputAction?
+   public var action: ElementInputAction?
    public var inputState: ElementInputState
    
    // MARK: - Init
-   public init(configuration: IncFormPickerConfiguring, content: PickerSelectionElementContent, bindings: [Binding] = [], action: IncFormElementInputAction? = nil) {
+   public init(configuration: IncFormPickerConfiguring, content: PickerSelectionElementContent, bindings: [Binding] = [], action: ElementInputAction? = nil) {
       self.content = content
       self.bindings = bindings
       self.action = action
@@ -306,10 +306,10 @@ public class TextFieldInputElement: Element, IncFormBindableElemental {
    public var configuration: IncFormTextInputConfiguring { return elementalConfig as! IncFormTextInputConfiguring }
    public var content: TextInputElementContent
    public var bindings: [Binding]
-   public var action: IncFormElementInputAction?
+   public var action: ElementInputAction?
    
    // MARK: - Init
-   public init(configuration: IncFormTextInputConfiguring, content: TextInputElementContent, bindings: [Binding] = [], action: IncFormElementInputAction? = nil) {
+   public init(configuration: IncFormTextInputConfiguring, content: TextInputElementContent, bindings: [Binding] = [], action: ElementInputAction? = nil) {
       self.content = content
       self.bindings = bindings
       self.action = action
@@ -331,10 +331,10 @@ public class TextViewInputElement: Element, IncFormBindableElemental {
    public var configuration: IncFormTextInputConfiguring { return elementalConfig as! IncFormTextInputConfiguring }
    public var content: TextInputElementContent
    public var bindings: [Binding]
-   public var action: IncFormElementInputAction?
+   public var action: ElementInputAction?
    
    // MARK: - Init
-   public init(configuration: IncFormTextInputConfiguring, content: TextInputElementContent, bindings: [Binding] = [], action: IncFormElementInputAction? = nil) {
+   public init(configuration: IncFormTextInputConfiguring, content: TextInputElementContent, bindings: [Binding] = [], action: ElementInputAction? = nil) {
       self.content = content
       self.bindings = bindings
       self.action = action
@@ -356,11 +356,11 @@ public class DateInputElement: Element, IncFormBindableElemental {
    public var configuration: IncFormDateInputConfiguring { return elementalConfig as! IncFormDateInputConfiguring }
    public var content: DateInputElementContent
    public var bindings: [Binding]
-   public var action: IncFormElementInputAction?
+   public var action: ElementInputAction?
    public var inputState: ElementInputState
    
    // MARK: - Init
-   public init(configuration: IncFormDateInputConfiguring, content: DateInputElementContent, bindings: [Binding] = [], action: IncFormElementInputAction? = nil) {
+   public init(configuration: IncFormDateInputConfiguring, content: DateInputElementContent, bindings: [Binding] = [], action: ElementInputAction? = nil) {
       self.content = content
       self.bindings = bindings
       self.action = action
@@ -577,7 +577,7 @@ public extension Element {
       return DropdownElement(configuration: configuration, content: content)
    }
    
-   class func picker(configuration: IncFormPickerConfiguring, content: PickerSelectionElementContent, bindings: [Binding] = [], action: IncFormElementInputAction? = nil) -> Element {
+   class func picker(configuration: IncFormPickerConfiguring, content: PickerSelectionElementContent, bindings: [Binding] = [], action: ElementInputAction? = nil) -> Element {
       return PickerSelectionElement(configuration: configuration, content: content, bindings: bindings, action: action)
    }
    
@@ -585,15 +585,15 @@ public extension Element {
       return RadioSelectionElement(configuration: configuration, content: content, bindings: bindings)
    }
    
-   class func textFieldInput(configuration: IncFormTextInputConfiguring, content: TextInputElementContent, bindings: [Binding] = [], action: IncFormElementInputAction? = nil) -> Element {
+   class func textFieldInput(configuration: IncFormTextInputConfiguring, content: TextInputElementContent, bindings: [Binding] = [], action: ElementInputAction? = nil) -> Element {
       return TextFieldInputElement(configuration: configuration, content: content, bindings: bindings, action: action)
    }
    
-   class func textViewInput(configuration: IncFormTextInputConfiguring, content: TextInputElementContent, bindings: [Binding] = [], action: IncFormElementInputAction? = nil) -> Element {
+   class func textViewInput(configuration: IncFormTextInputConfiguring, content: TextInputElementContent, bindings: [Binding] = [], action: ElementInputAction? = nil) -> Element {
       return TextViewInputElement(configuration: configuration, content: content, bindings: bindings, action: action)
    }
    
-   class func dateInput(configuration: IncFormDateInputConfiguring, content: DateInputElementContent, bindings: [Binding] = [], action: IncFormElementInputAction? = nil) -> Element {
+   class func dateInput(configuration: IncFormDateInputConfiguring, content: DateInputElementContent, bindings: [Binding] = [], action: ElementInputAction? = nil) -> Element {
       return DateInputElement(configuration: configuration, content: content, bindings: bindings, action: action)
    }
    
