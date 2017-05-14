@@ -9,7 +9,7 @@
 import UIKit
 import Bindable
 
-public enum IncFormElementDimension {
+public enum ElementalDimension {
    case horizontal(CGFloat)
    case vertical(CGFloat)
 }
@@ -21,7 +21,7 @@ public protocol Elemental {
    func register(collectionView cv: UICollectionView)
    func configure(cell: UICollectionViewCell, in containerViewController: UIViewController?)
    func reconfigure(cell: UICollectionViewCell, for element: Elemental, in containerViewController: UIViewController?)
-   func size(forConstrainedDimension dimension: IncFormElementDimension) -> CGSize
+   func size(forConstrainedDimension dimension: ElementalDimension) -> CGSize
 }
 
 public extension Elemental {

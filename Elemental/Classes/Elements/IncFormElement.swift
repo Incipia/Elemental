@@ -67,7 +67,7 @@ open class Element: Elemental {
       configure(cell: cell, in: _containerViewController)
    }
    
-   open func size(forConstrainedDimension dimension: IncFormElementDimension) -> CGSize { fatalError() }
+   open func size(forConstrainedDimension dimension: ElementalDimension) -> CGSize { fatalError() }
    
    // MARK: - Public Class Methods
    public class func form(_ elements: [Element]) -> [Elemental] {
@@ -97,7 +97,7 @@ public class TextElement: Element {
    }
    
    // MARK: - Elemental Protocol
-   override public func size(forConstrainedDimension dimension: IncFormElementDimension) -> CGSize {
+   override public func size(forConstrainedDimension dimension: ElementalDimension) -> CGSize {
       switch dimension {
       case .horizontal(let width): return TextElementCell.contentSize(for: self, constrainedWidth: width)
       case .vertical: fatalError("\(type(of: self)) does not support \(dimension) constraint")
@@ -118,7 +118,7 @@ public class IconElement: Element {
    }
    
    // MARK: - Elemental Protocol
-   override public func size(forConstrainedDimension dimension: IncFormElementDimension) -> CGSize {
+   override public func size(forConstrainedDimension dimension: ElementalDimension) -> CGSize {
       switch dimension {
       case .horizontal(let width): return IconElementCell.contentSize(for: self, constrainedWidth: width)
       case .vertical: fatalError("\(type(of: self)) does not support \(dimension) constraint")
@@ -143,7 +143,7 @@ public class AccessoryElement: Element, IncFormBindableElemental {
    }
    
    // MARK: - Elemental Protocol
-   override public func size(forConstrainedDimension dimension: IncFormElementDimension) -> CGSize {
+   override public func size(forConstrainedDimension dimension: ElementalDimension) -> CGSize {
       switch dimension {
       case .horizontal(let width): return AccessoryElementCell.contentSize(for: self, constrainedWidth: width)
       case .vertical: fatalError("\(type(of: self)) does not support \(dimension) constraint")
@@ -168,7 +168,7 @@ public class ThumbnailElement: Element, IncFormBindableElemental {
    }
    
    // MARK: - Elemental Protocol
-   override public func size(forConstrainedDimension dimension: IncFormElementDimension) -> CGSize {
+   override public func size(forConstrainedDimension dimension: ElementalDimension) -> CGSize {
       switch dimension {
       case .horizontal(let width): return ThumbnailElementCell.contentSize(for: self, constrainedWidth: width)
       case .vertical: fatalError("\(type(of: self)) does not support \(dimension) constraint")
@@ -191,7 +191,7 @@ public class SwitchElement: Element, IncFormBindableElemental {
    }
    
    // MARK: - Elemental Protocol
-   override public func size(forConstrainedDimension dimension: IncFormElementDimension) -> CGSize {
+   override public func size(forConstrainedDimension dimension: ElementalDimension) -> CGSize {
       switch dimension {
       case .horizontal(let width): return SwitchElementCell.contentSize(for: self, constrainedWidth: width)
       case .vertical: fatalError("\(type(of: self)) does not support \(dimension) constraint")
@@ -212,7 +212,7 @@ public class DropdownElement: Element {
    }
    
    // MARK: - Elemental Protocol
-   override public func size(forConstrainedDimension dimension: IncFormElementDimension) -> CGSize {
+   override public func size(forConstrainedDimension dimension: ElementalDimension) -> CGSize {
       switch dimension {
       case .horizontal(let width): return DropdownElementCell.contentSize(for: self, constrainedWidth: width)
       case .vertical: fatalError("\(type(of: self)) does not support \(dimension) constraint")
@@ -253,7 +253,7 @@ public class PickerSelectionElement: Element, IncFormBindableElemental {
    }
    
    // MARK: - Elemental Protocol
-   override public func size(forConstrainedDimension dimension: IncFormElementDimension) -> CGSize {
+   override public func size(forConstrainedDimension dimension: ElementalDimension) -> CGSize {
       switch dimension {
       case .horizontal(let width): return PickerSelectionElementCell.contentSize(for: self, constrainedWidth: width)
       case .vertical: fatalError("\(type(of: self)) does not support \(dimension) constraint")
@@ -292,7 +292,7 @@ public class RadioSelectionElement: Element, IncFormBindableElemental {
    }
    
    // MARK: - Elemental Protocol
-   override public func size(forConstrainedDimension dimension: IncFormElementDimension) -> CGSize {
+   override public func size(forConstrainedDimension dimension: ElementalDimension) -> CGSize {
       switch dimension {
       case .horizontal(let width): return RadioSelectionElementCell.contentSize(for: self, constrainedWidth: width)
       case .vertical: fatalError("\(type(of: self)) does not support \(dimension) constraint")
@@ -317,7 +317,7 @@ public class TextFieldInputElement: Element, IncFormBindableElemental {
    }
    
    // MARK: - Elemental Protocol
-   override public func size(forConstrainedDimension dimension: IncFormElementDimension) -> CGSize {
+   override public func size(forConstrainedDimension dimension: ElementalDimension) -> CGSize {
       switch dimension {
       case .horizontal(let width): return TextFieldInputElementCell.contentSize(for: self, constrainedWidth: width)
       case .vertical: fatalError("\(type(of: self)) does not support \(dimension) constraint")
@@ -342,7 +342,7 @@ public class TextViewInputElement: Element, IncFormBindableElemental {
    }
    
    // MARK: - Elemental Protocol
-   override public func size(forConstrainedDimension dimension: IncFormElementDimension) -> CGSize {
+   override public func size(forConstrainedDimension dimension: ElementalDimension) -> CGSize {
       switch dimension {
       case .horizontal(let width): return TextViewInputElementCell.contentSize(for: self, constrainedWidth: width)
       case .vertical: fatalError("\(type(of: self)) does not support \(dimension) constraint")
@@ -369,7 +369,7 @@ public class DateInputElement: Element, IncFormBindableElemental {
    }
    
    // MARK: - Elemental Protocol
-   override public func size(forConstrainedDimension dimension: IncFormElementDimension) -> CGSize {
+   override public func size(forConstrainedDimension dimension: ElementalDimension) -> CGSize {
       switch dimension {
       case .horizontal(let width): return DateInputElementCell.contentSize(for: self, constrainedWidth: width)
       case .vertical: fatalError("\(type(of: self)) does not support \(dimension) constraint")
@@ -392,7 +392,7 @@ public class HorizontalLineElement: Element {
       return false
    }
    
-   override public func size(forConstrainedDimension dimension: IncFormElementDimension) -> CGSize {
+   override public func size(forConstrainedDimension dimension: ElementalDimension) -> CGSize {
       switch dimension {
       case .horizontal(let width): return HorizontalLineElementCell.contentSize(for: self, constrainedWidth: width)
       case .vertical: fatalError("\(type(of: self)) does not support \(dimension) constraint")
@@ -417,7 +417,7 @@ public class VerticalSpaceElement: Element {
       return false
    }
    
-   override public func size(forConstrainedDimension dimension: IncFormElementDimension) -> CGSize {
+   override public func size(forConstrainedDimension dimension: ElementalDimension) -> CGSize {
       switch dimension {
       case .horizontal(let width): return HorizontalLineElementCell.contentSize(for: self, constrainedWidth: width)
       case .vertical: fatalError("\(type(of: self)) does not support \(dimension) constraint")
@@ -437,7 +437,7 @@ public class CustomViewElement: Element {
    }
    
    // MARK: - Elemental Protocol
-   override public func size(forConstrainedDimension dimension: IncFormElementDimension) -> CGSize {
+   override public func size(forConstrainedDimension dimension: ElementalDimension) -> CGSize {
       switch dimension {
       case .horizontal(let width): return CustomViewElementCell.contentSize(for: self, constrainedWidth: width)
       case .vertical: fatalError("\(type(of: self)) does not support \(dimension) constraint")
@@ -465,7 +465,7 @@ public class CustomViewControllerElement: Element {
       vcCell.containerVC = containerViewController
    }
    
-   override public func size(forConstrainedDimension dimension: IncFormElementDimension) -> CGSize {
+   override public func size(forConstrainedDimension dimension: ElementalDimension) -> CGSize {
       switch dimension {
       case .horizontal(let width): return CustomViewControllerElementCell.contentSize(for: self, constrainedWidth: width)
       case .vertical: fatalError("\(type(of: self)) does not support \(dimension) constraint")
@@ -497,7 +497,7 @@ public class HorizontalFormElement: Element {
       cell.delegate = containerViewController as? HorizontalFormElementCellDelegate
    }
    
-   override public func size(forConstrainedDimension dimension: IncFormElementDimension) -> CGSize {
+   override public func size(forConstrainedDimension dimension: ElementalDimension) -> CGSize {
       switch dimension {
       case .horizontal(let width): return HorizontalFormElementCell.contentSize(for: self, constrainedWidth: width)
       case .vertical: fatalError("\(type(of: self)) does not support \(dimension) constraint")
@@ -521,7 +521,7 @@ public class HorizontalSpaceElement: Element {
       return false
    }
    
-   override public func size(forConstrainedDimension dimension: IncFormElementDimension) -> CGSize {
+   override public func size(forConstrainedDimension dimension: ElementalDimension) -> CGSize {
       switch dimension {
       case .horizontal(let width): return VerticalLineElementCell.contentSize(for: self, constrainedWidth: width)
       case .vertical: fatalError("\(type(of: self)) does not support \(dimension) constraint")
@@ -544,7 +544,7 @@ public class VerticalLineElement: Element {
       return false
    }
    
-   override public func size(forConstrainedDimension dimension: IncFormElementDimension) -> CGSize {
+   override public func size(forConstrainedDimension dimension: ElementalDimension) -> CGSize {
       switch dimension {
       case .horizontal(let width): return VerticalLineElementCell.contentSize(for: self, constrainedWidth: width)
       case .vertical: fatalError("\(type(of: self)) does not support \(dimension) constraint")
