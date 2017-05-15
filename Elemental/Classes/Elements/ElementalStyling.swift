@@ -1,5 +1,5 @@
 //
-//  Elemental.swift
+//  ElementalStyling.swift
 //  Elemental
 //
 //  Created by Gregory Klein on 4/14/17.
@@ -20,7 +20,7 @@ open class ElementalTextStyle: ElementalTextStyling {
    public let color: UIColor
    public let alignment: NSTextAlignment
    
-   public init(font: UIFont = UIFont.systemFont(ofSize: 14), color: UIColor = .black, alignment: NSTextAlignment = .left) {
+   public init(font: UIFont = .systemFont(ofSize: 14), color: UIColor = .black, alignment: NSTextAlignment = .left) {
       self.font = font
       self.color = color
       self.alignment = alignment

@@ -1,5 +1,5 @@
 //
-//  ElementalConfiguring.swift
+//  ElementConfigurations.swift
 //  Elemental
 //
 //  Created by Gregory Klein on 3/2/17.
