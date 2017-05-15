@@ -38,9 +38,14 @@ open class ElementalViewController: UIViewController {
       let cv = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
       cv.translatesAutoresizingMaskIntoConstraints = false
       self.view.addSubview(cv)
+      let footerView = self.footerView
+      self.view.addSubview(footerView)
+      
+      footerView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+      footerView.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
       
       cv.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
-      cv.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+      cv.bottomAnchor.constraint(equalTo: footerView.topAnchor).isActive = true
       cv.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
       
       self._cvLeadingSpaceConstraint = cv.leadingAnchor.constraint(equalTo: self.view.leadingAnchor)
@@ -54,14 +59,20 @@ open class ElementalViewController: UIViewController {
    
       return cv
    }()
-   
+
    fileprivate var _animatingIndexPaths: [IndexPath]?
    fileprivate var _needsLayout: Bool = false
    fileprivate var _needsAnimatedLayout: Bool = false
    fileprivate var _elements: [Elemental] = []
    
    // MARK: - Public Properties
-   var elements: [Elemental] {
+   public lazy var footerView: UIView = {
+      let footerView = UIView(frame: .zero)
+      footerView.translatesAutoresizingMaskIntoConstraints = false
+      return footerView
+   }()
+   
+   public var elements: [Elemental] {
       get { return _elements }
       set { configure(with: newValue) }
    }
