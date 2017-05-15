@@ -34,7 +34,7 @@ open class IncFormTextStyle: ElementalTextStyling {
 }
 
 // MARK: - Keyboard Styling
-public protocol IncFormKeyboardStyling {
+public protocol ElementalKeyboardStyling {
    var type: UIKeyboardType { get }
    var appearance: UIKeyboardAppearance { get }
    var returnKeyType: UIReturnKeyType { get }
@@ -42,7 +42,7 @@ public protocol IncFormKeyboardStyling {
    var isSecureTextEntry: Bool { get }
 }
 
-open class IncFormKeyboardStyle: IncFormKeyboardStyling {
+open class IncFormKeyboardStyle: ElementalKeyboardStyling {
    public let type: UIKeyboardType
    public let appearance: UIKeyboardAppearance
    public let returnKeyType: UIReturnKeyType

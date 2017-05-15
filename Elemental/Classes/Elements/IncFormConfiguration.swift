@@ -131,7 +131,7 @@ public protocol IncFormTextInputConfiguring: ElementalConfiguring {
    var detailStyle: ElementalTextStyling? { get }
    var placeholderStyle: ElementalTextStyling? { get }
    var inputStyle: ElementalTextStyling { get }
-   var keyboardStyle: IncFormKeyboardStyling { get }
+   var keyboardStyle: ElementalKeyboardStyling { get }
    var inputHeight: CGFloat { get }
    var inputBackgroundColor: UIColor { get }
    var isEnabled: Bool { get }
@@ -146,12 +146,12 @@ open class IncFormTextInputConfiguration: ElementalConfiguration, IncFormTextInp
    public let detailStyle: ElementalTextStyling?
    public let placeholderStyle: ElementalTextStyling?
    public let inputStyle: ElementalTextStyling
-   public let keyboardStyle: IncFormKeyboardStyling
+   public let keyboardStyle: ElementalKeyboardStyling
    public let inputHeight: CGFloat
    public let inputBackgroundColor: UIColor
    public let isEnabled: Bool
    
-   public init(nameStyle: ElementalTextStyling = IncFormTextStyle(), detailStyle: ElementalTextStyling? = nil, placeholderStyle: ElementalTextStyling? = nil, inputStyle: ElementalTextStyling = IncFormTextStyle(), keyboardStyle: IncFormKeyboardStyling = IncFormKeyboardStyle(), inputHeight: CGFloat = 48, inputBackgroundColor: UIColor = .gray, isEnabled: Bool = true) {
+   public init(nameStyle: ElementalTextStyling = IncFormTextStyle(), detailStyle: ElementalTextStyling? = nil, placeholderStyle: ElementalTextStyling? = nil, inputStyle: ElementalTextStyling = IncFormTextStyle(), keyboardStyle: ElementalKeyboardStyling = IncFormKeyboardStyle(), inputHeight: CGFloat = 48, inputBackgroundColor: UIColor = .gray, isEnabled: Bool = true) {
       self.nameStyle = nameStyle
       self.detailStyle = detailStyle
       self.placeholderStyle = placeholderStyle
