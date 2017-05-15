@@ -27,12 +27,12 @@ public extension ElementalConfiguring {
 }
 
 open class ElementalConfiguration: ElementalConfiguring {
-   public let backgroundColor: UIColor
-   public let insets: UIEdgeInsets
-   public let isSelectable: Bool
-   public let width: CGFloat?
-   public let height: CGFloat?
-   public let isConfinedToMargins: Bool
+   public var backgroundColor: UIColor
+   public var insets: UIEdgeInsets
+   public var isSelectable: Bool
+   public var width: CGFloat?
+   public var height: CGFloat?
+   public var isConfinedToMargins: Bool
    
    public init(backgroundColor: UIColor = .clear, insets: UIEdgeInsets = .zero, isSelectable: Bool = true, width: CGFloat? = nil, height: CGFloat? = nil, isConfinedToMargins: Bool = true) {
       self.backgroundColor = backgroundColor
