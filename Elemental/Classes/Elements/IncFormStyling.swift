@@ -15,7 +15,7 @@ public protocol ElementalTextStyling {
    var alignment: NSTextAlignment { get }
 }
 
-open class IncFormTextStyle: ElementalTextStyling {
+open class ElementalTextStyle: ElementalTextStyling {
    public let font: UIFont
    public let color: UIColor
    public let alignment: NSTextAlignment
@@ -42,7 +42,7 @@ public protocol ElementalKeyboardStyling {
    var isSecureTextEntry: Bool { get }
 }
 
-open class IncFormKeyboardStyle: ElementalKeyboardStyling {
+open class ElementalKeyboardStyle: ElementalKeyboardStyling {
    public let type: UIKeyboardType
    public let appearance: UIKeyboardAppearance
    public let returnKeyType: UIReturnKeyType

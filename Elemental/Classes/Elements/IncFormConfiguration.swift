@@ -51,7 +51,7 @@ public protocol TextElementConfiguring: ElementalConfiguring {
 open class TextElementConfiguration: ElementalConfiguration, TextElementConfiguring {
    public let textStyle: ElementalTextStyling
    
-   public init(textStyle: ElementalTextStyling = IncFormTextStyle(), height: CGFloat = 48) {
+   public init(textStyle: ElementalTextStyling = ElementalTextStyle(), height: CGFloat = 48) {
       self.textStyle = textStyle
       super.init(height: height)
    }
@@ -84,7 +84,7 @@ open class PickerElementConfiguration: ElementalConfiguration, PickerElementConf
    public var rightAccessoryImageTintColor: UIColor
    weak public var layoutDelegate: ElementalLayoutDelegate?
    
-   public init(nameStyle: ElementalTextStyling = IncFormTextStyle(), detailStyle: ElementalTextStyling? = nil, placeholderStyle: ElementalTextStyling? = nil, optionStyle: ElementalTextStyling? = nil, buttonStyle: ElementalTextStyling = IncFormTextStyle(), buttonHeight: CGFloat = 64, buttonBackgroundColor: UIColor = .gray, inputState: InputElementState = .unfocused, leftAccessoryImageTintColor: UIColor = .gray, rightAccessoryImageTintColor: UIColor = .gray, layoutDelegate: ElementalLayoutDelegate? = nil) {
+   public init(nameStyle: ElementalTextStyling = ElementalTextStyle(), detailStyle: ElementalTextStyling? = nil, placeholderStyle: ElementalTextStyling? = nil, optionStyle: ElementalTextStyling? = nil, buttonStyle: ElementalTextStyling = ElementalTextStyle(), buttonHeight: CGFloat = 64, buttonBackgroundColor: UIColor = .gray, inputState: InputElementState = .unfocused, leftAccessoryImageTintColor: UIColor = .gray, rightAccessoryImageTintColor: UIColor = .gray, layoutDelegate: ElementalLayoutDelegate? = nil) {
       self.nameStyle = nameStyle
       self.detailStyle = detailStyle
       self.placeholderStyle = placeholderStyle
@@ -117,7 +117,7 @@ open class RadioElementConfiguration: ElementalConfiguration, RadioSelectionElem
    public let fillColor: UIColor?
    public let alignment: RadioElementAlignment
    
-   public init(nameStyle: ElementalTextStyling = IncFormTextStyle(), componentStyle: ElementalTextStyling = IncFormTextStyle(), fillColor: UIColor? = nil, alignment: RadioElementAlignment = .left) {
+   public init(nameStyle: ElementalTextStyling = ElementalTextStyle(), componentStyle: ElementalTextStyling = ElementalTextStyle(), fillColor: UIColor? = nil, alignment: RadioElementAlignment = .left) {
       self.nameStyle = nameStyle
       self.componentStyle = componentStyle
       self.fillColor = fillColor
@@ -151,7 +151,7 @@ open class TextInputElementConfiguration: ElementalConfiguration, TextInputEleme
    public let inputBackgroundColor: UIColor
    public let isEnabled: Bool
    
-   public init(nameStyle: ElementalTextStyling = IncFormTextStyle(), detailStyle: ElementalTextStyling? = nil, placeholderStyle: ElementalTextStyling? = nil, inputStyle: ElementalTextStyling = IncFormTextStyle(), keyboardStyle: ElementalKeyboardStyling = IncFormKeyboardStyle(), inputHeight: CGFloat = 48, inputBackgroundColor: UIColor = .gray, isEnabled: Bool = true) {
+   public init(nameStyle: ElementalTextStyling = ElementalTextStyle(), detailStyle: ElementalTextStyling? = nil, placeholderStyle: ElementalTextStyling? = nil, inputStyle: ElementalTextStyling = ElementalTextStyle(), keyboardStyle: ElementalKeyboardStyling = ElementalKeyboardStyle(), inputHeight: CGFloat = 48, inputBackgroundColor: UIColor = .gray, isEnabled: Bool = true) {
       self.nameStyle = nameStyle
       self.detailStyle = detailStyle
       self.placeholderStyle = placeholderStyle
@@ -189,7 +189,7 @@ open class DateInputElementConfiguration: ElementalConfiguration, DateInputEleme
    public var inputState: InputElementState
    weak public var layoutDelegate: ElementalLayoutDelegate?
    
-   public init(nameStyle: ElementalTextStyling = IncFormTextStyle(), detailStyle: ElementalTextStyling? = nil, placeholderStyle: ElementalTextStyling? = nil, inputStyle: ElementalTextStyling = IncFormTextStyle(), inputHeight: CGFloat = 64, inputBackgroundColor: UIColor = .gray, inputState: InputElementState = .unfocused, datePickerMode: UIDatePickerMode = .dateAndTime, dateFormatter: DateFormatter = DateFormatter(), layoutDelegate: ElementalLayoutDelegate? = nil) {
+   public init(nameStyle: ElementalTextStyling = ElementalTextStyle(), detailStyle: ElementalTextStyling? = nil, placeholderStyle: ElementalTextStyling? = nil, inputStyle: ElementalTextStyling = ElementalTextStyle(), inputHeight: CGFloat = 64, inputBackgroundColor: UIColor = .gray, inputState: InputElementState = .unfocused, datePickerMode: UIDatePickerMode = .dateAndTime, dateFormatter: DateFormatter = DateFormatter(), layoutDelegate: ElementalLayoutDelegate? = nil) {
       self.nameStyle = nameStyle
       self.detailStyle = detailStyle
       self.placeholderStyle = placeholderStyle
@@ -219,7 +219,7 @@ open class DropdownElementConfiguration: ElementalConfiguration, DropdownElement
    public let dropdownBackgroundColor: UIColor
    public let iconTintColor: UIColor
    
-   public init(nameStyle: ElementalTextStyling = IncFormTextStyle(), placeholderStyle: ElementalTextStyling? = nil, dropdownHeight: CGFloat = 64, dropdownBackgroundColor: UIColor = .gray, iconTintColor: UIColor = .black) {
+   public init(nameStyle: ElementalTextStyling = ElementalTextStyle(), placeholderStyle: ElementalTextStyling? = nil, dropdownHeight: CGFloat = 64, dropdownBackgroundColor: UIColor = .gray, iconTintColor: UIColor = .black) {
       self.nameStyle = nameStyle
       self.placeholderStyle = placeholderStyle
       self.dropdownHeight = dropdownHeight
@@ -250,7 +250,7 @@ open class IconElementConfiguration: ElementalConfiguration, IconElementConfigur
    public let iconTintColor: UIColor
    public let textStyle: ElementalTextStyling
    
-   public init(iconTintColor: UIColor = .black, textStyle: ElementalTextStyling = IncFormTextStyle(), height: CGFloat = 48) {
+   public init(iconTintColor: UIColor = .black, textStyle: ElementalTextStyling = ElementalTextStyle(), height: CGFloat = 48) {
       self.iconTintColor = iconTintColor
       self.textStyle = textStyle
       super.init(height: height)
@@ -272,7 +272,7 @@ open class AccessoryElementConfiguration: ElementalConfiguration, AccessoryEleme
    public let accessoryTintColor: UIColor?
    public let buttonContentInsets: UIEdgeInsets?
    
-   public init(nameStyle: ElementalTextStyling = IncFormTextStyle(), detailStyle: ElementalTextStyling? = nil, accessoryStyle: ElementalTextStyling? = nil, accessoryTintColor: UIColor? = nil, buttonContentInsets: UIEdgeInsets? = nil, height: CGFloat = 64) {
+   public init(nameStyle: ElementalTextStyling = ElementalTextStyle(), detailStyle: ElementalTextStyling? = nil, accessoryStyle: ElementalTextStyling? = nil, accessoryTintColor: UIColor? = nil, buttonContentInsets: UIEdgeInsets? = nil, height: CGFloat = 64) {
       self.nameStyle = nameStyle
       self.detailStyle = detailStyle
       self.accessoryStyle = accessoryStyle
@@ -295,7 +295,7 @@ open class SwitchElementConfiguration: ElementalConfiguration, SwitchElementConf
    public let offTintColor: UIColor
    public let onTintColor: UIColor
    
-   public init(nameStyle: ElementalTextStyling = IncFormTextStyle(), detailStyle: ElementalTextStyling? = nil, height: CGFloat = 64, offTintColor: UIColor = .white, onTintColor: UIColor = .blue) {
+   public init(nameStyle: ElementalTextStyling = ElementalTextStyle(), detailStyle: ElementalTextStyling? = nil, height: CGFloat = 64, offTintColor: UIColor = .white, onTintColor: UIColor = .blue) {
       self.nameStyle = nameStyle
       self.detailStyle = detailStyle
       self.offTintColor = offTintColor

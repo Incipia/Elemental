@@ -32,7 +32,7 @@ class PickerElementCell: BindableElementCell {
    
    // MARK: - Private Properties
    fileprivate var _options: [(option: PickerElement.Option, dataValue: Data)] = []
-   fileprivate var _optionStyle: IncFormTextStyle = IncFormTextStyle()
+   fileprivate var _optionStyle: ElementalTextStyle = ElementalTextStyle()
    fileprivate var _selectedOption: PickerElement.Option? {
       let selectedOptions = _options.filter { $0.option.isSelected }
       guard selectedOptions.count <= 1 else { fatalError() }
@@ -176,7 +176,7 @@ class PickerElementCell: BindableElementCell {
    }
    
    private func _updateOptionStyle(with style: ElementalTextStyling) {
-      _optionStyle = IncFormTextStyle(style: style)
+      _optionStyle = ElementalTextStyle(style: style)
    }
    
    private func _updateIndicatorColor() {
