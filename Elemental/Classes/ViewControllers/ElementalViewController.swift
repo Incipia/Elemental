@@ -8,7 +8,7 @@
 
 import UIKit
 
-public enum FormContentTransitionType {
+public enum ElementalTransitionType {
    case forwards
    case backwards
 }
@@ -194,7 +194,7 @@ extension ElementalViewController {
       _refreshControl.endRefreshing()
    }
    
-   public func configure(with elements: [Elemental], transitionType: FormContentTransitionType? = nil, scrollToTop: Bool = true) {
+   public func configure(with elements: [Elemental], transitionType: ElementalTransitionType? = nil, scrollToTop: Bool = true) {
       elements.forEach { $0.register(collectionView: collectionView) }
       self._elements = elements
       
