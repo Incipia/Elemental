@@ -8,6 +8,11 @@
 
 import UIKit
 
+// MARK: - Layout
+public enum ElementalLayoutDirection {
+   case horizontal, vertical
+}
+
 // MARK: - Text Styling
 public protocol ElementalTextStyling {
    var font: UIFont { get }
