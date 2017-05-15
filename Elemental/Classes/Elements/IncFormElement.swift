@@ -9,11 +9,11 @@
 import UIKit
 import Bindable
 
-public enum ElementInputState {
+public enum InputElementState {
    case focused, unfocused
    
    // may be temporary
-   public var other: ElementInputState {
+   public var other: InputElementState {
       switch self {
       case .focused: return .unfocused
       case .unfocused: return .focused
@@ -22,10 +22,10 @@ public enum ElementInputState {
 }
 
 // optionally override the target state with the return value
-public typealias ElementInputAction = (_ currentState: ElementInputState, _ proposedNextState: ElementInputState?) -> ElementInputState?
+public typealias InputElementAction = (_ currentState: InputElementState, _ proposedNextState: InputElementState?) -> InputElementState?
 
 // called when the accessory button is pressed
-public typealias ElementAccessoryAction = () -> ()
+public typealias AccessoryElementAction = () -> ()
 
 public protocol ElementalSizeDelegate: class {
    func size(for element: Elemental, constrainedWidth width: CGFloat) -> CGSize
@@ -87,11 +87,11 @@ open class Element: Elemental {
 
 public class TextElement: Element {
    // MARK: - Public Properties
-   public var configuration: IncFormTextConfiguring { return elementalConfig as! IncFormTextConfiguring }
+   public var configuration: TextElementConfiguring { return elementalConfig as! TextElementConfiguring }
    public var content: String
    
    // MARK: - Init
-   public init(configuration: IncFormTextConfiguring, content: String) {
+   public init(configuration: TextElementConfiguring, content: String) {
       self.content = content
       super.init(configuration: configuration)
    }
@@ -108,11 +108,11 @@ public class TextElement: Element {
 
 public class IconElement: Element {
    // MARK: - Public Properties
-   public var configuration: IncFormIconConfiguring { return elementalConfig as! IncFormIconConfiguring }
+   public var configuration: IconElementConfiguring { return elementalConfig as! IconElementConfiguring }
    public var content: IconElementContent
    
    // MARK: - Init
-   public init(configuration: IncFormIconConfiguring, content: IconElementContent) {
+   public init(configuration: IconElementConfiguring, content: IconElementContent) {
       self.content = content
       super.init(configuration: configuration)
    }
@@ -129,13 +129,13 @@ public class IconElement: Element {
 
 public class AccessoryElement: Element, BindableElemental {
    // MARK: - Public Properties
-   public var configuration: IncFormAccessoryConfiguring { return elementalConfig as! IncFormAccessoryConfiguring }
+   public var configuration: AccessoryElementConfiguring { return elementalConfig as! AccessoryElementConfiguring }
    public var content: AccessoryElementContent
    public var bindings: [Binding]
-   public var action: ElementAccessoryAction?
+   public var action: AccessoryElementAction?
    
    // MARK: - Init
-   public init(configuration: IncFormAccessoryConfiguring, content: AccessoryElementContent, bindings: [Binding] = [], action: ElementAccessoryAction? = nil) {
+   public init(configuration: AccessoryElementConfiguring, content: AccessoryElementContent, bindings: [Binding] = [], action: AccessoryElementAction? = nil) {
       self.content = content
       self.bindings = bindings
       self.action = action
@@ -154,13 +154,13 @@ public class AccessoryElement: Element, BindableElemental {
 
 public class ThumbnailElement: Element, BindableElemental {
    // MARK: - Public Properties
-   public var configuration: IncFormAccessoryConfiguring { return elementalConfig as! IncFormAccessoryConfiguring }
+   public var configuration: AccessoryElementConfiguring { return elementalConfig as! AccessoryElementConfiguring }
    public var content: ThumbnailElementContent
    public var bindings: [Binding]
-   public var action: ElementAccessoryAction?
+   public var action: AccessoryElementAction?
    
    // MARK: - Init
-   public init(configuration: IncFormAccessoryConfiguring, content: ThumbnailElementContent, bindings: [Binding] = [], action: ElementAccessoryAction? = nil) {
+   public init(configuration: AccessoryElementConfiguring, content: ThumbnailElementContent, bindings: [Binding] = [], action: AccessoryElementAction? = nil) {
       self.content = content
       self.bindings = bindings
       self.action = action
@@ -179,12 +179,12 @@ public class ThumbnailElement: Element, BindableElemental {
 
 public class SwitchElement: Element, BindableElemental {
    // MARK: - Public Properties
-   public var configuration: IncFormSwitchConfiguring { return elementalConfig as! IncFormSwitchConfiguring }
+   public var configuration: SwitchElementConfiguring { return elementalConfig as! SwitchElementConfiguring }
    public var content: SwitchElementContent
    public var bindings: [Binding]
    
    // MARK: - Init
-   public init(configuration: IncFormSwitchConfiguring, content: SwitchElementContent, bindings: [Binding] = []) {
+   public init(configuration: SwitchElementConfiguring, content: SwitchElementContent, bindings: [Binding] = []) {
       self.content = content
       self.bindings = bindings
       super.init(configuration: configuration)
@@ -202,11 +202,11 @@ public class SwitchElement: Element, BindableElemental {
 
 public class DropdownElement: Element {
    // MARK: - Public Properties
-   public var configuration: IncFormDropdownConfiguring { return elementalConfig as! IncFormDropdownConfiguring }
+   public var configuration: DropdownElementConfiguring { return elementalConfig as! DropdownElementConfiguring }
    public var content: DropdownElementContent
    
    // MARK: - Init
-   public init(configuration: IncFormDropdownConfiguring, content: DropdownElementContent) {
+   public init(configuration: DropdownElementConfiguring, content: DropdownElementContent) {
       self.content = content
       super.init(configuration: configuration)
    }
@@ -237,14 +237,14 @@ public class PickerSelectionElement: Element, BindableElemental {
       }
    }
    
-   public var configuration: IncFormPickerConfiguring { return elementalConfig as! IncFormPickerConfiguring }
+   public var configuration: PickerElementConfiguring { return elementalConfig as! PickerElementConfiguring }
    public var content: PickerSelectionElementContent
    public var bindings: [Binding]
-   public var action: ElementInputAction?
-   public var inputState: ElementInputState
+   public var action: InputElementAction?
+   public var inputState: InputElementState
    
    // MARK: - Init
-   public init(configuration: IncFormPickerConfiguring, content: PickerSelectionElementContent, bindings: [Binding] = [], action: ElementInputAction? = nil) {
+   public init(configuration: PickerElementConfiguring, content: PickerSelectionElementContent, bindings: [Binding] = [], action: InputElementAction? = nil) {
       self.content = content
       self.bindings = bindings
       self.action = action
@@ -280,12 +280,12 @@ public class RadioSelectionElement: Element, BindableElemental {
    }
    
    // MARK: - Public Properties
-   public var configuration: IncFormRadioConfiguring { return elementalConfig as! IncFormRadioConfiguring }
+   public var configuration: RadioElementConfiguring { return elementalConfig as! RadioElementConfiguring }
    public var content: RadioElementContent
    public var bindings: [Binding]
    
    // MARK: - Init
-   public init(configuration: IncFormRadioConfiguring, content: RadioElementContent, bindings: [Binding] = []) {
+   public init(configuration: RadioElementConfiguring, content: RadioElementContent, bindings: [Binding] = []) {
       self.content = content
       self.bindings = bindings
       super.init(configuration: configuration)
@@ -303,13 +303,13 @@ public class RadioSelectionElement: Element, BindableElemental {
 
 public class TextFieldInputElement: Element, BindableElemental {
    // MARK: - Public Properties
-   public var configuration: IncFormTextInputConfiguring { return elementalConfig as! IncFormTextInputConfiguring }
+   public var configuration: TextInputElementConfiguring { return elementalConfig as! TextInputElementConfiguring }
    public var content: TextInputElementContent
    public var bindings: [Binding]
-   public var action: ElementInputAction?
+   public var action: InputElementAction?
    
    // MARK: - Init
-   public init(configuration: IncFormTextInputConfiguring, content: TextInputElementContent, bindings: [Binding] = [], action: ElementInputAction? = nil) {
+   public init(configuration: TextInputElementConfiguring, content: TextInputElementContent, bindings: [Binding] = [], action: InputElementAction? = nil) {
       self.content = content
       self.bindings = bindings
       self.action = action
@@ -328,13 +328,13 @@ public class TextFieldInputElement: Element, BindableElemental {
 
 public class TextViewInputElement: Element, BindableElemental {
    // MARK: - Public Properties
-   public var configuration: IncFormTextInputConfiguring { return elementalConfig as! IncFormTextInputConfiguring }
+   public var configuration: TextInputElementConfiguring { return elementalConfig as! TextInputElementConfiguring }
    public var content: TextInputElementContent
    public var bindings: [Binding]
-   public var action: ElementInputAction?
+   public var action: InputElementAction?
    
    // MARK: - Init
-   public init(configuration: IncFormTextInputConfiguring, content: TextInputElementContent, bindings: [Binding] = [], action: ElementInputAction? = nil) {
+   public init(configuration: TextInputElementConfiguring, content: TextInputElementContent, bindings: [Binding] = [], action: InputElementAction? = nil) {
       self.content = content
       self.bindings = bindings
       self.action = action
@@ -353,14 +353,14 @@ public class TextViewInputElement: Element, BindableElemental {
 
 public class DateInputElement: Element, BindableElemental {
    // MARK: - Public Properties
-   public var configuration: IncFormDateInputConfiguring { return elementalConfig as! IncFormDateInputConfiguring }
+   public var configuration: DateInputElementConfiguring { return elementalConfig as! DateInputElementConfiguring }
    public var content: DateInputElementContent
    public var bindings: [Binding]
-   public var action: ElementInputAction?
-   public var inputState: ElementInputState
+   public var action: InputElementAction?
+   public var inputState: InputElementState
    
    // MARK: - Init
-   public init(configuration: IncFormDateInputConfiguring, content: DateInputElementContent, bindings: [Binding] = [], action: ElementInputAction? = nil) {
+   public init(configuration: DateInputElementConfiguring, content: DateInputElementContent, bindings: [Binding] = [], action: InputElementAction? = nil) {
       self.content = content
       self.bindings = bindings
       self.action = action
@@ -380,10 +380,10 @@ public class DateInputElement: Element, BindableElemental {
 
 public class HorizontalLineElement: Element {
    // MARK: - Public Properties
-   public var configuration: IncFormDividingLineConfiguring { return elementalConfig as! IncFormDividingLineConfiguring }
+   public var configuration: LineElementConfiguring { return elementalConfig as! LineElementConfiguring }
    
    // MARK: - Init
-   public init(configuration: IncFormDividingLineConfiguring) {
+   public init(configuration: LineElementConfiguring) {
       super.init(configuration: configuration)
    }
    
@@ -431,7 +431,7 @@ public class CustomViewElement: Element {
    let view : UIView
    
    // MARK: - Init
-   public init(view : UIView) {
+   public init(view: UIView) {
       self.view  = view
       super.init(configuration: ElementalConfiguration())
    }
@@ -532,10 +532,10 @@ public class HorizontalSpaceElement: Element {
 
 public class VerticalLineElement: Element {
    // MARK: - Public Properties
-   public var configuration: IncFormDividingLineConfiguring { return elementalConfig as! IncFormDividingLineConfiguring }
+   public var configuration: LineElementConfiguring { return elementalConfig as! LineElementConfiguring }
    
    // MARK: - Init
-   public init(configuration: IncFormDividingLineConfiguring) {
+   public init(configuration: LineElementConfiguring) {
       super.init(configuration: configuration)
    }
    
@@ -553,51 +553,51 @@ public class VerticalLineElement: Element {
 }
 
 public extension Element {
-   class func text(configuration: IncFormTextConfiguring, content: String) -> Element {
+   class func text(configuration: TextElementConfiguring, content: String) -> Element {
       return TextElement(configuration: configuration, content: content)
    }
    
-   class func icon(configuration: IncFormIconConfiguring, content: IconElementContent) -> Element {
+   class func icon(configuration: IconElementConfiguring, content: IconElementContent) -> Element {
       return IconElement(configuration: configuration, content: content)
    }
    
-   class func accessory(configuration: IncFormAccessoryConfiguring, content: AccessoryElementContent, bindings: [Binding] = [], action: ElementAccessoryAction? = nil) -> Element {
+   class func accessory(configuration: AccessoryElementConfiguring, content: AccessoryElementContent, bindings: [Binding] = [], action: AccessoryElementAction? = nil) -> Element {
       return AccessoryElement(configuration: configuration, content: content, bindings: bindings, action: action)
    }
    
-   class func thumbnail(configuration: IncFormAccessoryConfiguring, content: ThumbnailElementContent, bindings: [Binding] = [], action: ElementAccessoryAction? = nil) -> Element {
+   class func thumbnail(configuration: AccessoryElementConfiguring, content: ThumbnailElementContent, bindings: [Binding] = [], action: AccessoryElementAction? = nil) -> Element {
       return ThumbnailElement(configuration: configuration, content: content, bindings: bindings, action: action)
    }
    
-   class func `switch`(configuration: IncFormSwitchConfiguring, content: SwitchElementContent, bindings: [Binding] = []) -> Element {
+   class func `switch`(configuration: SwitchElementConfiguring, content: SwitchElementContent, bindings: [Binding] = []) -> Element {
       return SwitchElement(configuration: configuration, content: content, bindings: bindings)
    }
    
-   class func dropdown(configuration: IncFormDropdownConfiguring, content: DropdownElementContent) -> Element {
+   class func dropdown(configuration: DropdownElementConfiguring, content: DropdownElementContent) -> Element {
       return DropdownElement(configuration: configuration, content: content)
    }
    
-   class func picker(configuration: IncFormPickerConfiguring, content: PickerSelectionElementContent, bindings: [Binding] = [], action: ElementInputAction? = nil) -> Element {
+   class func picker(configuration: PickerElementConfiguring, content: PickerSelectionElementContent, bindings: [Binding] = [], action: InputElementAction? = nil) -> Element {
       return PickerSelectionElement(configuration: configuration, content: content, bindings: bindings, action: action)
    }
    
-   class func radioSelection(configuration: IncFormRadioConfiguring, content: RadioElementContent, bindings: [Binding] = []) -> Element {
+   class func radioSelection(configuration: RadioElementConfiguring, content: RadioElementContent, bindings: [Binding] = []) -> Element {
       return RadioSelectionElement(configuration: configuration, content: content, bindings: bindings)
    }
    
-   class func textFieldInput(configuration: IncFormTextInputConfiguring, content: TextInputElementContent, bindings: [Binding] = [], action: ElementInputAction? = nil) -> Element {
+   class func textFieldInput(configuration: TextInputElementConfiguring, content: TextInputElementContent, bindings: [Binding] = [], action: InputElementAction? = nil) -> Element {
       return TextFieldInputElement(configuration: configuration, content: content, bindings: bindings, action: action)
    }
    
-   class func textViewInput(configuration: IncFormTextInputConfiguring, content: TextInputElementContent, bindings: [Binding] = [], action: ElementInputAction? = nil) -> Element {
+   class func textViewInput(configuration: TextInputElementConfiguring, content: TextInputElementContent, bindings: [Binding] = [], action: InputElementAction? = nil) -> Element {
       return TextViewInputElement(configuration: configuration, content: content, bindings: bindings, action: action)
    }
    
-   class func dateInput(configuration: IncFormDateInputConfiguring, content: DateInputElementContent, bindings: [Binding] = [], action: ElementInputAction? = nil) -> Element {
+   class func dateInput(configuration: DateInputElementConfiguring, content: DateInputElementContent, bindings: [Binding] = [], action: InputElementAction? = nil) -> Element {
       return DateInputElement(configuration: configuration, content: content, bindings: bindings, action: action)
    }
    
-   class func horizontalLine(configuration: IncFormDividingLineConfiguring) -> Element {
+   class func horizontalLine(configuration: LineElementConfiguring) -> Element {
       return HorizontalLineElement(configuration: configuration)
    }
    
@@ -621,7 +621,7 @@ public extension Element {
       return HorizontalSpaceElement(value: value)
    }
    
-   class func verticalLine(configuration: IncFormDividingLineConfiguring) -> Element {
+   class func verticalLine(configuration: LineElementConfiguring) -> Element {
       return VerticalLineElement(configuration: configuration)
    }
 }

@@ -15,7 +15,7 @@ class TextFieldInputElementCell: BindableElementCell {
    @IBOutlet fileprivate var _textField: InsetTextField!
    @IBOutlet private var _textFieldHeightConstraint: NSLayoutConstraint!
    
-   fileprivate var _action: ElementInputAction?
+   fileprivate var _action: InputElementAction?
    fileprivate var _isEnabled: Bool {
       get { return _textField.isEnabled }
       set {
@@ -134,7 +134,7 @@ extension TextFieldInputElementCell {
 extension TextFieldInputElementCell: UITextFieldDelegate {
    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
       guard let action = _action else { return true }
-      let nextState: ElementInputState = action(.unfocused, .focused) ?? .focused
+      let nextState: InputElementState = action(.unfocused, .focused) ?? .focused
       textField.inputView = nextState == .unfocused ? UIView() : nil
       return true
    }
@@ -157,7 +157,7 @@ extension TextFieldInputElementCell: UITextFieldDelegate {
    
    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
       guard textField.inputView == nil, let action = _action else { return true }
-      let nextState: ElementInputState = action(.focused, .unfocused) ?? .unfocused
+      let nextState: InputElementState = action(.focused, .unfocused) ?? .unfocused
       return nextState.shouldEndEditing
    }
    
@@ -168,7 +168,7 @@ extension TextFieldInputElementCell: UITextFieldDelegate {
          }
       }
       guard let action = _action else { return }
-      let proposedNextState: ElementInputState? = textField.inputView == nil ? nil : .unfocused
+      let proposedNextState: InputElementState? = textField.inputView == nil ? nil : .unfocused
       let nextState = action(.unfocused, proposedNextState)
       if nextState == .focused {
          DispatchQueue.main.async {
@@ -178,7 +178,7 @@ extension TextFieldInputElementCell: UITextFieldDelegate {
    }
 }
 
-extension ElementInputState {
+extension InputElementState {
    var shouldBeginEditing: Bool {
       switch self {
       case .focused: return true

@@ -24,7 +24,7 @@ class ThumbnailElementCell: BindableElementCell {
    static var bindableKeys: [BindableElementKey] { return [.name, .detail, .image] }
    
    // MARK: - Private Properties
-   private var _action: ElementAccessoryAction?
+   private var _action: AccessoryElementAction?
    
    // MARK: - Actions
    @IBAction private func _accessoryButtonPressed() {

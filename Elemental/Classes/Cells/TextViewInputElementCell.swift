@@ -16,7 +16,7 @@ class TextViewInputElementCell: BindableElementCell {
    @IBOutlet fileprivate var _textView: PlaceholderTextView!
    @IBOutlet private var _textFieldHeightConstraint: NSLayoutConstraint!
    
-   fileprivate var _action: ElementInputAction?
+   fileprivate var _action: InputElementAction?
    fileprivate var _isEnabled: Bool {
       get { return _textView.isEditable }
       set {
@@ -111,7 +111,7 @@ extension TextViewInputElementCell: UITextViewDelegate {
    
    func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
       guard let action = _action else { return true }
-      let nextState: ElementInputState = action(.unfocused, .focused) ?? .focused
+      let nextState: InputElementState = action(.unfocused, .focused) ?? .focused
       textView.inputView = nextState == .unfocused ? UIView() : nil
       return true
    }
@@ -134,7 +134,7 @@ extension TextViewInputElementCell: UITextViewDelegate {
    
    func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
       guard textView.inputView == nil, let action = _action else { return true }
-      let nextState: ElementInputState = action(.focused, .unfocused) ?? .unfocused
+      let nextState: InputElementState = action(.focused, .unfocused) ?? .unfocused
       return nextState.shouldEndEditing
    }
    
@@ -145,7 +145,7 @@ extension TextViewInputElementCell: UITextViewDelegate {
          }
       }
       guard let action = _action else { return }
-      let proposedNextState: ElementInputState? = textView.inputView == nil ? nil : .unfocused
+      let proposedNextState: InputElementState? = textView.inputView == nil ? nil : .unfocused
       let nextState = action(.unfocused, proposedNextState)
       if nextState == .focused {
          DispatchQueue.main.async {

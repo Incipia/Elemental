@@ -254,7 +254,7 @@ extension PickerSelectionElementCell: UIPickerViewDataSource {
    }
 }
 
-extension IncFormPickerConfiguring {
+extension PickerElementConfiguring {
    func textStyle(for selectedOption: PickerSelectionElement.Option?) -> ElementalTextStyling {
       return selectedOption == nil && placeholderStyle != nil ? placeholderStyle! : buttonStyle
    }
