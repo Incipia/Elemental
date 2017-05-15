@@ -9,13 +9,13 @@
 import UIKit
 
 // MARK: - Text Styling
-public protocol IncFormTextStyling {
+public protocol ElementalTextStyling {
    var font: UIFont { get }
    var color: UIColor { get }
    var alignment: NSTextAlignment { get }
 }
 
-open class IncFormTextStyle: IncFormTextStyling {
+open class IncFormTextStyle: ElementalTextStyling {
    public let font: UIFont
    public let color: UIColor
    public let alignment: NSTextAlignment
@@ -26,7 +26,7 @@ open class IncFormTextStyle: IncFormTextStyling {
       self.alignment = alignment
    }
    
-   public init(style: IncFormTextStyling) {
+   public init(style: ElementalTextStyling) {
       self.font = style.font
       self.color = style.color
       self.alignment = style.alignment

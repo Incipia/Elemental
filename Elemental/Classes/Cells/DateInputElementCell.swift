@@ -195,7 +195,7 @@ class DateInputElementCell: BindableElementCell {
 }
 
 extension IncFormDateInputConfiguring {
-   fileprivate func _textStyle(for interval: Double?) -> IncFormTextStyling {
+   fileprivate func _textStyle(for interval: Double?) -> ElementalTextStyling {
       return interval == nil && placeholderStyle != nil ? placeholderStyle! : inputStyle
    }
 }

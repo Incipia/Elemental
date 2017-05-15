@@ -175,7 +175,7 @@ class PickerSelectionElementCell: BindableElementCell {
       _buttonLabel.text = selectedOption?.text ?? element.content.placeholder
    }
    
-   private func _updateOptionStyle(with style: IncFormTextStyling) {
+   private func _updateOptionStyle(with style: ElementalTextStyling) {
       _optionStyle = IncFormTextStyle(style: style)
    }
    
@@ -255,7 +255,7 @@ extension PickerSelectionElementCell: UIPickerViewDataSource {
 }
 
 extension IncFormPickerConfiguring {
-   func textStyle(for selectedOption: PickerSelectionElement.Option?) -> IncFormTextStyling {
+   func textStyle(for selectedOption: PickerSelectionElement.Option?) -> ElementalTextStyling {
       return selectedOption == nil && placeholderStyle != nil ? placeholderStyle! : buttonStyle
    }
 }
