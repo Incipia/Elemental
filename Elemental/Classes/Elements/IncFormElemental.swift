@@ -33,7 +33,7 @@ public extension Elemental {
    func reconfigure(cell: UICollectionViewCell, for element: Elemental, in containerViewController: UIViewController?) {}
 }
 
-protocol IncFormBindableElemental: Elemental {
+protocol BindableElemental: Elemental {
    var bindings: [Binding] { get }
 }
 

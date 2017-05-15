@@ -47,7 +47,7 @@ class BindableElementCell: ElementCell, Bindable {
    func setOwn(value: Any?, for key: BindableElementKey) throws { fatalError("\(type(of: self)) subclasses must override \(#function)") }
 
    func bind(with component: Elemental) {
-      guard let element = component as? IncFormBindableElemental else { fatalError() }
+      guard let element = component as? BindableElemental else { fatalError() }
       _updateBindings(bound: false)
       self.bindings = element.bindings
       _updateBindings(bound: self.window != nil)

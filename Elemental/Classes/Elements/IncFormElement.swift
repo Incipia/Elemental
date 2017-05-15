@@ -127,7 +127,7 @@ public class IconElement: Element {
 }
 
 
-public class AccessoryElement: Element, IncFormBindableElemental {
+public class AccessoryElement: Element, BindableElemental {
    // MARK: - Public Properties
    public var configuration: IncFormAccessoryConfiguring { return elementalConfig as! IncFormAccessoryConfiguring }
    public var content: AccessoryElementContent
@@ -152,7 +152,7 @@ public class AccessoryElement: Element, IncFormBindableElemental {
 }
 
 
-public class ThumbnailElement: Element, IncFormBindableElemental {
+public class ThumbnailElement: Element, BindableElemental {
    // MARK: - Public Properties
    public var configuration: IncFormAccessoryConfiguring { return elementalConfig as! IncFormAccessoryConfiguring }
    public var content: ThumbnailElementContent
@@ -177,7 +177,7 @@ public class ThumbnailElement: Element, IncFormBindableElemental {
 }
 
 
-public class SwitchElement: Element, IncFormBindableElemental {
+public class SwitchElement: Element, BindableElemental {
    // MARK: - Public Properties
    public var configuration: IncFormSwitchConfiguring { return elementalConfig as! IncFormSwitchConfiguring }
    public var content: SwitchElementContent
@@ -220,7 +220,7 @@ public class DropdownElement: Element {
    }
 }
 
-public class PickerSelectionElement: Element, IncFormBindableElemental {
+public class PickerSelectionElement: Element, BindableElemental {
    public struct Option {
       public let text: String
       public let value: Any
@@ -262,7 +262,7 @@ public class PickerSelectionElement: Element, IncFormBindableElemental {
 }
 
 
-public class RadioSelectionElement: Element, IncFormBindableElemental {
+public class RadioSelectionElement: Element, BindableElemental {
    public struct Component {
       let text: String
       let value: Any
@@ -301,7 +301,7 @@ public class RadioSelectionElement: Element, IncFormBindableElemental {
 }
 
 
-public class TextFieldInputElement: Element, IncFormBindableElemental {
+public class TextFieldInputElement: Element, BindableElemental {
    // MARK: - Public Properties
    public var configuration: IncFormTextInputConfiguring { return elementalConfig as! IncFormTextInputConfiguring }
    public var content: TextInputElementContent
@@ -326,7 +326,7 @@ public class TextFieldInputElement: Element, IncFormBindableElemental {
 }
 
 
-public class TextViewInputElement: Element, IncFormBindableElemental {
+public class TextViewInputElement: Element, BindableElemental {
    // MARK: - Public Properties
    public var configuration: IncFormTextInputConfiguring { return elementalConfig as! IncFormTextInputConfiguring }
    public var content: TextInputElementContent
@@ -351,7 +351,7 @@ public class TextViewInputElement: Element, IncFormBindableElemental {
 }
 
 
-public class DateInputElement: Element, IncFormBindableElemental {
+public class DateInputElement: Element, BindableElemental {
    // MARK: - Public Properties
    public var configuration: IncFormDateInputConfiguring { return elementalConfig as! IncFormDateInputConfiguring }
    public var content: DateInputElementContent
