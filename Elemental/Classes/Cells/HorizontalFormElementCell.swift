@@ -95,7 +95,7 @@ class HorizontalFormElementCell: ElementCell {
    
 }
 
-extension HorizontalFormElementCell: IncFormViewControllerDelegate {
+extension HorizontalFormElementCell: ElementalViewControllerDelegate {
    func elementSelected(_ element: Elemental, in viewController: ElementalViewController) {
       delegate?.componentSelected(element, in: self)
    }

@@ -13,12 +13,12 @@ public enum FormContentTransitionType {
    case backwards
 }
 
-public protocol IncFormViewControllerDelegate: class {
+public protocol ElementalViewControllerDelegate: class {
    func elementsBeganRefreshing(in viewController: ElementalViewController)
    func elementSelected(_ element: Elemental, in viewController: ElementalViewController)
 }
 
-extension IncFormViewControllerDelegate {
+extension ElementalViewControllerDelegate {
    public func elementSelected(_ element: Elemental, in viewController: ElementalViewController) {}
    public func elementsBeganRefreshing(in viewController: ElementalViewController) {}
 }
@@ -66,7 +66,7 @@ open class ElementalViewController: UIViewController {
       set { configure(with: newValue) }
    }
    
-   public weak var formDelegate: IncFormViewControllerDelegate?
+   public weak var formDelegate: ElementalViewControllerDelegate?
    
    public var layout: UICollectionViewLayout {
       get { return collectionView.collectionViewLayout }
