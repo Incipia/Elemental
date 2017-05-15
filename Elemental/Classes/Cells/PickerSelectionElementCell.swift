@@ -30,6 +30,9 @@ class PickerElementCell: BindableElementCell {
    @IBOutlet fileprivate var _detailVerticalSpaceConstraint: NSLayoutConstraint!
    @IBOutlet fileprivate var _buttonHeightConstraint: NSLayoutConstraint!
    
+   @IBOutlet fileprivate var _horizontalConstraints: [NSLayoutConstraint]!
+   @IBOutlet fileprivate var _verticalConstraints: [NSLayoutConstraint]!
+   
    // MARK: - Private Properties
    fileprivate var _options: [(option: PickerElement.Option, dataValue: Data)] = []
    fileprivate var _optionStyle: ElementalTextStyle = ElementalTextStyle()
@@ -68,6 +71,8 @@ class PickerElementCell: BindableElementCell {
       }
    }
    
+   fileprivate var _readyToUpdateConstraints: Bool = false
+   
    // MARK: - Overridden
    override func awakeFromNib() {
       super.awakeFromNib()
@@ -90,6 +95,13 @@ class PickerElementCell: BindableElementCell {
       button.addTarget(self, action: touchUpSelector, for: .touchUpInside)
       
       _pickerBackgroundView.layer.cornerRadius = 6.0
+      
+      // the constraints installed in the xib are activated sometime after awakeFromNib() and configure(with:) get called,
+      // so activating uninstalled constraints before then causes conflicts
+      DispatchQueue.main.async {
+         self._readyToUpdateConstraints = true
+         self.setNeedsUpdateConstraints()
+      }
    }
    
    override func configure(with component: Elemental) {
@@ -108,6 +120,7 @@ class PickerElementCell: BindableElementCell {
       _detailLabel.font = config.detailStyle?.font
       _nameLabel.textColor = config.nameStyle.color
       _detailLabel.textColor = config.detailStyle?.color
+      _buttonLabel.textAlignment = config.layoutDirection == .vertical ? .left : .right
       _nameVerticalSpaceConstraint.constant = content.name != nil ? 10 : 0
       _detailVerticalSpaceConstraint.constant = content.detail != nil ? 10 : 0
       _buttonHeightConstraint.constant = config.buttonHeight
@@ -125,6 +138,8 @@ class PickerElementCell: BindableElementCell {
       
       let angle: CGFloat = element.inputState == .focused ? .pi : 0.0
       _rightAccessoryImageView.transform = CGAffineTransform(rotationAngle: angle)
+      
+      setNeedsUpdateConstraints()
    }
    
    override class func contentSize(for element: Elemental, constrainedWidth width: CGFloat) -> CGSize {
@@ -137,8 +152,8 @@ class PickerElementCell: BindableElementCell {
          return CGSize(width: finalWidth, height: config.height!)
       }
       
-      let nameHeight = content.name?.heightWithConstrainedWidth(width: width, font: config.nameStyle.font) ?? 0
-      let namePadding: CGFloat = content.name != nil ? 10 : 0
+      let nameHeight = config.layoutDirection == .horizontal ? 0 : content.name?.heightWithConstrainedWidth(width: width, font: config.nameStyle.font) ?? 0
+      let namePadding: CGFloat = nameHeight != 0 ? 10 : 0
       let pickerHeight: CGFloat = element.inputState == .focused ? 216 : 0
       
       guard let detail = content.detail, let detailFont = config.detailStyle?.font else {
@@ -153,6 +168,20 @@ class PickerElementCell: BindableElementCell {
    
    override func didMoveToWindow() {
       _updateIndicatorColor()
+   }
+   
+   override func updateConstraints() {
+      guard _readyToUpdateConstraints, let layoutDirection = element?.elementalConfig.layoutDirection else { super.updateConstraints(); return }
+      switch layoutDirection {
+      case .horizontal:
+         NSLayoutConstraint.deactivate(_verticalConstraints)
+         NSLayoutConstraint.activate(_horizontalConstraints)
+      case .vertical:
+         NSLayoutConstraint.deactivate(_horizontalConstraints)
+         NSLayoutConstraint.activate(_verticalConstraints)
+      }
+      
+      super.updateConstraints()
    }
    
    // MARK: - Private
