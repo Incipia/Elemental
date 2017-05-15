@@ -116,15 +116,15 @@ public struct SwitchElementContent {
    }
 }
 
-public struct PickerSelectionElementContent {
+public struct PickerElementContent {
    public let name: String?
    public let detail: String?
    public let placeholder: String?
    var leftAccessoryImage: UIImage?
    var rightAccessoryImage: UIImage?
-   var options: [PickerSelectionElement.Option]
+   var options: [PickerElement.Option]
    
-   public init(name: String? = nil, detail: String? = nil, placeholder: String? = nil, leftAccessoryImage: UIImage? = nil, rightAccessoryImage: UIImage? = nil, options: [PickerSelectionElement.Option] = []) {
+   public init(name: String? = nil, detail: String? = nil, placeholder: String? = nil, leftAccessoryImage: UIImage? = nil, rightAccessoryImage: UIImage? = nil, options: [PickerElement.Option] = []) {
       self.name = name
       self.detail = detail
       self.placeholder = placeholder

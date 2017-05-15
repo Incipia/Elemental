@@ -220,7 +220,7 @@ public class DropdownElement: Element {
    }
 }
 
-public class PickerSelectionElement: Element, BindableElemental {
+public class PickerElement: Element, BindableElemental {
    public struct Option {
       public let text: String
       public let value: Any
@@ -238,13 +238,13 @@ public class PickerSelectionElement: Element, BindableElemental {
    }
    
    public var configuration: PickerElementConfiguring { return elementalConfig as! PickerElementConfiguring }
-   public var content: PickerSelectionElementContent
+   public var content: PickerElementContent
    public var bindings: [Binding]
    public var action: InputElementAction?
    public var inputState: InputElementState
    
    // MARK: - Init
-   public init(configuration: PickerElementConfiguring, content: PickerSelectionElementContent, bindings: [Binding] = [], action: InputElementAction? = nil) {
+   public init(configuration: PickerElementConfiguring, content: PickerElementContent, bindings: [Binding] = [], action: InputElementAction? = nil) {
       self.content = content
       self.bindings = bindings
       self.action = action
@@ -255,7 +255,7 @@ public class PickerSelectionElement: Element, BindableElemental {
    // MARK: - Elemental Protocol
    override public func size(forConstrainedDimension dimension: ElementalDimension) -> CGSize {
       switch dimension {
-      case .horizontal(let width): return PickerSelectionElementCell.contentSize(for: self, constrainedWidth: width)
+      case .horizontal(let width): return PickerElementCell.contentSize(for: self, constrainedWidth: width)
       case .vertical: fatalError("\(type(of: self)) does not support \(dimension) constraint")
       }
    }
@@ -577,8 +577,8 @@ public extension Element {
       return DropdownElement(configuration: configuration, content: content)
    }
    
-   class func picker(configuration: PickerElementConfiguring, content: PickerSelectionElementContent, bindings: [Binding] = [], action: InputElementAction? = nil) -> Element {
-      return PickerSelectionElement(configuration: configuration, content: content, bindings: bindings, action: action)
+   class func picker(configuration: PickerElementConfiguring, content: PickerElementContent, bindings: [Binding] = [], action: InputElementAction? = nil) -> Element {
+      return PickerElement(configuration: configuration, content: content, bindings: bindings, action: action)
    }
    
    class func radioSelection(configuration: RadioElementConfiguring, content: RadioElementContent, bindings: [Binding] = []) -> Element {

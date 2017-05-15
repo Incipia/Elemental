@@ -1,5 +1,5 @@
 //
-//  PickerSelectionElementCell.swift
+//  PickerElementCell.swift
 //  GigSalad
 //
 //  Created by Gregory Klein on 4/26/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PickerSelectionElementCell: BindableElementCell {
+class PickerElementCell: BindableElementCell {
    // MARK: - Label Outlets
    @IBOutlet fileprivate var _nameLabel: UILabel!
    @IBOutlet fileprivate var _detailLabel: UILabel!
@@ -31,9 +31,9 @@ class PickerSelectionElementCell: BindableElementCell {
    @IBOutlet fileprivate var _buttonHeightConstraint: NSLayoutConstraint!
    
    // MARK: - Private Properties
-   fileprivate var _options: [(option: PickerSelectionElement.Option, dataValue: Data)] = []
+   fileprivate var _options: [(option: PickerElement.Option, dataValue: Data)] = []
    fileprivate var _optionStyle: IncFormTextStyle = IncFormTextStyle()
-   fileprivate var _selectedOption: PickerSelectionElement.Option? {
+   fileprivate var _selectedOption: PickerElement.Option? {
       let selectedOptions = _options.filter { $0.option.isSelected }
       guard selectedOptions.count <= 1 else { fatalError() }
       return selectedOptions.first?.option
@@ -42,7 +42,7 @@ class PickerSelectionElementCell: BindableElementCell {
       get { return _selectedOption?.value }
       set {
          guard !_options.isEmpty else { return }
-         guard let element = element as? PickerSelectionElement else { fatalError() }
+         guard let element = element as? PickerElement else { fatalError() }
          var selectIndex: Int? = nil
          if let someValue = newValue {
             let dataValue = ElementCell.dataValue(someValue)
@@ -80,20 +80,20 @@ class PickerSelectionElementCell: BindableElementCell {
       button.leftAnchor.constraint(equalTo: _buttonBackgroundView.leftAnchor).isActive = true
       button.rightAnchor.constraint(equalTo: _buttonBackgroundView.rightAnchor).isActive = true
       
-      let fadeSelector = #selector(PickerSelectionElementCell._fadePickerButton)
+      let fadeSelector = #selector(PickerElementCell._fadePickerButton)
       button.addTarget(self, action: fadeSelector, for: .touchDown)
       button.addTarget(self, action: fadeSelector, for: .touchDragEnter)
-      let unfadeSelector = #selector(PickerSelectionElementCell._unfadePickerButton)
+      let unfadeSelector = #selector(PickerElementCell._unfadePickerButton)
       button.addTarget(self, action: unfadeSelector, for: .touchDragExit)
       button.addTarget(self, action: unfadeSelector, for: .touchCancel)
-      let touchUpSelector = #selector(PickerSelectionElementCell._pickerButtonTouchUpInside)
+      let touchUpSelector = #selector(PickerElementCell._pickerButtonTouchUpInside)
       button.addTarget(self, action: touchUpSelector, for: .touchUpInside)
       
       _pickerBackgroundView.layer.cornerRadius = 6.0
    }
    
    override func configure(with component: Elemental) {
-      guard let element = component as? PickerSelectionElement else { fatalError() }
+      guard let element = component as? PickerElement else { fatalError() }
       super.configure(with: component)
       let content = element.content
       let config = element.configuration
@@ -128,7 +128,7 @@ class PickerSelectionElementCell: BindableElementCell {
    }
    
    override class func contentSize(for element: Elemental, constrainedWidth width: CGFloat) -> CGSize {
-      guard let element = element as? PickerSelectionElement else { fatalError() }
+      guard let element = element as? PickerElement else { fatalError() }
       let content = element.content
       let config = element.configuration
       let finalWidth = config.width ?? width
@@ -156,7 +156,7 @@ class PickerSelectionElementCell: BindableElementCell {
    }
    
    // MARK: - Private
-   private func _updateAccessoryImages(with element: PickerSelectionElement) {
+   private func _updateAccessoryImages(with element: PickerElement) {
       _leftAccessoryImageView.image = element.content.leftAccessoryImage
       _leftAccessoryImageView.tintColor = element.configuration.leftAccessoryImageTintColor
       _leftAccessoryImageViewWidthConstraint.constant = _leftAccessoryImageView.image != nil ? 20 : 0
@@ -167,7 +167,7 @@ class PickerSelectionElementCell: BindableElementCell {
       _rightImageViewHorizontalSpaceConstraint.constant = _rightAccessoryImageView.image != nil ? 10 : 0
    }
    
-   fileprivate func _updateButton(with element: PickerSelectionElement) {
+   fileprivate func _updateButton(with element: PickerElement) {
       let selectedOption = _selectedOption
       let style = element.configuration.textStyle(for: selectedOption)
       _buttonLabel.font = style.font
@@ -187,7 +187,7 @@ class PickerSelectionElementCell: BindableElementCell {
    }
    
    @objc private func _pickerButtonTouchUpInside() {
-      guard let element = element as? PickerSelectionElement else { fatalError() }
+      guard let element = element as? PickerElement else { fatalError() }
       _unfadePickerButton()
       let nextState = element.action?(element.inputState, element.inputState.other) ?? element.inputState.other
       guard nextState != element.inputState else { return }
@@ -229,7 +229,7 @@ class PickerSelectionElementCell: BindableElementCell {
    }
 }
 
-extension PickerSelectionElementCell: UIPickerViewDelegate {
+extension PickerElementCell: UIPickerViewDelegate {
    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
       let label = view as? UILabel ?? UILabel()
       label.font = _optionStyle.font
@@ -244,7 +244,7 @@ extension PickerSelectionElementCell: UIPickerViewDelegate {
    }
 }
 
-extension PickerSelectionElementCell: UIPickerViewDataSource {
+extension PickerElementCell: UIPickerViewDataSource {
    func numberOfComponents(in pickerView: UIPickerView) -> Int {
       return _options.isEmpty ? 0 : 1
    }
@@ -255,7 +255,7 @@ extension PickerSelectionElementCell: UIPickerViewDataSource {
 }
 
 extension PickerElementConfiguring {
-   func textStyle(for selectedOption: PickerSelectionElement.Option?) -> ElementalTextStyling {
+   func textStyle(for selectedOption: PickerElement.Option?) -> ElementalTextStyling {
       return selectedOption == nil && placeholderStyle != nil ? placeholderStyle! : buttonStyle
    }
 }
