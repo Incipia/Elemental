@@ -16,9 +16,9 @@ public protocol ElementalTextStyling {
 }
 
 open class ElementalTextStyle: ElementalTextStyling {
-   public let font: UIFont
-   public let color: UIColor
-   public let alignment: NSTextAlignment
+   public var font: UIFont
+   public var color: UIColor
+   public var alignment: NSTextAlignment
    
    public init(font: UIFont = .systemFont(ofSize: 14), color: UIColor = .black, alignment: NSTextAlignment = .left) {
       self.font = font
@@ -43,11 +43,11 @@ public protocol ElementalKeyboardStyling {
 }
 
 open class ElementalKeyboardStyle: ElementalKeyboardStyling {
-   public let type: UIKeyboardType
-   public let appearance: UIKeyboardAppearance
-   public let returnKeyType: UIReturnKeyType
-   public let autocapitalizationType: UITextAutocapitalizationType
-   public let isSecureTextEntry: Bool
+   public var type: UIKeyboardType
+   public var appearance: UIKeyboardAppearance
+   public var returnKeyType: UIReturnKeyType
+   public var autocapitalizationType: UITextAutocapitalizationType
+   public var isSecureTextEntry: Bool
    
    public init(type: UIKeyboardType = .default, appearance: UIKeyboardAppearance = .default, returnKeyType: UIReturnKeyType = .default, autocapitalizationType: UITextAutocapitalizationType = .sentences, isSecureTextEntry: Bool = false) {
       self.type = type
