@@ -280,12 +280,12 @@ public class RadioSelectionElement: Element, BindableElemental {
    }
    
    // MARK: - Public Properties
-   public var configuration: RadioElementConfiguring { return elementalConfig as! RadioElementConfiguring }
+   public var configuration: RadioSelectionElementConfiguring { return elementalConfig as! RadioSelectionElementConfiguring }
    public var content: RadioElementContent
    public var bindings: [Binding]
    
    // MARK: - Init
-   public init(configuration: RadioElementConfiguring, content: RadioElementContent, bindings: [Binding] = []) {
+   public init(configuration: RadioSelectionElementConfiguring, content: RadioElementContent, bindings: [Binding] = []) {
       self.content = content
       self.bindings = bindings
       super.init(configuration: configuration)
@@ -581,7 +581,7 @@ public extension Element {
       return PickerElement(configuration: configuration, content: content, bindings: bindings, action: action)
    }
    
-   class func radioSelection(configuration: RadioElementConfiguring, content: RadioElementContent, bindings: [Binding] = []) -> Element {
+   class func radioSelection(configuration: RadioSelectionElementConfiguring, content: RadioElementContent, bindings: [Binding] = []) -> Element {
       return RadioSelectionElement(configuration: configuration, content: content, bindings: bindings)
    }
    
