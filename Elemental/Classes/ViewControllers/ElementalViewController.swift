@@ -1,6 +1,6 @@
 //
 //  ElementalViewController.swift
-//  GigSalad
+//  Elemental
 //
 //  Created by Gregory Klein on 3/2/17.
 //  Copyright © 2017 Incipia. All rights reserved.

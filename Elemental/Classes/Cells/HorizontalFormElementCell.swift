@@ -1,6 +1,6 @@
 //
 //  HorizontalElementCell.swift
-//  GigSalad
+//  Elemental
 //
 //  Created by Leif Meyer on 3/17/17.
 //  Copyright © 2017 Incipia. All rights reserved.
@@ -8,7 +8,7 @@
 
 //
 //  ViewControllerElementCell.swift
-//  GigSalad
+//  Elemental
 //
 //  Created by Leif Meyer on 3/10/17.
 //  Copyright © 2017 Incipia. All rights reserved.

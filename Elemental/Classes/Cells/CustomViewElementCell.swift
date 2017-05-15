@@ -1,6 +1,6 @@
 //
 //  CustomViewElementCell.swift
-//  GigSalad
+//  Elemental
 //
 //  Created by Gregory Klein on 2/23/17.
 //  Copyright © 2017 Incipia. All rights reserved.

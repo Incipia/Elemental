@@ -1,6 +1,6 @@
 //
 //  VerticalLineElementCell.swift
-//  GigSalad
+//  Elemental
 //
 //  Created by Leif Meyer on 3/18/17.
 //  Copyright © 2017 Incipia. All rights reserved.

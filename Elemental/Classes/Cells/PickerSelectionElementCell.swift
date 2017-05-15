@@ -1,6 +1,6 @@
 //
 //  PickerElementCell.swift
-//  GigSalad
+//  Elemental
 //
 //  Created by Gregory Klein on 4/26/17.
 //  Copyright © 2017 Incipia. All rights reserved.
