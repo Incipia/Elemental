@@ -100,7 +100,7 @@ open class IncFormPickerConfiguration: ElementalConfiguration, PickerElementConf
    }
 }
 
-public enum IncFormRadioAlignment {
+public enum RadioElementAlignment {
    case left, right
 }
 
@@ -108,16 +108,16 @@ public protocol RadioElementConfiguring: ElementalConfiguring {
    var nameStyle: ElementalTextStyling { get }
    var componentStyle: ElementalTextStyling { get }
    var fillColor: UIColor? { get }
-   var alignment: IncFormRadioAlignment { get }
+   var alignment: RadioElementAlignment { get }
 }
 
 open class IncFormRadioConfiguration: ElementalConfiguration, RadioElementConfiguring {
    public let nameStyle: ElementalTextStyling
    public let componentStyle: ElementalTextStyling
    public let fillColor: UIColor?
-   public let alignment: IncFormRadioAlignment
+   public let alignment: RadioElementAlignment
    
-   public init(nameStyle: ElementalTextStyling = IncFormTextStyle(), componentStyle: ElementalTextStyling = IncFormTextStyle(), fillColor: UIColor? = nil, alignment: IncFormRadioAlignment = .left) {
+   public init(nameStyle: ElementalTextStyling = IncFormTextStyle(), componentStyle: ElementalTextStyling = IncFormTextStyle(), fillColor: UIColor? = nil, alignment: RadioElementAlignment = .left) {
       self.nameStyle = nameStyle
       self.componentStyle = componentStyle
       self.fillColor = fillColor

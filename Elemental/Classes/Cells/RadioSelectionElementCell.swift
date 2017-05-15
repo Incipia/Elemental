@@ -106,7 +106,7 @@ class RadioSelectionElementCell: BindableElementCell {
       _collapseRadioViews(for: element.configuration.alignment)
    }
    
-   private func _collapseRadioViews(for alignment: IncFormRadioAlignment) {
+   private func _collapseRadioViews(for alignment: RadioElementAlignment) {
       switch alignment {
       case .right:
          _leftCollapsableRadioConstraints.forEach { $0.constant = 0 }
