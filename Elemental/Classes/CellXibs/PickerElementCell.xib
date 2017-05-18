@@ -71,11 +71,11 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IYr-Ib-4yD">
-                        <rect key="frame" x="0.0" y="110.5" width="375" height="173"/>
+                        <rect key="frame" x="0.0" y="130.5" width="375" height="173"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O8e-wZ-Kz7">
-                        <rect key="frame" x="0.0" y="89.5" width="375" height="216"/>
+                        <rect key="frame" x="0.0" y="109.5" width="375" height="216"/>
                         <connections>
                             <outlet property="dataSource" destination="PTo-jW-den" id="7Dq-Od-0ex"/>
                             <outlet property="delegate" destination="PTo-jW-den" id="Hu0-YM-dKq"/>
@@ -92,7 +92,7 @@
                 <constraint firstItem="vNt-1n-ccU" firstAttribute="leading" secondItem="PTo-jW-den" secondAttribute="leading" id="9dS-3Y-grm"/>
                 <constraint firstItem="E0J-4t-auG" firstAttribute="top" secondItem="gM4-zj-sp6" secondAttribute="bottom" constant="10" id="I7Y-m9-ctP"/>
                 <constraint firstItem="vNt-1n-ccU" firstAttribute="trailing" secondItem="Nih-L6-yqd" secondAttribute="leading" constant="-10" id="XHU-Vf-VJc"/>
-                <constraint firstItem="O8e-wZ-Kz7" firstAttribute="top" secondItem="E0J-4t-auG" secondAttribute="bottom" constant="-20" id="Z97-aU-R87"/>
+                <constraint firstItem="O8e-wZ-Kz7" firstAttribute="top" secondItem="E0J-4t-auG" secondAttribute="bottom" id="Z97-aU-R87"/>
                 <constraint firstItem="vNt-1n-ccU" firstAttribute="leading" secondItem="UQd-Ti-HSy" secondAttribute="trailing" constant="10" id="aOu-uu-lY3"/>
                 <constraint firstItem="IYr-Ib-4yD" firstAttribute="centerX" secondItem="O8e-wZ-Kz7" secondAttribute="centerX" id="ad1-Om-ciJ"/>
                 <constraint firstItem="IYr-Ib-4yD" firstAttribute="height" secondItem="O8e-wZ-Kz7" secondAttribute="height" multiplier="0.8" id="cBz-NC-Jpr"/>
