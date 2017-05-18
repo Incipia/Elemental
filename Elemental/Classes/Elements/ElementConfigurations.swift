@@ -69,6 +69,7 @@ public protocol PickerElementConfiguring: ElementalConfiguring {
    var buttonStyle: ElementalTextStyling { get }
    var buttonHeight: CGFloat { get }
    var buttonBackgroundColor: UIColor { get }
+   var pickerBackgroundColor: UIColor? { get }
    var inputState: InputElementState { get }
    var leftAccessoryImageTintColor: UIColor { get }
    var rightAccessoryImageTintColor: UIColor { get }
@@ -83,12 +84,13 @@ open class PickerElementConfiguration: ElementalConfiguration, PickerElementConf
    public var buttonStyle: ElementalTextStyling
    public var buttonHeight: CGFloat
    public var buttonBackgroundColor: UIColor
+   public var pickerBackgroundColor: UIColor?
    public var inputState: InputElementState
    public var leftAccessoryImageTintColor: UIColor
    public var rightAccessoryImageTintColor: UIColor
    weak public var layoutDelegate: ElementalLayoutDelegate?
    
-   public init(nameStyle: ElementalTextStyling = ElementalTextStyle(), detailStyle: ElementalTextStyling? = nil, placeholderStyle: ElementalTextStyling? = nil, optionStyle: ElementalTextStyling? = nil, buttonStyle: ElementalTextStyling = ElementalTextStyle(), buttonHeight: CGFloat = 64, buttonBackgroundColor: UIColor = .gray, inputState: InputElementState = .unfocused, leftAccessoryImageTintColor: UIColor = .gray, rightAccessoryImageTintColor: UIColor = .gray, layoutDelegate: ElementalLayoutDelegate? = nil) {
+   public init(nameStyle: ElementalTextStyling = ElementalTextStyle(), detailStyle: ElementalTextStyling? = nil, placeholderStyle: ElementalTextStyling? = nil, optionStyle: ElementalTextStyling? = nil, buttonStyle: ElementalTextStyling = ElementalTextStyle(), buttonHeight: CGFloat = 64, buttonBackgroundColor: UIColor = .gray, pickerBackgroundColor: UIColor? = nil, inputState: InputElementState = .unfocused, leftAccessoryImageTintColor: UIColor = .gray, rightAccessoryImageTintColor: UIColor = .gray, layoutDelegate: ElementalLayoutDelegate? = nil) {
       self.nameStyle = nameStyle
       self.detailStyle = detailStyle
       self.placeholderStyle = placeholderStyle
@@ -96,6 +98,7 @@ open class PickerElementConfiguration: ElementalConfiguration, PickerElementConf
       self.buttonStyle = buttonStyle
       self.buttonHeight = buttonHeight
       self.buttonBackgroundColor = buttonBackgroundColor
+      self.pickerBackgroundColor = pickerBackgroundColor
       self.inputState = inputState
       self.leftAccessoryImageTintColor = leftAccessoryImageTintColor
       self.rightAccessoryImageTintColor = rightAccessoryImageTintColor
