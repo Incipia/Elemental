@@ -24,11 +24,12 @@ class PickerElementCell: BindableElementCell {
    // MARK: - Constraint Outlets
    @IBOutlet fileprivate var _leftAccessoryImageViewWidthConstraint: NSLayoutConstraint!
    @IBOutlet fileprivate var _rightAccessoryImageViewWidthConstraint: NSLayoutConstraint!
-   @IBOutlet fileprivate var _leftImageViewHorizontalSpaceConstraint: NSLayoutConstraint!
    @IBOutlet fileprivate var _rightImageViewHorizontalSpaceConstraint: NSLayoutConstraint!
    @IBOutlet fileprivate var _nameVerticalSpaceConstraint: NSLayoutConstraint!
    @IBOutlet fileprivate var _detailVerticalSpaceConstraint: NSLayoutConstraint!
    @IBOutlet fileprivate var _buttonHeightConstraint: NSLayoutConstraint!
+   
+   @IBOutlet fileprivate var _leftImageViewHorizontalSpaceConstraints: [NSLayoutConstraint]!
    
    @IBOutlet fileprivate var _horizontalConstraints: [NSLayoutConstraint]!
    @IBOutlet fileprivate var _verticalConstraints: [NSLayoutConstraint]!
@@ -189,7 +190,7 @@ class PickerElementCell: BindableElementCell {
       _leftAccessoryImageView.image = element.content.leftAccessoryImage
       _leftAccessoryImageView.tintColor = element.configuration.leftAccessoryImageTintColor
       _leftAccessoryImageViewWidthConstraint.constant = _leftAccessoryImageView.image != nil ? 20 : 0
-      _leftImageViewHorizontalSpaceConstraint.constant = _leftAccessoryImageView.image != nil ? 10 : 0
+      _leftImageViewHorizontalSpaceConstraints.forEach { $0.constant = _leftAccessoryImageView.image != nil ? 10 : 0 }
       _rightAccessoryImageView.image = element.content.rightAccessoryImage
       _rightAccessoryImageView.tintColor = element.configuration.rightAccessoryImageTintColor
       _rightAccessoryImageViewWidthConstraint.constant = _rightAccessoryImageView.image != nil ? 20 : 0

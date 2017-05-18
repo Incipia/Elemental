@@ -29,13 +29,14 @@
                         <rect key="frame" x="0.0" y="61.5" width="375" height="48"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nih-L6-yqd">
-                                <rect key="frame" x="44" y="14" width="287" height="21"/>
+                                <rect key="frame" x="40" y="14" width="295" height="21"/>
+                                <color key="backgroundColor" red="0.2666666667" green="0.72941176470000002" blue="0.78039215689999997" alpha="1" colorSpace="deviceRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="calendar_icon" translatesAutoresizingMaskIntoConstraints="NO" id="UQd-Ti-HSy">
-                                <rect key="frame" x="14" y="14" width="20" height="20"/>
+                                <rect key="frame" x="10" y="14" width="20" height="20"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="cb0-2t-eTU"/>
@@ -43,7 +44,7 @@
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="calendar_icon" translatesAutoresizingMaskIntoConstraints="NO" id="sYd-5A-ZCO">
-                                <rect key="frame" x="341" y="14" width="20" height="20"/>
+                                <rect key="frame" x="345" y="14" width="20" height="20"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="20" id="9Bv-1D-so5"/>
@@ -59,9 +60,9 @@
                             <constraint firstItem="Nih-L6-yqd" firstAttribute="leading" secondItem="UQd-Ti-HSy" secondAttribute="trailing" constant="10" id="egK-Qg-YNX"/>
                             <constraint firstItem="sYd-5A-ZCO" firstAttribute="leading" secondItem="Nih-L6-yqd" secondAttribute="trailing" constant="10" id="fpy-EA-OtC"/>
                             <constraint firstItem="Nih-L6-yqd" firstAttribute="centerY" secondItem="E0J-4t-auG" secondAttribute="centerY" id="knV-uO-666"/>
-                            <constraint firstItem="UQd-Ti-HSy" firstAttribute="leading" secondItem="E0J-4t-auG" secondAttribute="leading" constant="14" id="nXf-WX-8Fa"/>
+                            <constraint firstItem="UQd-Ti-HSy" firstAttribute="leading" secondItem="E0J-4t-auG" secondAttribute="leading" constant="10" id="nXf-WX-8Fa"/>
                             <constraint firstItem="UQd-Ti-HSy" firstAttribute="centerY" secondItem="E0J-4t-auG" secondAttribute="centerY" id="pGY-XB-2cp"/>
-                            <constraint firstAttribute="trailing" secondItem="sYd-5A-ZCO" secondAttribute="trailing" constant="14" id="zvB-bM-dJS"/>
+                            <constraint firstAttribute="trailing" secondItem="sYd-5A-ZCO" secondAttribute="trailing" constant="10" id="zvB-bM-dJS"/>
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vNt-1n-ccU">
@@ -123,7 +124,6 @@
                 <outlet property="_detailVerticalSpaceConstraint" destination="I7Y-m9-ctP" id="Mm2-HT-nzK"/>
                 <outlet property="_leftAccessoryImageView" destination="UQd-Ti-HSy" id="thZ-vo-QOk"/>
                 <outlet property="_leftAccessoryImageViewWidthConstraint" destination="ihY-Rh-FoL" id="dhl-PJ-IXc"/>
-                <outlet property="_leftImageViewHorizontalSpaceConstraint" destination="egK-Qg-YNX" id="Ks5-fh-Hkj"/>
                 <outlet property="_nameLabel" destination="vNt-1n-ccU" id="F4B-PO-dYM"/>
                 <outlet property="_nameVerticalSpaceConstraint" destination="6SO-bd-jxM" id="AEe-o4-cVh"/>
                 <outlet property="_pickerBackgroundView" destination="IYr-Ib-4yD" id="J2n-69-GYi"/>
@@ -140,6 +140,8 @@
                 <outletCollection property="_verticalConstraints" destination="rbh-ec-6AM" collectionClass="NSMutableArray" id="J5t-xw-JLK"/>
                 <outletCollection property="_verticalConstraints" destination="6SO-bd-jxM" collectionClass="NSMutableArray" id="nsz-xR-7QV"/>
                 <outletCollection property="_verticalConstraints" destination="egK-Qg-YNX" collectionClass="NSMutableArray" id="JkP-KK-e71"/>
+                <outletCollection property="_leftImageViewHorizontalSpaceConstraints" destination="egK-Qg-YNX" collectionClass="NSMutableArray" id="FHw-nK-592"/>
+                <outletCollection property="_leftImageViewHorizontalSpaceConstraints" destination="aOu-uu-lY3" collectionClass="NSMutableArray" id="8Zc-di-tHQ"/>
             </connections>
             <point key="canvasLocation" x="-95.5" y="-17.5"/>
         </collectionViewCell>
