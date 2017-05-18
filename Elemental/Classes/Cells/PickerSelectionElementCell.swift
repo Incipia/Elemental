@@ -128,7 +128,7 @@ class PickerElementCell: BindableElementCell {
       _options = element.content.options.map { return (option: $0, dataValue: ElementCell.dataValue($0.value)) }
       guard Set(_options.map { return $0.dataValue }).count == _options.count else { fatalError() }
 
-      _pickerBackgroundView.backgroundColor = config.buttonBackgroundColor
+      _pickerBackgroundView.backgroundColor = config.pickerBackgroundColor ?? config.buttonBackgroundColor
       _pickerView.reloadAllComponents()
 
       _selectedValue = _selectedOption?.value
@@ -154,7 +154,7 @@ class PickerElementCell: BindableElementCell {
       
       let nameHeight = config.layoutDirection == .horizontal ? 0 : content.name?.heightWithConstrainedWidth(width: width, font: config.nameStyle.font) ?? 0
       let namePadding: CGFloat = nameHeight != 0 ? 10 : 0
-      let pickerHeight: CGFloat = element.inputState == .focused ? 216 : 0
+      let pickerHeight: CGFloat = element.inputState == .focused ? (216 * 0.8) + 20 : 0
       
       guard let detail = content.detail, let detailFont = config.detailStyle?.font else {
          return CGSize(width: finalWidth, height: nameHeight + namePadding + config.buttonHeight + pickerHeight)
