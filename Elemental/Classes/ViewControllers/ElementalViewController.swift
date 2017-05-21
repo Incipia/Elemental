@@ -61,6 +61,7 @@ open class ElementalViewController: UIViewController {
    }()
 
    fileprivate var _animatingIndexPaths: [IndexPath]?
+   fileprivate var _needsReload: Bool = false
    fileprivate var _needsLayout: Bool = false
    fileprivate var _needsAnimatedLayout: Bool = false
    fileprivate var _elements: [Elemental] = []
@@ -155,8 +156,18 @@ open class ElementalViewController: UIViewController {
    }
    
    open func reload() {
+      _needsReload = false
       loadViewIfNeeded()
       configure(with: generateElements() ?? _elements, scrollToTop: false)
+   }
+   
+   public func setNeedsReload() {
+      guard !_needsReload else { return }
+      _needsReload = true
+      DispatchQueue.main.async {
+         guard self._needsReload else { return }
+         self.reload()
+      }
    }
    
    public func setNeedsLayout(animated: Bool = true) {
