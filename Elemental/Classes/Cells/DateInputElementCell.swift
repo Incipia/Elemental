@@ -84,7 +84,8 @@ class DateInputElementCell: BindableElementCell {
       _updateIndicatorColor()
    }
    
-   override class func contentSize(for element: Elemental, constrainedWidth width: CGFloat) -> CGSize {
+   override class func intrinsicContentSize(for element: Elemental, constrainedSize size: CGSize) -> CGSize {
+      let width = size.width
       guard let element = element as? DateInputElement else { fatalError() }
       let content = element.content
       let config = element.configuration

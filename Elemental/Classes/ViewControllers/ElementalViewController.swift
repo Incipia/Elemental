@@ -182,8 +182,9 @@ open class ElementalViewController: UIViewController {
    
    public func contentSize(constrainedWidth width: CGFloat) -> CGSize {
       var height: CGFloat = 0
+      let size = CGSize(width: width, height: collectionView.bounds.height)
       _elements.forEach { component in
-         height += component.size(forConstrainedDimension: .horizontal(width)).height
+         height += component.size(forConstrainedSize: size, layoutDirection: .vertical).height
       }
       height += CGFloat(max(0, _elements.count - 1)) * componentPadding
       return CGSize(width: width, height: height)
@@ -287,15 +288,6 @@ extension ElementalViewController {
          self._animatingIndexPaths = nil
       })
    }
-   
-   func contentSize(constraintedWidth width: CGFloat) -> CGSize {
-      var height: CGFloat = 0
-      _elements.forEach { component in
-         height += component.size(forConstrainedDimension: .horizontal(width)).height
-      }
-      height += CGFloat(max(0, _elements.count - 1)) * componentPadding
-      return CGSize(width: width, height: height)
-   }
 }
 
 extension ElementalViewController: UICollectionViewDataSource {
@@ -318,8 +310,9 @@ extension ElementalViewController: UICollectionViewDelegateFlowLayout {
       let component = _elements[indexPath.row]
       let padding: CGFloat = component.elementalConfig.isConfinedToMargins ? (sidePadding * 2) : 0.0
       let maxWidth: CGFloat = collectionView.bounds.width - padding
+      let size = CGSize(width: maxWidth, height: collectionView.bounds.size.height)
       
-      return component.size(forConstrainedDimension: .horizontal(maxWidth))
+      return component.size(forConstrainedSize: size, layoutDirection: .vertical)
    }
    
    public func collectionView(_ collectionView: UICollectionView,

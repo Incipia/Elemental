@@ -132,7 +132,8 @@ class ThumbnailElementCell: BindableElementCell {
    }
    
    // MARK: - Size
-   override class func contentSize(for element: Elemental, constrainedWidth width: CGFloat) -> CGSize {
+   override class func intrinsicContentSize(for element: Elemental, constrainedSize size: CGSize) -> CGSize {
+      let width = size.width
       guard let element = element as? ThumbnailElement else { fatalError() }
       let content = element.content
       let style = element.configuration

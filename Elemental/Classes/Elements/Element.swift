@@ -67,7 +67,7 @@ open class Element: Elemental {
       configure(cell: cell, in: _containerViewController)
    }
    
-   open func size(forConstrainedDimension dimension: ElementalDimension) -> CGSize { fatalError() }
+   open func size(forConstrainedSize size: CGSize, layoutDirection direction: ElementalLayoutDirection) -> CGSize { fatalError() }
    
    // MARK: - Public Class Methods
    public class func form(_ elements: [Element]) -> [Elemental] {
@@ -97,10 +97,10 @@ public class TextElement: Element {
    }
    
    // MARK: - Elemental Protocol
-   override public func size(forConstrainedDimension dimension: ElementalDimension) -> CGSize {
-      switch dimension {
-      case .horizontal(let width): return TextElementCell.contentSize(for: self, constrainedWidth: width)
-      case .vertical: fatalError("\(type(of: self)) does not support \(dimension) constraint")
+   public override func size(forConstrainedSize size: CGSize, layoutDirection direction: ElementalLayoutDirection) -> CGSize {
+      switch direction {
+      case .vertical: return TextElementCell.contentSize(for: self, constrainedSize: size)
+      case .horizontal: fatalError("\(type(of: self)) does not support \(direction) constraint")
       }
    }
 }
@@ -118,10 +118,10 @@ public class IconElement: Element {
    }
    
    // MARK: - Elemental Protocol
-   override public func size(forConstrainedDimension dimension: ElementalDimension) -> CGSize {
-      switch dimension {
-      case .horizontal(let width): return IconElementCell.contentSize(for: self, constrainedWidth: width)
-      case .vertical: fatalError("\(type(of: self)) does not support \(dimension) constraint")
+   public override func size(forConstrainedSize size: CGSize, layoutDirection direction: ElementalLayoutDirection) -> CGSize {
+      switch direction {
+      case .vertical: return IconElementCell.contentSize(for: self, constrainedSize: size)
+      case .horizontal: fatalError("\(type(of: self)) does not support \(direction) constraint")
       }
    }
 }
@@ -143,10 +143,10 @@ public class AccessoryElement: Element, BindableElemental {
    }
    
    // MARK: - Elemental Protocol
-   override public func size(forConstrainedDimension dimension: ElementalDimension) -> CGSize {
-      switch dimension {
-      case .horizontal(let width): return AccessoryElementCell.contentSize(for: self, constrainedWidth: width)
-      case .vertical: fatalError("\(type(of: self)) does not support \(dimension) constraint")
+   public override func size(forConstrainedSize size: CGSize, layoutDirection direction: ElementalLayoutDirection) -> CGSize {
+      switch direction {
+      case .vertical: return AccessoryElementCell.contentSize(for: self, constrainedSize: size)
+      case .horizontal: fatalError("\(type(of: self)) does not support \(direction) constraint")
       }
    }
 }
@@ -168,10 +168,10 @@ public class ThumbnailElement: Element, BindableElemental {
    }
    
    // MARK: - Elemental Protocol
-   override public func size(forConstrainedDimension dimension: ElementalDimension) -> CGSize {
-      switch dimension {
-      case .horizontal(let width): return ThumbnailElementCell.contentSize(for: self, constrainedWidth: width)
-      case .vertical: fatalError("\(type(of: self)) does not support \(dimension) constraint")
+   public override func size(forConstrainedSize size: CGSize, layoutDirection direction: ElementalLayoutDirection) -> CGSize {
+      switch direction {
+      case .vertical: return ThumbnailElementCell.contentSize(for: self, constrainedSize: size)
+      case .horizontal: fatalError("\(type(of: self)) does not support \(direction) constraint")
       }
    }
 }
@@ -191,10 +191,10 @@ public class SwitchElement: Element, BindableElemental {
    }
    
    // MARK: - Elemental Protocol
-   override public func size(forConstrainedDimension dimension: ElementalDimension) -> CGSize {
-      switch dimension {
-      case .horizontal(let width): return SwitchElementCell.contentSize(for: self, constrainedWidth: width)
-      case .vertical: fatalError("\(type(of: self)) does not support \(dimension) constraint")
+   public override func size(forConstrainedSize size: CGSize, layoutDirection direction: ElementalLayoutDirection) -> CGSize {
+      switch direction {
+      case .vertical: return SwitchElementCell.contentSize(for: self, constrainedSize: size)
+      case .horizontal: fatalError("\(type(of: self)) does not support \(direction) constraint")
       }
    }
 }
@@ -212,10 +212,10 @@ public class DropdownElement: Element {
    }
    
    // MARK: - Elemental Protocol
-   override public func size(forConstrainedDimension dimension: ElementalDimension) -> CGSize {
-      switch dimension {
-      case .horizontal(let width): return DropdownElementCell.contentSize(for: self, constrainedWidth: width)
-      case .vertical: fatalError("\(type(of: self)) does not support \(dimension) constraint")
+   public override func size(forConstrainedSize size: CGSize, layoutDirection direction: ElementalLayoutDirection) -> CGSize {
+      switch direction {
+      case .vertical: return DropdownElementCell.contentSize(for: self, constrainedSize: size)
+      case .horizontal: fatalError("\(type(of: self)) does not support \(direction) constraint")
       }
    }
 }
@@ -253,10 +253,10 @@ public class PickerElement: Element, BindableElemental {
    }
    
    // MARK: - Elemental Protocol
-   override public func size(forConstrainedDimension dimension: ElementalDimension) -> CGSize {
-      switch dimension {
-      case .horizontal(let width): return PickerElementCell.contentSize(for: self, constrainedWidth: width)
-      case .vertical: fatalError("\(type(of: self)) does not support \(dimension) constraint")
+   public override func size(forConstrainedSize size: CGSize, layoutDirection direction: ElementalLayoutDirection) -> CGSize {
+      switch direction {
+      case .vertical: return PickerElementCell.contentSize(for: self, constrainedSize: size)
+      case .horizontal: fatalError("\(type(of: self)) does not support \(direction) constraint")
       }
    }
 }
@@ -292,10 +292,10 @@ public class RadioSelectionElement: Element, BindableElemental {
    }
    
    // MARK: - Elemental Protocol
-   override public func size(forConstrainedDimension dimension: ElementalDimension) -> CGSize {
-      switch dimension {
-      case .horizontal(let width): return RadioSelectionElementCell.contentSize(for: self, constrainedWidth: width)
-      case .vertical: fatalError("\(type(of: self)) does not support \(dimension) constraint")
+   public override func size(forConstrainedSize size: CGSize, layoutDirection direction: ElementalLayoutDirection) -> CGSize {
+      switch direction {
+      case .vertical: return RadioSelectionElementCell.contentSize(for: self, constrainedSize: size)
+      case .horizontal: fatalError("\(type(of: self)) does not support \(direction) constraint")
       }
    }
 }
@@ -317,10 +317,10 @@ public class TextFieldInputElement: Element, BindableElemental {
    }
    
    // MARK: - Elemental Protocol
-   override public func size(forConstrainedDimension dimension: ElementalDimension) -> CGSize {
-      switch dimension {
-      case .horizontal(let width): return TextFieldInputElementCell.contentSize(for: self, constrainedWidth: width)
-      case .vertical: fatalError("\(type(of: self)) does not support \(dimension) constraint")
+   public override func size(forConstrainedSize size: CGSize, layoutDirection direction: ElementalLayoutDirection) -> CGSize {
+      switch direction {
+      case .vertical: return TextFieldInputElementCell.contentSize(for: self, constrainedSize: size)
+      case .horizontal: fatalError("\(type(of: self)) does not support \(direction) constraint")
       }
    }
 }
@@ -342,10 +342,10 @@ public class TextViewInputElement: Element, BindableElemental {
    }
    
    // MARK: - Elemental Protocol
-   override public func size(forConstrainedDimension dimension: ElementalDimension) -> CGSize {
-      switch dimension {
-      case .horizontal(let width): return TextViewInputElementCell.contentSize(for: self, constrainedWidth: width)
-      case .vertical: fatalError("\(type(of: self)) does not support \(dimension) constraint")
+   public override func size(forConstrainedSize size: CGSize, layoutDirection direction: ElementalLayoutDirection) -> CGSize {
+      switch direction {
+      case .vertical: return TextViewInputElementCell.contentSize(for: self, constrainedSize: size)
+      case .horizontal: fatalError("\(type(of: self)) does not support \(direction) constraint")
       }
    }
 }
@@ -369,10 +369,10 @@ public class DateInputElement: Element, BindableElemental {
    }
    
    // MARK: - Elemental Protocol
-   override public func size(forConstrainedDimension dimension: ElementalDimension) -> CGSize {
-      switch dimension {
-      case .horizontal(let width): return DateInputElementCell.contentSize(for: self, constrainedWidth: width)
-      case .vertical: fatalError("\(type(of: self)) does not support \(dimension) constraint")
+   public override func size(forConstrainedSize size: CGSize, layoutDirection direction: ElementalLayoutDirection) -> CGSize {
+      switch direction {
+      case .vertical: return DateInputElementCell.contentSize(for: self, constrainedSize: size)
+      case .horizontal: fatalError("\(type(of: self)) does not support \(direction) constraint")
       }
    }
 }
@@ -392,10 +392,10 @@ public class HorizontalLineElement: Element {
       return false
    }
    
-   override public func size(forConstrainedDimension dimension: ElementalDimension) -> CGSize {
-      switch dimension {
-      case .horizontal(let width): return HorizontalLineElementCell.contentSize(for: self, constrainedWidth: width)
-      case .vertical: fatalError("\(type(of: self)) does not support \(dimension) constraint")
+   public override func size(forConstrainedSize size: CGSize, layoutDirection direction: ElementalLayoutDirection) -> CGSize {
+      switch direction {
+      case .vertical: return HorizontalLineElementCell.contentSize(for: self, constrainedSize: size)
+      case .horizontal: fatalError("\(type(of: self)) does not support \(direction) constraint")
       }
    }
 }
@@ -417,10 +417,10 @@ public class VerticalSpaceElement: Element {
       return false
    }
    
-   override public func size(forConstrainedDimension dimension: ElementalDimension) -> CGSize {
-      switch dimension {
-      case .horizontal(let width): return HorizontalLineElementCell.contentSize(for: self, constrainedWidth: width)
-      case .vertical: fatalError("\(type(of: self)) does not support \(dimension) constraint")
+   public override func size(forConstrainedSize size: CGSize, layoutDirection direction: ElementalLayoutDirection) -> CGSize {
+      switch direction {
+      case .vertical: return HorizontalLineElementCell.contentSize(for: self, constrainedSize: size)
+      case .horizontal: fatalError("\(type(of: self)) does not support \(direction) constraint")
       }
    }
 }
@@ -437,10 +437,10 @@ public class CustomViewElement: Element {
    }
    
    // MARK: - Elemental Protocol
-   override public func size(forConstrainedDimension dimension: ElementalDimension) -> CGSize {
-      switch dimension {
-      case .horizontal(let width): return CustomViewElementCell.contentSize(for: self, constrainedWidth: width)
-      case .vertical: fatalError("\(type(of: self)) does not support \(dimension) constraint")
+   public override func size(forConstrainedSize size: CGSize, layoutDirection direction: ElementalLayoutDirection) -> CGSize {
+      switch direction {
+      case .vertical: return CustomViewElementCell.contentSize(for: self, constrainedSize: size)
+      case .horizontal: fatalError("\(type(of: self)) does not support \(direction) constraint")
       }
    }
 }
@@ -465,10 +465,10 @@ public class CustomViewControllerElement: Element {
       vcCell.containerVC = containerViewController
    }
    
-   override public func size(forConstrainedDimension dimension: ElementalDimension) -> CGSize {
-      switch dimension {
-      case .horizontal(let width): return CustomViewControllerElementCell.contentSize(for: self, constrainedWidth: width)
-      case .vertical: fatalError("\(type(of: self)) does not support \(dimension) constraint")
+   public override func size(forConstrainedSize size: CGSize, layoutDirection direction: ElementalLayoutDirection) -> CGSize {
+      switch direction {
+      case .vertical: return CustomViewControllerElementCell.contentSize(for: self, constrainedSize: size)
+      case .horizontal: fatalError("\(type(of: self)) does not support \(direction) constraint")
       }
    }
 }
@@ -497,10 +497,10 @@ public class HorizontalFormElement: Element {
       cell.delegate = containerViewController as? HorizontalFormElementCellDelegate
    }
    
-   override public func size(forConstrainedDimension dimension: ElementalDimension) -> CGSize {
-      switch dimension {
-      case .horizontal(let width): return HorizontalFormElementCell.contentSize(for: self, constrainedWidth: width)
-      case .vertical: fatalError("\(type(of: self)) does not support \(dimension) constraint")
+   public override func size(forConstrainedSize size: CGSize, layoutDirection direction: ElementalLayoutDirection) -> CGSize {
+      switch direction {
+      case .vertical: return HorizontalFormElementCell.contentSize(for: self, constrainedSize: size)
+      case .horizontal: fatalError("\(type(of: self)) does not support \(direction) constraint")
       }
    }
 }
@@ -521,10 +521,10 @@ public class HorizontalSpaceElement: Element {
       return false
    }
    
-   override public func size(forConstrainedDimension dimension: ElementalDimension) -> CGSize {
-      switch dimension {
-      case .horizontal(let width): return VerticalLineElementCell.contentSize(for: self, constrainedWidth: width)
-      case .vertical: fatalError("\(type(of: self)) does not support \(dimension) constraint")
+   public override func size(forConstrainedSize size: CGSize, layoutDirection direction: ElementalLayoutDirection) -> CGSize {
+      switch direction {
+      case .vertical: return VerticalLineElementCell.contentSize(for: self, constrainedSize: size)
+      case .horizontal: fatalError("\(type(of: self)) does not support \(direction) constraint")
       }
    }
 }
@@ -544,10 +544,10 @@ public class VerticalLineElement: Element {
       return false
    }
    
-   override public func size(forConstrainedDimension dimension: ElementalDimension) -> CGSize {
-      switch dimension {
-      case .horizontal(let width): return VerticalLineElementCell.contentSize(for: self, constrainedWidth: width)
-      case .vertical: fatalError("\(type(of: self)) does not support \(dimension) constraint")
+   public override func size(forConstrainedSize size: CGSize, layoutDirection direction: ElementalLayoutDirection) -> CGSize {
+      switch direction {
+      case .vertical: return VerticalLineElementCell.contentSize(for: self, constrainedSize: size)
+      case .horizontal: fatalError("\(type(of: self)) does not support \(direction) constraint")
       }
    }
 }

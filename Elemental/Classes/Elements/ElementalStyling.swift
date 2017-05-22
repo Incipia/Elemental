@@ -15,6 +15,7 @@ public enum ElementalLayoutDirection {
 
 // MARK: - Sizing
 public enum ElementalSizeConstraint {
+   case intrinsic
    case constant(CGFloat)
    case multiplier(CGFloat)
    case calc(constant: CGFloat, multiplier: CGFloat)

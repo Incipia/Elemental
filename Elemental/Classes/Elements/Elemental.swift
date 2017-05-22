@@ -9,11 +9,6 @@
 import UIKit
 import Bindable
 
-public enum ElementalDimension {
-   case horizontal(CGFloat)
-   case vertical(CGFloat)
-}
-
 public protocol Elemental {
    var cellID: String { get }
    var elementalConfig: ElementalConfiguring { get }
@@ -21,7 +16,7 @@ public protocol Elemental {
    func register(collectionView cv: UICollectionView)
    func configure(cell: UICollectionViewCell, in containerViewController: UIViewController?)
    func reconfigure(cell: UICollectionViewCell, for element: Elemental, in containerViewController: UIViewController?)
-   func size(forConstrainedDimension dimension: ElementalDimension) -> CGSize
+   func size(forConstrainedSize size: CGSize, layoutDirection direction: ElementalLayoutDirection) -> CGSize
 }
 
 public extension Elemental {
