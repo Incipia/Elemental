@@ -13,6 +13,14 @@ public enum ElementalLayoutDirection {
    case horizontal, vertical
 }
 
+// MARK: - Sizing
+public enum ElementalSizeConstraint {
+   case constant(CGFloat)
+   case multiplier(CGFloat)
+   case calc(constant: CGFloat, multiplier: CGFloat)
+   case callback((CGSize) -> CGFloat)
+}
+
 // MARK: - Text Styling
 public protocol ElementalTextStyling {
    var font: UIFont { get }
