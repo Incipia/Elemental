@@ -448,14 +448,12 @@ public class CustomViewElement: Element {
 
 public class CustomViewControllerElement: Element {
    // MARK: - Public Properties
-   public let viewController : UIViewController
-   weak var sizeDelegate: ElementalSizeDelegate?
+   public let viewController: UIViewController
    
    // MARK: - Init
-   public init(viewController : UIViewController, sizeDelegate: ElementalSizeDelegate) {
+   public init(viewController: UIViewController, configuration: ElementalConfiguring = ElementalConfiguration()) {
       self.viewController  = viewController
-      self.sizeDelegate = sizeDelegate
-      super.init(configuration: ElementalConfiguration())
+      super.init(configuration: configuration)
    }
    
    // MARK: - Elemental Protocol
@@ -609,8 +607,9 @@ public extension Element {
       return CustomViewElement(view: view)
    }
    
-   class func viewController(_ viewController: UIViewController, sizeDelegate: ElementalSizeDelegate) -> Element {
-      return CustomViewControllerElement(viewController: viewController, sizeDelegate: sizeDelegate)
+   class func viewController(_ viewController: UIViewController, sizeConstraint: ElementalSize) -> Element {
+      let config = ElementalConfiguration(sizeConstraint: sizeConstraint)
+      return CustomViewControllerElement(viewController: viewController, configuration: config)
    }
    
    class func horizontalForm(elements: [Elemental]) -> Element {

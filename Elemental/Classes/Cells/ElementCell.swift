@@ -27,7 +27,10 @@ public class ElementCell: UICollectionViewCell, ElementalCell {
    
    // MARK: - ElementalCell Protocol
    class func contentSize(for element: Elemental, constrainedSize size: CGSize) -> CGSize {
-      return intrinsicContentSize(for: element, constrainedSize: size)
+      guard let element = element as? Element else { return size }
+      
+      var intrinsicSize = intrinsicContentSize(for: element, constrainedSize: size)
+      return size.constrained(to: element.elementalConfig.sizeConstraint, intrinsicSize: intrinsicSize)
    }
    
    class func intrinsicContentSize(for element: Elemental, constrainedSize size: CGSize) -> CGSize { fatalError() }

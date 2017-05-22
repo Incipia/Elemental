@@ -14,6 +14,7 @@ public protocol ElementalConfiguring {
    var isSelectable: Bool { get }
    var width: CGFloat? { get }
    var height: CGFloat? { get }
+   var sizeConstraint: ElementalSize { get }
    var isConfinedToMargins: Bool { get }
    var layoutDirection: ElementalLayoutDirection { get }
 }
@@ -24,6 +25,7 @@ public extension ElementalConfiguring {
    var isSelectable: Bool { return true }
    var width: CGFloat? { return nil }
    var height: CGFloat? { return nil }
+   var sizeConstraint: ElementalSize { return ElementalSize() }
    var isConfinedToMargins: Bool { return true }
    var layoutDirection: ElementalLayoutDirection { return .vertical }
 }
@@ -34,15 +36,17 @@ open class ElementalConfiguration: ElementalConfiguring {
    public var isSelectable: Bool
    public var width: CGFloat?
    public var height: CGFloat?
+   public var sizeConstraint: ElementalSize
    public var isConfinedToMargins: Bool
    public var layoutDirection: ElementalLayoutDirection
    
-   public init(backgroundColor: UIColor = .clear, insets: UIEdgeInsets = .zero, isSelectable: Bool = true, width: CGFloat? = nil, height: CGFloat? = nil, isConfinedToMargins: Bool = true, layoutDirection: ElementalLayoutDirection = .vertical) {
+   public init(backgroundColor: UIColor = .clear, insets: UIEdgeInsets = .zero, isSelectable: Bool = true, width: CGFloat? = nil, height: CGFloat? = nil, sizeConstraint: ElementalSize = ElementalSize(), isConfinedToMargins: Bool = true, layoutDirection: ElementalLayoutDirection = .vertical) {
       self.backgroundColor = backgroundColor
       self.insets = insets
       self.isSelectable = isSelectable
       self.width = width
       self.height = height
+      self.sizeConstraint = sizeConstraint
       self.isConfinedToMargins = isConfinedToMargins
       self.layoutDirection = layoutDirection
    }

@@ -22,6 +22,42 @@ public enum ElementalSizeConstraint {
    case callback((CGSize) -> CGFloat)
 }
 
+public struct ElementalSize {
+   public var width: ElementalSizeConstraint
+   public var height: ElementalSizeConstraint
+   
+   public init(width: ElementalSizeConstraint = .intrinsic, height: ElementalSizeConstraint = .intrinsic) {
+      self.width = width
+      self.height = height
+   }
+}
+
+extension CGSize {
+   public func constrained(to sizeConstraint: ElementalSize, intrinsicSize: CGSize? = nil) -> CGSize {
+      let intrinsicSize = intrinsicSize ?? self
+      
+      var width: CGFloat
+      switch sizeConstraint.width {
+      case .intrinsic: width = intrinsicSize.width
+      case .constant(let value): width = value
+      case .multiplier(let value): width = self.width * value
+      case .calc(let constant, let multiplier): width = self.width * multiplier + constant
+      case .callback(let callback): width = callback(self)
+      }
+      
+      var height: CGFloat
+      switch sizeConstraint.height {
+      case .intrinsic: height = intrinsicSize.height
+      case .constant(let value): height = value
+      case .multiplier(let value): height = self.height * value
+      case .calc(let constant, let multiplier): height = self.height * multiplier + constant
+      case .callback(let callback): height = callback(self)
+      }
+      
+      return CGSize(width: width, height: height)
+   }
+}
+
 // MARK: - Text Styling
 public protocol ElementalTextStyling {
    var font: UIFont { get }
