@@ -8,6 +8,9 @@
 
 import UIKit
 
+fileprivate let kPickerHeight: CGFloat = 216.0
+fileprivate let kPickerBackgroundHeight: CGFloat = 172.0
+
 class PickerElementCell: BindableElementCell {
    // MARK: - Label Outlets
    @IBOutlet fileprivate var _nameLabel: UILabel!
@@ -28,6 +31,7 @@ class PickerElementCell: BindableElementCell {
    @IBOutlet fileprivate var _nameVerticalSpaceConstraint: NSLayoutConstraint!
    @IBOutlet fileprivate var _detailVerticalSpaceConstraint: NSLayoutConstraint!
    @IBOutlet fileprivate var _buttonHeightConstraint: NSLayoutConstraint!
+   @IBOutlet fileprivate var _pickerBackgroundTopVerticalSpaceConstraint: NSLayoutConstraint!
    
    @IBOutlet fileprivate var _leftImageViewHorizontalSpaceConstraints: [NSLayoutConstraint]!
    
@@ -129,6 +133,7 @@ class PickerElementCell: BindableElementCell {
       _options = element.content.options.map { return (option: $0, dataValue: ElementCell.dataValue($0.value)) }
       guard Set(_options.map { return $0.dataValue }).count == _options.count else { fatalError() }
 
+      _pickerBackgroundTopVerticalSpaceConstraint.constant = element.configuration.pickerTopMargin
       _pickerBackgroundView.backgroundColor = config.pickerBackgroundColor ?? config.buttonBackgroundColor
       _pickerView.reloadAllComponents()
 
@@ -155,7 +160,9 @@ class PickerElementCell: BindableElementCell {
       
       let nameHeight = config.layoutDirection == .horizontal ? 0 : content.name?.heightWithConstrainedWidth(width: width, font: config.nameStyle.font) ?? 0
       let namePadding: CGFloat = nameHeight != 0 ? 10 : 0
-      let pickerHeight: CGFloat = element.inputState == .focused ? 216 : 0
+      
+      let focusedHeight = element.configuration.pickerTopMargin + kPickerBackgroundHeight + element.configuration.pickerBottomMargin
+      let pickerHeight: CGFloat = element.inputState == .focused ? focusedHeight : 0
       
       guard let detail = content.detail, let detailFont = config.detailStyle?.font else {
          return CGSize(width: finalWidth, height: nameHeight + namePadding + config.buttonHeight + pickerHeight)
