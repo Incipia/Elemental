@@ -8,6 +8,9 @@
 
 import UIKit
 
+fileprivate let kPickerHeight: CGFloat = 216.0
+fileprivate let kPickerBackgroundHeight: CGFloat = 172.0
+
 class PickerElementCell: BindableElementCell {
    // MARK: - Label Outlets
    @IBOutlet fileprivate var _nameLabel: UILabel!
@@ -24,11 +27,16 @@ class PickerElementCell: BindableElementCell {
    // MARK: - Constraint Outlets
    @IBOutlet fileprivate var _leftAccessoryImageViewWidthConstraint: NSLayoutConstraint!
    @IBOutlet fileprivate var _rightAccessoryImageViewWidthConstraint: NSLayoutConstraint!
-   @IBOutlet fileprivate var _leftImageViewHorizontalSpaceConstraint: NSLayoutConstraint!
    @IBOutlet fileprivate var _rightImageViewHorizontalSpaceConstraint: NSLayoutConstraint!
    @IBOutlet fileprivate var _nameVerticalSpaceConstraint: NSLayoutConstraint!
    @IBOutlet fileprivate var _detailVerticalSpaceConstraint: NSLayoutConstraint!
    @IBOutlet fileprivate var _buttonHeightConstraint: NSLayoutConstraint!
+   @IBOutlet fileprivate var _pickerBackgroundTopVerticalSpaceConstraint: NSLayoutConstraint!
+   
+   @IBOutlet fileprivate var _leftImageViewHorizontalSpaceConstraints: [NSLayoutConstraint]!
+   
+   @IBOutlet fileprivate var _horizontalConstraints: [NSLayoutConstraint]!
+   @IBOutlet fileprivate var _verticalConstraints: [NSLayoutConstraint]!
    
    // MARK: - Private Properties
    fileprivate var _options: [(option: PickerElement.Option, dataValue: Data)] = []
@@ -68,6 +76,8 @@ class PickerElementCell: BindableElementCell {
       }
    }
    
+   fileprivate var _readyToUpdateConstraints: Bool = false
+   
    // MARK: - Overridden
    override func awakeFromNib() {
       super.awakeFromNib()
@@ -90,6 +100,13 @@ class PickerElementCell: BindableElementCell {
       button.addTarget(self, action: touchUpSelector, for: .touchUpInside)
       
       _pickerBackgroundView.layer.cornerRadius = 6.0
+      
+      // the constraints installed in the xib are activated sometime after awakeFromNib() and configure(with:) get called,
+      // so activating uninstalled constraints before then causes conflicts
+      DispatchQueue.main.async {
+         self._readyToUpdateConstraints = true
+         self.setNeedsUpdateConstraints()
+      }
    }
    
    override func configure(with component: Elemental) {
@@ -108,6 +125,7 @@ class PickerElementCell: BindableElementCell {
       _detailLabel.font = config.detailStyle?.font
       _nameLabel.textColor = config.nameStyle.color
       _detailLabel.textColor = config.detailStyle?.color
+      _buttonLabel.textAlignment = config.layoutDirection == .vertical ? .left : .right
       _nameVerticalSpaceConstraint.constant = content.name != nil ? 10 : 0
       _detailVerticalSpaceConstraint.constant = content.detail != nil ? 10 : 0
       _buttonHeightConstraint.constant = config.buttonHeight
@@ -115,7 +133,8 @@ class PickerElementCell: BindableElementCell {
       _options = element.content.options.map { return (option: $0, dataValue: ElementCell.dataValue($0.value)) }
       guard Set(_options.map { return $0.dataValue }).count == _options.count else { fatalError() }
 
-      _pickerBackgroundView.backgroundColor = config.buttonBackgroundColor
+      _pickerBackgroundTopVerticalSpaceConstraint.constant = element.configuration.pickerTopMargin
+      _pickerBackgroundView.backgroundColor = config.pickerBackgroundColor ?? config.buttonBackgroundColor
       _pickerView.reloadAllComponents()
 
       _selectedValue = _selectedOption?.value
@@ -125,6 +144,8 @@ class PickerElementCell: BindableElementCell {
       
       let angle: CGFloat = element.inputState == .focused ? .pi : 0.0
       _rightAccessoryImageView.transform = CGAffineTransform(rotationAngle: angle)
+      
+      setNeedsUpdateConstraints()
    }
    
    override class func contentSize(for element: Elemental, constrainedWidth width: CGFloat) -> CGSize {
@@ -137,9 +158,11 @@ class PickerElementCell: BindableElementCell {
          return CGSize(width: finalWidth, height: config.height!)
       }
       
-      let nameHeight = content.name?.heightWithConstrainedWidth(width: width, font: config.nameStyle.font) ?? 0
-      let namePadding: CGFloat = content.name != nil ? 10 : 0
-      let pickerHeight: CGFloat = element.inputState == .focused ? 216 : 0
+      let nameHeight = config.layoutDirection == .horizontal ? 0 : content.name?.heightWithConstrainedWidth(width: width, font: config.nameStyle.font) ?? 0
+      let namePadding: CGFloat = nameHeight != 0 ? 10 : 0
+      
+      let focusedHeight = element.configuration.pickerTopMargin + kPickerBackgroundHeight + element.configuration.pickerBottomMargin
+      let pickerHeight: CGFloat = element.inputState == .focused ? focusedHeight : 0
       
       guard let detail = content.detail, let detailFont = config.detailStyle?.font else {
          return CGSize(width: finalWidth, height: nameHeight + namePadding + config.buttonHeight + pickerHeight)
@@ -155,12 +178,26 @@ class PickerElementCell: BindableElementCell {
       _updateIndicatorColor()
    }
    
+   override func updateConstraints() {
+      guard _readyToUpdateConstraints, let layoutDirection = element?.elementalConfig.layoutDirection else { super.updateConstraints(); return }
+      switch layoutDirection {
+      case .horizontal:
+         NSLayoutConstraint.deactivate(_verticalConstraints)
+         NSLayoutConstraint.activate(_horizontalConstraints)
+      case .vertical:
+         NSLayoutConstraint.deactivate(_horizontalConstraints)
+         NSLayoutConstraint.activate(_verticalConstraints)
+      }
+      
+      super.updateConstraints()
+   }
+   
    // MARK: - Private
    private func _updateAccessoryImages(with element: PickerElement) {
       _leftAccessoryImageView.image = element.content.leftAccessoryImage
       _leftAccessoryImageView.tintColor = element.configuration.leftAccessoryImageTintColor
       _leftAccessoryImageViewWidthConstraint.constant = _leftAccessoryImageView.image != nil ? 20 : 0
-      _leftImageViewHorizontalSpaceConstraint.constant = _leftAccessoryImageView.image != nil ? 10 : 0
+      _leftImageViewHorizontalSpaceConstraints.forEach { $0.constant = _leftAccessoryImageView.image != nil ? 10 : 0 }
       _rightAccessoryImageView.image = element.content.rightAccessoryImage
       _rightAccessoryImageView.tintColor = element.configuration.rightAccessoryImageTintColor
       _rightAccessoryImageViewWidthConstraint.constant = _rightAccessoryImageView.image != nil ? 20 : 0

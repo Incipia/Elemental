@@ -15,6 +15,7 @@ public protocol ElementalConfiguring {
    var width: CGFloat? { get }
    var height: CGFloat? { get }
    var isConfinedToMargins: Bool { get }
+   var layoutDirection: ElementalLayoutDirection { get }
 }
 
 public extension ElementalConfiguring {
@@ -24,6 +25,7 @@ public extension ElementalConfiguring {
    var width: CGFloat? { return nil }
    var height: CGFloat? { return nil }
    var isConfinedToMargins: Bool { return true }
+   var layoutDirection: ElementalLayoutDirection { return .vertical }
 }
 
 open class ElementalConfiguration: ElementalConfiguring {
@@ -33,14 +35,16 @@ open class ElementalConfiguration: ElementalConfiguring {
    public var width: CGFloat?
    public var height: CGFloat?
    public var isConfinedToMargins: Bool
+   public var layoutDirection: ElementalLayoutDirection
    
-   public init(backgroundColor: UIColor = .clear, insets: UIEdgeInsets = .zero, isSelectable: Bool = true, width: CGFloat? = nil, height: CGFloat? = nil, isConfinedToMargins: Bool = true) {
+   public init(backgroundColor: UIColor = .clear, insets: UIEdgeInsets = .zero, isSelectable: Bool = true, width: CGFloat? = nil, height: CGFloat? = nil, isConfinedToMargins: Bool = true, layoutDirection: ElementalLayoutDirection = .vertical) {
       self.backgroundColor = backgroundColor
       self.insets = insets
       self.isSelectable = isSelectable
       self.width = width
       self.height = height
       self.isConfinedToMargins = isConfinedToMargins
+      self.layoutDirection = layoutDirection
    }
 }
 
@@ -65,6 +69,9 @@ public protocol PickerElementConfiguring: ElementalConfiguring {
    var buttonStyle: ElementalTextStyling { get }
    var buttonHeight: CGFloat { get }
    var buttonBackgroundColor: UIColor { get }
+   var pickerBackgroundColor: UIColor? { get }
+   var pickerTopMargin: CGFloat { get }
+   var pickerBottomMargin: CGFloat { get }
    var inputState: InputElementState { get }
    var leftAccessoryImageTintColor: UIColor { get }
    var rightAccessoryImageTintColor: UIColor { get }
@@ -79,12 +86,15 @@ open class PickerElementConfiguration: ElementalConfiguration, PickerElementConf
    public var buttonStyle: ElementalTextStyling
    public var buttonHeight: CGFloat
    public var buttonBackgroundColor: UIColor
+   public var pickerBackgroundColor: UIColor?
+   public var pickerTopMargin: CGFloat
+   public var pickerBottomMargin: CGFloat
    public var inputState: InputElementState
    public var leftAccessoryImageTintColor: UIColor
    public var rightAccessoryImageTintColor: UIColor
    weak public var layoutDelegate: ElementalLayoutDelegate?
    
-   public init(nameStyle: ElementalTextStyling = ElementalTextStyle(), detailStyle: ElementalTextStyling? = nil, placeholderStyle: ElementalTextStyling? = nil, optionStyle: ElementalTextStyling? = nil, buttonStyle: ElementalTextStyling = ElementalTextStyle(), buttonHeight: CGFloat = 64, buttonBackgroundColor: UIColor = .gray, inputState: InputElementState = .unfocused, leftAccessoryImageTintColor: UIColor = .gray, rightAccessoryImageTintColor: UIColor = .gray, layoutDelegate: ElementalLayoutDelegate? = nil) {
+   public init(nameStyle: ElementalTextStyling = ElementalTextStyle(), detailStyle: ElementalTextStyling? = nil, placeholderStyle: ElementalTextStyling? = nil, optionStyle: ElementalTextStyling? = nil, buttonStyle: ElementalTextStyling = ElementalTextStyle(), buttonHeight: CGFloat = 64, buttonBackgroundColor: UIColor = .gray, pickerBackgroundColor: UIColor? = nil, pickerTopMargin: CGFloat = 10, pickerBottomMargin: CGFloat = 10, inputState: InputElementState = .unfocused, leftAccessoryImageTintColor: UIColor = .gray, rightAccessoryImageTintColor: UIColor = .gray, layoutDelegate: ElementalLayoutDelegate? = nil) {
       self.nameStyle = nameStyle
       self.detailStyle = detailStyle
       self.placeholderStyle = placeholderStyle
@@ -92,6 +102,9 @@ open class PickerElementConfiguration: ElementalConfiguration, PickerElementConf
       self.buttonStyle = buttonStyle
       self.buttonHeight = buttonHeight
       self.buttonBackgroundColor = buttonBackgroundColor
+      self.pickerBackgroundColor = pickerBackgroundColor
+      self.pickerTopMargin = pickerTopMargin
+      self.pickerBottomMargin = pickerBottomMargin
       self.inputState = inputState
       self.leftAccessoryImageTintColor = leftAccessoryImageTintColor
       self.rightAccessoryImageTintColor = rightAccessoryImageTintColor
