@@ -71,10 +71,11 @@ class HorizontalFormElementCell: ElementCell {
       _contained = window != nil
    }
    
-   override class func contentSize(for element: Elemental, constrainedWidth width: CGFloat) -> CGSize {
+   override class func intrinsicContentSize(for element: Elemental, constrainedSize size: CGSize) -> CGSize {
+      let width = size.width
       guard let element = element as? HorizontalFormElement else { fatalError() }
       let height: CGFloat = element.elements.reduce(0) { (height, component) -> CGFloat in
-         max(height, component.size(forConstrainedDimension: .horizontal(width)).height)
+         max(height, component.size(forConstrainedSize: size, layoutDirection: .horizontal).height)
       }
       return CGSize(width: width, height: ceil(height))
    }

@@ -18,7 +18,8 @@ class HorizontalLineElementCell: ElementCell {
       }
    }
    
-   override class func contentSize(for element: Elemental, constrainedWidth width: CGFloat) -> CGSize {
+   override class func intrinsicContentSize(for element: Elemental, constrainedSize size: CGSize) -> CGSize {
+      let width = size.width
       switch element {
       case let element as HorizontalLineElement: return CGSize(width: width, height: element.configuration.height ?? 0)
       case let element as VerticalSpaceElement: return CGSize(width: width, height: element.value)

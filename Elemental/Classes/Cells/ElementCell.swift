@@ -10,7 +10,7 @@ import UIKit
 import Bindable
 
 protocol ElementalCell: class {
-   static func contentSize(for element: Elemental, constrainedWidth width: CGFloat) -> CGSize
+   static func contentSize(for element: Elemental, constrainedSize size: CGSize) -> CGSize
    func configure(with component: Elemental)
 }
 
@@ -26,7 +26,15 @@ public class ElementCell: UICollectionViewCell, ElementalCell {
    }
    
    // MARK: - ElementalCell Protocol
-   class func contentSize(for element: Elemental, constrainedWidth width: CGFloat) -> CGSize { fatalError() }
+   class func contentSize(for element: Elemental, constrainedSize size: CGSize) -> CGSize {
+      guard let element = element as? Element else { return size }
+      
+      var intrinsicSize = intrinsicContentSize(for: element, constrainedSize: size)
+      return size.constrained(to: element.elementalConfig.sizeConstraint, intrinsicSize: intrinsicSize)
+   }
+   
+   class func intrinsicContentSize(for element: Elemental, constrainedSize size: CGSize) -> CGSize { fatalError() }
+   
    func configure(with component: Elemental) {
       element = component as? Element
    }

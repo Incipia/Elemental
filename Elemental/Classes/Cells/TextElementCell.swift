@@ -21,7 +21,8 @@ class TextElementCell: ElementCell {
       _label.text = element.content
    }
    
-   override class func contentSize(for element: Elemental, constrainedWidth width: CGFloat) -> CGSize {
+   override class func intrinsicContentSize(for element: Elemental, constrainedSize size: CGSize) -> CGSize {
+      let width = size.width
       guard let element = element as? TextElement else { fatalError() }
       let style = element.configuration
       let height = element.content.heightWithConstrainedWidth(width: width, font: style.textStyle.font)
