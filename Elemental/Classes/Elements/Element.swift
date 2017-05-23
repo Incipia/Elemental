@@ -431,9 +431,9 @@ public class CustomViewElement: Element {
    let view : UIView
    
    // MARK: - Init
-   public init(view: UIView) {
+   public init(view: UIView, configuration: ElementalConfiguring = ElementalConfiguration()) {
       self.view  = view
-      super.init(configuration: ElementalConfiguration())
+      super.init(configuration: configuration)
    }
    
    // MARK: - Elemental Protocol
@@ -603,11 +603,12 @@ public extension Element {
       return VerticalSpaceElement(value: value)
    }
    
-   class func view(_ view: UIView) -> Element {
-      return CustomViewElement(view: view)
+   class func view(_ view: UIView, sizeConstraint: ElementalSize = ElementalSize()) -> Element {
+      let config = ElementalConfiguration(sizeConstraint: sizeConstraint)
+      return CustomViewElement(view: view, configuration: config)
    }
    
-   class func viewController(_ viewController: UIViewController, sizeConstraint: ElementalSize) -> Element {
+   class func viewController(_ viewController: UIViewController, sizeConstraint: ElementalSize = ElementalSize()) -> Element {
       let config = ElementalConfiguration(sizeConstraint: sizeConstraint)
       return CustomViewControllerElement(viewController: viewController, configuration: config)
    }
