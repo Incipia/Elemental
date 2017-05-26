@@ -59,6 +59,7 @@
                 <outlet property="_detailLabel" destination="tSp-Dx-810" id="Egr-Pg-zAB"/>
                 <outlet property="_detailLabelVerticalSpaceConstraint" destination="rfP-qB-00o" id="LrT-0v-Gks"/>
                 <outlet property="_label" destination="i2m-SS-aZf" id="t3k-b1-gnT"/>
+                <outlet property="_nameLabelVerticalSpaceConstraint" destination="YpG-dv-X52" id="fxD-fB-BD9"/>
                 <outlet property="_textField" destination="WSe-XJ-iD4" id="HbQ-dY-0DJ"/>
                 <outlet property="_textFieldHeightConstraint" destination="ehj-51-lci" id="hq9-1s-dO5"/>
             </connections>

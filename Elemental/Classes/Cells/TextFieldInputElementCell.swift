@@ -12,6 +12,7 @@ class TextFieldInputElementCell: BindableElementCell {
    @IBOutlet private var _label: UILabel!
    @IBOutlet private var _detailLabel: UILabel!
    @IBOutlet private var _detailLabelVerticalSpaceConstraint: NSLayoutConstraint!
+   @IBOutlet private var _nameLabelVerticalSpaceConstraint: NSLayoutConstraint!
    @IBOutlet fileprivate var _textField: InsetTextField!
    @IBOutlet private var _textFieldHeightConstraint: NSLayoutConstraint!
    
@@ -69,6 +70,7 @@ class TextFieldInputElementCell: BindableElementCell {
       }
       
       _detailLabelVerticalSpaceConstraint.constant = content.detail != nil ? 10.0 : 0.0
+      _nameLabelVerticalSpaceConstraint.constant = content.name != "" ? 10.0 : 0.0
       _textFieldHeightConstraint.constant = style.inputHeight
       
       _action = action
@@ -81,13 +83,14 @@ class TextFieldInputElementCell: BindableElementCell {
       let style = element.configuration
       let finalWidth = style.width ?? width
       guard style.height == nil else { return CGSize(width: finalWidth, height: style.height!) }
-      let nameHeight = content.name.heightWithConstrainedWidth(width: width, font: style.nameStyle.font)
+      let nameHeight = content.name != "" ? content.name.heightWithConstrainedWidth(width: width, font: style.nameStyle.font) : 0
       var detailHeight: CGFloat = 0
       if let detail = content.detail, let detailFont = style.detailStyle?.font {
          detailHeight = detail.heightWithConstrainedWidth(width: width, font: detailFont)
       }
       let detailPadding: CGFloat = content.detail != nil ? 10.0 : 0.0
-      let totalHeight = nameHeight + detailHeight + detailPadding + 10.0 + style.inputHeight
+      let namePadding: CGFloat = content.name != "" ? 10.0 : 0.0
+      let totalHeight = nameHeight + detailHeight + detailPadding + namePadding + style.inputHeight
       return CGSize(width: finalWidth, height: totalHeight)
    }
    
