@@ -88,6 +88,10 @@ public struct AccessoryElementContent {
       self.detail = detail
       self.accessory = accessory
    }
+   
+   public static func content(name: String = "", detail: String? = nil, accessory: FormComponentAccessory? = nil) -> AccessoryElementContent {
+      return AccessoryElementContent(name: name, detail: detail, accessory: accessory)
+   }
 }
 
 public struct ThumbnailElementContent {
