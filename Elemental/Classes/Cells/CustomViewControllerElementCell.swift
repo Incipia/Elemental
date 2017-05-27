@@ -48,7 +48,7 @@ class CustomViewControllerElementCell: ElementCell {
    }
    
    override class func intrinsicContentSize(for element: Elemental, constrainedSize size: CGSize) -> CGSize {
-      guard let element = element as? CustomViewControllerElement else { fatalError() }
+      guard let _ = element as? CustomViewControllerElement else { fatalError() }
       return size
    }
    
