@@ -24,7 +24,6 @@ class CustomViewElementCell: ElementCell {
    }
    
    override class func intrinsicContentSize(for element: Elemental, constrainedSize size: CGSize) -> CGSize {
-      let width = size.width
       guard let element = element as? CustomViewElement else { fatalError() }
       return element.view.bounds.size
    }
