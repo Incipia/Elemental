@@ -17,6 +17,7 @@ public protocol ElementalConfiguring {
    var sizeConstraint: ElementalSize { get }
    var isConfinedToMargins: Bool { get }
    var layoutDirection: ElementalLayoutDirection { get }
+   var cornerRadius: CGFloat { get }
 }
 
 public extension ElementalConfiguring {
@@ -28,6 +29,7 @@ public extension ElementalConfiguring {
    var sizeConstraint: ElementalSize { return ElementalSize() }
    var isConfinedToMargins: Bool { return true }
    var layoutDirection: ElementalLayoutDirection { return .vertical }
+   var cornerRadius: CGFloat { return 0 }
 }
 
 open class ElementalConfiguration: ElementalConfiguring {
@@ -39,8 +41,9 @@ open class ElementalConfiguration: ElementalConfiguring {
    public var sizeConstraint: ElementalSize
    public var isConfinedToMargins: Bool
    public var layoutDirection: ElementalLayoutDirection
+   public var cornerRadius: CGFloat
    
-   public init(backgroundColor: UIColor = .clear, insets: UIEdgeInsets = .zero, isSelectable: Bool = true, width: CGFloat? = nil, height: CGFloat? = nil, sizeConstraint: ElementalSize = ElementalSize(), isConfinedToMargins: Bool = true, layoutDirection: ElementalLayoutDirection = .vertical) {
+   public init(backgroundColor: UIColor = .clear, insets: UIEdgeInsets = .zero, isSelectable: Bool = true, width: CGFloat? = nil, height: CGFloat? = nil, sizeConstraint: ElementalSize = ElementalSize(), isConfinedToMargins: Bool = true, layoutDirection: ElementalLayoutDirection = .vertical, cornerRadius: CGFloat = 0) {
       self.backgroundColor = backgroundColor
       self.insets = insets
       self.isSelectable = isSelectable
@@ -49,6 +52,7 @@ open class ElementalConfiguration: ElementalConfiguring {
       self.sizeConstraint = sizeConstraint
       self.isConfinedToMargins = isConfinedToMargins
       self.layoutDirection = layoutDirection
+      self.cornerRadius = cornerRadius
    }
 }
 
@@ -280,6 +284,8 @@ public protocol AccessoryElementConfiguring: ElementalConfiguring {
    var accessoryStyle: ElementalTextStyling? { get }
    var accessoryTintColor: UIColor? { get }
    var buttonContentInsets: UIEdgeInsets? { get }
+   var leadingNamePadding: CGFloat { get }
+   var trailingDetailPadding: CGFloat { get }
 }
 
 open class AccessoryElementConfiguration: ElementalConfiguration, AccessoryElementConfiguring {
@@ -288,13 +294,17 @@ open class AccessoryElementConfiguration: ElementalConfiguration, AccessoryEleme
    public var accessoryStyle: ElementalTextStyling?
    public var accessoryTintColor: UIColor?
    public var buttonContentInsets: UIEdgeInsets?
+   public var leadingNamePadding: CGFloat
+   public var trailingDetailPadding: CGFloat
    
-   public init(nameStyle: ElementalTextStyling = ElementalTextStyle(), detailStyle: ElementalTextStyling? = nil, accessoryStyle: ElementalTextStyling? = nil, accessoryTintColor: UIColor? = nil, buttonContentInsets: UIEdgeInsets? = nil, height: CGFloat = 64) {
+   public init(nameStyle: ElementalTextStyling = ElementalTextStyle(), detailStyle: ElementalTextStyling? = nil, accessoryStyle: ElementalTextStyling? = nil, accessoryTintColor: UIColor? = nil, buttonContentInsets: UIEdgeInsets? = nil, leadingNamePadding: CGFloat = 0, trailingDetailPadding: CGFloat = 0, height: CGFloat = 64) {
       self.nameStyle = nameStyle
       self.detailStyle = detailStyle
       self.accessoryStyle = accessoryStyle
       self.accessoryTintColor = accessoryTintColor
       self.buttonContentInsets = buttonContentInsets
+      self.leadingNamePadding = leadingNamePadding
+      self.trailingDetailPadding = trailingDetailPadding
       super.init(height: height)
    }
 }

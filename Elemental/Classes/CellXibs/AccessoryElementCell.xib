@@ -82,6 +82,7 @@
                 <outlet property="_detailToSuperviewHorizontalSpacing" destination="YPp-0I-PCP" id="SQ7-JT-6Ki"/>
                 <outlet property="_imageView" destination="VND-7k-Mun" id="cCM-ht-xXc"/>
                 <outlet property="_label" destination="sr0-4G-s98" id="x2r-u9-uh3"/>
+                <outlet property="_nameToSuperviewHorizontalSpacing" destination="kJP-CW-5ad" id="Bhh-m5-U4n"/>
             </connections>
         </collectionViewCell>
     </objects>

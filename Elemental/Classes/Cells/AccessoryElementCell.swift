@@ -14,6 +14,7 @@ class AccessoryElementCell: BindableElementCell {
    @IBOutlet private var _detailLabel: UILabel!
    @IBOutlet private var _button: UIButton!
    @IBOutlet private var _imageView: UIImageView!
+   @IBOutlet private var _nameToSuperviewHorizontalSpacing: NSLayoutConstraint!
    @IBOutlet private var _detailToButtonHorizontalSpacing: NSLayoutConstraint!
    @IBOutlet private var _buttonToImageHorizontalSpacing: NSLayoutConstraint!
    @IBOutlet private var _detailToSuperviewHorizontalSpacing: NSLayoutConstraint!
@@ -77,6 +78,9 @@ class AccessoryElementCell: BindableElementCell {
       
       _action = action
       _accessory = content.accessory
+      
+      _nameToSuperviewHorizontalSpacing.constant = style.leadingNamePadding
+      _detailToSuperviewHorizontalSpacing.constant = style.trailingDetailPadding
       
       setNeedsUpdateConstraints()
    }

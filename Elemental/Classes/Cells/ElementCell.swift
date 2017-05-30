@@ -37,6 +37,8 @@ public class ElementCell: UICollectionViewCell, ElementalCell {
    
    func configure(with component: Elemental) {
       element = component as? Element
+      backgroundColor = element?.elementalConfig.backgroundColor
+      layer.cornerRadius = element?.elementalConfig.cornerRadius ?? 0
    }
 }
 
