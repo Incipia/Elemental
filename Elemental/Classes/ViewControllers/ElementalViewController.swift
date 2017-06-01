@@ -55,7 +55,7 @@ open class ElementalViewController: UIViewController {
       cv.delegate = self
       cv.backgroundColor = .clear
       cv.keyboardDismissMode = .onDrag
-      cv.delaysContentTouches = false
+      cv.delaysContentTouches = true
    
       return cv
    }()
@@ -282,8 +282,9 @@ extension ElementalViewController {
       _needsAnimatedLayout = false
       guard animated else { collectionView.collectionViewLayout.invalidateLayout(); return }
       _animatingIndexPaths = collectionView.indexPathsForVisibleItems
+      
       collectionView.performBatchUpdates({
-         self.collectionView.collectionViewLayout.invalidateLayout()
+         self.collectionView.setCollectionViewLayout(self.collectionView.collectionViewLayout, animated: true)
       }, completion: { _ in
          self._animatingIndexPaths = nil
       })
