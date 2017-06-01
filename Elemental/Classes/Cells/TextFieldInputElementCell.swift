@@ -16,6 +16,10 @@ class TextFieldInputElementCell: BindableElementCell {
    @IBOutlet fileprivate var _textField: InsetTextField!
    @IBOutlet private var _textFieldHeightConstraint: NSLayoutConstraint!
    
+   @IBOutlet fileprivate var _horizontalConstraints: [NSLayoutConstraint]!
+   @IBOutlet fileprivate var _verticalConstraints: [NSLayoutConstraint]!
+   fileprivate var _readyToUpdateConstraints: Bool = false
+   
    fileprivate var _action: InputElementAction?
    fileprivate var _isEnabled: Bool {
       get { return _textField.isEnabled }
@@ -33,6 +37,14 @@ class TextFieldInputElementCell: BindableElementCell {
       super.awakeFromNib()
       _textField.addTarget(self, action: #selector(_textChanged), for: .editingChanged)
       _textField.delegate = self
+      
+      
+      // the constraints installed in the xib are activated sometime after awakeFromNib() and configure(with:) get called,
+      // so activating uninstalled constraints before then causes conflicts
+      DispatchQueue.main.async {
+         self._readyToUpdateConstraints = true
+         self.setNeedsUpdateConstraints()
+      }
    }
    
    override func configure(with component: Elemental) {
@@ -73,6 +85,8 @@ class TextFieldInputElementCell: BindableElementCell {
       _nameLabelVerticalSpaceConstraint.constant = content.name != "" ? 10.0 : 0.0
       _textFieldHeightConstraint.constant = style.inputHeight
       
+      _textField.textAlignment = style.layoutDirection == .vertical ? .left : .right
+      
       _action = action
    }
    
@@ -81,13 +95,23 @@ class TextFieldInputElementCell: BindableElementCell {
       guard let element = element as? TextFieldInputElement else { fatalError() }
       let content = element.content
       let style = element.configuration
-      let nameHeight = content.name != "" ? content.name.heightWithConstrainedWidth(width: width, font: style.nameStyle.font) : 0
+      
+      var nameHeight: CGFloat
+      switch style.layoutDirection {
+      case .horizontal: nameHeight = 0
+      case .vertical: nameHeight = content.name != "" ? content.name.heightWithConstrainedWidth(width: width, font: style.nameStyle.font) : 0
+      }
+      
+      if style.layoutDirection == .horizontal {
+         nameHeight = 0
+      }
+      let namePadding: CGFloat = nameHeight != 0 ? 10.0 : 0.0
+      
       var detailHeight: CGFloat = 0
       if let detail = content.detail, let detailFont = style.detailStyle?.font {
          detailHeight = detail.heightWithConstrainedWidth(width: width, font: detailFont)
       }
       let detailPadding: CGFloat = content.detail != nil ? 10.0 : 0.0
-      let namePadding: CGFloat = content.name != "" ? 10.0 : 0.0
       let totalHeight = nameHeight + detailHeight + detailPadding + namePadding + style.inputHeight
       return CGSize(width: width, height: totalHeight)
    }
@@ -111,6 +135,24 @@ class TextFieldInputElementCell: BindableElementCell {
          _isEnabled = validValue
      default: fatalError("\(type(of: self)) cannot set value for \(key))")
       }
+   }
+   
+   override func updateConstraints() {
+      guard _readyToUpdateConstraints, let layoutDirection = element?.elementalConfig.layoutDirection else {
+         super.updateConstraints()
+         return
+      }
+      
+      switch layoutDirection {
+      case .horizontal:
+         NSLayoutConstraint.deactivate(_verticalConstraints)
+         NSLayoutConstraint.activate(_horizontalConstraints)
+      case .vertical:
+         NSLayoutConstraint.deactivate(_horizontalConstraints)
+         NSLayoutConstraint.activate(_verticalConstraints)
+      }
+      
+      super.updateConstraints()
    }
    
    override func prepareForReuse() {
