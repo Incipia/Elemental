@@ -89,15 +89,13 @@ class DateInputElementCell: BindableElementCell {
       guard let element = element as? DateInputElement else { fatalError() }
       let content = element.content
       let config = element.configuration
-      let finalWidth = config.width ?? width
-      guard config.height == nil else { return CGSize(width: finalWidth, height: config.height!) }
       let nameHeight = content.name.heightWithConstrainedWidth(width: width, font: config.nameStyle.font)
       let pickerHeight: CGFloat = element.inputState == .focused ? (216 + 10) : 0
       guard let detail = content.detail, let detailFont = config.detailStyle?.font else { return CGSize(width: width, height: nameHeight + 10.0 + config.inputHeight + pickerHeight) }
       let detailHeight = detail.heightWithConstrainedWidth(width: width, font: detailFont)
       let detailPadding: CGFloat = 10.0
       let totalHeight = nameHeight + detailHeight + detailPadding + 10.0 + config.inputHeight + pickerHeight
-      return CGSize(width: finalWidth, height: totalHeight)
+      return CGSize(width: width, height: totalHeight)
    }
    
    override func didMoveToWindow() {

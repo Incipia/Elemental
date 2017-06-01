@@ -156,6 +156,6 @@ class AccessoryElementCell: BindableElementCell {
          }
       }
       let height = max(max(nameHeight, detailHeight), accessoryHeight)
-      return CGSize(width: width, height: max(height, style.height ?? 0))
+      return CGSize(width: width, height: height)
    }
 }

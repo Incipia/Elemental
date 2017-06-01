@@ -81,8 +81,6 @@ class TextFieldInputElementCell: BindableElementCell {
       guard let element = element as? TextFieldInputElement else { fatalError() }
       let content = element.content
       let style = element.configuration
-      let finalWidth = style.width ?? width
-      guard style.height == nil else { return CGSize(width: finalWidth, height: style.height!) }
       let nameHeight = content.name != "" ? content.name.heightWithConstrainedWidth(width: width, font: style.nameStyle.font) : 0
       var detailHeight: CGFloat = 0
       if let detail = content.detail, let detailFont = style.detailStyle?.font {
@@ -91,7 +89,7 @@ class TextFieldInputElementCell: BindableElementCell {
       let detailPadding: CGFloat = content.detail != nil ? 10.0 : 0.0
       let namePadding: CGFloat = content.name != "" ? 10.0 : 0.0
       let totalHeight = nameHeight + detailHeight + detailPadding + namePadding + style.inputHeight
-      return CGSize(width: finalWidth, height: totalHeight)
+      return CGSize(width: width, height: totalHeight)
    }
    
    override func value(for key: BindableElementKey) -> Any? {

@@ -153,11 +153,6 @@ class PickerElementCell: BindableElementCell {
       guard let element = element as? PickerElement else { fatalError() }
       let content = element.content
       let config = element.configuration
-      let finalWidth = config.width ?? width
-      
-      guard config.height == nil else {
-         return CGSize(width: finalWidth, height: config.height!)
-      }
       
       let nameHeight = config.layoutDirection == .horizontal ? 0 : content.name?.heightWithConstrainedWidth(width: width, font: config.nameStyle.font) ?? 0
       let namePadding: CGFloat = nameHeight != 0 ? 10 : 0
@@ -166,13 +161,13 @@ class PickerElementCell: BindableElementCell {
       let pickerHeight: CGFloat = element.inputState == .focused ? focusedHeight : 0
       
       guard let detail = content.detail, let detailFont = config.detailStyle?.font else {
-         return CGSize(width: finalWidth, height: nameHeight + namePadding + config.buttonHeight + pickerHeight)
+         return CGSize(width: width, height: nameHeight + namePadding + config.buttonHeight + pickerHeight)
       }
       
       let detailHeight = detail.heightWithConstrainedWidth(width: width, font: detailFont)
       let detailPadding: CGFloat = 10.0
       let totalHeight = nameHeight + namePadding + detailHeight + detailPadding + config.buttonHeight + pickerHeight
-      return CGSize(width: finalWidth, height: totalHeight)
+      return CGSize(width: width, height: totalHeight)
    }
    
    override func didMoveToWindow() {

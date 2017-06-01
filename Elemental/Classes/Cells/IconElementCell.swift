@@ -30,7 +30,7 @@ class IconElementCell: ElementCell {
       guard let element = element as? IconElement else { fatalError() }
       let style = element.configuration
       let content = element.content
-      let height = max(max(content.name.heightWithConstrainedWidth(width: width, font: style.textStyle.font), style.height ?? 0), content.icon.size.height)
+      let height = max(content.name.heightWithConstrainedWidth(width: width, font: style.textStyle.font), content.icon.size.height)
       return CGSize(width: width, height: height)
    }
 }

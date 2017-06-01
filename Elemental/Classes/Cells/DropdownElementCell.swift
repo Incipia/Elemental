@@ -36,9 +36,7 @@ class DropdownElementCell: ElementCell {
       guard let element = element as? DropdownElement else { fatalError() }
       let content = element.content
       let style = element.configuration
-      let finalWidth = style.width ?? width
-      guard style.height == nil else { return CGSize(width: finalWidth, height: style.height!) }
       let height = content.name.heightWithConstrainedWidth(width: width, font: style.nameStyle.font)
-      return CGSize(width: finalWidth, height: height + style.dropdownHeight + 10.0)
+      return CGSize(width: width, height: height + style.dropdownHeight + 10.0)
    }
 }

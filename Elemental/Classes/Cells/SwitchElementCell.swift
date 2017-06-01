@@ -50,13 +50,17 @@ class SwitchElementCell: BindableElementCell {
       let width = size.width
       guard let element = element as? SwitchElement else { fatalError() }
       let content = element.content
-      let style = element.configuration
-      let nameHeight = content.name.heightWithConstrainedWidth(width: width, font: style.nameStyle.font)
-      guard let detail = content.detail, let detailFont = style.detailStyle?.font else { return CGSize(width: width, height: max(nameHeight, style.height ?? 0)) }
+      let config = element.configuration
+      let nameHeight = content.name.heightWithConstrainedWidth(width: width, font: config.nameStyle.font)
+      
+      guard let detail = content.detail, let detailFont = config.detailStyle?.font else {
+         return CGSize(width: width, height: nameHeight)
+      }
+      
       let detailHeight = detail.heightWithConstrainedWidth(width: width, font: detailFont)
       let detailPadding: CGFloat = 2.0
       let totalHeight = nameHeight + detailHeight + detailPadding
-      return CGSize(width: width, height: max(totalHeight, style.height ?? 0))
+      return CGSize(width: width, height: totalHeight)
    }
    
    override func value(for key: BindableElementKey) -> Any? {

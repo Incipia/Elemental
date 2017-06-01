@@ -26,6 +26,6 @@ class TextElementCell: ElementCell {
       guard let element = element as? TextElement else { fatalError() }
       let style = element.configuration
       let height = element.content.heightWithConstrainedWidth(width: width, font: style.textStyle.font)
-      return CGSize(width: width, height: max(height, style.height ?? 0))
+      return CGSize(width: width, height: height)
    }
 }

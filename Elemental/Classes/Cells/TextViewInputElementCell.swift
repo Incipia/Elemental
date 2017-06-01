@@ -90,18 +90,16 @@ class TextViewInputElementCell: BindableElementCell {
       let width = size.width
       guard let element = element as? TextViewInputElement else { fatalError() }
       let content = element.content
-      let style = element.configuration
-      let finalWidth = style.width ?? width
-      guard style.height == nil else { return CGSize(width: finalWidth, height: style.height!) }
-      let nameHeight = content.name == "" ? 0.0 : content.name.heightWithConstrainedWidth(width: width, font: style.nameStyle.font)
+      let config = element.configuration
+      let nameHeight = content.name == "" ? 0.0 : content.name.heightWithConstrainedWidth(width: width, font: config.nameStyle.font)
       let namePadding: CGFloat = nameHeight == 0.0 ? 0.0 : 10.0
       var detailHeight: CGFloat = 0
-      if let detail = content.detail, let detailFont = style.detailStyle?.font {
+      if let detail = content.detail, let detailFont = config.detailStyle?.font {
          detailHeight = detail.heightWithConstrainedWidth(width: width, font: detailFont)
       }
       let detailPadding: CGFloat = content.detail != nil ? 10.0 : 0.0
-      let totalHeight = nameHeight + namePadding + detailHeight + detailPadding + style.inputHeight
-      return CGSize(width: finalWidth, height: totalHeight)
+      let totalHeight = nameHeight + namePadding + detailHeight + detailPadding + config.inputHeight
+      return CGSize(width: width, height: totalHeight)
    }
 }
 

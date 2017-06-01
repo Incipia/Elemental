@@ -155,6 +155,6 @@ class ThumbnailElementCell: BindableElementCell {
       }
       let thumbnailHeight = max(detailHeight, imageHeight)
       let contentHeight = thumbnailHeight > 0 ? nameHeight + 8 + thumbnailHeight : 0
-      return CGSize(width: width, height: max(max(contentHeight, accessoryHeight), style.height ?? 0))
+      return CGSize(width: width, height: max(contentHeight, accessoryHeight))
    }
 }
