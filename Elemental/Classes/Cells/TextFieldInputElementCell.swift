@@ -55,8 +55,8 @@ class TextFieldInputElementCell: BindableElementCell {
       _textField.isSecureTextEntry = style.keyboardStyle.isSecureTextEntry
       _textField.autocapitalizationType = style.keyboardStyle.autocapitalizationType
       _textField.returnKeyType = style.keyboardStyle.returnKeyType
+      _textField.tintColor = style.inputTintColor ?? style.inputStyle.color
       
-      _textField.tintColor = style.inputStyle.color
       if let placeholder = content.placeholder, let placeholderStyle = style.placeholderStyle {
          let attrs: [String : AnyHashable] = [
             NSFontAttributeName : placeholderStyle.font,

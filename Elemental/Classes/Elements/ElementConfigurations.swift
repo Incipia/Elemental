@@ -147,6 +147,7 @@ public protocol TextInputElementConfiguring: ElementalConfiguring {
    var keyboardStyle: ElementalKeyboardStyling { get }
    var inputHeight: CGFloat { get }
    var inputBackgroundColor: UIColor { get }
+   var inputTintColor: UIColor? { get }
    var isEnabled: Bool { get }
 }
 
@@ -162,9 +163,10 @@ open class TextInputElementConfiguration: ElementalConfiguration, TextInputEleme
    public var keyboardStyle: ElementalKeyboardStyling
    public var inputHeight: CGFloat
    public var inputBackgroundColor: UIColor
+   public var inputTintColor: UIColor?
    public var isEnabled: Bool
    
-   public init(nameStyle: ElementalTextStyling = ElementalTextStyle(), detailStyle: ElementalTextStyling? = nil, placeholderStyle: ElementalTextStyling? = nil, inputStyle: ElementalTextStyling = ElementalTextStyle(), keyboardStyle: ElementalKeyboardStyling = ElementalKeyboardStyle(), inputHeight: CGFloat = 48, inputBackgroundColor: UIColor = .gray, isEnabled: Bool = true) {
+   public init(nameStyle: ElementalTextStyling = ElementalTextStyle(), detailStyle: ElementalTextStyling? = nil, placeholderStyle: ElementalTextStyling? = nil, inputStyle: ElementalTextStyling = ElementalTextStyle(), keyboardStyle: ElementalKeyboardStyling = ElementalKeyboardStyle(), inputHeight: CGFloat = 48, inputBackgroundColor: UIColor = .gray, inputTintColor: UIColor? = nil, isEnabled: Bool = true) {
       self.nameStyle = nameStyle
       self.detailStyle = detailStyle
       self.placeholderStyle = placeholderStyle
@@ -172,6 +174,7 @@ open class TextInputElementConfiguration: ElementalConfiguration, TextInputEleme
       self.keyboardStyle = keyboardStyle
       self.inputHeight = inputHeight
       self.inputBackgroundColor = inputBackgroundColor
+      self.inputTintColor = inputTintColor
       self.isEnabled = isEnabled
       super.init()
    }
