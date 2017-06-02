@@ -22,6 +22,34 @@ public enum ElementalSizeConstraint {
    case callback((CGSize) -> CGFloat)
 }
 
+extension ElementalSizeConstraint: Equatable {
+   public static func == (lhs: ElementalSizeConstraint, rhs: ElementalSizeConstraint) -> Bool {
+      switch lhs {
+      case .intrinsic:
+         switch rhs {
+         case .intrinsic: return true
+         default: return false
+         }
+      case .constant(let lk):
+         switch rhs {
+         case .constant(let rk): return lk == rk
+         default: return false
+         }
+      case .multiplier(let lm):
+         switch rhs {
+         case .multiplier(let rm): return lm == rm
+         default: return false
+         }
+      case .calc(let lk, let lm):
+         switch rhs {
+         case .calc(let rk, let rm): return lk == rk && lm == rm
+         default: return false
+         }
+      case .callback: return false
+      }
+   }
+}
+
 public struct ElementalSize {
    public var width: ElementalSizeConstraint
    public var height: ElementalSizeConstraint
@@ -29,6 +57,12 @@ public struct ElementalSize {
    public init(width: ElementalSizeConstraint = .intrinsic, height: ElementalSizeConstraint = .intrinsic) {
       self.width = width
       self.height = height
+   }
+}
+
+extension ElementalSize: Equatable {
+   public static func == (lhs: ElementalSize, rhs: ElementalSize) -> Bool {
+      return lhs.width == rhs.width && lhs.height == rhs.height
    }
 }
 
