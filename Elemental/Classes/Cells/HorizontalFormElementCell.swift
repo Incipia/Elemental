@@ -75,7 +75,7 @@ class HorizontalFormElementCell: ElementCell {
       let width = size.width
       guard let element = element as? HorizontalFormElement else { fatalError() }
       let height: CGFloat = element.elements.reduce(0) { (height, component) -> CGFloat in
-         max(height, component.size(forConstrainedSize: size, layoutDirection: .horizontal).height)
+         max(height, component.size(forConstrainedSize: size, layoutDirection: .vertical).height)
       }
       return CGSize(width: width, height: ceil(height))
    }

@@ -335,6 +335,7 @@ extension ElementalViewController: UICollectionViewDelegateFlowLayout {
    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
       let element = _elements[indexPath.row]
       guard element.elementalConfig.isSelectable else { return }
+      element.elementalConfig.selectAction?(element)
       formDelegate?.elementSelected(element, in: self)
    }
    

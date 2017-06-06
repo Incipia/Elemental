@@ -16,6 +16,7 @@ public protocol ElementalConfiguring {
    var isConfinedToMargins: Bool { get }
    var layoutDirection: ElementalLayoutDirection { get }
    var cornerRadius: CGFloat { get }
+   var selectAction: ((Elemental) -> Void)? { get }
 }
 
 public extension ElementalConfiguring {
@@ -26,6 +27,7 @@ public extension ElementalConfiguring {
    var isConfinedToMargins: Bool { return true }
    var layoutDirection: ElementalLayoutDirection { return .vertical }
    var cornerRadius: CGFloat { return 0 }
+   var selectAction: ((Elemental) -> Void)? { return nil }
 }
 
 open class ElementalConfiguration: ElementalConfiguring {
@@ -36,8 +38,9 @@ open class ElementalConfiguration: ElementalConfiguring {
    public var isConfinedToMargins: Bool
    public var layoutDirection: ElementalLayoutDirection
    public var cornerRadius: CGFloat
+   public var selectAction: ((Elemental) -> Void)?
    
-   public init(backgroundColor: UIColor = .clear, insets: UIEdgeInsets = .zero, isSelectable: Bool = true, sizeConstraint: ElementalSize = ElementalSize(), isConfinedToMargins: Bool = true, layoutDirection: ElementalLayoutDirection = .vertical, cornerRadius: CGFloat = 0) {
+   public init(backgroundColor: UIColor = .clear, insets: UIEdgeInsets = .zero, isSelectable: Bool = true, sizeConstraint: ElementalSize = ElementalSize(), isConfinedToMargins: Bool = true, layoutDirection: ElementalLayoutDirection = .vertical, cornerRadius: CGFloat = 0, selectAction: ((Elemental) -> Void)? = nil) {
       self.backgroundColor = backgroundColor
       self.insets = insets
       self.isSelectable = isSelectable
