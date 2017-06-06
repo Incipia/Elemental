@@ -79,6 +79,7 @@
                 <outletCollection property="_verticalConstraints" destination="9cA-Gi-gpP" collectionClass="NSMutableArray" id="wNU-4F-im2"/>
                 <outletCollection property="_verticalConstraints" destination="JSD-53-FP5" collectionClass="NSMutableArray" id="Ict-4G-xG0"/>
                 <outletCollection property="_horizontalConstraints" destination="39N-sg-O1A" collectionClass="NSMutableArray" id="FFi-jp-mgz"/>
+                <outletCollection property="_leftInsetConstraints" destination="M9d-5P-7b4" collectionClass="NSMutableArray" id="PUX-ju-ANK"/>
             </connections>
             <point key="canvasLocation" x="32.5" y="43"/>
         </collectionViewCell>

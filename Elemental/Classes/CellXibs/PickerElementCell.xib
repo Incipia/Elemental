@@ -36,13 +36,13 @@
                         <rect key="frame" x="0.0" y="61" width="375" height="48"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nih-L6-yqd">
-                                <rect key="frame" x="40" y="14" width="295" height="21"/>
+                                <rect key="frame" x="30" y="14" width="315" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="calendar_icon" translatesAutoresizingMaskIntoConstraints="NO" id="UQd-Ti-HSy">
-                                <rect key="frame" x="10" y="14" width="20" height="20"/>
+                                <rect key="frame" x="0.0" y="14" width="20" height="20"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="cb0-2t-eTU"/>
@@ -50,7 +50,7 @@
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="calendar_icon" translatesAutoresizingMaskIntoConstraints="NO" id="sYd-5A-ZCO">
-                                <rect key="frame" x="345" y="14" width="20" height="20"/>
+                                <rect key="frame" x="355" y="14" width="20" height="20"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="20" id="9Bv-1D-so5"/>
@@ -66,9 +66,9 @@
                             <constraint firstItem="Nih-L6-yqd" firstAttribute="leading" secondItem="UQd-Ti-HSy" secondAttribute="trailing" constant="10" id="egK-Qg-YNX"/>
                             <constraint firstItem="sYd-5A-ZCO" firstAttribute="leading" secondItem="Nih-L6-yqd" secondAttribute="trailing" constant="10" id="fpy-EA-OtC"/>
                             <constraint firstItem="Nih-L6-yqd" firstAttribute="centerY" secondItem="E0J-4t-auG" secondAttribute="centerY" id="knV-uO-666"/>
-                            <constraint firstItem="UQd-Ti-HSy" firstAttribute="leading" secondItem="E0J-4t-auG" secondAttribute="leading" constant="10" id="nXf-WX-8Fa"/>
+                            <constraint firstItem="UQd-Ti-HSy" firstAttribute="leading" secondItem="E0J-4t-auG" secondAttribute="leading" id="nXf-WX-8Fa"/>
                             <constraint firstItem="UQd-Ti-HSy" firstAttribute="centerY" secondItem="E0J-4t-auG" secondAttribute="centerY" id="pGY-XB-2cp"/>
-                            <constraint firstAttribute="trailing" secondItem="sYd-5A-ZCO" secondAttribute="trailing" constant="10" id="zvB-bM-dJS"/>
+                            <constraint firstAttribute="trailing" secondItem="sYd-5A-ZCO" secondAttribute="trailing" id="zvB-bM-dJS"/>
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vNt-1n-ccU">
@@ -143,6 +143,10 @@
                 <outletCollection property="_verticalConstraints" destination="egK-Qg-YNX" collectionClass="NSMutableArray" id="JkP-KK-e71"/>
                 <outletCollection property="_leftImageViewHorizontalSpaceConstraints" destination="egK-Qg-YNX" collectionClass="NSMutableArray" id="FHw-nK-592"/>
                 <outletCollection property="_leftImageViewHorizontalSpaceConstraints" destination="aOu-uu-lY3" collectionClass="NSMutableArray" id="8Zc-di-tHQ"/>
+                <outletCollection property="_leftInsetConstraints" destination="yQJ-nM-gkb" collectionClass="NSMutableArray" id="hKm-sR-8ED"/>
+                <outletCollection property="_leftInsetConstraints" destination="p6c-in-PAA" collectionClass="NSMutableArray" id="Ucc-LL-tGv"/>
+                <outletCollection property="_rightInsetConstraints" destination="o9H-ir-Njs" collectionClass="NSMutableArray" id="xvd-sH-PSe"/>
+                <outletCollection property="_rightInsetConstraints" destination="d4C-iQ-2fy" id="SeN-BP-eEW"/>
             </connections>
             <point key="canvasLocation" x="-95.5" y="-17.5"/>
         </collectionViewCell>

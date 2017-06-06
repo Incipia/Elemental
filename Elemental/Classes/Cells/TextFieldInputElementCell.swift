@@ -20,6 +20,8 @@ class TextFieldInputElementCell: BindableElementCell {
    @IBOutlet fileprivate var _verticalConstraints: [NSLayoutConstraint]!
    fileprivate var _readyToUpdateConstraints: Bool = false
    
+   @IBOutlet fileprivate var _leftInsetConstraints: [NSLayoutConstraint]!
+   
    fileprivate var _action: InputElementAction?
    fileprivate var _isEnabled: Bool {
       get { return _textField.isEnabled }
@@ -86,6 +88,8 @@ class TextFieldInputElementCell: BindableElementCell {
       _textFieldHeightConstraint.constant = style.inputHeight
       
       _textField.textAlignment = style.layoutDirection == .vertical ? .left : .right
+      
+      _leftInsetConstraints.forEach { $0.constant = style.insets.left }
       
       _action = action
    }
