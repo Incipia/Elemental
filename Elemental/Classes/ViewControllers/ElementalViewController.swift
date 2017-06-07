@@ -33,19 +33,32 @@ open class ElementalViewController: UIViewController {
       return control
    }()
    
-   fileprivate var _cvLeadingSpaceConstraint: NSLayoutConstraint = NSLayoutConstraint()
+   fileprivate lazy var _footerContainerView: UIView = {
+      let footerView = UIView(frame: .zero)
+      footerView.translatesAutoresizingMaskIntoConstraints = false
+      return footerView
+   }()
+   
+   fileprivate lazy var _emptyFooterView: UIView = {
+      let view = UIView()
+      view.translatesAutoresizingMaskIntoConstraints = false
+      view.heightAnchor.constraint(equalToConstant: 0).isActive = true
+      return view
+   }()
+   
    fileprivate lazy var _collectionView: UICollectionView = {
       let cv = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
       cv.translatesAutoresizingMaskIntoConstraints = false
       self.view.addSubview(cv)
-      let footerView = self.footerView
-      self.view.addSubview(footerView)
+      let footerContainerView = self._footerContainerView
+      self.view.addSubview(footerContainerView)
       
-      footerView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
-      footerView.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
+      footerContainerView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+      footerContainerView.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
+      self._update(footerView: self._emptyFooterView)
       
       cv.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
-      cv.bottomAnchor.constraint(equalTo: footerView.topAnchor).isActive = true
+      cv.bottomAnchor.constraint(equalTo: footerContainerView.topAnchor).isActive = true
       cv.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
       
       self._cvLeadingSpaceConstraint = cv.leadingAnchor.constraint(equalTo: self.view.leadingAnchor)
@@ -59,7 +72,8 @@ open class ElementalViewController: UIViewController {
    
       return cv
    }()
-
+   
+   fileprivate var _cvLeadingSpaceConstraint: NSLayoutConstraint = NSLayoutConstraint()
    fileprivate var _animatingIndexPaths: [IndexPath]?
    fileprivate var _needsReload: Bool = false
    fileprivate var _needsLayout: Bool = false
@@ -67,11 +81,14 @@ open class ElementalViewController: UIViewController {
    fileprivate var _elements: [Elemental] = []
    
    // MARK: - Public Properties
-   public lazy var footerView: UIView = {
-      let footerView = UIView(frame: .zero)
-      footerView.translatesAutoresizingMaskIntoConstraints = false
-      return footerView
-   }()
+   public var footerView: UIView? {
+      didSet {
+         switch footerView {
+         case .none: _removeFooterView()
+         case .some(let view): _update(footerView: view)
+         }
+      }
+   }
    
    public var elements: [Elemental] {
       get { return _elements }
@@ -209,6 +226,22 @@ open class ElementalViewController: UIViewController {
    // MARK: - Private
    @objc private func _refreshControlChanged(control: UIRefreshControl) {
       formDelegate?.elementsBeganRefreshing(in: self)
+   }
+   
+   private func _removeFooterView() {
+      _update(footerView: _emptyFooterView)
+   }
+   
+   private func _update(footerView: UIView) {
+      _footerContainerView.subviews.forEach { $0.removeFromSuperview() }
+      
+      _footerContainerView.addSubview(footerView)
+      
+      NSLayoutConstraint.activate([
+         footerView.centerXAnchor.constraint(equalTo: _footerContainerView.centerXAnchor),
+         footerView.centerYAnchor.constraint(equalTo: _footerContainerView.centerYAnchor),
+         _footerContainerView.heightAnchor.constraint(equalTo: footerView.heightAnchor),
+         ])
    }
 }
 
