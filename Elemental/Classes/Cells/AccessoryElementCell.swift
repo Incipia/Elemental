@@ -20,6 +20,12 @@ class AccessoryElementCell: BindableElementCell {
    @IBOutlet private var _detailToSuperviewHorizontalSpacing: NSLayoutConstraint!
    @IBOutlet private var _buttonToSuperviewHorizontalSpacing: NSLayoutConstraint!
    @IBOutlet private var _buttonWidthConstraint: NSLayoutConstraint!
+   @IBOutlet private var _nameToDetailHorizontalSpacing: NSLayoutConstraint!
+   @IBOutlet private var _nameToDetailVerticalSpacing: NSLayoutConstraint!
+   
+   @IBOutlet fileprivate var _horizontalConstraints: [NSLayoutConstraint]!
+   @IBOutlet fileprivate var _verticalConstraints: [NSLayoutConstraint]!
+   fileprivate var _readyToUpdateConstraints: Bool = false
 
    // MARK - Public Properties
    static var bindableKeys: [BindableElementKey] { return [.detail] }
@@ -34,6 +40,17 @@ class AccessoryElementCell: BindableElementCell {
    }
    
    // MARK: - Life Cycle
+   override func awakeFromNib() {
+      super.awakeFromNib()
+      
+      // the constraints installed in the xib are activated sometime after awakeFromNib() and configure(with:) get called,
+      // so activating uninstalled constraints before then causes conflicts
+      DispatchQueue.main.async {
+         self._readyToUpdateConstraints = true
+         self.setNeedsUpdateConstraints()
+      }
+   }
+   
    override func configure(with component: Elemental) {
       super.configure(with: component)
       guard let element = component as? AccessoryElement else { fatalError() }
@@ -81,11 +98,19 @@ class AccessoryElementCell: BindableElementCell {
       
       _nameToSuperviewHorizontalSpacing.constant = style.leadingNamePadding
       _detailToSuperviewHorizontalSpacing.constant = style.trailingDetailPadding
+      let nameToDetailSpacing = content.detail != nil ? style.nameToDetailSpacing : 0
+      _nameToDetailHorizontalSpacing.constant = nameToDetailSpacing
+      _nameToDetailVerticalSpacing.constant = nameToDetailSpacing
       
       setNeedsUpdateConstraints()
    }
    
    override func updateConstraints() {
+      guard _readyToUpdateConstraints, let layoutDirection = element?.elementalConfig.layoutDirection else {
+         super.updateConstraints()
+         return
+      }
+
       if let accessory = _accessory {
          switch accessory {
          case .button, .buttonImage:
@@ -105,6 +130,15 @@ class AccessoryElementCell: BindableElementCell {
          _detailToButtonHorizontalSpacing.isActive = false
          _detailToSuperviewHorizontalSpacing.isActive = true
          _buttonWidthConstraint.isActive = true
+      }
+      
+      switch layoutDirection {
+      case .horizontal:
+         NSLayoutConstraint.deactivate(_verticalConstraints)
+         NSLayoutConstraint.activate(_horizontalConstraints)
+      case .vertical:
+         NSLayoutConstraint.deactivate(_horizontalConstraints)
+         NSLayoutConstraint.activate(_verticalConstraints)
       }
       
       super.updateConstraints()
@@ -142,8 +176,10 @@ class AccessoryElementCell: BindableElementCell {
       let style = element.configuration
       let nameHeight = content.name.heightWithConstrainedWidth(width: width, font: style.nameStyle.font)
       var detailHeight: CGFloat = 0
+      var detailPadding: CGFloat = 0
       if let detail = content.detail, let detailFont = style.detailStyle?.font {
          detailHeight = detail.heightWithConstrainedWidth(width: width, font: detailFont)
+         detailPadding = style.layoutDirection == .vertical ? style.nameToDetailSpacing : 0
       }
       var accessoryHeight: CGFloat = 0
       if let accessory = content.accessory {
@@ -155,7 +191,8 @@ class AccessoryElementCell: BindableElementCell {
          case .image(let image), .buttonImage(let image): accessoryHeight = image.size.height
          }
       }
-      let height = max(max(nameHeight, detailHeight), accessoryHeight)
+      let height = style.layoutDirection == .vertical ? max(nameHeight + detailPadding + detailHeight, accessoryHeight)
+         : max(max(nameHeight, detailHeight), accessoryHeight)
       return CGSize(width: width, height: height)
    }
 }
