@@ -35,3 +35,13 @@ extension CGPoint {
       return CGPoint(x: lhs.x - rhs.x, y: lhs.y - rhs.y)
    }
 }
+
+extension CGSize {
+   func inset(by insets: UIEdgeInsets) -> CGSize {
+      return CGSize(width: width - insets.left - insets.right, height: height - insets.top - insets.bottom)
+   }
+   
+   func outset(by insets: UIEdgeInsets) -> CGSize {
+      return CGSize(width: width + insets.left + insets.right, height: height + insets.top + insets.bottom)
+   }
+}

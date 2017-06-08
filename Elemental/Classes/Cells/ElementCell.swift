@@ -28,9 +28,8 @@ public class ElementCell: UICollectionViewCell, ElementalCell {
    // MARK: - ElementalCell Protocol
    class func contentSize(for element: Elemental, constrainedSize size: CGSize) -> CGSize {
       guard let element = element as? Element else { return size }
-      
-      let intrinsicSize = intrinsicContentSize(for: element, constrainedSize: size)
-      return size.constrained(to: element.elementalConfig.sizeConstraint, intrinsicSize: intrinsicSize)
+      let intrinsicSize = intrinsicContentSize(for: element, constrainedSize: size.inset(by: element.elementalConfig.insets))
+      return size.constrained(to: element.elementalConfig.sizeConstraint, intrinsicSize: intrinsicSize.outset(by: element.elementalConfig.insets))
    }
    
    class func intrinsicContentSize(for element: Elemental, constrainedSize size: CGSize) -> CGSize { fatalError() }
@@ -39,6 +38,7 @@ public class ElementCell: UICollectionViewCell, ElementalCell {
       element = component as? Element
       backgroundColor = element?.elementalConfig.backgroundColor
       layer.cornerRadius = element?.elementalConfig.cornerRadius ?? 0
+      contentView.layoutMargins = component.elementalConfig.insets
    }
 }
 
