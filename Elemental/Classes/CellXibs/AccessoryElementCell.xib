@@ -108,7 +108,6 @@
                 <outlet property="_label" destination="PE0-2G-Wvx" id="AdQ-Of-xuf"/>
                 <outlet property="_nameToDetailHorizontalSpacing" destination="beB-P2-DVM" id="dDd-B7-ArA"/>
                 <outlet property="_nameToDetailVerticalSpacing" destination="ARb-0R-6OS" id="Opy-VQ-BAH"/>
-                <outlet property="_nameToSuperviewHorizontalSpacing" destination="3Ez-zW-KBD" id="x87-Ef-R2p"/>
                 <outletCollection property="_horizontalConstraints" destination="beB-P2-DVM" collectionClass="NSMutableArray" id="lTL-PM-78R"/>
                 <outletCollection property="_horizontalConstraints" destination="AB3-nU-7o4" collectionClass="NSMutableArray" id="zhk-bl-Cg6"/>
                 <outletCollection property="_horizontalConstraints" destination="mQ1-wd-X4V" collectionClass="NSMutableArray" id="9KI-id-Nuo"/>

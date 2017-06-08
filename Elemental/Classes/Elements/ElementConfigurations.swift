@@ -282,8 +282,6 @@ public protocol AccessoryElementConfiguring: ElementalConfiguring {
    var accessoryStyle: ElementalTextStyling? { get }
    var accessoryTintColor: UIColor? { get }
    var buttonContentInsets: UIEdgeInsets? { get }
-   var leadingNamePadding: CGFloat { get }
-   var trailingDetailPadding: CGFloat { get }
    var nameToDetailSpacing: CGFloat { get }
 }
 
@@ -293,8 +291,6 @@ open class AccessoryElementConfiguration: ElementalConfiguration, AccessoryEleme
    public var accessoryStyle: ElementalTextStyling?
    public var accessoryTintColor: UIColor?
    public var buttonContentInsets: UIEdgeInsets?
-   public var leadingNamePadding: CGFloat
-   public var trailingDetailPadding: CGFloat
    public var nameToDetailSpacing: CGFloat
    
    public init(nameStyle: ElementalTextStyling = ElementalTextStyle(), detailStyle: ElementalTextStyling? = nil, accessoryStyle: ElementalTextStyling? = nil, accessoryTintColor: UIColor? = nil, buttonContentInsets: UIEdgeInsets? = nil, leadingNamePadding: CGFloat = 0, trailingDetailPadding: CGFloat = 0, nameToDetailSpacing: CGFloat = 0) {
@@ -303,8 +299,6 @@ open class AccessoryElementConfiguration: ElementalConfiguration, AccessoryEleme
       self.accessoryStyle = accessoryStyle
       self.accessoryTintColor = accessoryTintColor
       self.buttonContentInsets = buttonContentInsets
-      self.leadingNamePadding = leadingNamePadding
-      self.trailingDetailPadding = trailingDetailPadding
       self.nameToDetailSpacing = nameToDetailSpacing
       super.init()
    }
