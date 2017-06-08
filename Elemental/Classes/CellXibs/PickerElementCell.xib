@@ -20,14 +20,14 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IYr-Ib-4yD">
-                        <rect key="frame" x="0.0" y="138.5" width="375" height="172"/>
+                        <rect key="frame" x="8" y="138.5" width="359" height="172"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="172" id="rTk-F8-xu2"/>
                         </constraints>
                     </view>
                     <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O8e-wZ-Kz7">
-                        <rect key="frame" x="0.0" y="117" width="375" height="216"/>
+                        <rect key="frame" x="8" y="117" width="359" height="216"/>
                         <connections>
                             <outlet property="dataSource" destination="PTo-jW-den" id="7Dq-Od-0ex"/>
                             <outlet property="delegate" destination="PTo-jW-den" id="Hu0-YM-dKq"/>
@@ -103,8 +103,8 @@
                 <constraint firstItem="IYr-Ib-4yD" firstAttribute="width" secondItem="O8e-wZ-Kz7" secondAttribute="width" id="iIO-8p-Iaz"/>
                 <constraint firstItem="vNt-1n-ccU" firstAttribute="top" secondItem="PTo-jW-den" secondAttribute="topMargin" id="m4g-5x-i3Y"/>
                 <constraint firstItem="IYr-Ib-4yD" firstAttribute="top" secondItem="E0J-4t-auG" secondAttribute="bottom" constant="21" id="mCi-ib-XfW"/>
-                <constraint firstAttribute="trailing" secondItem="O8e-wZ-Kz7" secondAttribute="trailing" id="o9H-ir-Njs"/>
-                <constraint firstItem="O8e-wZ-Kz7" firstAttribute="leading" secondItem="PTo-jW-den" secondAttribute="leading" id="p6c-in-PAA"/>
+                <constraint firstAttribute="trailingMargin" secondItem="O8e-wZ-Kz7" secondAttribute="trailing" id="o9H-ir-Njs"/>
+                <constraint firstItem="O8e-wZ-Kz7" firstAttribute="leading" secondItem="PTo-jW-den" secondAttribute="leadingMargin" id="p6c-in-PAA"/>
                 <constraint firstAttribute="trailingMargin" secondItem="vNt-1n-ccU" secondAttribute="trailing" id="rbh-ec-6AM"/>
                 <constraint firstItem="E0J-4t-auG" firstAttribute="leading" secondItem="PTo-jW-den" secondAttribute="leadingMargin" id="yQJ-nM-gkb"/>
             </constraints>

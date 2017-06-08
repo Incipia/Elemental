@@ -61,7 +61,7 @@
                         </constraints>
                     </view>
                     <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="5Fa-Pb-xfy">
-                        <rect key="frame" x="0.0" y="118" width="375" height="216"/>
+                        <rect key="frame" x="8" y="118" width="359" height="216"/>
                         <date key="date" timeIntervalSinceReferenceDate="514837191.13942802">
                             <!--2017-04-25 18:19:51 +0000-->
                         </date>
@@ -74,10 +74,10 @@
                 <constraint firstItem="hYo-Fj-mZJ" firstAttribute="leading" secondItem="aCj-sM-gmM" secondAttribute="leadingMargin" id="8sM-mT-TeV"/>
                 <constraint firstItem="SQz-kf-sRL" firstAttribute="top" secondItem="hYo-Fj-mZJ" secondAttribute="bottom" constant="10" id="AII-Yt-5tw"/>
                 <constraint firstItem="m27-bw-2Nq" firstAttribute="top" secondItem="aCj-sM-gmM" secondAttribute="topMargin" id="EVO-Am-A29"/>
-                <constraint firstAttribute="trailing" secondItem="5Fa-Pb-xfy" secondAttribute="trailing" id="HTZ-RR-VvP"/>
+                <constraint firstAttribute="trailingMargin" secondItem="5Fa-Pb-xfy" secondAttribute="trailing" id="HTZ-RR-VvP"/>
                 <constraint firstItem="m27-bw-2Nq" firstAttribute="leading" secondItem="aCj-sM-gmM" secondAttribute="leadingMargin" id="MSV-CX-KsG"/>
                 <constraint firstAttribute="trailingMargin" secondItem="m27-bw-2Nq" secondAttribute="trailing" id="ONP-BK-ysg"/>
-                <constraint firstItem="5Fa-Pb-xfy" firstAttribute="leading" secondItem="aCj-sM-gmM" secondAttribute="leading" id="XFh-qZ-nnR"/>
+                <constraint firstItem="5Fa-Pb-xfy" firstAttribute="leading" secondItem="aCj-sM-gmM" secondAttribute="leadingMargin" id="XFh-qZ-nnR"/>
                 <constraint firstItem="hYo-Fj-mZJ" firstAttribute="top" secondItem="m27-bw-2Nq" secondAttribute="bottom" constant="10" id="XtW-bt-hYH"/>
                 <constraint firstItem="5Fa-Pb-xfy" firstAttribute="top" secondItem="SQz-kf-sRL" secondAttribute="bottom" id="ZMd-Wt-7Ls"/>
                 <constraint firstAttribute="trailingMargin" secondItem="hYo-Fj-mZJ" secondAttribute="trailing" id="dX0-Qk-Pj0"/>
