@@ -1,11 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1421" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -19,24 +20,24 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IYr-Ib-4yD">
-                        <rect key="frame" x="0.0" y="130.5" width="375" height="172"/>
+                        <rect key="frame" x="0.0" y="138.5" width="375" height="172"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="172" id="rTk-F8-xu2"/>
                         </constraints>
                     </view>
                     <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O8e-wZ-Kz7">
-                        <rect key="frame" x="0.0" y="109" width="375" height="216"/>
+                        <rect key="frame" x="0.0" y="117" width="375" height="216"/>
                         <connections>
                             <outlet property="dataSource" destination="PTo-jW-den" id="7Dq-Od-0ex"/>
                             <outlet property="delegate" destination="PTo-jW-den" id="Hu0-YM-dKq"/>
                         </connections>
                     </pickerView>
                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E0J-4t-auG">
-                        <rect key="frame" x="0.0" y="61" width="375" height="48"/>
+                        <rect key="frame" x="8" y="69" width="359" height="48"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nih-L6-yqd">
-                                <rect key="frame" x="30" y="14" width="315" height="21"/>
+                                <rect key="frame" x="30" y="14" width="299" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -50,7 +51,7 @@
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="calendar_icon" translatesAutoresizingMaskIntoConstraints="NO" id="sYd-5A-ZCO">
-                                <rect key="frame" x="355" y="14" width="20" height="20"/>
+                                <rect key="frame" x="339" y="14" width="20" height="20"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="20" id="9Bv-1D-so5"/>
@@ -72,13 +73,13 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vNt-1n-ccU">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="21"/>
+                        <rect key="frame" x="8" y="8" width="359" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gM4-zj-sp6">
-                        <rect key="frame" x="0.0" y="31" width="375" height="20.5"/>
+                        <rect key="frame" x="8" y="39" width="359" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -87,25 +88,25 @@
             </view>
             <color key="backgroundColor" red="0.81952776169999997" green="0.96807370979999996" blue="0.98220974210000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="gM4-zj-sp6" firstAttribute="leading" secondItem="PTo-jW-den" secondAttribute="leading" id="2g4-YQ-wx1"/>
-                <constraint firstItem="gM4-zj-sp6" firstAttribute="top" secondItem="PTo-jW-den" secondAttribute="top" id="4a5-og-f9j"/>
+                <constraint firstItem="gM4-zj-sp6" firstAttribute="leading" secondItem="PTo-jW-den" secondAttribute="leadingMargin" id="2g4-YQ-wx1"/>
+                <constraint firstItem="gM4-zj-sp6" firstAttribute="top" secondItem="PTo-jW-den" secondAttribute="topMargin" id="4a5-og-f9j"/>
                 <constraint firstItem="gM4-zj-sp6" firstAttribute="top" secondItem="vNt-1n-ccU" secondAttribute="bottom" constant="10" id="6SO-bd-jxM"/>
                 <constraint firstItem="vNt-1n-ccU" firstAttribute="centerY" secondItem="Nih-L6-yqd" secondAttribute="centerY" id="8gr-MY-uMp"/>
-                <constraint firstItem="vNt-1n-ccU" firstAttribute="leading" secondItem="PTo-jW-den" secondAttribute="leading" id="9dS-3Y-grm"/>
+                <constraint firstItem="vNt-1n-ccU" firstAttribute="leading" secondItem="PTo-jW-den" secondAttribute="leadingMargin" id="9dS-3Y-grm"/>
                 <constraint firstItem="E0J-4t-auG" firstAttribute="top" secondItem="gM4-zj-sp6" secondAttribute="bottom" constant="10" id="I7Y-m9-ctP"/>
                 <constraint firstItem="vNt-1n-ccU" firstAttribute="trailing" secondItem="Nih-L6-yqd" secondAttribute="leading" constant="-10" id="XHU-Vf-VJc"/>
                 <constraint firstItem="vNt-1n-ccU" firstAttribute="leading" secondItem="UQd-Ti-HSy" secondAttribute="trailing" constant="10" id="aOu-uu-lY3"/>
                 <constraint firstItem="IYr-Ib-4yD" firstAttribute="centerX" secondItem="O8e-wZ-Kz7" secondAttribute="centerX" id="ad1-Om-ciJ"/>
-                <constraint firstAttribute="trailing" secondItem="E0J-4t-auG" secondAttribute="trailing" id="d4C-iQ-2fy"/>
-                <constraint firstAttribute="trailing" secondItem="gM4-zj-sp6" secondAttribute="trailing" id="dBG-LD-bkI"/>
+                <constraint firstAttribute="trailingMargin" secondItem="E0J-4t-auG" secondAttribute="trailing" id="d4C-iQ-2fy"/>
+                <constraint firstAttribute="trailingMargin" secondItem="gM4-zj-sp6" secondAttribute="trailing" id="dBG-LD-bkI"/>
                 <constraint firstItem="O8e-wZ-Kz7" firstAttribute="centerY" secondItem="IYr-Ib-4yD" secondAttribute="centerY" id="eTE-XF-jqM"/>
                 <constraint firstItem="IYr-Ib-4yD" firstAttribute="width" secondItem="O8e-wZ-Kz7" secondAttribute="width" id="iIO-8p-Iaz"/>
-                <constraint firstItem="vNt-1n-ccU" firstAttribute="top" secondItem="PTo-jW-den" secondAttribute="top" id="m4g-5x-i3Y"/>
+                <constraint firstItem="vNt-1n-ccU" firstAttribute="top" secondItem="PTo-jW-den" secondAttribute="topMargin" id="m4g-5x-i3Y"/>
                 <constraint firstItem="IYr-Ib-4yD" firstAttribute="top" secondItem="E0J-4t-auG" secondAttribute="bottom" constant="21" id="mCi-ib-XfW"/>
                 <constraint firstAttribute="trailing" secondItem="O8e-wZ-Kz7" secondAttribute="trailing" id="o9H-ir-Njs"/>
                 <constraint firstItem="O8e-wZ-Kz7" firstAttribute="leading" secondItem="PTo-jW-den" secondAttribute="leading" id="p6c-in-PAA"/>
-                <constraint firstAttribute="trailing" secondItem="vNt-1n-ccU" secondAttribute="trailing" id="rbh-ec-6AM"/>
-                <constraint firstItem="E0J-4t-auG" firstAttribute="leading" secondItem="PTo-jW-den" secondAttribute="leading" id="yQJ-nM-gkb"/>
+                <constraint firstAttribute="trailingMargin" secondItem="vNt-1n-ccU" secondAttribute="trailing" id="rbh-ec-6AM"/>
+                <constraint firstItem="E0J-4t-auG" firstAttribute="leading" secondItem="PTo-jW-den" secondAttribute="leadingMargin" id="yQJ-nM-gkb"/>
             </constraints>
             <size key="customSize" width="375" height="363"/>
             <variation key="default">
@@ -146,7 +147,7 @@
                 <outletCollection property="_leftInsetConstraints" destination="yQJ-nM-gkb" collectionClass="NSMutableArray" id="hKm-sR-8ED"/>
                 <outletCollection property="_leftInsetConstraints" destination="p6c-in-PAA" collectionClass="NSMutableArray" id="Ucc-LL-tGv"/>
                 <outletCollection property="_rightInsetConstraints" destination="o9H-ir-Njs" collectionClass="NSMutableArray" id="xvd-sH-PSe"/>
-                <outletCollection property="_rightInsetConstraints" destination="d4C-iQ-2fy" id="SeN-BP-eEW"/>
+                <outletCollection property="_rightInsetConstraints" destination="d4C-iQ-2fy" collectionClass="NSMutableArray" id="SeN-BP-eEW"/>
             </connections>
             <point key="canvasLocation" x="-95.5" y="-17.5"/>
         </collectionViewCell>

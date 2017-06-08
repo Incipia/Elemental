@@ -1,11 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1421" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -19,22 +20,22 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m27-bw-2Nq">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="21"/>
+                        <rect key="frame" x="8" y="8" width="359" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hYo-Fj-mZJ">
-                        <rect key="frame" x="0.0" y="31" width="375" height="21"/>
+                        <rect key="frame" x="8" y="39" width="359" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SQz-kf-sRL">
-                        <rect key="frame" x="0.0" y="62" width="375" height="48"/>
+                        <rect key="frame" x="8" y="70" width="359" height="48"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x9O-oh-Qbt">
-                                <rect key="frame" x="44" y="14" width="323" height="21"/>
+                                <rect key="frame" x="44" y="14" width="307" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -60,7 +61,7 @@
                         </constraints>
                     </view>
                     <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="5Fa-Pb-xfy">
-                        <rect key="frame" x="0.0" y="110" width="375" height="216"/>
+                        <rect key="frame" x="0.0" y="118" width="375" height="216"/>
                         <date key="date" timeIntervalSinceReferenceDate="514837191.13942802">
                             <!--2017-04-25 18:19:51 +0000-->
                         </date>
@@ -69,18 +70,18 @@
             </view>
             <color key="backgroundColor" red="0.81952776169999997" green="0.96807370979999996" blue="0.98220974210000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="SQz-kf-sRL" secondAttribute="trailing" id="02n-sK-b6u"/>
-                <constraint firstItem="hYo-Fj-mZJ" firstAttribute="leading" secondItem="aCj-sM-gmM" secondAttribute="leading" id="8sM-mT-TeV"/>
+                <constraint firstAttribute="trailingMargin" secondItem="SQz-kf-sRL" secondAttribute="trailing" id="02n-sK-b6u"/>
+                <constraint firstItem="hYo-Fj-mZJ" firstAttribute="leading" secondItem="aCj-sM-gmM" secondAttribute="leadingMargin" id="8sM-mT-TeV"/>
                 <constraint firstItem="SQz-kf-sRL" firstAttribute="top" secondItem="hYo-Fj-mZJ" secondAttribute="bottom" constant="10" id="AII-Yt-5tw"/>
-                <constraint firstItem="m27-bw-2Nq" firstAttribute="top" secondItem="aCj-sM-gmM" secondAttribute="top" id="EVO-Am-A29"/>
+                <constraint firstItem="m27-bw-2Nq" firstAttribute="top" secondItem="aCj-sM-gmM" secondAttribute="topMargin" id="EVO-Am-A29"/>
                 <constraint firstAttribute="trailing" secondItem="5Fa-Pb-xfy" secondAttribute="trailing" id="HTZ-RR-VvP"/>
-                <constraint firstItem="m27-bw-2Nq" firstAttribute="leading" secondItem="aCj-sM-gmM" secondAttribute="leading" id="MSV-CX-KsG"/>
-                <constraint firstAttribute="trailing" secondItem="m27-bw-2Nq" secondAttribute="trailing" id="ONP-BK-ysg"/>
+                <constraint firstItem="m27-bw-2Nq" firstAttribute="leading" secondItem="aCj-sM-gmM" secondAttribute="leadingMargin" id="MSV-CX-KsG"/>
+                <constraint firstAttribute="trailingMargin" secondItem="m27-bw-2Nq" secondAttribute="trailing" id="ONP-BK-ysg"/>
                 <constraint firstItem="5Fa-Pb-xfy" firstAttribute="leading" secondItem="aCj-sM-gmM" secondAttribute="leading" id="XFh-qZ-nnR"/>
                 <constraint firstItem="hYo-Fj-mZJ" firstAttribute="top" secondItem="m27-bw-2Nq" secondAttribute="bottom" constant="10" id="XtW-bt-hYH"/>
                 <constraint firstItem="5Fa-Pb-xfy" firstAttribute="top" secondItem="SQz-kf-sRL" secondAttribute="bottom" id="ZMd-Wt-7Ls"/>
-                <constraint firstAttribute="trailing" secondItem="hYo-Fj-mZJ" secondAttribute="trailing" id="dX0-Qk-Pj0"/>
-                <constraint firstItem="SQz-kf-sRL" firstAttribute="leading" secondItem="aCj-sM-gmM" secondAttribute="leading" id="ua9-Js-ZtK"/>
+                <constraint firstAttribute="trailingMargin" secondItem="hYo-Fj-mZJ" secondAttribute="trailing" id="dX0-Qk-Pj0"/>
+                <constraint firstItem="SQz-kf-sRL" firstAttribute="leading" secondItem="aCj-sM-gmM" secondAttribute="leadingMargin" id="ua9-Js-ZtK"/>
             </constraints>
             <size key="customSize" width="375" height="382"/>
             <connections>

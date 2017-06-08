@@ -1,11 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1421" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -19,7 +20,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jij-0V-hW3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="21"/>
+                        <rect key="frame" x="8" y="8" width="359" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -28,9 +29,9 @@
             </view>
             <color key="backgroundColor" red="0.98220974210000001" green="0.85064302439999995" blue="0.80479028220000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="Jij-0V-hW3" secondAttribute="trailing" id="8sW-Hl-OGd"/>
-                <constraint firstItem="Jij-0V-hW3" firstAttribute="leading" secondItem="xv2-Pe-YX1" secondAttribute="leading" id="9NB-m4-dYR"/>
-                <constraint firstItem="Jij-0V-hW3" firstAttribute="top" secondItem="xv2-Pe-YX1" secondAttribute="top" id="rc4-HN-97E"/>
+                <constraint firstAttribute="trailingMargin" secondItem="Jij-0V-hW3" secondAttribute="trailing" id="8sW-Hl-OGd"/>
+                <constraint firstItem="Jij-0V-hW3" firstAttribute="leading" secondItem="xv2-Pe-YX1" secondAttribute="leadingMargin" id="9NB-m4-dYR"/>
+                <constraint firstItem="Jij-0V-hW3" firstAttribute="top" secondItem="xv2-Pe-YX1" secondAttribute="topMargin" id="rc4-HN-97E"/>
             </constraints>
             <size key="customSize" width="375" height="102"/>
             <connections>

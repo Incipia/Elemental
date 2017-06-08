@@ -1,11 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1421" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -19,7 +21,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i3C-pu-nOC">
-                        <rect key="frame" x="0.0" y="16.5" width="375" height="21"/>
+                        <rect key="frame" x="8" y="16.5" width="359" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -28,9 +30,9 @@
             </view>
             <color key="backgroundColor" red="0.82072631929999995" green="0.98220974210000001" blue="0.92470759849999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="i3C-pu-nOC" secondAttribute="trailing" id="Dfo-9k-wg2"/>
-                <constraint firstItem="i3C-pu-nOC" firstAttribute="leading" secondItem="2q8-RD-IX6" secondAttribute="leading" id="Nc2-Ve-ty0"/>
-                <constraint firstItem="i3C-pu-nOC" firstAttribute="centerY" secondItem="2q8-RD-IX6" secondAttribute="centerY" id="V4I-No-88X"/>
+                <constraint firstAttribute="trailingMargin" secondItem="i3C-pu-nOC" secondAttribute="trailing" id="Dfo-9k-wg2"/>
+                <constraint firstItem="i3C-pu-nOC" firstAttribute="leading" secondItem="2q8-RD-IX6" secondAttribute="leadingMargin" id="Nc2-Ve-ty0"/>
+                <constraint firstItem="i3C-pu-nOC" firstAttribute="centerY" secondItem="2q8-RD-IX6" secondAttribute="centerYWithinMargins" id="V4I-No-88X"/>
             </constraints>
             <connections>
                 <outlet property="_label" destination="i3C-pu-nOC" id="zOn-5z-TQ3"/>
