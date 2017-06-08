@@ -61,6 +61,7 @@ class AccessoryElementCell: BindableElementCell {
       _detailLabel.text = content.detail
       _label.font = style.nameStyle.font
       _detailLabel.font = style.detailStyle?.font
+      _detailLabel.textAlignment = style.detailStyle?.alignment ?? .left
       _label.textColor = style.nameStyle.color
       _detailLabel.textColor = style.detailStyle?.color
       _button.titleLabel?.font = style.accessoryStyle?.font
