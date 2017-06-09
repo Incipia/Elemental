@@ -38,9 +38,6 @@ class PickerElementCell: BindableElementCell {
    @IBOutlet fileprivate var _horizontalConstraints: [NSLayoutConstraint]!
    @IBOutlet fileprivate var _verticalConstraints: [NSLayoutConstraint]!
    
-   @IBOutlet fileprivate var _leftInsetConstraints: [NSLayoutConstraint]!
-   @IBOutlet fileprivate var _rightInsetConstraints: [NSLayoutConstraint]!
-   
    // MARK: - Private Properties
    fileprivate var _options: [(option: PickerElement.Option, dataValue: Data)] = []
    fileprivate var _optionStyle: ElementalTextStyle = ElementalTextStyle()
@@ -147,9 +144,7 @@ class PickerElementCell: BindableElementCell {
       
       let angle: CGFloat = element.inputState == .focused ? .pi : 0.0
       _rightAccessoryImageView.transform = CGAffineTransform(rotationAngle: angle)
-      
-      _leftInsetConstraints.forEach { $0.constant = config.insets.left }
-      _rightInsetConstraints.forEach { $0.constant = config.insets.right }
+      _buttonBackgroundView.layoutMargins = config.buttonInsets
       
       setNeedsUpdateConstraints()
    }
