@@ -16,11 +16,13 @@ public enum ElementalTransitionType {
 public protocol ElementalViewControllerDelegate: class {
    func elementsBeganRefreshing(in viewController: ElementalViewController)
    func elementSelected(_ element: Elemental, in viewController: ElementalViewController)
+   func reloadedLayout(animated: Bool, in viewController: ElementalViewController)
 }
 
 extension ElementalViewControllerDelegate {
    public func elementSelected(_ element: Elemental, in viewController: ElementalViewController) {}
    public func elementsBeganRefreshing(in viewController: ElementalViewController) {}
+   public func reloadedLayout(animated: Bool, in viewController: ElementalViewController) {}
 }
 
 open class ElementalViewController: UIViewController {
@@ -339,13 +341,13 @@ extension ElementalViewController {
    public func reloadLayout(animated: Bool = true) {
       _needsLayout = false
       _needsAnimatedLayout = false
-      guard animated else { collectionView.collectionViewLayout.invalidateLayout(); return }
-      _animatingIndexPaths = collectionView.indexPathsForVisibleItems
       
+      _animatingIndexPaths = animated ? collectionView.indexPathsForVisibleItems : nil
       collectionView.performBatchUpdates({
          self.collectionView.setCollectionViewLayout(self.collectionView.collectionViewLayout, animated: true)
       }, completion: { _ in
          self._animatingIndexPaths = nil
+         self.formDelegate?.reloadedLayout(animated: animated, in: self)
       })
    }
 }

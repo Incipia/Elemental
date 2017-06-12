@@ -65,6 +65,7 @@ open class Element: Elemental {
    open func reconfigure() {
       guard let cell = cell, cell.element === self else { return }
       configure(cell: cell, in: _containerViewController)
+      cell.layoutDelegate?.reloadLayout(for: self, animated: true, scrollToCenter: false)
    }
    
    open func size(forConstrainedSize size: CGSize, layoutDirection direction: ElementalLayoutDirection) -> CGSize { fatalError() }

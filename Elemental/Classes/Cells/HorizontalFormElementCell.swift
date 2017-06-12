@@ -100,4 +100,9 @@ extension HorizontalFormElementCell: ElementalViewControllerDelegate {
    func elementSelected(_ element: Elemental, in viewController: ElementalViewController) {
       delegate?.componentSelected(element, in: self)
    }
+   
+   func reloadedLayout(animated: Bool, in viewController: ElementalViewController) {
+      guard let element = element else { return }
+      layoutDelegate?.reloadLayout(for: element, animated: animated, scrollToCenter: true)
+   }
 }
