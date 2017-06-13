@@ -139,7 +139,8 @@ class PickerElementCell: BindableElementCell {
 
       _selectedValue = _selectedOption?.value
       
-      _updateIndicatorColor()
+      let indicatorColor: UIColor = config.pickerIndicatorColor ?? self._optionStyle.color.withAlphaComponent(0.5)
+      _updateIndicatorColor(indicatorColor)
       _updateAccessoryImages(with: element)
       
       let angle: CGFloat = element.inputState == .focused ? .pi : 0.0
@@ -172,7 +173,11 @@ class PickerElementCell: BindableElementCell {
    }
    
    override func didMoveToWindow() {
-      _updateIndicatorColor()
+      var indicatorColor = _optionStyle.color.withAlphaComponent(0.5)
+      if let config = (element as? PickerElement)?.configuration, let color = config.pickerIndicatorColor {
+         indicatorColor = color
+      }
+      _updateIndicatorColor(indicatorColor)
    }
    
    override func updateConstraints() {
@@ -213,10 +218,10 @@ class PickerElementCell: BindableElementCell {
       _optionStyle = ElementalTextStyle(style: style)
    }
    
-   private func _updateIndicatorColor() {
+   private func _updateIndicatorColor(_ color: UIColor) {
       _pickerView.subviews.forEach {
          guard $0.bounds.height <= 1.0 else { return }
-         $0.backgroundColor = self._optionStyle.color.withAlphaComponent(0.5)
+         $0.backgroundColor = color
       }
    }
    
