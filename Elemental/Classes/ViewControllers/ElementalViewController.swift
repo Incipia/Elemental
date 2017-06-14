@@ -82,7 +82,6 @@ open class ElementalViewController: UIViewController {
    }()
    
    fileprivate var _cvLeadingSpaceConstraint: NSLayoutConstraint = NSLayoutConstraint()
-   fileprivate var _animatingIndexPaths: [IndexPath]?
    fileprivate var _elements: [Elemental] = []
    
    struct ReloadState {
@@ -362,12 +361,9 @@ extension ElementalViewController {
    public func reloadLayout(animated: Bool? = true) {
       let animated = animated ?? _layoutState.animated
       guard animated else { collectionView.collectionViewLayout.invalidateLayout(); return }
-      _animatingIndexPaths = collectionView.indexPathsForVisibleItems
       
       collectionView.performBatchUpdates({
          self.collectionView.setCollectionViewLayout(self.collectionView.collectionViewLayout, animated: true)
-      }, completion: { _ in
-         self._animatingIndexPaths = nil
       })
       _layoutState.reset()
    }
@@ -419,17 +415,5 @@ extension ElementalViewController: UICollectionViewDelegateFlowLayout {
       guard element.elementalConfig.isSelectable else { return }
       element.elementalConfig.selectAction?(element)
       formDelegate?.elementSelected(element, in: self)
-   }
-   
-   public func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-      if let animatingPaths = _animatingIndexPaths, !animatingPaths.contains(indexPath) {
-         let finalAlpha = cell.alpha
-         cell.alpha = 0
-         DispatchQueue.main.async {
-            UIView.animate(withDuration: 0.1, delay: 0.2, animations: {
-               cell.alpha = finalAlpha
-            })
-         }
-      }
    }
 }
