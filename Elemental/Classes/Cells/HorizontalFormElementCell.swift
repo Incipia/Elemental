@@ -101,8 +101,8 @@ extension HorizontalFormElementCell: ElementalViewControllerDelegate {
       delegate?.componentSelected(element, in: self)
    }
    
-   func reloadedLayout(animated: Bool, in viewController: ElementalViewController) {
+   func reloadedLayout(for elements: [Elemental], scrollPosition: UICollectionViewScrollPosition, animated: Bool, in viewController: ElementalViewController) {
       guard let element = element else { return }
-      layoutDelegate?.reloadLayout(for: element, animated: animated, scrollPosition: .center)
+      layoutDelegate?.reloadLayout(for: element, animated: animated, scrollPosition: ElementalLayoutPosition(scrollPosition: scrollPosition))
    }
 }

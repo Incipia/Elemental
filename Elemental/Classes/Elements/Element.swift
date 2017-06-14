@@ -34,6 +34,7 @@ public protocol ElementalSizeDelegate: class {
 public enum ElementalLayoutPosition {
    case none, start, center, end
    
+   // MARK: - Public Properties
    var horizontalScrollPosition: UICollectionViewScrollPosition {
       switch self {
       case .none: return []
@@ -42,13 +43,23 @@ public enum ElementalLayoutPosition {
       case .end: return .right
       }
    }
-
+   
    var verticalScrollPosition: UICollectionViewScrollPosition {
       switch self {
       case .none: return []
       case .start: return .top
       case .center: return .centeredVertically
       case .end: return .bottom
+      }
+   }
+
+   // MARK: - Init
+   init(scrollPosition: UICollectionViewScrollPosition) {
+      switch scrollPosition {
+      case UICollectionViewScrollPosition.top, UICollectionViewScrollPosition.left: self = .start
+      case UICollectionViewScrollPosition.centeredVertically, UICollectionViewScrollPosition.centeredHorizontally: self = .center
+      case UICollectionViewScrollPosition.bottom, UICollectionViewScrollPosition.right: self = .end
+      default: self = .none
       }
    }
 }

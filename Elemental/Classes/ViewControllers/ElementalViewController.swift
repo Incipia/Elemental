@@ -17,13 +17,13 @@ public enum ElementalTransition {
 public protocol ElementalViewControllerDelegate: class {
    func elementsBeganRefreshing(in viewController: ElementalViewController)
    func elementSelected(_ element: Elemental, in viewController: ElementalViewController)
-   func reloadedLayout(animated: Bool, in viewController: ElementalViewController)
+   func reloadedLayout(for elements: [Elemental], scrollPosition: UICollectionViewScrollPosition, animated: Bool, in viewController: ElementalViewController)
 }
 
 extension ElementalViewControllerDelegate {
    public func elementSelected(_ element: Elemental, in viewController: ElementalViewController) {}
    public func elementsBeganRefreshing(in viewController: ElementalViewController) {}
-   public func reloadedLayout(animated: Bool, in viewController: ElementalViewController) {}
+   public func reloadedLayout(for elements: [Elemental], scrollPosition: UICollectionViewScrollPosition, animated: Bool, in viewController: ElementalViewController) {}
 }
 
 open class ElementalViewController: UIViewController {
@@ -248,9 +248,9 @@ open class ElementalViewController: UIViewController {
       let indexPath = IndexPath(row: index, section: 0)
       guard let cell = collectionView.cellForItem(at: indexPath) else { return }
       
-      let size = element.size(forConstrainedSize: _constrainedSize(for: element), layoutDirection: .vertical)
-      guard size != cell.frame.size else {
+      guard _layoutState.needsLayout || element.size(forConstrainedSize: _constrainedSize(for: element), layoutDirection: .vertical) != cell.frame.size else {
          scroll(to: element, position: scrollPosition, animated: animated)
+         self.formDelegate?.reloadedLayout(for: [element], scrollPosition: scrollPosition, animated: animated, in: self)
          return
       }
       
@@ -401,7 +401,7 @@ extension ElementalViewController {
          if let element = reloadState.elements.last {
             self.scroll(to: element, position: reloadState.scrollPosition, animated: animated)
          }
-         self.formDelegate?.reloadedLayout(animated: animated, in: self)
+         self.formDelegate?.reloadedLayout(for: reloadState.elements, scrollPosition: reloadState.scrollPosition, animated: reloadState.animated, in: self)
       }
    }
 }
