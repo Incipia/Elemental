@@ -74,6 +74,7 @@ public protocol PickerElementConfiguring: ElementalConfiguring {
    var buttonInsets: UIEdgeInsets { get }
    var buttonBackgroundColor: UIColor { get }
    var pickerBackgroundColor: UIColor? { get }
+   var pickerIndicatorColor: UIColor? { get }
    var pickerTopMargin: CGFloat { get }
    var pickerBottomMargin: CGFloat { get }
    var inputState: InputElementState { get }
@@ -92,6 +93,7 @@ open class PickerElementConfiguration: ElementalConfiguration, PickerElementConf
    public var buttonInsets: UIEdgeInsets
    public var buttonBackgroundColor: UIColor
    public var pickerBackgroundColor: UIColor?
+   public var pickerIndicatorColor: UIColor?
    public var pickerTopMargin: CGFloat
    public var pickerBottomMargin: CGFloat
    public var inputState: InputElementState
@@ -99,7 +101,7 @@ open class PickerElementConfiguration: ElementalConfiguration, PickerElementConf
    public var rightAccessoryImageTintColor: UIColor
    weak public var layoutDelegate: ElementalLayoutDelegate?
    
-   public init(nameStyle: ElementalTextStyling = ElementalTextStyle(), detailStyle: ElementalTextStyling? = nil, placeholderStyle: ElementalTextStyling? = nil, optionStyle: ElementalTextStyling? = nil, buttonStyle: ElementalTextStyling = ElementalTextStyle(), buttonHeight: CGFloat = 64, buttonInsets: UIEdgeInsets = .zero, buttonBackgroundColor: UIColor = .gray, pickerBackgroundColor: UIColor? = nil, pickerTopMargin: CGFloat = 10, pickerBottomMargin: CGFloat = 10, inputState: InputElementState = .unfocused, leftAccessoryImageTintColor: UIColor = .gray, rightAccessoryImageTintColor: UIColor = .gray, layoutDelegate: ElementalLayoutDelegate? = nil) {
+   public init(nameStyle: ElementalTextStyling = ElementalTextStyle(), detailStyle: ElementalTextStyling? = nil, placeholderStyle: ElementalTextStyling? = nil, optionStyle: ElementalTextStyling? = nil, buttonStyle: ElementalTextStyling = ElementalTextStyle(), buttonHeight: CGFloat = 64, buttonInsets: UIEdgeInsets = .zero, buttonBackgroundColor: UIColor = .gray, pickerBackgroundColor: UIColor? = nil, pickerSelectionViewsColor: UIColor? = nil, pickerTopMargin: CGFloat = 10, pickerBottomMargin: CGFloat = 10, inputState: InputElementState = .unfocused, leftAccessoryImageTintColor: UIColor = .gray, rightAccessoryImageTintColor: UIColor = .gray, layoutDelegate: ElementalLayoutDelegate? = nil) {
       self.nameStyle = nameStyle
       self.detailStyle = detailStyle
       self.placeholderStyle = placeholderStyle
@@ -109,6 +111,7 @@ open class PickerElementConfiguration: ElementalConfiguration, PickerElementConf
       self.buttonInsets = buttonInsets
       self.buttonBackgroundColor = buttonBackgroundColor
       self.pickerBackgroundColor = pickerBackgroundColor
+      self.pickerIndicatorColor = pickerSelectionViewsColor
       self.pickerTopMargin = pickerTopMargin
       self.pickerBottomMargin = pickerBottomMargin
       self.inputState = inputState

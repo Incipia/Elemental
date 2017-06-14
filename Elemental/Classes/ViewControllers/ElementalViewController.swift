@@ -8,7 +8,8 @@
 
 import UIKit
 
-public enum ElementalTransitionType {
+public enum ElementalTransition {
+   case none
    case forwards
    case backwards
 }
@@ -16,13 +17,11 @@ public enum ElementalTransitionType {
 public protocol ElementalViewControllerDelegate: class {
    func elementsBeganRefreshing(in viewController: ElementalViewController)
    func elementSelected(_ element: Elemental, in viewController: ElementalViewController)
-   func reloadedLayout(animated: Bool, in viewController: ElementalViewController)
 }
 
 extension ElementalViewControllerDelegate {
    public func elementSelected(_ element: Elemental, in viewController: ElementalViewController) {}
    public func elementsBeganRefreshing(in viewController: ElementalViewController) {}
-   public func reloadedLayout(animated: Bool, in viewController: ElementalViewController) {}
 }
 
 open class ElementalViewController: UIViewController {
@@ -83,11 +82,27 @@ open class ElementalViewController: UIViewController {
    }()
    
    fileprivate var _cvLeadingSpaceConstraint: NSLayoutConstraint = NSLayoutConstraint()
-   fileprivate var _animatingIndexPaths: [IndexPath]?
-   fileprivate var _needsReload: Bool = false
-   fileprivate var _needsLayout: Bool = false
-   fileprivate var _needsAnimatedLayout: Bool = false
    fileprivate var _elements: [Elemental] = []
+   
+   struct ReloadState {
+      var needsReload = false
+      var transition: ElementalTransition = .none
+      
+      mutating func reset() {
+         self = ReloadState()
+      }
+   }
+   fileprivate var _reloadState = ReloadState()
+   
+   struct LayoutState {
+      var needsLayout = false
+      var animated = false
+      
+      mutating func reset() {
+         self = LayoutState()
+      }
+   }
+   fileprivate var _layoutState = LayoutState()
    
    // MARK: - Public Properties
    public var footerViewTopPadding: CGFloat = 0 {
@@ -193,28 +208,33 @@ open class ElementalViewController: UIViewController {
       return true
    }
    
-   open func reload() {
-      _needsReload = false
+   open func reload(transition: ElementalTransition? = nil) {
       loadViewIfNeeded()
-      configure(with: generateElements() ?? _elements, scrollToTop: false)
+      let transition = transition ?? _reloadState.transition
+      configure(with: generateElements() ?? _elements, transition: transition, scrollToTop: false)
+      _reloadState.reset()
    }
    
-   public func setNeedsReload() {
-      guard !_needsReload else { return }
-      _needsReload = true
+   public func setNeedsReload(transition: ElementalTransition? = nil) {
+      guard !_reloadState.needsReload else { return }
+      _reloadState.needsReload = true
+      
+      if let transition = transition {
+         _reloadState.transition = transition
+      }
       DispatchQueue.main.async {
-         guard self._needsReload else { return }
-         self.reload()
+         guard self._reloadState.needsReload else { return }
+         self.reload(transition: self._reloadState.transition)
       }
    }
    
    public func setNeedsLayout(animated: Bool = true) {
-      _needsAnimatedLayout = _needsAnimatedLayout || animated
-      guard !_needsLayout else { return }
-      _needsLayout = true
+      _layoutState.animated = _layoutState.animated || animated
+      guard !_layoutState.needsLayout else { return }
+      _layoutState.needsLayout = true
       DispatchQueue.main.async {
-         guard self._needsLayout else { return }
-         self.reloadLayout(animated: self._needsAnimatedLayout)
+         guard self._layoutState.needsLayout else { return }
+         self.reloadLayout(animated: self._layoutState.animated)
       }
    }
    
@@ -278,40 +298,40 @@ extension ElementalViewController {
       _refreshControl.endRefreshing()
    }
    
-   public func configure(with elements: [Elemental], transitionType: ElementalTransitionType? = nil, scrollToTop: Bool = true) {
+   public func configure(with elements: [Elemental], transition: ElementalTransition = .none, scrollToTop: Bool = true) {
       elements.forEach { $0.register(collectionView: collectionView) }
       self._elements = elements
       
-      if let transitionType = transitionType {
-         collectionView.reloadData()
+      func _animateReloadedCollectionViewIn(fromRight: Bool) {
+         defer { collectionView.reloadData() }
+         
          guard let screenshot = view.snapshotView(afterScreenUpdates: false) else { return }
          view.addSubview(screenshot)
          
-         switch transitionType {
-         case .forwards: _cvLeadingSpaceConstraint.constant = collectionView.bounds.width
-         case .backwards: _cvLeadingSpaceConstraint.constant = -collectionView.bounds.width
-         }
+         _cvLeadingSpaceConstraint.constant = collectionView.bounds.width * (fromRight ? 1 : -1)
          view.layoutIfNeeded()
          collectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
          
          collectionView.alpha = 0
          UIView.animate(withDuration: 0.25, animations: {
             self._cvLeadingSpaceConstraint.constant = 0
-            switch transitionType {
-            case .forwards: screenshot.frame.origin.x -= self.view.bounds.width
-            case .backwards: screenshot.frame.origin.x += self.view.bounds.width
-            }
+            screenshot.frame.origin.x += self.view.bounds.width * (fromRight ? -1 : 1)
             self.view.layoutIfNeeded()
             self.collectionView.alpha = 1
             screenshot.alpha = 0
          }, completion: { finished in
             screenshot.removeFromSuperview()
          })
-      } else {
+      }
+      
+      switch transition {
+      case .none:
          collectionView.reloadData()
          if !elements.isEmpty, scrollToTop {
             collectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
          }
+      case .forwards: _animateReloadedCollectionViewIn(fromRight: true)
+      case .backwards: _animateReloadedCollectionViewIn(fromRight: false)
       }
    }
    
@@ -338,17 +358,14 @@ extension ElementalViewController {
       }
    }
    
-   public func reloadLayout(animated: Bool = true) {
-      _needsLayout = false
-      _needsAnimatedLayout = false
+   public func reloadLayout(animated: Bool? = true) {
+      let animated = animated ?? _layoutState.animated
+      guard animated else { collectionView.collectionViewLayout.invalidateLayout(); return }
       
-      _animatingIndexPaths = animated ? collectionView.indexPathsForVisibleItems : nil
       collectionView.performBatchUpdates({
          self.collectionView.setCollectionViewLayout(self.collectionView.collectionViewLayout, animated: true)
-      }, completion: { _ in
-         self._animatingIndexPaths = nil
-         self.formDelegate?.reloadedLayout(animated: animated, in: self)
       })
+      _layoutState.reset()
    }
 }
 
@@ -398,17 +415,5 @@ extension ElementalViewController: UICollectionViewDelegateFlowLayout {
       guard element.elementalConfig.isSelectable else { return }
       element.elementalConfig.selectAction?(element)
       formDelegate?.elementSelected(element, in: self)
-   }
-   
-   public func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-      if let animatingPaths = _animatingIndexPaths, !animatingPaths.contains(indexPath) {
-         let finalAlpha = cell.alpha
-         cell.alpha = 0
-         DispatchQueue.main.async {
-            UIView.animate(withDuration: 0.1, delay: 0.2, animations: {
-               cell.alpha = finalAlpha
-            })
-         }
-      }
    }
 }

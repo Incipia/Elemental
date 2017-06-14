@@ -20,8 +20,6 @@ class TextFieldInputElementCell: BindableElementCell {
    @IBOutlet fileprivate var _verticalConstraints: [NSLayoutConstraint]!
    fileprivate var _readyToUpdateConstraints: Bool = false
    
-   @IBOutlet fileprivate var _leftInsetConstraints: [NSLayoutConstraint]!
-   
    fileprivate var _action: InputElementAction?
    fileprivate var _isEnabled: Bool {
       get { return _textField.isEnabled }
@@ -39,7 +37,6 @@ class TextFieldInputElementCell: BindableElementCell {
       super.awakeFromNib()
       _textField.addTarget(self, action: #selector(_textChanged), for: .editingChanged)
       _textField.delegate = self
-      
       
       // the constraints installed in the xib are activated sometime after awakeFromNib() and configure(with:) get called,
       // so activating uninstalled constraints before then causes conflicts
@@ -88,8 +85,6 @@ class TextFieldInputElementCell: BindableElementCell {
       _textFieldHeightConstraint.constant = style.inputHeight
       
       _textField.textAlignment = style.layoutDirection == .vertical ? .left : .right
-      
-      _leftInsetConstraints.forEach { $0.constant = style.insets.left }
       
       _action = action
    }
