@@ -395,13 +395,22 @@ extension ElementalViewController {
       
       let reloadState = _layoutState
       _layoutState.reset()
+      guard animated else {
+         collectionView.collectionViewLayout.invalidateLayout()
+         if let element = reloadState.elements.last {
+            scroll(to: element, position: reloadState.scrollPosition, animated: animated)
+         }
+         return
+      }
       collectionView.performBatchUpdates({
          self.collectionView.setCollectionViewLayout(self.collectionView.collectionViewLayout, animated: animated)
       }) { _ in
-         if let element = reloadState.elements.last {
+         self.formDelegate?.reloadedLayout(for: reloadState.elements, scrollPosition: reloadState.scrollPosition, animated: reloadState.animated, in: self)
+      }
+      if let element = reloadState.elements.last {
+         DispatchQueue.main.async {
             self.scroll(to: element, position: reloadState.scrollPosition, animated: animated)
          }
-         self.formDelegate?.reloadedLayout(for: reloadState.elements, scrollPosition: reloadState.scrollPosition, animated: reloadState.animated, in: self)
       }
    }
 }

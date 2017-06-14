@@ -668,15 +668,12 @@ extension ElementalViewController: HorizontalFormElementCellDelegate {
 
 extension ElementalViewController: ElementalLayoutDelegate {
    public func reloadLayout(for element: Elemental, animated: Bool, scrollPosition: ElementalLayoutPosition) {
-      setNeedsLayout(animated: animated)
-      guard let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
+      let scrollDirection = (collectionView.collectionViewLayout as? UICollectionViewFlowLayout)?.scrollDirection ?? .vertical
       var collectionViewScrollPosition: UICollectionViewScrollPosition
-      switch flowLayout.scrollDirection {
+      switch scrollDirection {
       case .horizontal: collectionViewScrollPosition = scrollPosition.horizontalScrollPosition
       case .vertical: collectionViewScrollPosition = scrollPosition.verticalScrollPosition
       }
-      DispatchQueue.main.async {
-         self.scroll(to: element, position: collectionViewScrollPosition, animated: true)
-      }
+      setNeedsLayout(for: element, scrollPosition: collectionViewScrollPosition, animated: animated)
    }
 }
