@@ -294,7 +294,7 @@ open class ElementalViewController: UIViewController {
    private func _constrainedSize(for element: Elemental) -> CGSize {
       let padding: CGFloat = element.elementalConfig.isConfinedToMargins ? (sidePadding * 2) : 0.0
       let maxWidth: CGFloat = collectionView.bounds.width - padding
-      return CGSize(width: maxWidth, height: .infinity)
+      return CGSize(width: maxWidth, height: collectionView.frame.height)
    }
    
    @objc private func _refreshControlChanged(control: UIRefreshControl) {
@@ -426,7 +426,7 @@ extension ElementalViewController: UICollectionViewDelegateFlowLayout {
       let component = _elements[indexPath.row]
       let padding: CGFloat = component.elementalConfig.isConfinedToMargins ? (sidePadding * 2) : 0.0
       let maxWidth: CGFloat = collectionView.bounds.width - padding
-      let size = CGSize(width: maxWidth, height: .infinity)
+      let size = CGSize(width: maxWidth, height: collectionView.frame.height)
       
       return component.size(forConstrainedSize: size, layoutDirection: .vertical)
    }
