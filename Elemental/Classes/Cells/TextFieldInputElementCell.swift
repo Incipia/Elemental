@@ -38,7 +38,6 @@ class TextFieldInputElementCell: BindableElementCell {
       _textField.addTarget(self, action: #selector(_textChanged), for: .editingChanged)
       _textField.delegate = self
       
-      
       // the constraints installed in the xib are activated sometime after awakeFromNib() and configure(with:) get called,
       // so activating uninstalled constraints before then causes conflicts
       DispatchQueue.main.async {
