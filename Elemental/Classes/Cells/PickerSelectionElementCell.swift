@@ -231,7 +231,7 @@ class PickerElementCell: BindableElementCell {
       let nextState = element.action?(element.inputState, element.inputState.other) ?? element.inputState.other
       guard nextState != element.inputState else { return }
       element.inputState = nextState
-      layoutDelegate?.reloadLayout(for: element, animated: true, scrollToCenter: true)
+      layoutDelegate?.reloadLayout(for: element, animated: true, scrollPosition: .center)
       UIView.animate(withDuration: 0.25) {
          let angle: CGFloat = nextState == .focused ? .pi : 0.0
          self._rightAccessoryImageView.transform = CGAffineTransform(rotationAngle: angle)

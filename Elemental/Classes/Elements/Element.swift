@@ -31,8 +31,30 @@ public protocol ElementalSizeDelegate: class {
    func size(for element: Elemental, constrainedWidth width: CGFloat) -> CGSize
 }
 
+public enum ElementalLayoutPosition {
+   case none, start, center, end
+   
+   var horizontalScrollPosition: UICollectionViewScrollPosition {
+      switch self {
+      case .none: return []
+      case .start: return .left
+      case .center: return .centeredHorizontally
+      case .end: return .right
+      }
+   }
+
+   var verticalScrollPosition: UICollectionViewScrollPosition {
+      switch self {
+      case .none: return []
+      case .start: return .top
+      case .center: return .centeredVertically
+      case .end: return .bottom
+      }
+   }
+}
+
 public protocol ElementalLayoutDelegate: class {
-   func reloadLayout(for element: Elemental, animated: Bool, scrollToCenter: Bool)
+   func reloadLayout(for element: Elemental, animated: Bool, scrollPosition: ElementalLayoutPosition)
 }
 
 open class Element: Elemental {
@@ -65,7 +87,7 @@ open class Element: Elemental {
    open func reconfigure() {
       guard let cell = cell, cell.element === self else { return }
       configure(cell: cell, in: _containerViewController)
-      cell.layoutDelegate?.reloadLayout(for: self, animated: true, scrollToCenter: false)
+      cell.layoutDelegate?.reloadLayout(for: self, animated: true, scrollPosition: .none)
    }
    
    open func size(forConstrainedSize size: CGSize, layoutDirection direction: ElementalLayoutDirection) -> CGSize { fatalError() }
@@ -634,11 +656,16 @@ extension ElementalViewController: HorizontalFormElementCellDelegate {
 }
 
 extension ElementalViewController: ElementalLayoutDelegate {
-   public func reloadLayout(for element: Elemental, animated: Bool = true,  scrollToCenter: Bool = true) {
+   public func reloadLayout(for element: Elemental, animated: Bool, scrollPosition: ElementalLayoutPosition) {
       setNeedsLayout(animated: animated)
-      guard scrollToCenter else { return }
+      guard let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
+      var collectionViewScrollPosition: UICollectionViewScrollPosition
+      switch flowLayout.scrollDirection {
+      case .horizontal: collectionViewScrollPosition = scrollPosition.horizontalScrollPosition
+      case .vertical: collectionViewScrollPosition = scrollPosition.verticalScrollPosition
+      }
       DispatchQueue.main.async {
-         self.scroll(to: element, position: .centeredVertically, animated: true)
+         self.scroll(to: element, position: collectionViewScrollPosition, animated: true)
       }
    }
 }

@@ -99,6 +99,8 @@ open class ElementalViewController: UIViewController {
    struct LayoutState {
       var needsLayout = false
       var animated = false
+      var elements: [Elemental] = []
+      var scrollPosition: UICollectionViewScrollPosition = []
       
       mutating func reset() {
          self = LayoutState()
@@ -205,6 +207,7 @@ open class ElementalViewController: UIViewController {
    }
    
     @discardableResult func scroll(to elemental: Elemental, position: UICollectionViewScrollPosition, animated: Bool) -> Bool {
+      guard !position.isEmpty else { return false }
       guard let index = index(of: elemental) else { return false }
       collectionView.scrollToItem(at: IndexPath(row: index, section: 0), at: position, animated: animated)
       return true
@@ -239,6 +242,27 @@ open class ElementalViewController: UIViewController {
          self.reloadLayout(animated: self._layoutState.animated)
       }
    }
+
+   public func setNeedsLayout(for element: Elemental, scrollPosition: UICollectionViewScrollPosition, animated: Bool = true) {
+      guard let index = index(of: element) else { return }
+      let indexPath = IndexPath(row: index, section: 0)
+      guard let cell = collectionView.cellForItem(at: indexPath) else { return }
+      
+      let size = element.size(forConstrainedSize: _constrainedSize(for: element), layoutDirection: .vertical)
+      guard size != cell.frame.size else {
+         scroll(to: element, position: scrollPosition, animated: animated)
+         return
+      }
+      
+      if scrollPosition.isEmpty {
+         _layoutState.elements.insert(element, at: 0)
+      } else {
+         _layoutState.elements.append(element)
+         _layoutState.scrollPosition = scrollPosition
+      }
+      
+      setNeedsLayout(animated: animated)
+   }
    
    public func contentSize(constrainedWidth width: CGFloat) -> CGSize {
       var height: CGFloat = 0
@@ -267,6 +291,12 @@ open class ElementalViewController: UIViewController {
    }
    
    // MARK: - Private
+   private func _constrainedSize(for element: Elemental) -> CGSize {
+      let padding: CGFloat = element.elementalConfig.isConfinedToMargins ? (sidePadding * 2) : 0.0
+      let maxWidth: CGFloat = collectionView.bounds.width - padding
+      return CGSize(width: maxWidth, height: .infinity)
+   }
+   
    @objc private func _refreshControlChanged(control: UIRefreshControl) {
       formDelegate?.elementsBeganRefreshing(in: self)
    }
@@ -362,12 +392,15 @@ extension ElementalViewController {
    
    public func reloadLayout(animated: Bool? = true) {
       let animated = animated ?? _layoutState.animated
-      guard animated else { collectionView.collectionViewLayout.invalidateLayout(); return }
       
+      let reloadState = _layoutState
       _layoutState.reset()
       collectionView.performBatchUpdates({
-         self.collectionView.setCollectionViewLayout(self.collectionView.collectionViewLayout, animated: true)
+         self.collectionView.setCollectionViewLayout(self.collectionView.collectionViewLayout, animated: animated)
       }) { _ in
+         if let element = reloadState.elements.last {
+            self.scroll(to: element, position: reloadState.scrollPosition, animated: animated)
+         }
          self.formDelegate?.reloadedLayout(animated: animated, in: self)
       }
    }
@@ -393,7 +426,7 @@ extension ElementalViewController: UICollectionViewDelegateFlowLayout {
       let component = _elements[indexPath.row]
       let padding: CGFloat = component.elementalConfig.isConfinedToMargins ? (sidePadding * 2) : 0.0
       let maxWidth: CGFloat = collectionView.bounds.width - padding
-      let size = CGSize(width: maxWidth, height: collectionView.bounds.size.height)
+      let size = CGSize(width: maxWidth, height: .infinity)
       
       return component.size(forConstrainedSize: size, layoutDirection: .vertical)
    }

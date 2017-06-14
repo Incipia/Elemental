@@ -103,6 +103,6 @@ extension HorizontalFormElementCell: ElementalViewControllerDelegate {
    
    func reloadedLayout(animated: Bool, in viewController: ElementalViewController) {
       guard let element = element else { return }
-      layoutDelegate?.reloadLayout(for: element, animated: animated, scrollToCenter: true)
+      layoutDelegate?.reloadLayout(for: element, animated: animated, scrollPosition: .center)
    }
 }

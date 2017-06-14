@@ -109,7 +109,7 @@ class DateInputElementCell: BindableElementCell {
       let nextState = element.action?(element.inputState, element.inputState.other) ?? element.inputState.other
       guard nextState != element.inputState else { return }
       element.inputState = nextState
-      layoutDelegate?.reloadLayout(for: element, animated: true, scrollToCenter: true)
+      layoutDelegate?.reloadLayout(for: element, animated: true, scrollPosition: .center)
       guard nextState == .focused, _selectedInterval == nil else { return }
       let interval = _datePicker.datePickerMode == .countDownTimer ? _datePicker.countDownDuration : _datePicker.date.timeIntervalSince1970
       _updateSelectedInterval(interval, updatePicker: false)
