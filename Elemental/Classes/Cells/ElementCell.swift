@@ -39,6 +39,8 @@ public class ElementCell: UICollectionViewCell, ElementalCell {
       backgroundColor = element?.elementalConfig.backgroundColor
       layer.cornerRadius = element?.elementalConfig.cornerRadius ?? 0
       contentView.layoutMargins = component.elementalConfig.insets
+      
+      setNeedsUpdateConstraints()
    }
 }
 
