@@ -587,7 +587,7 @@ public extension Element {
       return TextFieldInputElement(configuration: configuration, content: content, bindings: bindings, action: action)
    }
    
-   class func textViewInput(configuration: TextInputElementConfiguring, content: TextInputElementContent, bindings: [Binding] = [], action: InputElementAction? = nil) -> Element {
+   class func textViewInput(configuration: TextInputElementConfiguring, content: TextInputElementContent, bindings: [Binding] = [], action: InputElementAction? = nil, sizeConstraint: ElementalSize = ElementalSize()) -> Element {
       return TextViewInputElement(configuration: configuration, content: content, bindings: bindings, action: action)
    }
    
