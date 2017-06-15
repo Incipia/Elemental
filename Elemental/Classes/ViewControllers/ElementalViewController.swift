@@ -337,8 +337,8 @@ extension ElementalViewController {
       func _animateReloadedCollectionViewIn(fromRight: Bool) {
          defer { collectionView.reloadData() }
          
-         guard let screenshot = view.snapshotView(afterScreenUpdates: false) else { return }
-         view.addSubview(screenshot)
+         guard let screenshot = collectionView.snapshotView(afterScreenUpdates: false) else { return }
+         view.insertSubview(screenshot, aboveSubview: collectionView)
          
          _cvLeadingSpaceConstraint.constant = collectionView.bounds.width * (fromRight ? 1 : -1)
          view.layoutIfNeeded()
