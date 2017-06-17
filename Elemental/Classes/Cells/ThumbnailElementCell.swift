@@ -106,7 +106,7 @@ class ThumbnailElementCell: BindableElementCell {
       }
    }
    
-   override func setOwn(value: Any?, for key: BindableElementKey) throws {
+   override func setOwn(value: inout Any?, for key: BindableElementKey) throws {
       switch key {
       case .detail:
          if value == nil {

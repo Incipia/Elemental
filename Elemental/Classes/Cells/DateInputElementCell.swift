@@ -179,7 +179,7 @@ class DateInputElementCell: BindableElementCell {
       }
    }
    
-   override func setOwn(value: Any?, for key: BindableElementKey) throws {
+   override func setOwn(value: inout Any?, for key: BindableElementKey) throws {
       switch key {
       case .anyValue:
          if let dateValue = value as? Date {

@@ -156,7 +156,7 @@ class AccessoryElementCell: BindableElementCell {
       }
    }
    
-   override func setOwn(value: Any?, for key: BindableElementKey) throws {
+   override func setOwn(value: inout Any?, for key: BindableElementKey) throws {
       switch key {
       case .detail:
          guard value != nil else { _detailLabel.text = nil; return }

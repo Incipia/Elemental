@@ -44,7 +44,7 @@ class BindableElementCell: ElementCell, Bindable {
    }
    
    func value(for key: BindableElementKey) -> Any? { return nil }
-   func setOwn(value: Any?, for key: BindableElementKey) throws { fatalError("\(type(of: self)) subclasses must override \(#function)") }
+   func setOwn(value: inout Any?, for key: BindableElementKey) throws { fatalError("\(type(of: self)) subclasses must override \(#function)") }
 
    func bind(with component: Elemental) {
       guard let element = component as? BindableElemental else { fatalError() }

@@ -260,7 +260,7 @@ class PickerElementCell: BindableElementCell {
       }
    }
    
-   override func setOwn(value: Any?, for key: BindableElementKey) throws {
+   override func setOwn(value: inout Any?, for key: BindableElementKey) throws {
       switch key {
       case .anyValue: _selectedValue = value
       default: fatalError("\(type(of: self)) cannot set value for \(key))")

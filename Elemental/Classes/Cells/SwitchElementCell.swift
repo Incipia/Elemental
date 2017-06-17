@@ -70,7 +70,7 @@ class SwitchElementCell: BindableElementCell {
       }
    }
    
-   override func setOwn(value: Any?, for key: BindableElementKey) throws {
+   override func setOwn(value: inout Any?, for key: BindableElementKey) throws {
       switch key {
       case .switch:
          guard let validValue = value as? Bool else { throw key.kvTypeError(value: value) }
