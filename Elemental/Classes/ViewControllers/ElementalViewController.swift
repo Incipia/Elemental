@@ -10,8 +10,8 @@ import UIKit
 
 public enum ElementalTransition {
    case none
-   case forwards
-   case backwards
+   case leftToRight
+   case rightToLeft
 }
 
 public protocol ElementalViewControllerDelegate: class {
@@ -342,28 +342,28 @@ extension ElementalViewController {
          
          _cvLeadingSpaceConstraint.constant = collectionView.bounds.width * (fromRight ? 1 : -1)
          view.layoutIfNeeded()
-         collectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
          
          collectionView.alpha = 0
-         UIView.animate(withDuration: 0.25, animations: {
+         UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseOut, animations: {
             self._cvLeadingSpaceConstraint.constant = 0
-            screenshot.frame.origin.x += self.view.bounds.width * (fromRight ? -1 : 1)
+            screenshot.frame.origin.x += self.collectionView.bounds.width * (fromRight ? -1 : 1)
+            screenshot.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+            screenshot.alpha = 0
             self.view.layoutIfNeeded()
             self.collectionView.alpha = 1
-            screenshot.alpha = 0
          }, completion: { finished in
             screenshot.removeFromSuperview()
          })
       }
       
       switch transition {
-      case .none:
-         collectionView.reloadData()
-         if !elements.isEmpty, scrollToTop {
-            collectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
-         }
-      case .forwards: _animateReloadedCollectionViewIn(fromRight: true)
-      case .backwards: _animateReloadedCollectionViewIn(fromRight: false)
+      case .none: collectionView.reloadData()
+      case .rightToLeft: _animateReloadedCollectionViewIn(fromRight: true)
+      case .leftToRight: _animateReloadedCollectionViewIn(fromRight: false)
+      }
+      
+      if !elements.isEmpty, scrollToTop {
+         collectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
       }
    }
    
