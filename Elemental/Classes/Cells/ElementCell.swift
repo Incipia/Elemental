@@ -14,27 +14,27 @@ protocol ElementalCell: class {
    func configure(with component: Elemental)
 }
 
-public class ElementCell: UICollectionViewCell, ElementalCell {
+open class ElementCell: UICollectionViewCell, ElementalCell {
    // MARK: - Public Properties
-   weak var element: Element?
-   weak var layoutDelegate: ElementalLayoutDelegate?
+   public weak var element: Element?
+   public weak var layoutDelegate: ElementalLayoutDelegate?
    
    // MARK: - Life Cycle
-   public override func awakeFromNib() {
+   open override func awakeFromNib() {
       super.awakeFromNib()
       backgroundColor = .clear
    }
    
    // MARK: - ElementalCell Protocol
-   class func contentSize(for element: Elemental, constrainedSize size: CGSize) -> CGSize {
+   open class func contentSize(for element: Elemental, constrainedSize size: CGSize) -> CGSize {
       guard let element = element as? Element else { return size }
       let intrinsicSize = intrinsicContentSize(for: element, constrainedSize: size.inset(by: element.elementalConfig.insets))
       return size.constrained(to: element.elementalConfig.sizeConstraint, intrinsicSize: intrinsicSize.outset(by: element.elementalConfig.insets))
    }
    
-   class func intrinsicContentSize(for element: Elemental, constrainedSize size: CGSize) -> CGSize { fatalError() }
+   open class func intrinsicContentSize(for element: Elemental, constrainedSize size: CGSize) -> CGSize { fatalError() }
    
-   func configure(with component: Elemental) {
+   open func configure(with component: Elemental) {
       element = component as? Element
       backgroundColor = element?.elementalConfig.backgroundColor
       layer.cornerRadius = element?.elementalConfig.cornerRadius ?? 0
