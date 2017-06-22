@@ -129,6 +129,7 @@ public enum RadioElementAlignment {
 public protocol RadioSelectionElementConfiguring: ElementalConfiguring {
    var nameStyle: ElementalTextStyling { get }
    var componentStyle: ElementalTextStyling { get }
+   var componentSpacing: CGFloat { get }
    var fillColor: UIColor? { get }
    var alignment: RadioElementAlignment { get }
 }
@@ -136,12 +137,14 @@ public protocol RadioSelectionElementConfiguring: ElementalConfiguring {
 open class RadioElementConfiguration: ElementalConfiguration, RadioSelectionElementConfiguring {
    public var nameStyle: ElementalTextStyling
    public var componentStyle: ElementalTextStyling
+   public var componentSpacing: CGFloat
    public var fillColor: UIColor?
    public var alignment: RadioElementAlignment
    
-   public init(nameStyle: ElementalTextStyling = ElementalTextStyle(), componentStyle: ElementalTextStyling = ElementalTextStyle(), fillColor: UIColor? = nil, alignment: RadioElementAlignment = .left) {
+   public init(nameStyle: ElementalTextStyling = ElementalTextStyle(), componentStyle: ElementalTextStyling = ElementalTextStyle(), componentSpacing: CGFloat = 24.0, fillColor: UIColor? = nil, alignment: RadioElementAlignment = .left) {
       self.nameStyle = nameStyle
       self.componentStyle = componentStyle
+      self.componentSpacing = componentSpacing
       self.fillColor = fillColor
       self.alignment = alignment
       super.init()

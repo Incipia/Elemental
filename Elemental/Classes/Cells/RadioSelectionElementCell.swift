@@ -42,7 +42,7 @@ class RadioSelectionElementCell: BindableElementCell {
       _label.font = style.nameStyle.font
       
       var lastBottomAnchor = _label.bottomAnchor
-      var verticalPadding: CGFloat = content.name != nil ? 24.0 : 0.0
+      var verticalPadding: CGFloat = content.name != nil ? style.componentSpacing : 1.5
       for component in content.components {
          let leftRadioView = RadioView(delegate: self)
          leftRadioView.tintColor = style.componentStyle.color
@@ -92,7 +92,7 @@ class RadioSelectionElementCell: BindableElementCell {
          leftRadioView.bottomAnchor.constraint(equalTo: label.bottomAnchor, constant: -2).isActive = true
          rightRadioView.bottomAnchor.constraint(equalTo: label.bottomAnchor, constant: -2).isActive = true
          lastBottomAnchor = label.bottomAnchor
-         verticalPadding = 24.0
+         verticalPadding = style.componentSpacing
          
          addedViews.append(label)
          addedViews.append(rightRadioView)
