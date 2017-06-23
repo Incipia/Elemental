@@ -437,7 +437,7 @@ public class HorizontalLineElement: Element {
 
 public class VerticalSpaceElement: Element {
    // MARK: - Public Properties
-   let value: CGFloat
+   public var value: CGFloat
    override public class var defaultCellID: String { return HorizontalLineElement.defaultCellID }
    
    // MARK: - Init
