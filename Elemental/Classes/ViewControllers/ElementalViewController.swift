@@ -206,7 +206,7 @@ open class ElementalViewController: UIViewController {
       return nil
    }
    
-    @discardableResult func scroll(to elemental: Elemental, position: UICollectionViewScrollPosition, animated: Bool) -> Bool {
+    @discardableResult public func scroll(to elemental: Elemental, position: UICollectionViewScrollPosition, animated: Bool) -> Bool {
       guard !position.isEmpty else { return false }
       guard let index = index(of: elemental) else { return false }
       collectionView.scrollToItem(at: IndexPath(row: index, section: 0), at: position, animated: animated)
