@@ -41,6 +41,15 @@ class RadioSelectionElementCell: BindableElementCell {
       _label.textColor = style.nameStyle.color
       _label.font = style.nameStyle.font
       
+      addedViews.forEach { $0.removeFromSuperview() }
+      addedViews = []
+      radioOptions = []
+      
+      _labelLeadingConstraints = []
+      _labelTrailingConstraints = []
+      _leftCollapsableRadioConstraints = []
+      _rightCollapsableRadioConstraints = []
+      
       var lastBottomAnchor = _label.bottomAnchor
       var verticalPadding: CGFloat = content.name != nil ? style.componentSpacing : 1.5
       for component in content.components {
@@ -135,7 +144,7 @@ class RadioSelectionElementCell: BindableElementCell {
       totalComponentsHeight -= 24
       let nameHeight: CGFloat = content.name?.heightWithConstrainedWidth(width: width, font: style.nameStyle.font) ?? 0.0
       let namePadding: CGFloat = content.name != nil ? 24.0 : 0
-      return CGSize(width: width, height: totalComponentsHeight + nameHeight + namePadding)
+      return CGSize(width: width, height: max(totalComponentsHeight, 0) + nameHeight + namePadding)
    }
    
    override func value(for key: BindableElementKey) -> Any? {
