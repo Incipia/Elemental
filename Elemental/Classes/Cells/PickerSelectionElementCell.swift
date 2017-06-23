@@ -142,6 +142,7 @@ class PickerElementCell: BindableElementCell {
       let indicatorColor: UIColor = config.pickerIndicatorColor ?? self._optionStyle.color.withAlphaComponent(0.5)
       _updateIndicatorColor(indicatorColor)
       _updateAccessoryImages(with: element)
+      _updateButton(with: element)
       
       let angle: CGFloat = element.inputState == .focused ? .pi : 0.0
       _rightAccessoryImageView.transform = CGAffineTransform(rotationAngle: angle)
