@@ -180,31 +180,81 @@ extension ElementalPageViewController: UIPageViewControllerDelegate {
    }
 }
 
-open class ElementalContextPage<Context>: ElementalViewController, ElementalPage {
+public protocol ElementalContextual {
+   func enter<Context>(context: Context)
+   func leave<Context>(context: Context)
+   func changeContext<OldContext, NewContext>(from oldContext: OldContext, to context: NewContext)
+}
+
+public extension ElementalContextual {
+   func enter<Context>(context: Context) {}
+   func leave<Context>(context: Context) {}
+   func changeContext<OldContext, NewContext>(from oldContext: OldContext, to context: NewContext) {}
+}
+
+open class ElementalContextPage<PageContext>: ElementalViewController, ElementalPage, ElementalContextual {
    // MARK: - Subclass Hooks
-   func changeContext(to context: Context?) {}
+   open func enterOwn(context: PageContext) {}
+   open func leaveOwn(context: PageContext) {}
+   open func changeOwnContext(from oldContext: PageContext, to context: PageContext) {}
+   
+   // MARK: - ElementalContextual
+   open func enter<Context>(context: Context) {
+      guard let pageContext = context as? PageContext else { return }
+      enterOwn(context: pageContext)
+   }
+   
+   open func leave<Context>(context: Context) {
+      guard let pageContext = context as? PageContext else { return }
+      leaveOwn(context: pageContext)
+   }
+   
+   open func changeContext<OldContext, NewContext>(from oldContext: OldContext, to context: NewContext) {
+      if let oldPageContext = oldContext as? PageContext, let pageContext = context as? PageContext {
+         changeOwnContext(from: oldPageContext, to: pageContext)
+      } else if let oldPageContext = oldContext as? PageContext {
+         leaveOwn(context: oldPageContext)
+      } else if let pageContext = context as? PageContext {
+         enterOwn(context: pageContext)
+      }
+   }
 }
 
 open class ElementalContextPageViewController<Context>: ElementalPageViewController {
    // MARK: - Nested Types
    typealias Page = ElementalContextPage<Context>
    
+   // MARK: - Private Properties
+   private var _transitionContext: Context?
+   
    // MARK: - Public Properties
-   var context: Context! = nil {
+   var context: Context? {
       didSet {
-         viewControllers?.forEach { ($0 as? Page)?.changeContext(to: context) }
+         if let oldContext = oldValue, let context = context {
+            viewControllers?.forEach { ($0 as? ElementalContextual)?.changeContext(from: oldValue, to: oldContext) }
+         } else if let oldContext = oldValue {
+            viewControllers?.forEach { ($0 as? ElementalContextual)?.leave(context: oldContext) }
+         } else if let context = context {
+            viewControllers?.forEach { ($0 as? ElementalContextual)?.enter(context: context) }
+         }
       }
    }
    
    // Subclass Hooks
    override open func prepareForTransition(from currentPage: UIViewController?, to nextPage: UIViewController?, direction: UIPageViewControllerNavigationDirection, animated: Bool) {
       super.prepareForTransition(from: currentPage, to: nextPage, direction: direction, animated: animated)
-      (nextPage as? Page)?.changeContext(to: context)
+      
+      guard let context = context else { return }
+      _transitionContext = context
+      (nextPage as? ElementalContextual)?.enter(context: context)
    }
    
    override open func recoverAfterTransition(from previousPage: UIViewController?, to currentPage: UIViewController?, direction: UIPageViewControllerNavigationDirection, animated: Bool) {
       super.recoverAfterTransition(from: previousPage, to: currentPage, direction: direction, animated: animated)
-      (previousPage as? Page)?.changeContext(to: nil)
+      
+      guard  let transitionContext = _transitionContext else { return }
+      (previousPage as? ElementalContextual)?.leave(context: transitionContext)
+      _transitionContext = nil
    }
    
    // MARK: - Init
