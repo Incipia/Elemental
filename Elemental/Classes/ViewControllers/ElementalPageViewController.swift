@@ -245,6 +245,7 @@ open class ElementalContextPageViewController<Context>: ElementalPageViewControl
       super.prepareForTransition(from: currentPage, to: nextPage, direction: direction, animated: animated)
       
       guard let context = context else { return }
+      guard _transitionContext == nil else { fatalError("Preparing for next transition before recovering from last") }
       _transitionContext = context
       (nextPage as? ElementalContextual)?.enter(context: context)
    }
