@@ -8,39 +8,54 @@
 
 import UIKit
 
-protocol ElementalPageViewControllerDelegate: class {
+public protocol ElementalPageViewControllerDelegate: class {
    func elementalPageTransitionCompleted(index: Int, in viewController: ElementalPageViewController)
 }
 
-class ElementalPageViewController: UIPageViewController {
-   // MARK: - Private Properties
-   fileprivate var _vcs: [UIViewController] = [] {
+open class ElementalPageViewController: UIPageViewController {
+   // MARK: - Public Properties
+   public fileprivate(set) var pages: [UIViewController] = [] {
       didSet {
-         for (index, vc) in _vcs.enumerated() { vc.view.tag = index }
+         for (index, vc) in pages.enumerated() { vc.view.tag = index }
       }
    }
    
-   fileprivate var _currentIndex = 0
-   
-   // MARK: - Public Properties
-   weak var elementalDelegate: ElementalPageViewControllerDelegate?
-   
-   var totalSteps: Int {
-      return _vcs.count
+   public func setPages(_ pages: [UIViewController], currentIndex: Int, direction: UIPageViewControllerNavigationDirection, animated: Bool, completion: (() -> Void)? = nil) {
+      self.pages = pages
+      
+      setCurrentIndex(currentIndex, direction: direction, animated: animated, completion: completion)
    }
+   
+   public private(set) var currentIndex: Int = 0
+
+   public func setCurrentIndex(_ currentIndex: Int, direction: UIPageViewControllerNavigationDirection, animated: Bool, completion: (() -> Void)? = nil) {
+      self.currentIndex = currentIndex
+      _transition(from: viewControllers?.first, to: pages.count > currentIndex ? pages[currentIndex] : nil, direction: direction, animated: animated, notifyDelegate: true, completion: completion)
+   }
+
+   public weak var elementalDelegate: ElementalPageViewControllerDelegate?
+   
+   public var pageCount: Int {
+      return pages.count
+   }
+   
+   // Subclass Hooks
+   open func prepareForTransition(from currentPage: UIViewController?, to nextPage: UIViewController?, direction: UIPageViewControllerNavigationDirection, animated: Bool) {}
+
+   open func recoverAfterTransition(from previousPage: UIViewController?, to currentPage: UIViewController?, direction: UIPageViewControllerNavigationDirection, animated: Bool) {}
    
    // MARK: - Init
-   convenience init(viewControllers: [UIViewController]) {
+   public convenience init(viewControllers: [UIViewController]) {
       self.init(transitionStyle: .scroll, navigationOrientation: .horizontal)
-      self._vcs = viewControllers
+      self.pages = viewControllers
    }
    
-   required init?(coder: NSCoder) {
+   public required init?(coder: NSCoder) {
       super.init(coder: coder)
       _commonInit()
    }
    
-   override init(transitionStyle style: UIPageViewControllerTransitionStyle, navigationOrientation: UIPageViewControllerNavigationOrientation, options: [String : Any]? = nil) {
+   public override init(transitionStyle style: UIPageViewControllerTransitionStyle, navigationOrientation: UIPageViewControllerNavigationOrientation, options: [String : Any]? = nil) {
       super.init(transitionStyle: style, navigationOrientation: navigationOrientation, options: options)
       _commonInit()
    }
@@ -51,14 +66,14 @@ class ElementalPageViewController: UIPageViewController {
    }
    
    // MARK: - Life Cycle
-   override func viewDidLoad() {
+   open override func viewDidLoad() {
       super.viewDidLoad()
       view.subviews.forEach { ($0 as? UIScrollView)?.delaysContentTouches = false }
-      setViewControllers([_vcs.first!], direction: .forward, animated: false, completion: nil)
+      _transition(from: nil, to: pages.first, direction: .forward, animated: false, notifyDelegate: false, completion: nil)
    }
    
    // MARK: - Public
-   func navigate(_ direction: UIPageViewControllerNavigationDirection, completion: (() -> Void)? = nil) {
+   public func navigate(_ direction: UIPageViewControllerNavigationDirection, completion: (() -> Void)? = nil) {
       guard let current = viewControllers?.first else { completion?(); return }
       
       var next: UIViewController?
@@ -69,51 +84,63 @@ class ElementalPageViewController: UIPageViewController {
       
       guard let target = next else { completion?(); return }
       switch direction {
-      case .forward: _currentIndex = _currentIndex + 1
-      case .reverse: _currentIndex = _currentIndex - 1
+      case .forward: currentIndex = currentIndex + 1
+      case .reverse: currentIndex = currentIndex - 1
       }
       
-      setViewControllers([target], direction: direction, animated: true) { finished in
-         if let index = self._vcs.index(of: target) {
+      _transition(from: current, to: next, direction: direction, animated: true, notifyDelegate: true, completion: completion)
+   }
+   
+   public func navigateToFirst() {
+      for _ in 0..<pages.count { navigate(.reverse) }
+      currentIndex = 0
+   }
+   
+   // MARK: - Private
+   private func _transition(from current: UIViewController?, to next: UIViewController?, direction: UIPageViewControllerNavigationDirection, animated: Bool, notifyDelegate: Bool, completion: (() -> Void)?) {
+      prepareForTransition(from: current, to: next, direction: direction, animated: true)
+      let nextViewControllers = next == nil ? nil : [next!]
+      setViewControllers(nextViewControllers, direction: direction, animated: true) { finished in
+         self.recoverAfterTransition(from: current, to: next, direction: direction, animated: true)
+         if let next = next, let index = self.pages.index(of: next) {
             // calling setViewControllers(direction:animated:) doesn't trigger the UIPageViewControllerDelegate method
-            // didFinishAnimating, so we have to tell our listingPageDelegate that a transition was just completed
+            // didFinishAnimating, so we have to tell our elementalDelegate that a transition was just completed
             self.elementalDelegate?.elementalPageTransitionCompleted(index: index, in: self)
          }
          completion?()
       }
    }
    
-   func navigateToFirst() {
-      for _ in 0..<_vcs.count { navigate(.reverse) }
-      _currentIndex = 0
+   fileprivate func _setCurrentIndex(_ index: Int) {
+      currentIndex = index
    }
 }
 
 extension ElementalPageViewController: UIPageViewControllerDataSource {
-   func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-      guard let index = _vcs.index(of: viewController), index < _vcs.count - 1 else { return nil }
-      return _vcs[index + 1]
+   public func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+      guard let index = pages.index(of: viewController), index < pages.count - 1 else { return nil }
+      return pages[index + 1]
    }
    
-   func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-      guard let index = _vcs.index(of: viewController), index > 0 else { return nil }
-      return _vcs[index - 1]
+   public func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+      guard let index = pages.index(of: viewController), index > 0 else { return nil }
+      return pages[index - 1]
    }
    
-   func presentationCount(for pageViewController: UIPageViewController) -> Int {
-      return _vcs.count
+   public func presentationCount(for pageViewController: UIPageViewController) -> Int {
+      return pages.count
    }
    
-   func presentationIndex(for pageViewController: UIPageViewController) -> Int {
-      return _currentIndex
+   public func presentationIndex(for pageViewController: UIPageViewController) -> Int {
+      return currentIndex
    }
 }
 
 extension ElementalPageViewController: UIPageViewControllerDelegate {
-   func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+   public func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
       guard completed else { return }
       guard let index = pageViewController.viewControllers?.first?.view.tag else { return }
-      _currentIndex = index
+      _setCurrentIndex(index)
       elementalDelegate?.elementalPageTransitionCompleted(index: index, in: self)
    }
 }
