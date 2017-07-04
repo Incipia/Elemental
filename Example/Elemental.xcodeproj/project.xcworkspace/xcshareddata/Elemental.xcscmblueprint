@@ -4,12 +4,12 @@
 
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
-    "EEDD4F8F46EBC6FF2677CC2458CA347598E50C6C" : 9223372036854775807,
+    "F2326086D1CC4FF157180272BA1702429A156581" : 9223372036854775807,
     "AA71B6A5E291EA836193AA434A138F66473AA1EE" : 9223372036854775807
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "26C590F9-4BE9-47E3-9DE8-A5C5B5C00F48",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
-    "EEDD4F8F46EBC6FF2677CC2458CA347598E50C6C" : "..",
+    "F2326086D1CC4FF157180272BA1702429A156581" : "..",
     "AA71B6A5E291EA836193AA434A138F66473AA1EE" : "Elemental\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "Elemental",
@@ -24,7 +24,7 @@
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:GigSalad\/gigsalad-app.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "EEDD4F8F46EBC6FF2677CC2458CA347598E50C6C"
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "F2326086D1CC4FF157180272BA1702429A156581"
     }
   ]
 }
