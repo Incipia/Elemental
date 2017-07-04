@@ -12,6 +12,13 @@ public protocol ElementalPageViewControllerDelegate: class {
    func elementalPageTransitionCompleted(index: Int, in viewController: ElementalPageViewController)
 }
 
+public protocol ElementalPage {
+   func willAppear(inPageViewController pageViewController: ElementalPageViewController)
+   func didAppear(inPageViewController pageViewController: ElementalPageViewController)
+   func willDisappear(fromPageViewController pageViewController: ElementalPageViewController)
+   func didDisappear(fromPageViewController pageViewController: ElementalPageViewController)
+}
+
 open class ElementalPageViewController: UIPageViewController {
    // MARK: - Public Properties
    public fileprivate(set) var pages: [UIViewController] = [] {
@@ -40,9 +47,15 @@ open class ElementalPageViewController: UIPageViewController {
    }
    
    // Subclass Hooks
-   open func prepareForTransition(from currentPage: UIViewController?, to nextPage: UIViewController?, direction: UIPageViewControllerNavigationDirection, animated: Bool) {}
+   open func prepareForTransition(from currentPage: UIViewController?, to nextPage: UIViewController?, direction: UIPageViewControllerNavigationDirection, animated: Bool) {
+      (currentPage as? ElementalPage)?.willDisappear(fromPageViewController: self)
+      (nextPage as? ElementalPage)?.willAppear(inPageViewController: self)
+   }
 
-   open func recoverAfterTransition(from previousPage: UIViewController?, to currentPage: UIViewController?, direction: UIPageViewControllerNavigationDirection, animated: Bool) {}
+   open func recoverAfterTransition(from previousPage: UIViewController?, to currentPage: UIViewController?, direction: UIPageViewControllerNavigationDirection, animated: Bool) {
+      (previousPage as? ElementalPage)?.didDisappear(fromPageViewController: self)
+      (currentPage as? ElementalPage)?.didAppear(inPageViewController: self)
+   }
    
    // MARK: - Init
    public convenience init(viewControllers: [UIViewController]) {
