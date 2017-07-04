@@ -19,6 +19,13 @@ public protocol ElementalPage {
    func didDisappear(fromPageViewController pageViewController: ElementalPageViewController)
 }
 
+public extension ElementalPage {
+   func willAppear(inPageViewController pageViewController: ElementalPageViewController) {}
+   func didAppear(inPageViewController pageViewController: ElementalPageViewController) {}
+   func willDisappear(fromPageViewController pageViewController: ElementalPageViewController) {}
+   func didDisappear(fromPageViewController pageViewController: ElementalPageViewController) {}
+}
+
 open class ElementalPageViewController: UIPageViewController {
    // MARK: - Public Properties
    public fileprivate(set) var pages: [UIViewController] = [] {
@@ -124,6 +131,8 @@ open class ElementalPageViewController: UIPageViewController {
 
    // MARK: - Private
    private func _transition(from current: UIViewController?, to next: UIViewController?, direction: UIPageViewControllerNavigationDirection, animated: Bool, notifyDelegate: Bool, completion: (() -> Void)?) {
+      guard current != next else { return }
+      
       prepareForTransition(from: current, to: next, direction: direction, animated: true)
       let nextViewControllers = next == nil ? nil : [next!]
       setViewControllers(nextViewControllers, direction: direction, animated: true) { finished in
@@ -170,3 +179,38 @@ extension ElementalPageViewController: UIPageViewControllerDelegate {
       elementalDelegate?.elementalPageTransitionCompleted(index: index, in: self)
    }
 }
+
+open class ElementalContextPage<Context>: ElementalViewController, ElementalPage {
+   // MARK: - Subclass Hooks
+   func changeContext(to context: Context?) {}
+}
+
+open class ElementalContextPageViewController<Context>: ElementalPageViewController {
+   // MARK: - Nested Types
+   typealias Page = ElementalContextPage<Context>
+   
+   // MARK: - Public Properties
+   var context: Context! = nil {
+      didSet {
+         viewControllers?.forEach { ($0 as? Page)?.changeContext(to: context) }
+      }
+   }
+   
+   // Subclass Hooks
+   override open func prepareForTransition(from currentPage: UIViewController?, to nextPage: UIViewController?, direction: UIPageViewControllerNavigationDirection, animated: Bool) {
+      super.prepareForTransition(from: currentPage, to: nextPage, direction: direction, animated: animated)
+      (nextPage as? Page)?.changeContext(to: context)
+   }
+   
+   override open func recoverAfterTransition(from previousPage: UIViewController?, to currentPage: UIViewController?, direction: UIPageViewControllerNavigationDirection, animated: Bool) {
+      super.recoverAfterTransition(from: previousPage, to: currentPage, direction: direction, animated: animated)
+      (previousPage as? Page)?.changeContext(to: nil)
+   }
+   
+   // MARK: - Init
+   public convenience init(context: Context, viewControllers: [UIViewController]) {
+      self.init(viewControllers: viewControllers)
+      self.context = context
+   }
+}
+
