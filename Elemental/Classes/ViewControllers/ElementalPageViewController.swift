@@ -91,11 +91,24 @@ open class ElementalPageViewController: UIPageViewController {
       _transition(from: current, to: next, direction: direction, animated: true, notifyDelegate: true, completion: completion)
    }
    
-   public func navigateToFirst() {
-      for _ in 0..<pages.count { navigate(.reverse) }
-      currentIndex = 0
+   public func navigate(to index: Int) {
+      guard !pages.isEmpty else { return }
+      let index = min(index, pages.count - 1)
+      switch index {
+      case 0..<currentIndex:
+         let count = currentIndex - index
+         for _ in 0..<count { navigate(.reverse) }
+      case currentIndex+1..<pages.count:
+         let count = index - currentIndex
+         for _ in 0..<count { navigate(.forward) }
+      default: break
+      }
    }
-   
+
+   public func navigateToFirst() {
+      navigate(to: 0)
+   }
+
    // MARK: - Private
    private func _transition(from current: UIViewController?, to next: UIViewController?, direction: UIPageViewControllerNavigationDirection, animated: Bool, notifyDelegate: Bool, completion: (() -> Void)?) {
       prepareForTransition(from: current, to: next, direction: direction, animated: true)
