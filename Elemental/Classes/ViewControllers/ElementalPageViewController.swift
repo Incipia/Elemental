@@ -225,7 +225,7 @@ open class ElementalContextPageViewController<Context>: ElementalPageViewControl
    typealias Page = ElementalContextPage<Context>
    
    // MARK: - Private Properties
-   private var _transitionContext: Context?
+   private var _transitionContexts: [UIViewController : (countDown: Int, context: Context?)] = [:]
    
    // MARK: - Public Properties
    var context: Context? {
@@ -244,18 +244,37 @@ open class ElementalContextPageViewController<Context>: ElementalPageViewControl
    override open func prepareForTransition(from currentPage: UIViewController?, to nextPage: UIViewController?, direction: UIPageViewControllerNavigationDirection, animated: Bool) {
       super.prepareForTransition(from: currentPage, to: nextPage, direction: direction, animated: animated)
       
-      guard let context = context else { return }
-      guard _transitionContext == nil else { fatalError("Preparing for next transition before recovering from last") }
-      _transitionContext = context
-      (nextPage as? ElementalContextual)?.enter(context: context)
+      if let currentPage = currentPage, currentPage is ElementalContextual {
+         var transitionContext = _transitionContexts[currentPage] ?? (countDown: 0, context: context)
+         transitionContext.countDown += 1
+         _transitionContexts[currentPage] = transitionContext
+      }
+
+      if let contextualNextPage = nextPage as? ElementalContextual, let nextPage = nextPage {
+         if let oldContext = _transitionContexts[nextPage]?.context, let context = context {
+            contextualNextPage.changeContext(from: oldContext, to: context)
+         } else if let oldContext = _transitionContexts[nextPage]?.context {
+            contextualNextPage.leave(context: oldContext)
+         } else if let context = context {
+            contextualNextPage.enter(context: context)
+         }
+         _transitionContexts[nextPage]?.context = nil
+      }
    }
    
    override open func recoverAfterTransition(from previousPage: UIViewController?, to currentPage: UIViewController?, direction: UIPageViewControllerNavigationDirection, animated: Bool) {
       super.recoverAfterTransition(from: previousPage, to: currentPage, direction: direction, animated: animated)
       
-      guard  let transitionContext = _transitionContext else { return }
-      (previousPage as? ElementalContextual)?.leave(context: transitionContext)
-      _transitionContext = nil
+      guard let previousPage = previousPage, var transitionContext = _transitionContexts[previousPage] else { return }
+      transitionContext.countDown -= 1
+      if transitionContext.countDown == 0 {
+         if let oldContext = transitionContext.context {
+            (previousPage as? ElementalContextual)?.leave(context: oldContext)
+         }
+         _transitionContexts[previousPage] = nil
+      } else {
+         _transitionContexts[previousPage] = transitionContext
+      }
    }
    
    // MARK: - Init
