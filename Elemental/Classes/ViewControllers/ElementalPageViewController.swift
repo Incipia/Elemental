@@ -9,7 +9,7 @@
 import UIKit
 
 public protocol ElementalPageViewControllerDelegate: class {
-   func elementalPageTransitionCompleted(index: Int, in viewController: ElementalPageViewController)
+   func elementalPageTransitionCompleted(index: Int, destinationIndex: Int, in viewController: ElementalPageViewController)
 }
 
 public protocol ElementalPage {
@@ -187,7 +187,7 @@ open class ElementalPageViewController: UIPageViewController {
          if let next = next, let index = self.pages.index(of: next) {
             // calling setViewControllers(direction:animated:) doesn't trigger the UIPageViewControllerDelegate method
             // didFinishAnimating, so we have to tell our elementalDelegate that a transition was just completed
-            self.elementalDelegate?.elementalPageTransitionCompleted(index: index, in: self)
+            self.elementalDelegate?.elementalPageTransitionCompleted(index: index, destinationIndex: self.currentIndex, in: self)
          }
          completion?()
       }
@@ -207,7 +207,7 @@ extension ElementalPageViewController: UIPageViewControllerDelegate {
       guard completed else { return }
       guard let index = pageViewController.viewControllers?.first?.view.tag else { return }
       _setCurrentIndex(index)
-      elementalDelegate?.elementalPageTransitionCompleted(index: index, in: self)
+      elementalDelegate?.elementalPageTransitionCompleted(index: index, destinationIndex: currentIndex, in: self)
    }
 }
 
