@@ -112,7 +112,8 @@ open class ElementalPageViewController: UIPageViewController {
    // MARK: - Init
    public convenience init(viewControllers: [UIViewController]) {
       self.init(transitionStyle: .scroll, navigationOrientation: .horizontal)
-      self.pages = viewControllers
+      // didSet will not be triggered if pages is set directly in an init method
+      _setPages(viewControllers)
    }
    
    public required init?(coder: NSCoder) {
@@ -158,7 +159,7 @@ open class ElementalPageViewController: UIPageViewController {
    }
    
    public func navigate(to index: Int) {
-      guard !pages.isEmpty else { return }
+      guard !pages.isEmpty, index != currentIndex else { return }
       let index = min(index, pages.count - 1)
       switch index {
       case 0..<currentIndex:
@@ -191,7 +192,11 @@ open class ElementalPageViewController: UIPageViewController {
          completion?()
       }
    }
-   
+
+   fileprivate func _setPages(_ pages: [UIViewController]) {
+      self.pages = pages
+   }
+
    fileprivate func _setCurrentIndex(_ index: Int) {
       currentIndex = index
    }
