@@ -27,6 +27,43 @@ public extension ElementalPage {
 }
 
 open class ElementalPageViewController: UIPageViewController {
+   // MARK: - Nested Types
+   private class DataSource: NSObject, UIPageViewControllerDataSource {
+      // MARK: - Private Properties
+      fileprivate unowned let _owner: ElementalPageViewController
+      
+      // MARK: - Init
+      init(owner: ElementalPageViewController) {
+         _owner = owner
+      }
+      
+      // MARK: - UIPageViewControllerDataSource
+      public func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+         guard let index = _owner.pages.index(of: viewController), index < _owner.pages.count - 1 else { return nil }
+         return _owner.pages[index + 1]
+      }
+      
+      public func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+         guard let index = _owner.pages.index(of: viewController), index > 0 else { return nil }
+         return _owner.pages[index - 1]
+      }
+      
+   }
+   
+   private class PageIndicatorDataSource: DataSource {
+      // MARK: - UIPageViewControllerDataSource
+      public func presentationCount(for pageViewController: UIPageViewController) -> Int {
+         return _owner.pages.count
+      }
+      
+      public func presentationIndex(for pageViewController: UIPageViewController) -> Int {
+         return _owner.currentIndex
+      }
+   }
+   
+   // MARK: - Private Properties
+   private var _dataSource: DataSource! = nil
+   
    // MARK: - Public Properties
    public fileprivate(set) var pages: [UIViewController] = [] {
       didSet {
@@ -45,6 +82,14 @@ open class ElementalPageViewController: UIPageViewController {
    public func setCurrentIndex(_ currentIndex: Int, direction: UIPageViewControllerNavigationDirection, animated: Bool, completion: (() -> Void)? = nil) {
       self.currentIndex = currentIndex
       _transition(from: viewControllers?.first, to: pages.count > currentIndex ? pages[currentIndex] : nil, direction: direction, animated: animated, notifyDelegate: true, completion: completion)
+   }
+   
+   public var showsPageIndicator: Bool = false {
+      didSet {
+         guard showsPageIndicator != oldValue else { return }
+         _dataSource = showsPageIndicator ? PageIndicatorDataSource(owner: self) : DataSource(owner: self)
+         dataSource = _dataSource
+      }
    }
 
    public weak var elementalDelegate: ElementalPageViewControllerDelegate?
@@ -81,8 +126,9 @@ open class ElementalPageViewController: UIPageViewController {
    }
    
    private func _commonInit() {
+      showsPageIndicator = true
       delegate = self
-      dataSource = self
+      dataSource = _dataSource
    }
    
    // MARK: - Life Cycle
@@ -148,26 +194,6 @@ open class ElementalPageViewController: UIPageViewController {
    
    fileprivate func _setCurrentIndex(_ index: Int) {
       currentIndex = index
-   }
-}
-
-extension ElementalPageViewController: UIPageViewControllerDataSource {
-   public func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-      guard let index = pages.index(of: viewController), index < pages.count - 1 else { return nil }
-      return pages[index + 1]
-   }
-   
-   public func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-      guard let index = pages.index(of: viewController), index > 0 else { return nil }
-      return pages[index - 1]
-   }
-   
-   public func presentationCount(for pageViewController: UIPageViewController) -> Int {
-      return pages.count
-   }
-   
-   public func presentationIndex(for pageViewController: UIPageViewController) -> Int {
-      return currentIndex
    }
 }
 
