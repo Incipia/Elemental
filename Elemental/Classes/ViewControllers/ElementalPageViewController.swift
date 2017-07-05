@@ -222,13 +222,13 @@ open class ElementalContextPage<PageContext>: ElementalViewController, Elemental
 
 open class ElementalContextPageViewController<Context>: ElementalPageViewController {
    // MARK: - Nested Types
-   typealias Page = ElementalContextPage<Context>
+   public typealias Page = ElementalContextPage<Context>
    
    // MARK: - Private Properties
    private var _transitionContexts: [UIViewController : (countDown: Int, context: Context?)] = [:]
    
    // MARK: - Public Properties
-   var context: Context? {
+   public var context: Context? {
       didSet {
          if let oldContext = oldValue, let context = context {
             viewControllers?.forEach { ($0 as? ElementalContextual)?.changeContext(from: oldValue, to: oldContext) }
