@@ -49,8 +49,7 @@ class PickerElementCell: BindableElementCell {
    fileprivate var _selectedValue: Any? {
       get { return _selectedOption?.value }
       set {
-         guard !_options.isEmpty else { return }
-         guard let element = element as? PickerElement else { fatalError() }
+         guard !_options.isEmpty, let element = element as? PickerElement else { return }
          var selectIndex: Int? = nil
          if let someValue = newValue {
             let dataValue = ElementCell.dataValue(someValue)

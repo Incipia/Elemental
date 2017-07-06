@@ -122,7 +122,7 @@ class DateInputElementCell: BindableElementCell {
    
    // MARK: - Private
    private func _updateSelectedInterval(_ interval: Double?, updatePicker: Bool = true) {
-      guard let element = element as? DateInputElement else { fatalError() }
+      guard let element = element as? DateInputElement else { return }
       guard interval != nil || element.inputState == .unfocused else { fatalError() }
       _selectedInterval = interval
       _updateInput(with: element)
