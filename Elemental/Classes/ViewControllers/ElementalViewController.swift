@@ -306,6 +306,7 @@ open class ElementalViewController: UIViewController {
    }
    
    private func _update(footerView: UIView) {
+      loadViewIfNeeded()
       _footerContainerView.subviews.forEach { $0.removeFromSuperview() }
       _footerContainerView.addSubview(footerView)
       
