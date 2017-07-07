@@ -21,7 +21,7 @@ class VerticalLineElementCell: ElementCell {
    override class func intrinsicContentSize(for element: Elemental, constrainedSize size: CGSize) -> CGSize {
       let width = size.width
       switch element {
-      case let element as VerticalLineElement: return CGSize(width: width, height: 0)
+      case _ as VerticalLineElement: return CGSize(width: width, height: 0)
       case let element as HorizontalSpaceElement: return CGSize(width: element.value, height: 1)
       default: fatalError()
       }
