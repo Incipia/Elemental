@@ -212,15 +212,15 @@ extension ElementalPageViewController: UIPageViewControllerDelegate {
 }
 
 public protocol ElementalContextual {
-   func enter<Context>(context: Context)
-   func leave<Context>(context: Context)
-   func changeContext<OldContext, NewContext>(from oldContext: OldContext, to context: NewContext)
+   func enter(context: Any)
+   func leave(context: Any)
+   func changeContext(from oldContext: Any, to context: Any)
 }
 
 public extension ElementalContextual {
-   func enter<Context>(context: Context) {}
-   func leave<Context>(context: Context) {}
-   func changeContext<OldContext, NewContext>(from oldContext: OldContext, to context: NewContext) {}
+   func enter(context: Any) {}
+   func leave(context: Any) {}
+   func changeContext(from oldContext: Any, to context: Any) {}
 }
 
 open class ElementalContextPage<PageContext>: ElementalViewController, ElementalPage, ElementalContextual {
@@ -230,17 +230,17 @@ open class ElementalContextPage<PageContext>: ElementalViewController, Elemental
    open func changeOwnContext(from oldContext: PageContext, to context: PageContext) {}
    
    // MARK: - ElementalContextual
-   open func enter<Context>(context: Context) {
+   open func enter(context: Any) {
       guard let pageContext = context as? PageContext else { return }
       enterOwn(context: pageContext)
    }
    
-   open func leave<Context>(context: Context) {
+   open func leave(context: Any) {
       guard let pageContext = context as? PageContext else { return }
       leaveOwn(context: pageContext)
    }
    
-   open func changeContext<OldContext, NewContext>(from oldContext: OldContext, to context: NewContext) {
+   open func changeContext(from oldContext: Any, to context: Any) {
       if let oldPageContext = oldContext as? PageContext, let pageContext = context as? PageContext {
          changeOwnContext(from: oldPageContext, to: pageContext)
       } else if let oldPageContext = oldContext as? PageContext {
