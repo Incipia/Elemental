@@ -14,15 +14,19 @@ public protocol ElementalPageViewControllerDelegate: class {
 
 public protocol ElementalPage {
    func willAppear(inPageViewController pageViewController: ElementalPageViewController)
+   func cancelAppear(inPageViewController pageViewController: ElementalPageViewController)
    func didAppear(inPageViewController pageViewController: ElementalPageViewController)
    func willDisappear(fromPageViewController pageViewController: ElementalPageViewController)
+   func cancelDisappear(fromPageViewController pageViewController: ElementalPageViewController)
    func didDisappear(fromPageViewController pageViewController: ElementalPageViewController)
 }
 
 public extension ElementalPage {
    func willAppear(inPageViewController pageViewController: ElementalPageViewController) {}
+   func cancelAppear(inPageViewController pageViewController: ElementalPageViewController) {}
    func didAppear(inPageViewController pageViewController: ElementalPageViewController) {}
    func willDisappear(fromPageViewController pageViewController: ElementalPageViewController) {}
+   func cancelDisappear(fromPageViewController pageViewController: ElementalPageViewController) {}
    func didDisappear(fromPageViewController pageViewController: ElementalPageViewController) {}
 }
 
@@ -61,8 +65,14 @@ open class ElementalPageViewController: UIPageViewController {
       }
    }
    
+   fileprivate struct TransitionState {
+      var nextViewController: UIViewController?
+      var direction: UIPageViewControllerNavigationDirection = .forward
+   }
+   
    // MARK: - Private Properties
    private var _dataSource: DataSource! = nil
+   fileprivate var _transitionState: TransitionState = TransitionState()
    
    // MARK: - Public Properties
    public fileprivate(set) var pages: [UIViewController] = [] {
@@ -102,6 +112,11 @@ open class ElementalPageViewController: UIPageViewController {
    open func prepareForTransition(from currentPage: UIViewController?, to nextPage: UIViewController?, direction: UIPageViewControllerNavigationDirection, animated: Bool) {
       (currentPage as? ElementalPage)?.willDisappear(fromPageViewController: self)
       (nextPage as? ElementalPage)?.willAppear(inPageViewController: self)
+   }
+
+   open func cancelTransition(from currentPage: UIViewController?, to nextPage: UIViewController?, direction: UIPageViewControllerNavigationDirection, animated: Bool) {
+      (currentPage as? ElementalPage)?.cancelDisappear(fromPageViewController: self)
+      (nextPage as? ElementalPage)?.cancelAppear(inPageViewController: self)
    }
 
    open func recoverAfterTransition(from previousPage: UIViewController?, to currentPage: UIViewController?, direction: UIPageViewControllerNavigationDirection, animated: Bool) {
@@ -203,10 +218,35 @@ open class ElementalPageViewController: UIPageViewController {
 }
 
 extension ElementalPageViewController: UIPageViewControllerDelegate {
+   public func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
+      let nextViewController = pendingViewControllers.first
+      let direction: UIPageViewControllerNavigationDirection = {
+         guard let nextIndex = nextViewController?.view.tag else { return .forward }
+         return nextIndex < currentIndex ? .reverse : .forward
+      }()
+      if let transitionViewController = _transitionState.nextViewController {
+         cancelTransition(from: pageViewController.viewControllers?.first, to: transitionViewController, direction: _transitionState.direction, animated: true)
+      }
+      _transitionState.nextViewController = nextViewController
+      _transitionState.direction = direction
+      prepareForTransition(from: pageViewController.viewControllers?.first, to: nextViewController, direction: direction, animated: true)
+   }
+
    public func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-      guard completed else { return }
       guard let index = pageViewController.viewControllers?.first?.view.tag else { return }
       _setCurrentIndex(index)
+      let previousViewController = previousViewControllers.first
+      if previousViewController == pageViewController.viewControllers?.first, let transitionViewController = _transitionState.nextViewController {
+         cancelTransition(from: previousViewController, to: transitionViewController, direction: _transitionState.direction, animated: true)
+      } else {
+         let direction: UIPageViewControllerNavigationDirection = {
+            guard let previousIndex = previousViewController?.view.tag else { return .forward }
+            return currentIndex < previousIndex ? .reverse : .forward
+         }()
+         recoverAfterTransition(from: previousViewController, to: pageViewController.viewControllers?.first, direction: direction, animated: true)
+      }
+      _transitionState.nextViewController = nil
+      guard completed else { return }
       elementalDelegate?.elementalPageTransitionCompleted(index: index, destinationIndex: currentIndex, in: self)
    }
 }
@@ -257,6 +297,7 @@ open class ElementalContextPageViewController<Context>: ElementalPageViewControl
    
    // MARK: - Private Properties
    private var _transitionContexts: [UIViewController : (countDown: Int, context: Context?)] = [:]
+   private var _transitionStateContext: Context?
    
    // MARK: - Public Properties
    public var context: Context? {
@@ -282,6 +323,9 @@ open class ElementalContextPageViewController<Context>: ElementalPageViewControl
       }
 
       if let contextualNextPage = nextPage as? ElementalContextual, let nextPage = nextPage {
+         if _transitionState.nextViewController == nextPage {
+            _transitionStateContext = context
+         }
          if let oldContext = _transitionContexts[nextPage]?.context, let context = context {
             contextualNextPage.changeContext(from: oldContext, to: context)
          } else if let oldContext = _transitionContexts[nextPage]?.context {
@@ -291,6 +335,15 @@ open class ElementalContextPageViewController<Context>: ElementalPageViewControl
          }
          _transitionContexts[nextPage]?.context = nil
       }
+   }
+   
+   open override func cancelTransition(from currentPage: UIViewController?, to nextPage: UIViewController?, direction: UIPageViewControllerNavigationDirection, animated: Bool) {
+      super.cancelTransition(from: currentPage, to: nextPage, direction: direction, animated: animated)
+      
+      guard let nextPage = nextPage as? ElementalContextual else { return }
+      nextPage.leave(context: _transitionStateContext)
+      
+      _transitionStateContext = nil
    }
    
    override open func recoverAfterTransition(from previousPage: UIViewController?, to currentPage: UIViewController?, direction: UIPageViewControllerNavigationDirection, animated: Bool) {
@@ -306,6 +359,8 @@ open class ElementalContextPageViewController<Context>: ElementalPageViewControl
       } else {
          _transitionContexts[previousPage] = transitionContext
       }
+      
+      _transitionStateContext = nil
    }
    
    // MARK: - Init
