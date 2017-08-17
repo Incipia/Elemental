@@ -18,6 +18,7 @@ class DateInputElementCell: BindableElementCell {
    @IBOutlet private var _placeholderLabel: UILabel!
    @IBOutlet private var _leftAccessoryImageView: UIImageView!
    @IBOutlet private var _leftAccessoryPaddingConstraint: NSLayoutConstraint!
+   @IBOutlet private var _leftAccessoryImageViewWidthConstraint: NSLayoutConstraint!
    @IBOutlet private var _datePickerVerticalSpaceConstraint: NSLayoutConstraint!
    @IBOutlet private var _datePicker: UIDatePicker!
    
@@ -70,6 +71,7 @@ class DateInputElementCell: BindableElementCell {
       
       _leftAccessoryImageView.image = content.leftAccessoryImage
       _leftAccessoryPaddingConstraint.constant = content.leftAccessoryImage != nil ? 10.0 : 0.0
+      _leftAccessoryImageViewWidthConstraint.constant = content.leftAccessoryImage != nil ? 20.0 : 0.0
       
       _pickerColor = config.inputStyle.color
       
@@ -79,6 +81,7 @@ class DateInputElementCell: BindableElementCell {
       _datePicker.datePickerMode = config.datePickerMode
       _datePicker.minimumDate = content.minimumDate
       _datePicker.maximumDate = content.maximumDate
+      _datePicker.minuteInterval = config.datePickerMinuteInterval
       _datePicker.setDate(content.date ?? Date(), animated: true)
       _datePicker.setValue(_pickerColor, forKey: "textColor")
       _updateIndicatorColor()
@@ -126,12 +129,17 @@ class DateInputElementCell: BindableElementCell {
       guard interval != nil || element.inputState == .unfocused else { fatalError() }
       _selectedInterval = interval
       _updateInput(with: element)
-      var dateValue: Date? = interval == nil ? nil :
+      let dateValue: Date? = interval == nil ? nil :
       _datePicker.datePickerMode == .countDownTimer ? Date(timeIntervalSinceNow: interval!) :
       Date(timeIntervalSince1970: interval!)
       defer {
          trySetBoundValue(dateValue, for: .anyValue)
          trySetBoundValue(interval, for: .doubleValue)
+         if let dateValue = dateValue {
+            trySetBoundValue(element.configuration.dateFormatter.string(from: dateValue), for: .text)
+         } else {
+            trySetBoundValue(nil, for: .text)
+         }
       }
       guard updatePicker else { return }
       if _datePicker.datePickerMode == .countDownTimer {
@@ -175,6 +183,9 @@ class DateInputElementCell: BindableElementCell {
       switch key {
       case .anyValue: return _datePicker.date
       case .doubleValue: return Double(_datePicker.date.timeIntervalSince1970)
+      case .text:
+         guard let config = element?.elementalConfig as? DateInputElementConfiguring else { return nil }
+         return config.dateFormatter.string(from: _datePicker.date)
       default: fatalError("\(type(of: self)) cannot retrieve value for \(key))")
       }
    }
@@ -188,6 +199,12 @@ class DateInputElementCell: BindableElementCell {
          }
          fallthrough
       case .doubleValue: _updateSelectedInterval(value as? Double)
+      case .text:
+         guard let config = element?.elementalConfig as? DateInputElementConfiguring,
+            let dateValue = value as? String,
+            let date = config.dateFormatter.date(from: dateValue) else { return }
+         _updateSelectedInterval(date.timeIntervalSince1970)
+         
       default: fatalError("\(type(of: self)) cannot set value for \(key))")
       }
    }

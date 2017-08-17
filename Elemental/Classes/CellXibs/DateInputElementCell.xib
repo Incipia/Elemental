@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1421" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -93,6 +93,7 @@
                 <outlet property="_detailLabelVerticalSpaceConstraint" destination="AII-Yt-5tw" id="maQ-X2-e6m"/>
                 <outlet property="_label" destination="m27-bw-2Nq" id="2ik-Lz-Gye"/>
                 <outlet property="_leftAccessoryImageView" destination="Blv-Lf-cGf" id="GZA-G8-pII"/>
+                <outlet property="_leftAccessoryImageViewWidthConstraint" destination="7RC-s0-5wl" id="KLe-Nv-l2Z"/>
                 <outlet property="_leftAccessoryPaddingConstraint" destination="ahT-jE-wab" id="ZD4-w3-brg"/>
                 <outlet property="_placeholderLabel" destination="x9O-oh-Qbt" id="agc-J3-KYB"/>
             </connections>
