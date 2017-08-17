@@ -60,6 +60,7 @@ class BindableElementCell: ElementCell, Bindable {
    
    override func prepareForReuse() {
       _updateBindings(bound: false)
+      bindings = []
       super.prepareForReuse()
    }
 
