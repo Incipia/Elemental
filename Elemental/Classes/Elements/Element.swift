@@ -77,6 +77,7 @@ open class Element: Elemental {
       return "\(elements.last!)Cell"
    }
    
+   open var elementID: String?
    open var cellID: String { return type(of: self).defaultCellID }
    private weak var _containerViewController: UIViewController?
    public private(set) weak var cell: ElementCell?
