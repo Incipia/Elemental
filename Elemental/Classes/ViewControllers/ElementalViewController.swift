@@ -79,6 +79,12 @@ open class ElementalViewController: UIViewController {
       cv.backgroundColor = .clear
       cv.keyboardDismissMode = .onDrag
       cv.delaysContentTouches = true
+      
+      if #available(iOS 11.0, *) {
+         cv.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentBehavior.never
+      } else {
+         // Fallback on earlier versions
+      }
    
       return cv
    }()
