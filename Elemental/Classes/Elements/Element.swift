@@ -96,6 +96,12 @@ open class Element: Elemental {
       }
    }
    
+   open func reconfigure(cell: UICollectionViewCell, for element: Elemental, in containerViewController: UIViewController?) {
+      guard (element as? Element) === self else { return }
+      
+      reconfigure()
+   }
+   
    open func reconfigure() {
       guard let cell = cell, cell.element === self else { return }
       configure(cell: cell, in: _containerViewController)
