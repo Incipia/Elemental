@@ -354,7 +354,6 @@ extension ElementalViewController {
          UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseOut, animations: {
             self._cvLeadingSpaceConstraint.constant = 0
             screenshot.frame.origin.x += self.collectionView.bounds.width * (fromRight ? -1 : 1)
-            screenshot.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
             screenshot.alpha = 0
             self.view.layoutIfNeeded()
             self.collectionView.alpha = 1
