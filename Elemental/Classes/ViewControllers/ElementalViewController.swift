@@ -333,7 +333,15 @@ open class ElementalViewController: UIViewController {
 }
 
 extension ElementalViewController {
+   public var isRefreshing: Bool { return collectionView.refreshControl?.isRefreshing ?? false }
+   
+   public func startRefreshing() {
+      guard let refreshControl = collectionView.refreshControl, !refreshControl.isRefreshing else { return }
+      refreshControl.beginRefreshing()
+   }
+   
    public func stopRefreshing() {
+      guard let refreshControl = collectionView.refreshControl, refreshControl.isRefreshing else { return }
       _refreshControl.endRefreshing()
    }
    
