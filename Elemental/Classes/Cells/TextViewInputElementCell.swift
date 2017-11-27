@@ -52,7 +52,12 @@ class TextViewInputElementCell: BindableElementCell {
       _detailLabel.textColor = style.detailStyle?.color
       _textView.backgroundColor = style.inputBackgroundColor
       
-      _textView.tintColor = style.inputStyle.color
+      _textView.keyboardType = style.keyboardStyle.type
+      _textView.keyboardAppearance = style.keyboardStyle.appearance
+      _textView.isSecureTextEntry = style.keyboardStyle.isSecureTextEntry
+      _textView.autocapitalizationType = style.keyboardStyle.autocapitalizationType
+      _textView.returnKeyType = style.keyboardStyle.returnKeyType
+      _textView.tintColor = style.inputTintColor ?? style.inputStyle.color
       
       _textView.placeholder = content.placeholder ?? ""
       _textView.placeholderFont = style.placeholderStyle?.font
