@@ -161,10 +161,12 @@ public protocol TextInputElementConfiguring: ElementalConfiguring {
    var inputBackgroundColor: UIColor { get }
    var inputTintColor: UIColor? { get }
    var isEnabled: Bool { get }
+   var textInsets: UIEdgeInsets { get }
 }
 
 public extension TextInputElementConfiguring {
    var isEnabled: Bool { return true }
+   var textInsets: UIEdgeInsets { return UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12) }
 }
 
 open class TextInputElementConfiguration: ElementalConfiguration, TextInputElementConfiguring {
@@ -177,8 +179,9 @@ open class TextInputElementConfiguration: ElementalConfiguration, TextInputEleme
    public var inputBackgroundColor: UIColor
    public var inputTintColor: UIColor?
    public var isEnabled: Bool
+   public var textInsets: UIEdgeInsets
    
-   public init(nameStyle: ElementalTextStyling = ElementalTextStyle(), detailStyle: ElementalTextStyling? = nil, placeholderStyle: ElementalTextStyling? = nil, inputStyle: ElementalTextStyling = ElementalTextStyle(), keyboardStyle: ElementalKeyboardStyling = ElementalKeyboardStyle(), inputHeight: CGFloat = 48, inputBackgroundColor: UIColor = .gray, inputTintColor: UIColor? = nil, isEnabled: Bool = true) {
+   public init(nameStyle: ElementalTextStyling = ElementalTextStyle(), detailStyle: ElementalTextStyling? = nil, placeholderStyle: ElementalTextStyling? = nil, inputStyle: ElementalTextStyling = ElementalTextStyle(), keyboardStyle: ElementalKeyboardStyling = ElementalKeyboardStyle(), inputHeight: CGFloat = 48, inputBackgroundColor: UIColor = .gray, inputTintColor: UIColor? = nil, isEnabled: Bool = true, textInsets: UIEdgeInsets = UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12)) {
       self.nameStyle = nameStyle
       self.detailStyle = detailStyle
       self.placeholderStyle = placeholderStyle
@@ -188,6 +191,7 @@ open class TextInputElementConfiguration: ElementalConfiguration, TextInputEleme
       self.inputBackgroundColor = inputBackgroundColor
       self.inputTintColor = inputTintColor
       self.isEnabled = isEnabled
+      self.textInsets = textInsets
       super.init()
    }
 }
