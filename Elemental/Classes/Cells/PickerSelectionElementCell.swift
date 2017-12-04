@@ -53,10 +53,12 @@ class PickerElementCell: BindableElementCell {
          var selectIndex: Int? = nil
          if let someValue = newValue {
             let dataValue = ElementCell.dataValue(someValue)
+            var didSelectOption = false
             for (index, option) in _options.enumerated() {
-               if option.dataValue == dataValue {
+               if !didSelectOption, option.dataValue == dataValue {
                   _options[index].option.isSelected = true
                   selectIndex = index
+                  didSelectOption = true
                } else {
                   _options[index].option.isSelected = false
                }
@@ -130,7 +132,6 @@ class PickerElementCell: BindableElementCell {
       _buttonHeightConstraint.constant = config.buttonHeight
       
       _options = element.content.options.map { return (option: $0, dataValue: ElementCell.dataValue($0.value)) }
-      guard Set(_options.map { return $0.dataValue }).count == _options.count else { fatalError() }
 
       _pickerBackgroundTopVerticalSpaceConstraint.constant = element.configuration.pickerTopMargin
       _pickerBackgroundView.backgroundColor = config.pickerBackgroundColor ?? config.buttonBackgroundColor
