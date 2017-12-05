@@ -46,8 +46,8 @@ open class ElementCell: UICollectionViewCell, ElementalCell {
 
 extension ElementCell {
    // MARK: - Utility Functions for Subclasses
-   static func dataValue(_ value: Any) -> Data {
-      var value = value
+   static func dataValue(_ value: Any?) -> Data {
+      guard var value = value else { return Data() }
       if let jsonRepresentable = value as? IncJSONRepresentable, let jsonObject = jsonRepresentable.jsonRepresentation {
          value = jsonObject
       }
@@ -55,7 +55,7 @@ extension ElementCell {
          return data
       } else if JSONSerialization.isValidJSONObject([value]), let data = try? JSONSerialization.data(withJSONObject: [value], options: []) {
          return data
-      } else if let data = "\(value)".data(using: .utf8) {
+      } else if let data = "\(value)".data(using: .ascii) {
          return data
       }
       return Data()

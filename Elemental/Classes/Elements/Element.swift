@@ -264,7 +264,7 @@ public class DropdownElement: Element {
 public class PickerElement: Element, BindableElemental {
    public struct Option {
       public let text: String
-      public let value: Any
+      public let value: Any?
       public var isSelected: Bool
       
       public init(text: String = "", value: Any? = nil, isSelected: Bool = false) {
@@ -273,8 +273,18 @@ public class PickerElement: Element, BindableElemental {
          self.isSelected = isSelected
       }
       
+      public init(nilOptionText: String = "", isSelected: Bool = false) {
+         self.text = nilOptionText
+         self.value = nil
+         self.isSelected = isSelected
+      }
+      
       public static func option(text: String = "", value: Any? = nil, isSelected: Bool = false) -> Option {
          return Option(text: text, value: value, isSelected: isSelected)
+      }
+      
+      public static func nilOption(text: String = "", isSelected: Bool = false) -> Option {
+         return Option(nilOptionText: text, isSelected: isSelected)
       }
    }
    
