@@ -35,7 +35,23 @@ open class ElementalViewController: UIViewController {
       control.layer.zPosition = -1
       return control
    }()
+
+   fileprivate var _headerViewTopSpaceConstraint: NSLayoutConstraint!
+   fileprivate var _headerViewBottomSpaceConstraint: NSLayoutConstraint!
    
+   fileprivate lazy var _headerContainerView: UIView = {
+      let headerView = UIView(frame: .zero)
+      headerView.translatesAutoresizingMaskIntoConstraints = false
+      return headerView
+   }()
+   
+   fileprivate lazy var _emptyHeaderView: UIView = {
+      let view = UIView()
+      view.translatesAutoresizingMaskIntoConstraints = false
+      view.heightAnchor.constraint(equalToConstant: 0).isActive = true
+      return view
+   }()
+
    fileprivate var _footerViewTopSpaceConstraint: NSLayoutConstraint!
    fileprivate var _footerViewBottomSpaceConstraint: NSLayoutConstraint!
    
@@ -56,18 +72,23 @@ open class ElementalViewController: UIViewController {
       let cv = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
       cv.translatesAutoresizingMaskIntoConstraints = false
       self.view.addSubview(cv)
+      let headerContainerView = self._headerContainerView
       let footerContainerView = self._footerContainerView
+      self.view.addSubview(headerContainerView)
       self.view.addSubview(footerContainerView)
       
-      
+      self._headerViewBottomSpaceConstraint = headerContainerView.bottomAnchor.constraint(equalTo: cv.topAnchor)
+      self._headerViewTopSpaceConstraint = headerContainerView.topAnchor.constraint(equalTo: self.view.topAnchor)
       self._footerViewBottomSpaceConstraint = footerContainerView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
       self._footerViewTopSpaceConstraint = footerContainerView.topAnchor.constraint(equalTo: cv.bottomAnchor)
       self._cvLeadingSpaceConstraint = cv.leadingAnchor.constraint(equalTo: self.view.leadingAnchor)
-      self._update(footerView: self._emptyFooterView)
+      self._update(containerView: self._headerContainerView, with: self._emptyHeaderView)
+      self._update(containerView: self._footerContainerView, with: self._emptyFooterView)
       
       NSLayoutConstraint.activate([
-         cv.topAnchor.constraint(equalTo: self.view.topAnchor),
          cv.widthAnchor.constraint(equalTo: self.view.widthAnchor),
+         self._headerViewBottomSpaceConstraint,
+         self._headerViewTopSpaceConstraint,
          self._footerViewBottomSpaceConstraint,
          self._footerViewTopSpaceConstraint,
          self._cvLeadingSpaceConstraint,
@@ -115,6 +136,27 @@ open class ElementalViewController: UIViewController {
    fileprivate var _layoutState = LayoutState()
    
    // MARK: - Public Properties
+   public var headerViewTopPadding: CGFloat = 0 {
+      didSet {
+         _headerViewTopSpaceConstraint.constant = headerViewTopPadding
+      }
+   }
+   
+   public var headerViewBottomPadding: CGFloat = 0 {
+      didSet {
+         _headerViewBottomSpaceConstraint.constant = -headerViewBottomPadding
+      }
+   }
+   
+   public var headerView: UIView? {
+      didSet {
+         switch headerView {
+         case .none: _update(containerView: _headerContainerView, with: _emptyHeaderView)
+         case .some(let view): _update(containerView: _headerContainerView, with: view)
+         }
+      }
+   }
+
    public var footerViewTopPadding: CGFloat = 0 {
       didSet {
          _footerViewTopSpaceConstraint.constant = footerViewTopPadding
@@ -130,8 +172,8 @@ open class ElementalViewController: UIViewController {
    public var footerView: UIView? {
       didSet {
          switch footerView {
-         case .none: _removeFooterView()
-         case .some(let view): _update(footerView: view)
+         case .none: _update(containerView: _footerContainerView, with: _emptyFooterView)
+         case .some(let view): _update(containerView: _footerContainerView, with: view)
          }
       }
    }
@@ -306,27 +348,23 @@ open class ElementalViewController: UIViewController {
    @objc private func _refreshControlChanged(control: UIRefreshControl) {
       formDelegate?.elementsBeganRefreshing(in: self)
    }
-   
-   private func _removeFooterView() {
-      _update(footerView: _emptyFooterView)
-   }
-   
-   private func _update(footerView: UIView) {
+
+   private func _update(containerView: UIView, with view: UIView) {
       loadViewIfNeeded()
-      _footerContainerView.subviews.forEach { $0.removeFromSuperview() }
-      _footerContainerView.addSubview(footerView)
+      containerView.subviews.forEach { $0.removeFromSuperview() }
+      containerView.addSubview(view)
       
-      if footerView.translatesAutoresizingMaskIntoConstraints {
+      if view.translatesAutoresizingMaskIntoConstraints {
          NSLayoutConstraint.activate([
-            _footerContainerView.widthAnchor.constraint(equalTo: footerView.widthAnchor),
-            _footerContainerView.heightAnchor.constraint(equalTo: footerView.heightAnchor),
+            containerView.widthAnchor.constraint(equalTo: view.widthAnchor),
+            containerView.heightAnchor.constraint(equalTo: view.heightAnchor),
             ])
       } else {
          NSLayoutConstraint.activate([
-            footerView.centerYAnchor.constraint(equalTo: _footerContainerView.centerYAnchor),
-            footerView.centerXAnchor.constraint(equalTo: _footerContainerView.centerXAnchor),
-            _footerContainerView.widthAnchor.constraint(equalTo: footerView.widthAnchor),
-            _footerContainerView.heightAnchor.constraint(equalTo: footerView.heightAnchor),
+            view.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
+            view.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
+            containerView.widthAnchor.constraint(equalTo: view.widthAnchor),
+            containerView.heightAnchor.constraint(equalTo: view.heightAnchor),
             ])
       }
    }
