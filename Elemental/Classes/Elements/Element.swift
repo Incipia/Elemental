@@ -374,6 +374,10 @@ public class TextFieldInputElement: Element, BindableElemental {
       case .horizontal: fatalError("\(type(of: self)) does not support \(direction) constraint")
       }
    }
+   
+   public func startEditing() {
+      (cell as? TextFieldInputElementCell)?.startEditing()
+   }
 }
 
 

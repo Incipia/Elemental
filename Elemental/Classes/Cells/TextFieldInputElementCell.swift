@@ -158,6 +158,10 @@ class TextFieldInputElementCell: BindableElementCell {
       _action = nil
       super.prepareForReuse()
    }
+   
+   public func startEditing() {
+      _textField.becomeFirstResponder()
+   }
 }
 
 extension TextFieldInputElementCell {
