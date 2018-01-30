@@ -68,8 +68,10 @@ class DateInputElementCell: BindableElementCell {
       _label.textColor = config.nameStyle.color
       _detailLabel.textColor = config.detailStyle?.color
       _placeholderLabel.textColor = config.placeholderStyle?.color
+      _placeholderLabel.textAlignment = config.placeholderStyle?.alignment ?? .left
       
       _leftAccessoryImageView.image = content.leftAccessoryImage
+      _leftAccessoryImageView.tintColor = config.nameStyle.color
       _leftAccessoryPaddingConstraint.constant = content.leftAccessoryImage != nil ? 10.0 : 0.0
       _leftAccessoryImageViewWidthConstraint.constant = content.leftAccessoryImage != nil ? 20.0 : 0.0
       
