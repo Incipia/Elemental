@@ -130,11 +130,11 @@ class DateInputElementCell: BindableElementCell {
       guard let element = element as? DateInputElement else { return }
       guard interval != nil || element.inputState == .unfocused else { fatalError() }
       _selectedInterval = interval
-      _updateInput(with: element)
       let dateValue: Date? = interval == nil ? nil :
       _datePicker.datePickerMode == .countDownTimer ? Date(timeIntervalSinceNow: interval!) :
       Date(timeIntervalSince1970: interval!)
       defer {
+         _updateInput(with: element)
          trySetBoundValue(dateValue, for: .anyValue)
          trySetBoundValue(interval, for: .doubleValue)
          if let dateValue = dateValue {
