@@ -15,10 +15,8 @@ class AccessoryElementCell: BindableElementCell {
    @IBOutlet private var _button: UIButton!
    @IBOutlet private var _imageView: UIImageView!
    @IBOutlet private var _detailToButtonHorizontalSpacing: NSLayoutConstraint!
-   @IBOutlet private var _buttonToImageHorizontalSpacing: NSLayoutConstraint!
+   @IBOutlet private var _detailToImageHorizontalSpacing: NSLayoutConstraint!
    @IBOutlet private var _detailToSuperviewHorizontalSpacing: NSLayoutConstraint!
-   @IBOutlet private var _buttonToSuperviewHorizontalSpacing: NSLayoutConstraint!
-   @IBOutlet private var _buttonWidthConstraint: NSLayoutConstraint!
    @IBOutlet private var _nameToDetailHorizontalSpacing: NSLayoutConstraint!
    @IBOutlet private var _nameToDetailVerticalSpacing: NSLayoutConstraint!
    
@@ -109,27 +107,23 @@ class AccessoryElementCell: BindableElementCell {
          return
       }
 
-      if let accessory = _accessory {
-         switch accessory {
-         case .button, .buttonImage:
-            _buttonWidthConstraint.isActive = false
-            _buttonToImageHorizontalSpacing.isActive = false
-            _detailToSuperviewHorizontalSpacing.isActive = false
-            _buttonToSuperviewHorizontalSpacing.isActive = true
-            _detailToButtonHorizontalSpacing.isActive = true
-         case .image:
-            _detailToSuperviewHorizontalSpacing.isActive = false
-            _buttonToSuperviewHorizontalSpacing.isActive = false
-            _buttonWidthConstraint.isActive = true
-            _buttonToImageHorizontalSpacing.isActive = true
-            _detailToButtonHorizontalSpacing.isActive = true
-         }
-      } else {
-         _detailToButtonHorizontalSpacing.isActive = false
-         _detailToSuperviewHorizontalSpacing.isActive = true
-         _buttonWidthConstraint.isActive = true
-      }
-      
+//      if let accessory = _accessory {
+//         switch accessory {
+//         case .button, .buttonImage:
+//            _detailToSuperviewHorizontalSpacing.isActive = false
+//            _detailToImageHorizontalSpacing.isActive = false
+//            _detailToButtonHorizontalSpacing.isActive = true
+//         case .image:
+//            _detailToSuperviewHorizontalSpacing.isActive = false
+//            _detailToButtonHorizontalSpacing.isActive = false
+//            _detailToImageHorizontalSpacing.isActive = true
+//         }
+//      } else {
+//         _detailToButtonHorizontalSpacing.isActive = false
+//         _detailToImageHorizontalSpacing.isActive = false
+//         _detailToSuperviewHorizontalSpacing.isActive = true
+//      }
+
       switch layoutDirection {
       case .horizontal:
          NSLayoutConstraint.deactivate(_verticalConstraints)
@@ -138,7 +132,7 @@ class AccessoryElementCell: BindableElementCell {
          NSLayoutConstraint.deactivate(_horizontalConstraints)
          NSLayoutConstraint.activate(_verticalConstraints)
       }
-      
+
       super.updateConstraints()
    }
    
