@@ -81,6 +81,7 @@ class DateInputElementCell: BindableElementCell {
       _dateInputHeightConstraint.constant = config.inputHeight
       
       _datePicker.datePickerMode = config.datePickerMode
+      _datePicker.locale = config.datePickerLocale
       _datePicker.minimumDate = content.minimumDate
       _datePicker.maximumDate = content.maximumDate
       _datePicker.minuteInterval = config.datePickerMinuteInterval

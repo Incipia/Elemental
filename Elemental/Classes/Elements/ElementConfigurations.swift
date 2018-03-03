@@ -204,6 +204,7 @@ public protocol DateInputElementConfiguring: ElementalConfiguring {
    var inputHeight: CGFloat { get }
    var inputBackgroundColor: UIColor { get }
    var datePickerMode: UIDatePickerMode { get }
+   var datePickerLocale: Locale? { get }
    var datePickerMinuteInterval: Int { get }
    var dateFormatter: DateFormatter { get }
    var inputState: InputElementState { get set }
@@ -218,12 +219,13 @@ open class DateInputElementConfiguration: ElementalConfiguration, DateInputEleme
    public var inputHeight: CGFloat
    public var inputBackgroundColor: UIColor
    public var datePickerMode: UIDatePickerMode
+   public var datePickerLocale: Locale?
    public var datePickerMinuteInterval: Int
    public var dateFormatter: DateFormatter
    public var inputState: InputElementState
    weak public var layoutDelegate: ElementalLayoutDelegate?
    
-   public init(nameStyle: ElementalTextStyling = ElementalTextStyle(), detailStyle: ElementalTextStyling? = nil, placeholderStyle: ElementalTextStyling? = nil, inputStyle: ElementalTextStyling = ElementalTextStyle(), inputHeight: CGFloat = 64, inputBackgroundColor: UIColor = .gray, inputState: InputElementState = .unfocused, datePickerMode: UIDatePickerMode = .dateAndTime, datePickerMinuteInterval: Int = 1, dateFormatter: DateFormatter = DateFormatter(), layoutDelegate: ElementalLayoutDelegate? = nil) {
+   public init(nameStyle: ElementalTextStyling = ElementalTextStyle(), detailStyle: ElementalTextStyling? = nil, placeholderStyle: ElementalTextStyling? = nil, inputStyle: ElementalTextStyling = ElementalTextStyle(), inputHeight: CGFloat = 64, inputBackgroundColor: UIColor = .gray, inputState: InputElementState = .unfocused, datePickerMode: UIDatePickerMode = .dateAndTime, datePickerLocale: Locale? = nil, datePickerMinuteInterval: Int = 1, dateFormatter: DateFormatter = DateFormatter(), layoutDelegate: ElementalLayoutDelegate? = nil) {
       self.nameStyle = nameStyle
       self.detailStyle = detailStyle
       self.placeholderStyle = placeholderStyle
@@ -232,6 +234,7 @@ open class DateInputElementConfiguration: ElementalConfiguration, DateInputEleme
       self.inputBackgroundColor = inputBackgroundColor
       self.inputState = inputState
       self.datePickerMode = datePickerMode
+      self.datePickerLocale = datePickerLocale
       self.datePickerMinuteInterval = datePickerMinuteInterval
       self.dateFormatter = dateFormatter
       self.layoutDelegate = layoutDelegate
