@@ -138,12 +138,12 @@ class RadioSelectionElementCell: BindableElementCell {
       var totalComponentsHeight: CGFloat = 0
       for component in content.components {
          let textHeight = component.text.heightWithConstrainedWidth(width: width - 16, font: style.componentStyle.font)
-         totalComponentsHeight += max(textHeight, 20)
-         totalComponentsHeight += 24
+         totalComponentsHeight += textHeight
+         totalComponentsHeight += style.componentSpacing
       }
-      totalComponentsHeight -= 24
+      totalComponentsHeight -= style.componentSpacing
       let nameHeight: CGFloat = content.name?.heightWithConstrainedWidth(width: width, font: style.nameStyle.font) ?? 0.0
-      let namePadding: CGFloat = content.name != nil ? 24.0 : 0
+      let namePadding: CGFloat = content.name != nil ? style.componentSpacing : 1.5
       return CGSize(width: width, height: max(totalComponentsHeight, 0) + nameHeight + namePadding)
    }
    
