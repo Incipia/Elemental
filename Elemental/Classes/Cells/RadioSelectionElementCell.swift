@@ -107,9 +107,12 @@ class RadioSelectionElementCell: BindableElementCell {
          addedViews.append(rightRadioView)
          addedViews.append(leftRadioView)
          
-         radioOptions.append((view: rightRadioView, value: component.value, dataValue: ElementCell.dataValue(component.value)))
-         radioOptions.append((view: leftRadioView, value: component.value, dataValue: ElementCell.dataValue(component.value)))
+         switch style.alignment {
+         case .left: radioOptions.append((view: leftRadioView, value: component.value, dataValue: ElementCell.dataValue(component.value)))
+         case .right: radioOptions.append((view: rightRadioView, value: component.value, dataValue: ElementCell.dataValue(component.value)))
+         }
          rightRadioView.isUserInteractionEnabled = false
+         leftRadioView.isUserInteractionEnabled = false
       }
       
       _collapseRadioViews(for: element.configuration.alignment)
