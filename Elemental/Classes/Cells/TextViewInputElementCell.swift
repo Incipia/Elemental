@@ -57,6 +57,7 @@ class TextViewInputElementCell: BindableElementCell {
       _textView.keyboardAppearance = style.keyboardStyle.appearance
       _textView.isSecureTextEntry = style.keyboardStyle.isSecureTextEntry
       _textView.autocapitalizationType = style.keyboardStyle.autocapitalizationType
+      _textView.autocorrectionType = style.keyboardStyle.autocorrectionType
       _textView.returnKeyType = style.keyboardStyle.returnKeyType
       _textView.tintColor = style.inputTintColor ?? style.inputStyle.color
       

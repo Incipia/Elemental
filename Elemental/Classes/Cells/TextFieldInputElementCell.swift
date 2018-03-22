@@ -65,6 +65,7 @@ class TextFieldInputElementCell: BindableElementCell {
       _textField.keyboardAppearance = style.keyboardStyle.appearance
       _textField.isSecureTextEntry = style.keyboardStyle.isSecureTextEntry
       _textField.autocapitalizationType = style.keyboardStyle.autocapitalizationType
+      _textField.autocorrectionType = style.keyboardStyle.autocorrectionType
       _textField.returnKeyType = style.keyboardStyle.returnKeyType
       _textField.tintColor = style.inputTintColor ?? style.inputStyle.color
       _textField.isEnabled = element.configuration.isEnabled

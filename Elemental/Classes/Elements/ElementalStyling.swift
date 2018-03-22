@@ -123,6 +123,7 @@ public protocol ElementalKeyboardStyling {
    var appearance: UIKeyboardAppearance { get }
    var returnKeyType: UIReturnKeyType { get }
    var autocapitalizationType: UITextAutocapitalizationType { get }
+   var autocorrectionType: UITextAutocorrectionType { get }
    var isSecureTextEntry: Bool { get }
 }
 
@@ -131,13 +132,15 @@ open class ElementalKeyboardStyle: ElementalKeyboardStyling {
    public var appearance: UIKeyboardAppearance
    public var returnKeyType: UIReturnKeyType
    public var autocapitalizationType: UITextAutocapitalizationType
+   public var autocorrectionType: UITextAutocorrectionType
    public var isSecureTextEntry: Bool
    
-   public init(type: UIKeyboardType = .default, appearance: UIKeyboardAppearance = .default, returnKeyType: UIReturnKeyType = .default, autocapitalizationType: UITextAutocapitalizationType = .sentences, isSecureTextEntry: Bool = false) {
+   public init(type: UIKeyboardType = .default, appearance: UIKeyboardAppearance = .default, returnKeyType: UIReturnKeyType = .default, autocapitalizationType: UITextAutocapitalizationType = .sentences, autocorrectionType: UITextAutocorrectionType = .default, isSecureTextEntry: Bool = false) {
       self.type = type
       self.appearance = appearance
       self.returnKeyType = returnKeyType
       self.autocapitalizationType = autocapitalizationType
+      self.autocorrectionType = autocorrectionType
       self.isSecureTextEntry = isSecureTextEntry
    }
 }
