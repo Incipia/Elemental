@@ -67,6 +67,7 @@ class TextFieldInputElementCell: BindableElementCell {
       _textField.autocapitalizationType = style.keyboardStyle.autocapitalizationType
       _textField.returnKeyType = style.keyboardStyle.returnKeyType
       _textField.tintColor = style.inputTintColor ?? style.inputStyle.color
+      _textField.isEnabled = element.configuration.isEnabled
       
       if let placeholder = content.placeholder, let placeholderStyle = style.placeholderStyle {
          let attrs: [String : AnyHashable] = [
