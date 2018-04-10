@@ -475,6 +475,7 @@ extension ElementalViewController: UICollectionViewDataSource {
    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
       let component = _elements[indexPath.row]
       let cell = collectionView.dequeueReusableCell(withReuseIdentifier: component.cellID, for: indexPath)
+      cell.bounds.size = self.collectionView(collectionView, layout: collectionView.collectionViewLayout, sizeForItemAt: indexPath)
       component.configure(cell: cell, in: self)
       return cell
    }
