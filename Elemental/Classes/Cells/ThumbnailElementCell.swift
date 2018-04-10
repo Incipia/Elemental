@@ -89,7 +89,7 @@ class ThumbnailElementCell: BindableElementCell {
    override func updateConstraints() {
       _buttonWidthConstraint.isActive = (_button.currentTitle?.isEmpty ?? true) && _button.currentImage == nil
       _thumbnailToDetailHorizontalSpacing.isActive = _thumbnailView.image != nil
-      let verticalSpacing: CGFloat = (_thumbnailView.image == nil && _detailLabel.text?.isEmpty ?? true) ? 0 : 8
+      let verticalSpacing: CGFloat = (_label.text?.isEmpty ?? true || (_thumbnailView.image == nil && _detailLabel.text?.isEmpty ?? true)) ? 0 : 8
       _nameToThumbnailVerticalSpacing.constant = verticalSpacing
       _nameToDetailVerticalSpacing.constant = verticalSpacing
       
