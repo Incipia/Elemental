@@ -8,6 +8,8 @@
 
 import UIKit
 
+fileprivate let kPickerBackgroundHeight: CGFloat = 172.0
+
 class DateInputElementCell: BindableElementCell {
    // MARK: - Private Properties
    @IBOutlet private var _label: UILabel!
@@ -102,12 +104,20 @@ class DateInputElementCell: BindableElementCell {
       guard let element = element as? DateInputElement else { fatalError() }
       let content = element.content
       let config = element.configuration
-      let nameHeight = content.name.heightWithConstrainedWidth(width: width, font: config.nameStyle.font)
-      let pickerHeight: CGFloat = element.inputState == .focused ? 216 : 0
-      guard let detail = content.detail, let detailFont = config.detailStyle?.font else { return CGSize(width: width, height: nameHeight + 10.0 + config.inputHeight + config.datePickerTopMargin + pickerHeight) }
+      
+      let nameHeight = config.layoutDirection == .horizontal ? 0 : content.name.heightWithConstrainedWidth(width: width, font: config.nameStyle.font)
+      let namePadding: CGFloat = nameHeight != 0 ? 10 : 0
+      
+      let focusedHeight = element.configuration.datePickerTopMargin + kPickerBackgroundHeight + element.configuration.datePickerBottomMargin
+      let pickerHeight: CGFloat = element.inputState == .focused ? focusedHeight : 0
+      
+      guard let detail = content.detail, let detailFont = config.detailStyle?.font else {
+         return CGSize(width: width, height: nameHeight + namePadding + config.inputHeight + pickerHeight)
+      }
+      
       let detailHeight = detail.heightWithConstrainedWidth(width: width, font: detailFont)
       let detailPadding: CGFloat = 10.0
-      let totalHeight = nameHeight + detailHeight + detailPadding + 10.0 + config.inputHeight + config.datePickerTopMargin + pickerHeight
+      let totalHeight = nameHeight + namePadding + detailHeight + detailPadding + config.inputHeight + pickerHeight
       return CGSize(width: width, height: totalHeight)
    }
    
