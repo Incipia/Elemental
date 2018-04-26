@@ -203,6 +203,9 @@ public protocol DateInputElementConfiguring: ElementalConfiguring {
    var inputStyle: ElementalTextStyling { get }
    var inputHeight: CGFloat { get }
    var inputBackgroundColor: UIColor { get }
+   var datePickerBackgroundColor: UIColor? { get }
+   var datePickerTopMargin: CGFloat { get }
+   var datePickerBottomMargin: CGFloat { get }
    var datePickerMode: UIDatePickerMode { get }
    var datePickerLocale: Locale? { get }
    var datePickerMinuteInterval: Int { get }
@@ -218,6 +221,9 @@ open class DateInputElementConfiguration: ElementalConfiguration, DateInputEleme
    public var inputStyle: ElementalTextStyling
    public var inputHeight: CGFloat
    public var inputBackgroundColor: UIColor
+   public var datePickerBackgroundColor: UIColor?
+   public var datePickerTopMargin: CGFloat
+   public var datePickerBottomMargin: CGFloat
    public var datePickerMode: UIDatePickerMode
    public var datePickerLocale: Locale?
    public var datePickerMinuteInterval: Int
@@ -225,7 +231,7 @@ open class DateInputElementConfiguration: ElementalConfiguration, DateInputEleme
    public var inputState: InputElementState
    weak public var layoutDelegate: ElementalLayoutDelegate?
    
-   public init(nameStyle: ElementalTextStyling = ElementalTextStyle(), detailStyle: ElementalTextStyling? = nil, placeholderStyle: ElementalTextStyling? = nil, inputStyle: ElementalTextStyling = ElementalTextStyle(), inputHeight: CGFloat = 64, inputBackgroundColor: UIColor = .gray, inputState: InputElementState = .unfocused, datePickerMode: UIDatePickerMode = .dateAndTime, datePickerLocale: Locale? = nil, datePickerMinuteInterval: Int = 1, dateFormatter: DateFormatter = DateFormatter(), layoutDelegate: ElementalLayoutDelegate? = nil) {
+   public init(nameStyle: ElementalTextStyling = ElementalTextStyle(), detailStyle: ElementalTextStyling? = nil, placeholderStyle: ElementalTextStyling? = nil, inputStyle: ElementalTextStyling = ElementalTextStyle(), inputHeight: CGFloat = 64, inputBackgroundColor: UIColor = .gray, inputState: InputElementState = .unfocused, datePickerBackgroundColor: UIColor? = nil, datePickerTopMargin: CGFloat = 10, datePickerBottomMargin: CGFloat = 10, datePickerMode: UIDatePickerMode = .dateAndTime, datePickerLocale: Locale? = nil, datePickerMinuteInterval: Int = 1, dateFormatter: DateFormatter = DateFormatter(), layoutDelegate: ElementalLayoutDelegate? = nil) {
       self.nameStyle = nameStyle
       self.detailStyle = detailStyle
       self.placeholderStyle = placeholderStyle
@@ -238,6 +244,9 @@ open class DateInputElementConfiguration: ElementalConfiguration, DateInputEleme
       self.datePickerMinuteInterval = datePickerMinuteInterval
       self.dateFormatter = dateFormatter
       self.layoutDelegate = layoutDelegate
+      self.datePickerBackgroundColor = datePickerBackgroundColor
+      self.datePickerTopMargin = datePickerTopMargin
+      self.datePickerBottomMargin = datePickerBottomMargin
       super.init()
    }
 }

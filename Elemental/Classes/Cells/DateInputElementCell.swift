@@ -19,8 +19,9 @@ class DateInputElementCell: BindableElementCell {
    @IBOutlet private var _leftAccessoryImageView: UIImageView!
    @IBOutlet private var _leftAccessoryPaddingConstraint: NSLayoutConstraint!
    @IBOutlet private var _leftAccessoryImageViewWidthConstraint: NSLayoutConstraint!
-   @IBOutlet private var _datePickerVerticalSpaceConstraint: NSLayoutConstraint!
+   @IBOutlet private var _pickerBackgroundTopVerticalSpaceConstraint: NSLayoutConstraint!
    @IBOutlet private var _datePicker: UIDatePicker!
+   @IBOutlet private var _pickerBackgroundView: UIView!
    
    fileprivate var _pickerColor: UIColor = .black
    fileprivate var _selectedInterval: Double?
@@ -46,6 +47,8 @@ class DateInputElementCell: BindableElementCell {
       let touchUpSelector = #selector(DateInputElementCell._pickerInputTouchUpInside)
       button.addTarget(self, action: touchUpSelector, for: .touchUpInside)
       
+      _pickerBackgroundView.layer.cornerRadius = 6.0
+
       let changeSelector = #selector(DateInputElementCell._pickerValueChanged)
       _datePicker.addTarget(self, action: changeSelector, for: .valueChanged)
    }
@@ -75,7 +78,9 @@ class DateInputElementCell: BindableElementCell {
       _leftAccessoryPaddingConstraint.constant = content.leftAccessoryImage != nil ? 10.0 : 0.0
       _leftAccessoryImageViewWidthConstraint.constant = content.leftAccessoryImage != nil ? 20.0 : 0.0
       
+      _pickerBackgroundTopVerticalSpaceConstraint.constant = config.datePickerTopMargin
       _pickerColor = config.inputStyle.color
+      _pickerBackgroundView.backgroundColor = config.datePickerBackgroundColor ?? config.inputBackgroundColor
       
       _detailLabelVerticalSpaceConstraint.constant = content.detail != nil ? 10.0 : 0.0
       _dateInputHeightConstraint.constant = config.inputHeight
@@ -88,6 +93,8 @@ class DateInputElementCell: BindableElementCell {
       _datePicker.setDate(content.date ?? Date(), animated: true)
       _datePicker.setValue(_pickerColor, forKey: "textColor")
       _updateIndicatorColor()
+      
+      _datePicker.isUserInteractionEnabled = element.inputState == .focused
    }
    
    override class func intrinsicContentSize(for element: Elemental, constrainedSize size: CGSize) -> CGSize {
@@ -96,11 +103,11 @@ class DateInputElementCell: BindableElementCell {
       let content = element.content
       let config = element.configuration
       let nameHeight = content.name.heightWithConstrainedWidth(width: width, font: config.nameStyle.font)
-      let pickerHeight: CGFloat = element.inputState == .focused ? (216 + 10) : 0
-      guard let detail = content.detail, let detailFont = config.detailStyle?.font else { return CGSize(width: width, height: nameHeight + 10.0 + config.inputHeight + pickerHeight) }
+      let pickerHeight: CGFloat = element.inputState == .focused ? 216 : 0
+      guard let detail = content.detail, let detailFont = config.detailStyle?.font else { return CGSize(width: width, height: nameHeight + 10.0 + config.inputHeight + config.datePickerTopMargin + pickerHeight) }
       let detailHeight = detail.heightWithConstrainedWidth(width: width, font: detailFont)
       let detailPadding: CGFloat = 10.0
-      let totalHeight = nameHeight + detailHeight + detailPadding + 10.0 + config.inputHeight + pickerHeight
+      let totalHeight = nameHeight + detailHeight + detailPadding + 10.0 + config.inputHeight + config.datePickerTopMargin + pickerHeight
       return CGSize(width: width, height: totalHeight)
    }
    
@@ -162,12 +169,14 @@ class DateInputElementCell: BindableElementCell {
    }
    
    @objc private func _fadePickerInput() {
+      _datePicker.isUserInteractionEnabled = false
       UIView.animate(withDuration: 0.15) {
          self._dateInputView.alpha = 0.5
       }
    }
    
    @objc private func _unfadePickerInput() {
+      _datePicker.isUserInteractionEnabled = true
       UIView.animate(withDuration: 0.15) {
          self._dateInputView.alpha = 1.0
       }

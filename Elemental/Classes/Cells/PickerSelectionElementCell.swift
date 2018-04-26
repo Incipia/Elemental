@@ -144,6 +144,8 @@ class PickerElementCell: BindableElementCell {
       _updateAccessoryImages(with: element)
       _updateButton(with: element)
       
+      _pickerView.isUserInteractionEnabled = element.inputState == .focused
+      
       let angle: CGFloat = element.inputState == .focused ? .pi : 0.0
       _rightAccessoryImageView.transform = CGAffineTransform(rotationAngle: angle)
       _buttonBackgroundView.layoutMargins = config.buttonInsets
@@ -242,12 +244,14 @@ class PickerElementCell: BindableElementCell {
    }
    
    @objc private func _fadePickerButton() {
+      _pickerView.isUserInteractionEnabled = false
       UIView.animate(withDuration: 0.15) {
          self._buttonBackgroundView.alpha = 0.5
       }
    }
    
    @objc private func _unfadePickerButton() {
+      _pickerView.isUserInteractionEnabled = true
       UIView.animate(withDuration: 0.15) {
          self._buttonBackgroundView.alpha = 1.0
       }
