@@ -80,7 +80,7 @@ public protocol PickerElementConfiguring: ElementalConfiguring {
    var inputState: InputElementState { get }
    var leftAccessoryImageTintColor: UIColor { get }
    var rightAccessoryImageTintColor: UIColor { get }
-   weak var layoutDelegate: ElementalLayoutDelegate? { get }
+   var layoutDelegate: ElementalLayoutDelegate? { get }
 }
 
 open class PickerElementConfiguration: ElementalConfiguration, PickerElementConfiguring {
@@ -211,7 +211,7 @@ public protocol DateInputElementConfiguring: ElementalConfiguring {
    var datePickerMinuteInterval: Int { get }
    var dateFormatter: DateFormatter { get }
    var inputState: InputElementState { get set }
-   weak var layoutDelegate: ElementalLayoutDelegate? { get }
+   var layoutDelegate: ElementalLayoutDelegate? { get }
 }
 
 open class DateInputElementConfiguration: ElementalConfiguration, DateInputElementConfiguring {
@@ -350,6 +350,19 @@ open class SwitchElementConfiguration: ElementalConfiguration, SwitchElementConf
       self.detailStyle = detailStyle
       self.offTintColor = offTintColor
       self.onTintColor = onTintColor
+      super.init()
+   }
+}
+
+public protocol HorizontalFormElementConfiguring: ElementalConfiguring {
+   var isScrollEnabled: Bool { get }
+}
+
+open class HorizontalFormElementConfiguration: ElementalConfiguration, HorizontalFormElementConfiguring {
+   public var isScrollEnabled: Bool
+   
+   public init(isScrollEnabled: Bool = false) {
+      self.isScrollEnabled = isScrollEnabled
       super.init()
    }
 }

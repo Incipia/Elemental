@@ -529,12 +529,13 @@ public class CustomViewControllerElement: Element {
 
 public class HorizontalFormElement: Element {
    // MARK: - Public Properties
-   let elements : [Elemental]
+   public var configuration: HorizontalFormElementConfiguring { return elementalConfig as! HorizontalFormElementConfiguring }
+   public let elements: [Elemental]
    
    // MARK: - Init
-   public init(elements : [Elemental]) {
+   public init(elements: [Elemental], configuration: HorizontalFormElementConfiguring = HorizontalFormElementConfiguration()) {
       self.elements  = elements
-      super.init(configuration: ElementalConfiguration())
+      super.init(configuration: configuration)
    }
 
    func reloadLayout() {
@@ -668,8 +669,8 @@ public extension Element {
       return CustomViewControllerElement(viewController: viewController, configuration: config)
    }
    
-   class func horizontalForm(elements: [Elemental]) -> Element {
-      return HorizontalFormElement(elements: elements)
+   class func horizontalForm(elements: [Elemental], configuration: HorizontalFormElementConfiguring = HorizontalFormElementConfiguration()) -> Element {
+      return HorizontalFormElement(elements: elements, configuration: configuration)
    }
    
    class func horizontalSpace(_ value: CGFloat) -> Element {

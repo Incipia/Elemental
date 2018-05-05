@@ -61,6 +61,7 @@ class HorizontalFormElementCell: ElementCell {
       guard let element = component as? HorizontalFormElement else { fatalError() }
       _contained = false
       _form = _form ?? ElementalViewController()
+      _form?.collectionView.isScrollEnabled = element.configuration.isScrollEnabled
       guard let form = _form else { fatalError("Could not instantiate ElementalViewController") }
       let layout = UICollectionViewFlowLayout()
       layout.scrollDirection = .horizontal
