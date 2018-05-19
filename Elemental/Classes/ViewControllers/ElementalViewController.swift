@@ -246,7 +246,7 @@ open class ElementalViewController: UIViewController {
    }
    
    // MARK: - Public
-   func index(of elemental: Elemental) -> Int? {
+   public func index(of elemental: Elemental) -> Int? {
       for (index, element) in _elements.enumerated() {
          if element as AnyObject !== elemental as AnyObject { continue }
          return index
