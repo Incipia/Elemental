@@ -136,19 +136,19 @@ open class ElementalViewController: UIViewController {
    fileprivate var _layoutState = LayoutState()
    
    // MARK: - Public Properties
-   public var headerViewTopPadding: CGFloat = 0 {
+   @objc public var headerViewTopPadding: CGFloat = 0 {
       didSet {
          _headerViewTopSpaceConstraint.constant = headerViewTopPadding
       }
    }
    
-   public var headerViewBottomPadding: CGFloat = 0 {
+   @objc public var headerViewBottomPadding: CGFloat = 0 {
       didSet {
          _headerViewBottomSpaceConstraint.constant = -headerViewBottomPadding
       }
    }
    
-   public var headerView: UIView? {
+   @objc public var headerView: UIView? {
       didSet {
          switch headerView {
          case .none: _update(containerView: _headerContainerView, with: _emptyHeaderView)
@@ -157,19 +157,19 @@ open class ElementalViewController: UIViewController {
       }
    }
 
-   public var footerViewTopPadding: CGFloat = 0 {
+   @objc public var footerViewTopPadding: CGFloat = 0 {
       didSet {
          _footerViewTopSpaceConstraint.constant = footerViewTopPadding
       }
    }
    
-   public var footerViewBottomPadding: CGFloat = 0 {
+   @objc public var footerViewBottomPadding: CGFloat = 0 {
       didSet {
          _footerViewBottomSpaceConstraint.constant = -footerViewBottomPadding
       }
    }
    
-   public var footerView: UIView? {
+   @objc public var footerView: UIView? {
       didSet {
          switch footerView {
          case .none: _update(containerView: _footerContainerView, with: _emptyFooterView)
@@ -185,23 +185,23 @@ open class ElementalViewController: UIViewController {
    
    public weak var formDelegate: ElementalViewControllerDelegate?
    
-   public var layout: UICollectionViewLayout {
+   @objc public var layout: UICollectionViewLayout {
       get { return collectionView.collectionViewLayout }
       set { collectionView.collectionViewLayout = newValue }
    }
    
-   public var keyboardDismissMode: UIScrollViewKeyboardDismissMode {
+   @objc public var keyboardDismissMode: UIScrollViewKeyboardDismissMode {
       get { return collectionView.keyboardDismissMode }
       set { collectionView.keyboardDismissMode = newValue }
    }
    
-   public var scrollIndicatorStyle: UIScrollViewIndicatorStyle = .default {
+   @objc public var scrollIndicatorStyle: UIScrollViewIndicatorStyle = .default {
       didSet {
          collectionView.indicatorStyle = scrollIndicatorStyle
       }
    }
    
-   public var allowsRefresh: Bool = false {
+   @objc public var allowsRefresh: Bool = false {
       didSet {
          if allowsRefresh {
             collectionView.refreshControl = self._refreshControl
@@ -211,36 +211,36 @@ open class ElementalViewController: UIViewController {
       }
    }
    
-   public var showsScrollIndicator: Bool = true {
+   @objc public var showsScrollIndicator: Bool = true {
       didSet {
          collectionView.showsVerticalScrollIndicator = showsScrollIndicator
          collectionView.showsHorizontalScrollIndicator = showsScrollIndicator
       }
    }
    
-   public var delaysContentTouches: Bool {
+   @objc public var delaysContentTouches: Bool {
       get { return collectionView.delaysContentTouches }
       set { collectionView.delaysContentTouches = newValue }
    }
    
-   public var componentPadding: CGFloat = 0.0 {
+   @objc public var componentPadding: CGFloat = 0.0 {
       didSet {
          collectionView.collectionViewLayout.invalidateLayout()
       }
    }
    
-   public var sidePadding: CGFloat = 24.0 {
+   @objc public var sidePadding: CGFloat = 24.0 {
       didSet {
          collectionView.collectionViewLayout.invalidateLayout()
       }
    }
    
-   public var collectionView: UICollectionView {
+   @objc public var collectionView: UICollectionView {
       loadViewIfNeeded()
       return _collectionView
    }
    
-   public var isScrollEnabled: Bool {
+   @objc public var isScrollEnabled: Bool {
       get { return collectionView.isScrollEnabled }
       set { collectionView.isScrollEnabled = newValue }
    }
@@ -281,7 +281,7 @@ open class ElementalViewController: UIViewController {
       }
    }
    
-   public func setNeedsLayout(animated: Bool = true) {
+   @objc public func setNeedsLayout(animated: Bool = true) {
       _layoutState.animated = _layoutState.animated || animated
       guard !_layoutState.needsLayout else { return }
       _layoutState.needsLayout = true
@@ -312,7 +312,7 @@ open class ElementalViewController: UIViewController {
       setNeedsLayout(animated: animated)
    }
    
-   public func contentSize(constrainedWidth width: CGFloat) -> CGSize {
+   @objc public func contentSize(constrainedWidth width: CGFloat) -> CGSize {
       var height: CGFloat = 0
       let size = CGSize(width: width, height: collectionView.bounds.height)
       _elements.forEach { component in
@@ -322,7 +322,7 @@ open class ElementalViewController: UIViewController {
       return CGSize(width: width, height: height)
    }
    
-   open func formDidLoad() {
+   @objc open func formDidLoad() {
       guard let elements = generateElements() else { return }
       self.elements = elements
    }
@@ -371,14 +371,14 @@ open class ElementalViewController: UIViewController {
 }
 
 extension ElementalViewController {
-   public var isRefreshing: Bool { return collectionView.refreshControl?.isRefreshing ?? false }
+   @objc public var isRefreshing: Bool { return collectionView.refreshControl?.isRefreshing ?? false }
    
-   public func startRefreshing() {
+   @objc public func startRefreshing() {
       guard let refreshControl = collectionView.refreshControl, !refreshControl.isRefreshing else { return }
       refreshControl.beginRefreshing()
    }
    
-   public func stopRefreshing() {
+   @objc public func stopRefreshing() {
       guard let refreshControl = collectionView.refreshControl, refreshControl.isRefreshing else { return }
       _refreshControl.endRefreshing()
    }
@@ -419,7 +419,7 @@ extension ElementalViewController {
       }
    }
    
-   public func reloadComponents() {
+   @objc public func reloadComponents() {
       collectionView.reloadData()
    }
    
@@ -433,7 +433,7 @@ extension ElementalViewController {
       }
    }
 
-   public func reconfigure(componentsAt indices: IndexSet) {
+   @objc public func reconfigure(componentsAt indices: IndexSet) {
       indices.forEach {
          let indexPath: IndexPath = IndexPath(row: $0, section: 0)
          if let cell = collectionView.cellForItem(at: indexPath) {

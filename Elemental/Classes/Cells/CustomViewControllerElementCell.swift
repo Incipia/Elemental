@@ -10,7 +10,7 @@ import UIKit
 
 class CustomViewControllerElementCell: ElementCell {
    private var _viewController: UIViewController?
-   weak var containerVC: UIViewController! {
+   @objc weak var containerVC: UIViewController! {
       willSet {
          guard newValue != containerVC else { return }
          _contained = false

@@ -8,15 +8,13 @@
 
 import Foundation
 
-public protocol IncKVStringComplianceClass: class, KVStringCompliance {}
-
 public extension IncKVStringComplianceClass {
    func value(for key: String) -> Any? {
-      let object = self as KVStringCompliance
+      let object = self as IncKVStringCompliance
       return object.value(for: key)
    }
    func set(value: Any?, for key: String) throws {
-      var object = self as KVStringCompliance
+      var object = self as IncKVStringCompliance
       try object.set(value: value, for: key)
    }
 }
@@ -56,7 +54,7 @@ public struct Binding {
 
 extension Binding: BindingType {}
 
-public protocol StringBindable: class, IncKVStringComplianceClass {
+public protocol StringBindable: IncKVStringComplianceClass {
    func bind(key: String, to target: StringBindable, key targetKey: String) throws
    func bindOneWay(key: String, to target: StringBindable, key targetKey: String) throws
    func unbind(key: String, to target: StringBindable, key targetKey: String)
@@ -121,24 +119,35 @@ public extension Bindable {
 public typealias BindingModel = [Binding]
 
 public extension Array where Element: BindingType {
+   // MARK: - Public
    func filter<Key: IncKVKeyType>(key: Key) -> [Binding] {
       let keyString: String = key.rawValue
-      return flatMap {
+      return compactMap {
          guard $0.key == keyString else { return nil }
          return $0 as? Binding
       }
    }
+   
    func map<FirstKey: IncKVKeyType, SecondKey: IncKVKeyType>(firstKey first: FirstKey, toSecondKey second: SecondKey) -> [Binding] {
       return map {
          guard $0.key == first.rawValue else { return $0 as! Binding }
          return Binding(key: second.rawValue, target: $0.target, targetKey: $0.targetKey)
       }
    }
+   
    func flatMap<FirstKey: IncKVKeyType, SecondKey: IncKVKeyType>(firstKey first: FirstKey, toSecondKey second: SecondKey) -> [Binding] {
-      return flatMap {
+      return compactMap {
          guard $0.key == first.rawValue else { return nil }
          return Binding(key: second.rawValue, target: $0.target, targetKey: $0.targetKey)
       }
+   }
+
+   func targetValue<Key: IncKVKeyType>(for key: Key) -> Any? {
+      return filter(key: key).first?.targetValue
+   }
+   
+   public func set<Key: IncKVKeyType>(targetValue: Any?, for key: Key) throws {
+      try filter(key: key).forEach { try $0.set(targetValue: targetValue) }
    }
 }
 

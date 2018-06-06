@@ -17,10 +17,15 @@ public protocol IncKVJSONRepresentable: IncJSONRepresentable, IncKVCompliance {
 }
 
 public extension IncKVJSONRepresentable {
+   static var jsonKeys: [Key] { return Key.all }
+   
    var jsonRepresentation: Any? {
       var json: [String : Any] = [:]
       Self.jsonKeys.forEach {
-         let value = self.value(for: $0)
+         var value = self.value(for: $0)
+         if let someValue = value, let factory = $0 as? IncJSONFactory {
+            value = factory.json(value: someValue)
+         }
          if let representableValue = value as? IncJSONRepresentable {
             json[$0.rawValue] = representableValue.jsonRepresentation
          } else {

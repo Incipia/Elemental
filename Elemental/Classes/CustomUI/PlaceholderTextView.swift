@@ -11,7 +11,7 @@ import UIKit
 @IBDesignable
 open class PlaceholderTextView: UITextView {
    // MARK: - Public Properties
-   open let placeholderLabel: UILabel = UILabel()
+   @objc open let placeholderLabel: UILabel = UILabel()
    
    @IBInspectable open var placeholder: String = "" {
       didSet {
@@ -25,7 +25,7 @@ open class PlaceholderTextView: UITextView {
       }
    }
    
-   open var placeholderFont: UIFont? {
+   @objc open var placeholderFont: UIFont? {
       didSet {
          let font = (placeholderFont != nil) ? placeholderFont : self.font
          placeholderLabel.font = font

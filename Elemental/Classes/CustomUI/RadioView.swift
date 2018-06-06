@@ -9,7 +9,7 @@
 import UIKit
 
 extension UIView {
-   func addAndFill(subview: UIView) {
+   @objc func addAndFill(subview: UIView) {
       addSubview(subview)
       subview.translatesAutoresizingMaskIntoConstraints = false
       subview.topAnchor.constraint(equalTo: topAnchor).isActive = true
@@ -22,7 +22,7 @@ extension UIView {
 extension String {
    func heightWithConstrainedWidth(width: CGFloat, font: UIFont) -> CGFloat {
       let constraintRect = CGSize(width: width, height: .greatestFiniteMagnitude)
-      let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [NSFontAttributeName: font], context: nil)
+      let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [NSAttributedStringKey.font: font], context: nil)
       
       return boundingBox.height
    }
@@ -41,9 +41,9 @@ class RadioView: UIView {
       }
    }
    
-   var fillColor: UIColor?
+   @objc var fillColor: UIColor?
    
-   var on: Bool = false {
+   @objc var on: Bool = false {
       didSet {
          let fillLayerColor: UIColor = fillColor ?? tintColor
          _fillLayer.backgroundColor = on ? fillLayerColor.cgColor : UIColor.clear.cgColor
@@ -82,7 +82,7 @@ class RadioView: UIView {
       _fillLayer.cornerRadius = min(_fillLayer.frame.width, _fillLayer.frame.height) * 0.5
    }
    
-   func toggle() {
+   @objc func toggle() {
       on = !on
       delegate?.radioView(self, didToggleTo: on)
    }

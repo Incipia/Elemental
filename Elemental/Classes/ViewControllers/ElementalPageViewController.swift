@@ -37,7 +37,7 @@ open class ElementalPageViewController: UIPageViewController {
       fileprivate unowned let _owner: ElementalPageViewController
       
       // MARK: - Init
-      init(owner: ElementalPageViewController) {
+      @objc init(owner: ElementalPageViewController) {
          _owner = owner
       }
       
@@ -75,26 +75,26 @@ open class ElementalPageViewController: UIPageViewController {
    fileprivate var _transitionState: TransitionState = TransitionState()
    
    // MARK: - Public Properties
-   public fileprivate(set) var pages: [UIViewController] = [] {
+   @objc public fileprivate(set) var pages: [UIViewController] = [] {
       didSet {
          for (index, vc) in pages.enumerated() { vc.view.tag = index }
       }
    }
    
-   public func setPages(_ pages: [UIViewController], currentIndex: Int, direction: UIPageViewControllerNavigationDirection, animated: Bool, completion: (() -> Void)? = nil) {
+   @objc public func setPages(_ pages: [UIViewController], currentIndex: Int, direction: UIPageViewControllerNavigationDirection, animated: Bool, completion: (() -> Void)? = nil) {
       self.pages = pages
       
       setCurrentIndex(currentIndex, direction: direction, animated: animated, completion: completion)
    }
    
-   public private(set) var currentIndex: Int = 0
+   @objc public private(set) var currentIndex: Int = 0
 
-   public func setCurrentIndex(_ currentIndex: Int, direction: UIPageViewControllerNavigationDirection, animated: Bool, completion: (() -> Void)? = nil) {
+   @objc public func setCurrentIndex(_ currentIndex: Int, direction: UIPageViewControllerNavigationDirection, animated: Bool, completion: (() -> Void)? = nil) {
       self.currentIndex = currentIndex
       _transition(from: viewControllers?.first, to: pages.count > currentIndex ? pages[currentIndex] : nil, direction: direction, animated: animated, notifyDelegate: true, completion: completion)
    }
    
-   public var showsPageIndicator: Bool = false {
+   @objc public var showsPageIndicator: Bool = false {
       didSet {
          guard showsPageIndicator != oldValue else { return }
          _dataSource = showsPageIndicator ? PageIndicatorDataSource(owner: self) : DataSource(owner: self)
@@ -104,28 +104,28 @@ open class ElementalPageViewController: UIPageViewController {
 
    public weak var elementalDelegate: ElementalPageViewControllerDelegate?
    
-   public var pageCount: Int {
+   @objc public var pageCount: Int {
       return pages.count
    }
    
    // Subclass Hooks
-   open func prepareForTransition(from currentPage: UIViewController?, to nextPage: UIViewController?, direction: UIPageViewControllerNavigationDirection, animated: Bool) {
+   @objc open func prepareForTransition(from currentPage: UIViewController?, to nextPage: UIViewController?, direction: UIPageViewControllerNavigationDirection, animated: Bool) {
       (currentPage as? ElementalPage)?.willDisappear(fromPageViewController: self)
       (nextPage as? ElementalPage)?.willAppear(inPageViewController: self)
    }
 
-   open func cancelTransition(from currentPage: UIViewController?, to nextPage: UIViewController?, direction: UIPageViewControllerNavigationDirection, animated: Bool) {
+   @objc open func cancelTransition(from currentPage: UIViewController?, to nextPage: UIViewController?, direction: UIPageViewControllerNavigationDirection, animated: Bool) {
       (currentPage as? ElementalPage)?.cancelDisappear(fromPageViewController: self)
       (nextPage as? ElementalPage)?.cancelAppear(inPageViewController: self)
    }
 
-   open func recoverAfterTransition(from previousPage: UIViewController?, to currentPage: UIViewController?, direction: UIPageViewControllerNavigationDirection, animated: Bool) {
+   @objc open func recoverAfterTransition(from previousPage: UIViewController?, to currentPage: UIViewController?, direction: UIPageViewControllerNavigationDirection, animated: Bool) {
       (previousPage as? ElementalPage)?.didDisappear(fromPageViewController: self)
       (currentPage as? ElementalPage)?.didAppear(inPageViewController: self)
    }
    
    // MARK: - Init
-   public convenience init(viewControllers: [UIViewController]) {
+   @objc public convenience init(viewControllers: [UIViewController]) {
       self.init(transitionStyle: .scroll, navigationOrientation: .horizontal)
       // didSet will not be triggered if pages is set directly in an init method
       _setPages(viewControllers)
@@ -155,7 +155,7 @@ open class ElementalPageViewController: UIPageViewController {
    }
    
    // MARK: - Public
-   public func navigate(_ direction: UIPageViewControllerNavigationDirection, completion: (() -> Void)? = nil) {
+   @objc public func navigate(_ direction: UIPageViewControllerNavigationDirection, completion: (() -> Void)? = nil) {
       guard let current = viewControllers?.first else { completion?(); return }
       
       var next: UIViewController?
@@ -164,7 +164,7 @@ open class ElementalPageViewController: UIPageViewController {
       case .reverse: next = dataSource?.pageViewController(self, viewControllerBefore: current)
       }
       
-      guard let target = next else { completion?(); return }
+      guard let _ = next else { completion?(); return }
       switch direction {
       case .forward: currentIndex = currentIndex + 1
       case .reverse: currentIndex = currentIndex - 1
@@ -173,7 +173,7 @@ open class ElementalPageViewController: UIPageViewController {
       _transition(from: current, to: next, direction: direction, animated: true, notifyDelegate: true, completion: completion)
    }
    
-   public func navigate(to index: Int) {
+   @objc public func navigate(to index: Int) {
       guard !pages.isEmpty, index != currentIndex else { return }
       let index = min(index, pages.count - 1)
       switch index {
@@ -187,7 +187,7 @@ open class ElementalPageViewController: UIPageViewController {
       }
    }
 
-   public func navigateToFirst() {
+   @objc public func navigateToFirst() {
       navigate(to: 0)
    }
 
@@ -270,17 +270,17 @@ open class ElementalContextPage<PageContext>: ElementalViewController, Elemental
    open func changeOwnContext(from oldContext: PageContext, to context: PageContext) {}
    
    // MARK: - ElementalContextual
-   open func enter(context: Any) {
+   @objc open func enter(context: Any) {
       guard let pageContext = context as? PageContext else { return }
       enterOwn(context: pageContext)
    }
    
-   open func leave(context: Any) {
+   @objc open func leave(context: Any) {
       guard let pageContext = context as? PageContext else { return }
       leaveOwn(context: pageContext)
    }
    
-   open func changeContext(from oldContext: Any, to context: Any) {
+   @objc open func changeContext(from oldContext: Any, to context: Any) {
       if let oldPageContext = oldContext as? PageContext, let pageContext = context as? PageContext {
          changeOwnContext(from: oldPageContext, to: pageContext)
       } else if let oldPageContext = oldContext as? PageContext {
@@ -302,8 +302,8 @@ open class ElementalContextPageViewController<Context>: ElementalPageViewControl
    // MARK: - Public Properties
    public var context: Context? {
       didSet {
-         if let oldContext = oldValue, let context = context {
-            viewControllers?.forEach { ($0 as? ElementalContextual)?.changeContext(from: oldValue, to: oldContext) }
+         if let oldContext = oldValue, let _ = context {
+            viewControllers?.forEach { ($0 as? ElementalContextual)?.changeContext(from: oldValue!, to: oldContext) }
          } else if let oldContext = oldValue {
             viewControllers?.forEach { ($0 as? ElementalContextual)?.leave(context: oldContext) }
          } else if let context = context {

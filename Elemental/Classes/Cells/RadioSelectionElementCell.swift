@@ -187,7 +187,7 @@ class RadioSelectionElementCell: BindableElementCell {
       super.prepareForReuse()
    }
    
-   internal func contentViewTapped(recognizer: UITapGestureRecognizer) {
+   @objc internal func contentViewTapped(recognizer: UITapGestureRecognizer) {
       let location = recognizer.location(in: contentView)
       guard location.y > _label.frame.maxY else {
          print("tap (\(location) is above label max y: (\(_label.frame))")

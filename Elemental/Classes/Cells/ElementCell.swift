@@ -46,7 +46,7 @@ open class ElementCell: UICollectionViewCell, ElementalCell {
 
 extension ElementCell {
    // MARK: - Utility Functions for Subclasses
-   static func dataValue(_ value: Any?) -> Data {
+   @objc static func dataValue(_ value: Any?) -> Data {
       guard var value = value else { return Data() }
       if let jsonRepresentable = value as? IncJSONRepresentable, let jsonObject = jsonRepresentable.jsonRepresentation {
          value = jsonObject

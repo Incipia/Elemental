@@ -26,7 +26,7 @@ class HorizontalFormElementCell: ElementCell {
    private var _form: ElementalViewController?
    private var _components: [Elemental]?
    weak var delegate: HorizontalFormElementCellDelegate?
-   weak var containerVC: UIViewController! {
+   @objc weak var containerVC: UIViewController! {
       willSet {
          guard newValue != containerVC else { return }
          _contained = false
@@ -52,7 +52,7 @@ class HorizontalFormElementCell: ElementCell {
       }
    }
    
-   func reloadLayout() {
+   @objc func reloadLayout() {
       _form?.reloadLayout()
    }
    

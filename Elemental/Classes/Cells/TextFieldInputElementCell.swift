@@ -71,9 +71,9 @@ class TextFieldInputElementCell: BindableElementCell {
       _textField.isEnabled = element.configuration.isEnabled
       
       if let placeholder = content.placeholder, let placeholderStyle = style.placeholderStyle {
-         let attrs: [String : AnyHashable] = [
-            NSFontAttributeName : placeholderStyle.font,
-            NSForegroundColorAttributeName : placeholderStyle.color
+         let attrs: [NSAttributedStringKey : Any] = [
+            NSAttributedStringKey.font : placeholderStyle.font,
+            NSAttributedStringKey.foregroundColor : placeholderStyle.color
          ]
          
          let attrPlaceholder = NSAttributedString(string: placeholder, attributes: attrs)
