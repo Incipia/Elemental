@@ -108,6 +108,10 @@ class TextViewInputElementCell: BindableElementCell {
       let totalHeight = nameHeight + namePadding + detailHeight + detailPadding + config.inputHeight
       return CGSize(width: width, height: totalHeight)
    }
+   
+   func startEditing() {
+      _textView.becomeFirstResponder()
+   }
 }
 
 extension TextViewInputElementCell: UITextViewDelegate {
