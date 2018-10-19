@@ -23,6 +23,9 @@ public enum BindableElementKey: String, IncKVKeyType {
 }
 
 class BindableElementCell: ElementCell, Bindable {
+   class var bindableKeys: [BindableElementKey] {
+      return []
+   }
    var bindingBlocks: [BindableElementKey : [((targetObject: AnyObject, rawTargetKey: String)?, Any?) throws -> Bool?]] = [:]
    var keysBeingSet: [BindableElementKey] = []
 

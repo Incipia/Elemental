@@ -31,7 +31,7 @@ class TextFieldInputElementCell: BindableElementCell {
       }
    }
 
-   static var bindableKeys: [BindableElementKey] { return [.text] }
+   override class var bindableKeys: [BindableElementKey] { return [.text] }
    
    override func awakeFromNib() {
       super.awakeFromNib()
