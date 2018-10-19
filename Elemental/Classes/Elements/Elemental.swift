@@ -20,7 +20,7 @@ public protocol Elemental {
 }
 
 public extension Elemental {
-   var cellID: String { return String(describing: Self.self) }
+   var cellID: String { return String(describing: type(of: self)) }
    var elementalConfig: ElementalConfiguring { return ElementalConfiguration() }
    
    static func register(collectionView cv: UICollectionView) {}
