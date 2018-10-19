@@ -150,6 +150,14 @@ class RadioSelectionElementCell: BindableElementCell {
       return CGSize(width: width, height: max(totalComponentsHeight, 0) + nameHeight + namePadding)
    }
    
+   // MARK: Bindable protocol
+   override class var bindableKeys: [BindableElementKey] {
+      return [
+         .text,
+         .anyValue,
+      ]
+   }
+
    override func value(for key: BindableElementKey) -> Any? {
       switch key {
       case .text: return _label.text
