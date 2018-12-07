@@ -28,7 +28,7 @@ class TextViewInputElementCell: BindableElementCell {
       }
    }
 
-   static var bindableKeys: [BindableElementKey] { return [.text, .isEnabled] }
+   override class var bindableKeys: [BindableElementKey] { return [.text, .isEnabled] }
 
    override func awakeFromNib() {
       super.awakeFromNib()

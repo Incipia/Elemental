@@ -201,6 +201,14 @@ class DateInputElementCell: BindableElementCell {
    }
    
    // MARK: - Bindable Protocol
+   override class var bindableKeys: [BindableElementKey] {
+      return [
+         .anyValue,
+         .doubleValue,
+         .text,
+      ]
+   }
+   
    override func value(for key: BindableElementKey) -> Any? {
       switch key {
       case .anyValue: return _datePicker.date

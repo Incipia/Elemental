@@ -258,6 +258,10 @@ class PickerElementCell: BindableElementCell {
    }
    
    // MARK: - Bindable Protocol
+   override class var bindableKeys: [BindableElementKey] {
+      return [.anyValue]
+   }
+
    override func value(for key: BindableElementKey) -> Any? {
       switch key {
       case .anyValue: return _selectedValue

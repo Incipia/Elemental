@@ -21,7 +21,7 @@ class ThumbnailElementCell: BindableElementCell {
    @IBOutlet private var _buttonWidthConstraint: NSLayoutConstraint!
    
    // MARK - Public Properties
-   static var bindableKeys: [BindableElementKey] { return [.name, .detail, .image] }
+   override class var bindableKeys: [BindableElementKey] { return [.name, .detail, .image] }
    
    // MARK: - Private Properties
    private var _action: AccessoryElementAction?

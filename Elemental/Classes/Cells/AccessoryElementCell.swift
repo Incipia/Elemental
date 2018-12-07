@@ -25,7 +25,7 @@ class AccessoryElementCell: BindableElementCell {
    fileprivate var _readyToUpdateConstraints: Bool = false
 
    // MARK - Public Properties
-   static var bindableKeys: [BindableElementKey] { return [.detail] }
+   override class var bindableKeys: [BindableElementKey] { return [.detail] }
 
    // MARK: - Private Properties
    private var _action: AccessoryElementAction?

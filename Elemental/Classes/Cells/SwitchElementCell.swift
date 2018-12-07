@@ -14,7 +14,7 @@ class SwitchElementCell: BindableElementCell {
    @IBOutlet fileprivate var _switch: UISwitch!
    @IBOutlet private var _detailConstraint: NSLayoutConstraint!
    
-   static var bindableKeys: [BindableElementKey] { return [.switch] }
+   override class var bindableKeys: [BindableElementKey] { return [.switch] }
    
    override func awakeFromNib() {
       super.awakeFromNib()
